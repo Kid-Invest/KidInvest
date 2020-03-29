@@ -23,6 +23,9 @@ public class Business {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "business")
     List<BusinessTransactions> businessTransactions;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "businessInventory")
+    List<Inventory> inventory;
+
     //blank constructor
     public Business(){};
 
