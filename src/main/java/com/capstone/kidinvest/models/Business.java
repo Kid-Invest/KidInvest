@@ -23,6 +23,9 @@ public class Business {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "business")
     List<BusinessTransactions> businessTransactions;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "business")
+    private List<Addon> addons;
+
     //blank constructor
     public Business(){};
 
@@ -35,7 +38,6 @@ public class Business {
     }
 
     //getters and setters
-
     public long getId() {
         return id;
     }
