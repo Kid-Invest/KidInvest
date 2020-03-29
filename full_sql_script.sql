@@ -1,3 +1,5 @@
+USE kid_invest_db;
+
 # USERS SEEDER
 insert into `kid_invest_db`.`users` (id, username, password, email, balance, viewed_pages) values (1, 'dhurry0', 'JkH7rSdicfB', 'dhalvorsen0@discuz.net', 18638.23, 0);
 insert into `kid_invest_db`.`users` (id, username, password, email, balance, viewed_pages) values (2, 'kmarran1', '2gcW9jG4U2TY', 'dbagge1@delicious.com', 10559.32, 0);
