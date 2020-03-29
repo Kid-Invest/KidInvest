@@ -20,6 +20,15 @@ public class Lemonade {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "lemonade")
     List<LemonadeIngredient> lemonadeIngredients;
 
+    public Lemonade() {
+    }
+
+    public Lemonade(Long id, String name, Double price) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+    }
+
     public long getId() {
         return this.id;
     }
@@ -42,5 +51,13 @@ public class Lemonade {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public List<LemonadeIngredient> getLemonadeIngredients() {
+        return this.lemonadeIngredients;
+    }
+
+    public void setLemonadeIngredients(List<LemonadeIngredient> lemonadeIngredients) {
+        this.lemonadeIngredients = lemonadeIngredients;
     }
 }

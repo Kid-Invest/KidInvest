@@ -13,6 +13,7 @@ public class LemonadeIngredient implements Serializable {
     @JoinColumn
     private Lemonade lemonade;
 
+    @Id
     @ManyToOne
     @JoinColumn
     private Ingredient ingredient;

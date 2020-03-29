@@ -1,6 +1,7 @@
 package com.capstone.kidinvest.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "business")
@@ -18,6 +19,9 @@ public class Business {
 
     @OneToOne
     private User user;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "business")
+    List<BusinessTransactions> businessTransactions;
 
     //blank constructor
     public Business(){};

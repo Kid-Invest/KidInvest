@@ -20,8 +20,7 @@ public class User {
     @Column(nullable = false, length = 255, unique = true)
     private String email;
 
-    @Column()
-    private Float balance;
+    private double balance;
 
     @Column(name = "viewed_portfolio")
     private boolean viewedPortfolio;
@@ -42,7 +41,7 @@ public class User {
     public User(){};
 
     //constructor
-    public User(long id, String username, String password, String email, Float balance, boolean viewedPortfolio, boolean viewedTransactions, boolean viewedStocks, boolean viewedStand, boolean viewedStore){
+    public User(long id, String username, String password, String email, Double balance, boolean viewedPortfolio, boolean viewedTransactions, boolean viewedStocks, boolean viewedStand, boolean viewedStore){
         this.id = id;
         this.username = username;
         this.password = password;
@@ -88,11 +87,11 @@ public class User {
         this.email = email;
     }
 
-    public Float getBalance() {
+    public Double getBalance() {
         return balance;
     }
 
-    public void setBalance(Float balance) {
+    public void setBalance(Double balance) {
         this.balance = balance;
     }
 

@@ -18,7 +18,16 @@ public class Ingredient {
     private double cost;
 
     @OneToMany(mappedBy = "ingredient", cascade = CascadeType.ALL)
-    List<LemonadeIngredient> ingredient;
+    List<LemonadeIngredient> lemonadeIngredients;
+
+    public Ingredient() {
+    }
+
+    public Ingredient(Long id, String name, Double cost) {
+        this.id = id;
+        this.name = name;
+        this.cost = cost;
+    }
 
     public long getId() {
         return this.id;
@@ -42,5 +51,16 @@ public class Ingredient {
 
     public void setCost(double cost) {
         this.cost = cost;
+    }
+
+    public List<LemonadeIngredient> getIngredient() {
+        return this.lemonadeIngredients;
+    }
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ingredient")
+    List<BusinessTransactions> businessTransactions;
+
+    public void setIngredient(List<LemonadeIngredient> lemonadeIngredients) {
+        this.lemonadeIngredients = lemonadeIngredients;
     }
 }
