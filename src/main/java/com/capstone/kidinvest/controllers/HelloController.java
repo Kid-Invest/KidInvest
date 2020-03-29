@@ -9,6 +9,6 @@ public class HelloController {
     @GetMapping("/")
     @ResponseBody
     public String hello(){
-        return "<h1>Welcome to Kid Invest!!</h1>";
+        return "<h1>Test</h1>";
     }
 }
