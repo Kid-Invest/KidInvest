@@ -1,7 +1,6 @@
 package com.capstone.kidinvest.models;
 
 import javax.persistence.*;
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -34,8 +33,23 @@ public class Stock {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "stock")
     private List<StockTransaction> transactionList;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "stock")
+    private List<UserStock> userStockList;
+
     // Defualt Constructor
     public Stock() {}
+
+    //Constructor
+    public Stock(long id, String name, double marketPrice, double openPrice, double lowPrice, double highPrice,
+                 Timestamp time){
+        this.id = id;
+        this.name = name;
+        this.marketPrice = marketPrice;
+        this.openPrice = openPrice;
+        this.lowPrice = lowPrice;
+        this.highPrice = highPrice;
+        this.time = time;
+    }
 
     // Getters
     public long getId() { return this.id; }

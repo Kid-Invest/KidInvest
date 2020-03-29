@@ -1,6 +1,5 @@
 package com.capstone.kidinvest.models;
 
-import com.mysql.cj.protocol.ColumnDefinition;
 
 import javax.persistence.*;
 import java.util.List;
@@ -40,6 +39,9 @@ public class User {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<StockTransaction> transactionList;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<UserStock> userStockList;
 
     //blank constructor
     public User(){};

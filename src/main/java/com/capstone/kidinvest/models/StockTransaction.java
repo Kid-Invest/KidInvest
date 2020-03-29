@@ -2,7 +2,7 @@ package com.capstone.kidinvest.models;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Date;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "stock_transactions")
@@ -25,18 +25,25 @@ public class StockTransaction implements Serializable {
     private double price;
 
     @Column
-    private Date time;
+    private Timestamp time;
 
     //Default Constructor
     public StockTransaction() {}
 
+    //Constructor
+    public StockTransaction(long sharesBoughtSold, double price, Timestamp time){
+        this.sharesBoughtSold = sharesBoughtSold;
+        this.price = price;
+        this.time = time;
+    }
+
     //Getters
     public long getSharesBoughtSold() { return this.sharesBoughtSold; }
     public double getPrice() { return this.price; }
-    public Date getTime() { return this.time; }
+    public Timestamp getTime() { return this.time; }
 
     //Setters
     public void setSharesBoughtSold(long sharesBoughtSold) { this.sharesBoughtSold = sharesBoughtSold; }
     public void setPrice(double price) { this.price = price; }
-    public void setTime(Date time) { this.time = time; }
+    public void setTime(Timestamp time) { this.time = time; }
 }
