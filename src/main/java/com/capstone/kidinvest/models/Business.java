@@ -30,6 +30,9 @@ public class Business {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "businessInventory")
     private List<Inventory> inventory;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "business")
+    private List<Sale> businessSales;
+
     //blank constructor
     public Business(){};
 
