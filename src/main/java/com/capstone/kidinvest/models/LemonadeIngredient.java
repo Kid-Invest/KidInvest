@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Table(name="lemonades_has_ingredients")
+@Table(name = "lemonades_has_ingredients")
 public class LemonadeIngredient implements Serializable {
 
     @Id

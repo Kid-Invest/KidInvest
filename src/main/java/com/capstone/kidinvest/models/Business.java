@@ -27,21 +27,24 @@ public class Business {
     @JoinTable(name = "business_has_addons", joinColumns = {@JoinColumn(name = "business_id")}, inverseJoinColumns = {@JoinColumn(name = "addon_id")})
     private List<Addon> addons;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "businessInventory")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "business")
     private List<Inventory> inventory;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "business")
     private List<Sale> businessSales;
 
     //blank constructor
-    public Business(){};
+    public Business() {
+    }
+
+    ;
 
     //constructor
-    public Business(long id, String name, int popularity, User user){
+    public Business(long id, String name, int popularity, User user) {
         this.id = id;
         this.name = name;
         this.popularity = popularity;
-        this.user =  user;
+        this.user = user;
     }
 
     //getters and setters

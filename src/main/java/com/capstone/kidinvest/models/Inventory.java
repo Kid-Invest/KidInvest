@@ -4,18 +4,18 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name="inventory")
+@Table(name = "inventory")
 public class Inventory implements Serializable {
 
     @Id
     @ManyToOne
     @JoinColumn
-    private Business businessInventory;
+    private Business business;
 
     @Id
     @ManyToOne
     @JoinColumn
-    private Ingredient ingredientInventory;
+    private Ingredient ingredient;
 
     private long total;
 
@@ -23,19 +23,19 @@ public class Inventory implements Serializable {
     }
 
     public Business getBusiness() {
-        return this.businessInventory;
+        return this.business;
     }
 
-    public void setBusiness(Business businessInventory) {
-        this.businessInventory = businessInventory;
+    public void setBusiness(Business business) {
+        this.business = business;
     }
 
     public Ingredient getIngredient() {
-        return this.ingredientInventory;
+        return this.ingredient;
     }
 
-    public void setIngredient(Ingredient ingredientInventory) {
-        this.ingredientInventory = ingredientInventory;
+    public void setIngredient(Ingredient ingredient) {
+        this.ingredient = ingredient;
     }
 
     public long getTotal() {

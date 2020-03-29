@@ -28,22 +28,39 @@ public class StockTransaction implements Serializable {
     private Timestamp time;
 
     //Default Constructor
-    public StockTransaction() {}
+    public StockTransaction() {
+    }
 
     //Constructor
-    public StockTransaction(long sharesBoughtSold, double price, Timestamp time){
+    public StockTransaction(long sharesBoughtSold, double price, Timestamp time) {
         this.sharesBoughtSold = sharesBoughtSold;
         this.price = price;
         this.time = time;
     }
 
     //Getters
-    public long getSharesBoughtSold() { return this.sharesBoughtSold; }
-    public double getPrice() { return this.price; }
-    public Timestamp getTime() { return this.time; }
+    public long getSharesBoughtSold() {
+        return this.sharesBoughtSold;
+    }
+
+    public double getPrice() {
+        return this.price;
+    }
+
+    public Timestamp getTime() {
+        return this.time;
+    }
 
     //Setters
-    public void setSharesBoughtSold(long sharesBoughtSold) { this.sharesBoughtSold = sharesBoughtSold; }
-    public void setPrice(double price) { this.price = price; }
-    public void setTime(Timestamp time) { this.time = time; }
+    public void setSharesBoughtSold(long sharesBoughtSold) {
+        this.sharesBoughtSold = sharesBoughtSold;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public void setTime(Timestamp time) {
+        this.time = time;
+    }
 }

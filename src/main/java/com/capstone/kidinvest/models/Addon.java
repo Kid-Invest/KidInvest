@@ -17,14 +17,17 @@ public class Addon {
     @Column(name = "popularity_bonus", nullable = false)
     private int popularityBonus;
 
-    @ManyToMany (mappedBy = "addons")
+    @ManyToMany(mappedBy = "addons")
     private List<Business> businessList;
 
     //blank constructor
-    public Addon(){};
+    public Addon() {
+    }
+
+    ;
 
     //constructor
-    public Addon(long id, int popularityBonus){
+    public Addon(long id, int popularityBonus) {
         this.id = id;
         this.popularityBonus = popularityBonus;
     }

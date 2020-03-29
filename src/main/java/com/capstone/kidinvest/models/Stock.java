@@ -9,7 +9,7 @@ import java.util.List;
 public class Stock {
 
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(nullable = false)
@@ -37,11 +37,12 @@ public class Stock {
     private List<UserStock> userStockList;
 
     // Defualt Constructor
-    public Stock() {}
+    public Stock() {
+    }
 
     //Constructor
     public Stock(long id, String name, double marketPrice, double openPrice, double lowPrice, double highPrice,
-                 Timestamp time){
+                 Timestamp time) {
         this.id = id;
         this.name = name;
         this.marketPrice = marketPrice;
@@ -52,20 +53,60 @@ public class Stock {
     }
 
     // Getters
-    public long getId() { return this.id; }
-    public String getName() { return this.name; }
-    public double getMarketPrice() { return this.marketPrice; }
-    public double getOpenPrice() { return this.openPrice; }
-    public double getLowPrice() { return this.lowPrice; }
-    public double getHighPrice() { return this.highPrice; }
-    public Timestamp getTime() { return this.time; }
+    public long getId() {
+        return this.id;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public double getMarketPrice() {
+        return this.marketPrice;
+    }
+
+    public double getOpenPrice() {
+        return this.openPrice;
+    }
+
+    public double getLowPrice() {
+        return this.lowPrice;
+    }
+
+    public double getHighPrice() {
+        return this.highPrice;
+    }
+
+    public Timestamp getTime() {
+        return this.time;
+    }
 
     // Setters
-    public void setId(long id) { this.id = id; }
-    public void setName(String name) { this.name = name; }
-    public void setMarketPrice(double marketPrice) { this.marketPrice = marketPrice; }
-    public void setOpenPrice(double openPrice) { this.openPrice = openPrice; }
-    public void setLowPrice(double lowPrice) { this.lowPrice = lowPrice; }
-    public void setHighPrice(double highPrice) { this.highPrice = highPrice; }
-    public void setTime(Timestamp time) { this.time = time; }
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setMarketPrice(double marketPrice) {
+        this.marketPrice = marketPrice;
+    }
+
+    public void setOpenPrice(double openPrice) {
+        this.openPrice = openPrice;
+    }
+
+    public void setLowPrice(double lowPrice) {
+        this.lowPrice = lowPrice;
+    }
+
+    public void setHighPrice(double highPrice) {
+        this.highPrice = highPrice;
+    }
+
+    public void setTime(Timestamp time) {
+        this.time = time;
+    }
 }

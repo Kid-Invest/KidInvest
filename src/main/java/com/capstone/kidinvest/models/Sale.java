@@ -1,27 +1,35 @@
 package com.capstone.kidinvest.models;
 
 import javax.persistence.*;
-import java.util.Date; //is this the right import?
+import java.sql.Date;
+
 
 @Entity
 @Table(name = "sales")
 public class Sale {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
     @Column(name = "sale_date")
     private Date saleDate;
 
     private double profit;
 
     @ManyToOne
-    @JoinColumn (name = "business_id")
+    @JoinColumn(name = "business_id")
     private Business business;
 
     //blank constructor
-    public Sale(){};
+    public Sale() {
+    }
+
+    ;
 
     //constructor
-    public Sale(Date saleDate, double profit, Business business){
+    public Sale(long id, Date saleDate, double profit, Business business) {
+        this.id = id;
         this.saleDate = saleDate;
         this.profit = profit;
         this.business = business;
@@ -50,5 +58,13 @@ public class Sale {
 
     public void setBusiness(Business business) {
         this.business = business;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

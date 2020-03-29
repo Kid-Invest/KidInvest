@@ -18,7 +18,7 @@ public class BusinessTransactions implements Serializable {
     @JoinColumn
     private Ingredient ingredient;
 
-    @Column(name="purchase_count")
+    @Column(name = "purchase_count")
     private long purchaseCount;
 
     private Timestamp time;

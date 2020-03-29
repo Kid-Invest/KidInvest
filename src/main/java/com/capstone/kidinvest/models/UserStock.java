@@ -21,16 +21,21 @@ public class UserStock implements Serializable {
     private long shares;
 
     //Default Constructor
-    public UserStock() {}
+    public UserStock() {
+    }
 
     //Constructor
-    public UserStock(long shares){
+    public UserStock(long shares) {
         this.shares = shares;
     }
 
     //Getters
-    public long getShares() { return this.shares; }
+    public long getShares() {
+        return this.shares;
+    }
 
     //Setters
-    public void setShares(long shares) { this.shares = shares; }
+    public void setShares(long shares) {
+        this.shares = shares;
+    }
 }

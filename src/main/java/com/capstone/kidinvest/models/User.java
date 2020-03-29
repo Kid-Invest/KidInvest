@@ -44,10 +44,13 @@ public class User {
     private List<UserStock> userStockList;
 
     //blank constructor
-    public User(){};
+    public User() {
+    }
+
+    ;
 
     //constructor
-    public User(long id, String username, String password, String email, Double balance, boolean viewedPortfolio, boolean viewedTransactions, boolean viewedStocks, boolean viewedStand, boolean viewedStore){
+    public User(long id, String username, String password, String email, Double balance, boolean viewedPortfolio, boolean viewedTransactions, boolean viewedStocks, boolean viewedStand, boolean viewedStore) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -58,7 +61,9 @@ public class User {
         this.viewedTransactions = viewedTransactions;
         this.viewedStand = viewedStand;
         this.viewedStore = viewedStore;
-    };
+    }
+
+    ;
 
     //getters and setters
     public long getId() {

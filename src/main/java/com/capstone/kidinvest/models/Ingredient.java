@@ -4,21 +4,27 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="ingredients")
+@Table(name = "ingredients")
 public class Ingredient {
 
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column (nullable = false, unique = true)
+    @Column(nullable = false, unique = true)
     private String name;
 
-    @Column (nullable = false)
+    @Column(nullable = false)
     private double cost;
 
     @OneToMany(mappedBy = "ingredient", cascade = CascadeType.ALL)
     List<LemonadeIngredient> lemonadeIngredients;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ingredient")
+    List<BusinessTransactions> businessTransactions;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ingredient")
+    List<Inventory> inventory;
 
     public Ingredient() {
     }
@@ -56,12 +62,6 @@ public class Ingredient {
     public List<LemonadeIngredient> getIngredient() {
         return this.lemonadeIngredients;
     }
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ingredient")
-    List<BusinessTransactions> businessTransactions;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ingredientInventory")
-    List<Inventory> inventory;
 
     public void setIngredient(List<LemonadeIngredient> lemonadeIngredients) {
         this.lemonadeIngredients = lemonadeIngredients;
