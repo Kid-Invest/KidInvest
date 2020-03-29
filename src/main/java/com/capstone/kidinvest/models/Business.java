@@ -26,6 +26,9 @@ public class Business {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "business")
     private List<Addon> addons;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "businessInventory")
+    List<Inventory> inventory;
+
     //blank constructor
     public Business(){};
 

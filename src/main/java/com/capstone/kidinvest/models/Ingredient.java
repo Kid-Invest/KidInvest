@@ -60,6 +60,9 @@ public class Ingredient {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "ingredient")
     List<BusinessTransactions> businessTransactions;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ingredientInventory")
+    List<Inventory> inventory;
+
     public void setIngredient(List<LemonadeIngredient> lemonadeIngredients) {
         this.lemonadeIngredients = lemonadeIngredients;
     }

@@ -3,6 +3,7 @@ package com.capstone.kidinvest.models;
 import com.mysql.cj.protocol.ColumnDefinition;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -36,6 +37,9 @@ public class User {
 
     @Column(name = "viewed_store")
     private boolean viewedStore;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<StockTransaction> transactionList;
 
     //blank constructor
     public User(){};
