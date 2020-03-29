@@ -21,13 +21,14 @@ public class Business {
     private User user;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "business")
-    List<BusinessTransactions> businessTransactions;
+    private List<BusinessTransactions> businessTransactions;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "business")
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "business_has_addons", joinColumns = {@JoinColumn(name = "business_id")}, inverseJoinColumns = {@JoinColumn(name = "addon_id")})
     private List<Addon> addons;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "businessInventory")
-    List<Inventory> inventory;
+    private List<Inventory> inventory;
 
     //blank constructor
     public Business(){};

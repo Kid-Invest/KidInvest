@@ -1,6 +1,7 @@
 package com.capstone.kidinvest.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "addons")
@@ -10,12 +11,14 @@ public class Addon {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "popularity_bonus", nullable = false, columnDefinition = "Unsigned")
+    @Column(nullable = false, unique = true)
+    private String name;
+
+    @Column(name = "popularity_bonus", nullable = false)
     private int popularityBonus;
 
-    @ManyToOne
-    @JoinColumn (name = "business_id")
-    private Business business;
+    @ManyToMany (mappedBy = "addons")
+    private List<Business> businessList;
 
     //blank constructor
     public Addon(){};
@@ -43,11 +46,11 @@ public class Addon {
         this.popularityBonus = popularityBonus;
     }
 
-    public Business getBusiness() {
-        return business;
+    public List<Business> getBusinessList() {
+        return businessList;
     }
 
-    public void setBusiness(Business business) {
-        this.business = business;
+    public void setBusinessList(List<Business> businessList) {
+        this.businessList = businessList;
     }
 }
