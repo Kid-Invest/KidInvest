@@ -1,10 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+<head th:include="partials/fragments :: head(Home)">
 </head>
 <body>
+
+<div th:include="partials/fragments :: nav"></div>
+<h1>Welcome to Kid Invest!! -From Dayna, Charlie, and Hung</h1>
+
+
+<th:block th:include="partials/fragments :: footer">
+</th:block>
+<th:block th:include="partials/fragments :: scripts">
+</th:block>
+
 
 </body>
 </html>
