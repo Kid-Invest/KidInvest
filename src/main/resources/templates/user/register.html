@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/fragments.html :: head(title = 'Register with Kid Invest!')">
+</head>
+<body>
+<th:block th:include="partials/fragments.html :: nav"/>
+
+
+        <h3>WHEN THE WORLD GIVES YOU LEMONS,</h3>
+        <h1>INVEST</h1>
+        <br>
+        <h4>SIGN-UP</h4>
+
+        <form th:action="@{/register}" th:method="POST" th:object="${user}">
+            <label th:for="email">
+                Email:
+                <input type="text" th:field="*{email}" placeholder="email...">
+            </label>
+            <br>
+            <label th:for="username">
+                Username:
+                <input type="text" th:field="*{username}" placeholder="username...">
+            </label>
+            <br>
+            <label th:for="password">
+                Password:
+                <input type="password" th:field="*{password}" placeholder="password...">
+            </label>
+            <br>
+            <label th:for="confirm">
+                Confirm password:
+                <input type="password" th:id="confirm" th:name="confirm" placeholder="confirm password...">
+            </label>
+            <br>
+            <button type="submit">Register</button>
+        </form>
+        <a href="/login"><button>Login</button></a>
+
+
+<footer th:replace="partials/fragments.html :: footer"></footer>
+<th:block th:include="partials/fragments.html :: scripts"/>
+</body>
+</html>
