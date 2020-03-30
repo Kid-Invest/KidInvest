@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class HelloController {
     @GetMapping("/")
-    @ResponseBody
+
     public String hello(){
-        return "<h1>Welcome to Kid Invest!! -From Dayna, Charlie, and Hung</h1>";
+        return "index";
     }
 }
