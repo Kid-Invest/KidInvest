@@ -2,18 +2,19 @@ package com.capstone.kidinvest.models;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 
 @Entity
 @Table(name = "lemonades_has_ingredients")
 public class LemonadeIngredient implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
     @ManyToOne
     @JoinColumn
     private Lemonade lemonade;
 
-    @Id
     @ManyToOne
     @JoinColumn
     private Ingredient ingredient;
@@ -43,5 +44,13 @@ public class LemonadeIngredient implements Serializable {
 
     public void setCount(long count) {
         this.count = count;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

@@ -8,11 +8,13 @@ import java.io.Serializable;
 public class UserStock implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
     @ManyToOne
     @JoinColumn
     private User user;
 
-    @Id
     @ManyToOne
     @JoinColumn
     private Stock stock;
@@ -37,5 +39,29 @@ public class UserStock implements Serializable {
     //Setters
     public void setShares(long shares) {
         this.shares = shares;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Stock getStock() {
+        return stock;
+    }
+
+    public void setStock(Stock stock) {
+        this.stock = stock;
     }
 }

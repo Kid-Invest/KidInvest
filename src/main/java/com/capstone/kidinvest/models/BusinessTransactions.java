@@ -9,11 +9,13 @@ import java.sql.Timestamp;
 public class BusinessTransactions implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
     @ManyToOne
     @JoinColumn
     private Business business;
 
-    @Id
     @ManyToOne
     @JoinColumn
     private Ingredient ingredient;
@@ -53,5 +55,13 @@ public class BusinessTransactions implements Serializable {
 
     public void setTime(Timestamp time) {
         this.time = time;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }
