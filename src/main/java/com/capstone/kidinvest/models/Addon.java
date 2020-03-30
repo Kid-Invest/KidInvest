@@ -1,5 +1,7 @@
 package com.capstone.kidinvest.models;
 
+import com.capstone.kidinvest.repositories.AddonRepo;
+
 import javax.persistence.*;
 import java.util.List;
 
