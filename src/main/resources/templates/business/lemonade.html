@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/fragments.html :: head(title = 'Current Inventory')">
+</head>
+<body>
+<th:block th:include="partials/fragments.html :: nav">
+</th:block>
+
+<h1 th:text="${lemonadeIngredientList.get(0).getLemonade().getName()}"></h1>
+<th:block th:each="lemonadeIngredient : ${lemonadeIngredientList}">
+    <h2>Ingredient Name: <span th:text="${lemonadeIngredient.getIngredient().getName()}"></span> | Count:<span
+            th:text="${lemonadeIngredient.getCount()}"></span></h2>
+</th:block>
+
+<footer th:replace="partials/fragments.html :: footer">
+</footer>
+<th:block th:include="partials/fragments.html :: scripts">
+</th:block>
+</body>
+</html>
