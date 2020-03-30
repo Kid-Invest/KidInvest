@@ -8,11 +8,13 @@ import java.io.Serializable;
 public class Inventory implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
     @ManyToOne
     @JoinColumn
     private Business business;
 
-    @Id
     @ManyToOne
     @JoinColumn
     private Ingredient ingredient;
@@ -44,5 +46,13 @@ public class Inventory implements Serializable {
 
     public void setTotal(long total) {
         this.total = total;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }
