@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/fragments.html :: head(title = 'Stock Page')">
+</head>
+<body>
+<th:block th:include="partials/fragments.html :: nav">
+</th:block>
+<div>
+    <h1>BALANCE: $500</h1>
+    <h6>(Buying Power)</h6>
+</div>
+<br>
+<br>
+<div class="container">
+    <h1 th:text="${stocks.get(0).getName()}"></h1>
+    <h5 th:text="${stocks.get(0).getOpenPrice()}"></h5>
+    <h5 th:text="${stocks.get(0).getHighPrice()}"></h5>
+    <h5 th:text="${stocks.get(0).getLowPrice()}"></h5>
+    <h5 th:text="${stocks.get(0).getMarketPrice()}"></h5>
+    <button type="button">BUY</button>
+    <button type="button">SELL</button>
+</div>
+
+<div class="container-fluid">
+    <table>
+        <thead>
+        <tr>
+            <th>
+                <h4>NAME</h4>
+            </th>
+            <th>
+                <h4>TODAY</h4>
+            </th>
+            <th>
+                <h4>MARKET PRICE</h4>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="stock : ${stocks}">
+            <tr>
+                <td th:text="${stock.getName()}"></td>
+                <td >+3.4%</td>
+                <td th:text="${stock.getMarketPrice()}"></td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+
+
+</div>
+
+
+<!--<h1 th:text="${lemonadeIngredientList.get(0).getLemonade().getName()}"></h1>-->
+<!--<th:block th:each="lemonadeIngredient : ${lemonadeIngredientList}">-->
+<!--    <h2>Ingredient Name: <span th:text="${lemonadeIngredient.getIngredient().getName()}"></span> | Count:<span-->
+<!--            th:text="${lemonadeIngredient.getCount()}"></span></h2>-->
+<!--</th:block>-->
+
+<footer th:replace="partials/fragments.html :: footer">
+</footer>
+<th:block th:include="partials/fragments.html :: scripts">
+</th:block>
+</body>
+</html>
