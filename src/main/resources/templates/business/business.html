@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:include="partials/fragments :: head(Lemonade-Stand)">
+</head>
+<body>
+<div th:include="partials/fragments :: nav"></div>
+
+    <div class="container mt-4">
+        <h1>Business</h1>
+
+        <th:block th:each="businessTransactions : ${businessTransactions}">
+            <tr>
+                <td th:text="${businessTransactions.getIngredient()}"></td>
+                <td th:text="${businessTransactions.getPurchaseCount()}"></td>
+                <td th:text="${businessTransactions.getPurchaseCount()}"></td>
+                <td th:text="${businessTransactions.getTime()}"></td>
+            </tr>
+        </th:block>
+
+    </div>
+
+<th:block th:include="partials/fragments :: footer"/>
+<th:block th:include="partials/fragments :: scripts"/>
+</body>
+</html>
