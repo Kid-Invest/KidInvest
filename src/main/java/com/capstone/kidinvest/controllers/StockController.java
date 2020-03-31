@@ -34,5 +34,4 @@ public class StockController {
         view.addAttribute("stocks", stockList);
         return "stock/stock";
     }
-
 }

@@ -15,19 +15,25 @@ public class Stock {
     @Column(nullable = false)
     private String name;
 
-    @Column(name = "market_price", nullable = false)
+    @Column(name = "market_price", nullable = true)
     private double marketPrice;
 
-    @Column(name = "open_price", nullable = false)
+    @Column(name = "open_price", nullable = true)
     private double openPrice;
 
-    @Column(name = "low_price", nullable = false)
+    @Column(name = "low_price", nullable = true)
     private double lowPrice;
 
-    @Column(name = "high_price", nullable = false)
+    @Column(name = "high_price", nullable = true)
     private double highPrice;
 
-    @Column(nullable = false)
+    @Column(name = "year_low_price", nullable = true)
+    private double yearLowPrice;
+
+    @Column(name = "year_high_price", nullable = true)
+    private double yearHighPrice;
+
+    @Column(nullable = true)
     private Timestamp time;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "stock")
