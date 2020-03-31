@@ -5,21 +5,24 @@
 <body>
 <th:block th:include="partials/fragments.html :: nav">
 </th:block>
-    <div>
-        <h1>BALANCE: $500</h1>
-    </div>
-    <br>
-    <br>
-    <div class="container-fluid">
 
+    <div class="container">
+        <div>
+            <h2>PORTFOLIO VALUE: $725</h2>
+            <h3>STOCK: $275</h3>
+            <h3>ACCOUNT BALANCE: $500</h3>
+            <a href="/transactions/stock/1">View Stock Transactions</a>
+        </div>
+        <br>
+        <br>
         <h1 th:text="${userStock.get(0).getStock().getName()}"></h1>
-        <h1>OPEN</h1>
+        <h4>OPEN</h4>
         <h5 th:text="${userStock.get(0).getStock().getOpenPrice()}"></h5>
-        <h1>HIGH</h1>
+        <h4>HIGH</h4>
         <h5 th:text="${userStock.get(0).getStock().getHighPrice()}"></h5>
-        <h1>LOW</h1>
+        <h4>LOW</h4>
         <h5 th:text="${userStock.get(0).getStock().getLowPrice()}"></h5>
-        <h1>MARKET PRICE</h1>
+        <h4>MARKET PRICE</h4>
         <h5 th:text="${userStock.get(0).getStock().getMarketPrice()}"></h5>
         <button type="button">BUY</button>
         <button type="button">SELL</button>

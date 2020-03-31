@@ -35,11 +35,4 @@ public class StockController {
         return "stock/stock";
     }
 
-    @GetMapping("/stocks/user/{id}")
-    public String viewUserStock(Model view, @PathVariable long id){
-        List<UserStock> userStockList = userStockDao.findUserStockByUserId(id);
-        view.addAttribute("userStock", userStockList);
-        return "user/profile";
-    }
-
 }
