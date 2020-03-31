@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/fragments.html :: head(title = 'Profile')">
+</head>
+<body>
+<th:block th:include="partials/fragments.html :: nav">
+</th:block>
+    <div>
+        <h1>BALANCE: $500</h1>
+    </div>
+    <br>
+    <br>
+    <div class="container-fluid">
+
+        <h1 th:text="${userStock.get(0).getStock().getName()}"></h1>
+        <h1>OPEN</h1>
+        <h5 th:text="${userStock.get(0).getStock().getOpenPrice()}"></h5>
+        <h1>HIGH</h1>
+        <h5 th:text="${userStock.get(0).getStock().getHighPrice()}"></h5>
+        <h1>LOW</h1>
+        <h5 th:text="${userStock.get(0).getStock().getLowPrice()}"></h5>
+        <h1>MARKET PRICE</h1>
+        <h5 th:text="${userStock.get(0).getStock().getMarketPrice()}"></h5>
+        <button type="button">BUY</button>
+        <button type="button">SELL</button>
+    </div>
+
+    <div class="container">
+        <table>
+            <thead>
+            <tr>
+                <th>
+                    <h4>NAME</h4>
+                </th>
+                <th>
+                    <h4>TODAY</h4>
+                </th>
+                <th>
+                    <h4>MARKET PRICE</h4>
+                </th>
+                <th>
+                    <h4>SHARES</h4>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <th:block th:each="userStock : ${userStock}">
+                <tr>
+                    <td th:text="${userStock.getStock().getName()}"></td>
+                    <td>+3.4%</td>
+                    <td th:text="${userStock.getStock().getMarketPrice()}"></td>
+                    <td th:text="${userStock.getShares()}"></td>
+                </tr>
+            </th:block>
+            </tbody>
+        </table>
+
+
+    </div>
+
+
+<footer th:replace="partials/fragments.html :: footer">
+</footer>
+<th:block th:include="partials/fragments.html :: scripts">
+</th:block>
+</body>
+</html>

@@ -2,11 +2,14 @@ package com.capstone.kidinvest.controllers;
 
 import com.capstone.kidinvest.models.Stock;
 import com.capstone.kidinvest.models.StockTransaction;
+import com.capstone.kidinvest.models.UserStock;
 import com.capstone.kidinvest.repositories.StockRepo;
 import com.capstone.kidinvest.repositories.StockTransactionRepo;
+import com.capstone.kidinvest.repositories.UserStockRepo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -14,9 +17,11 @@ import java.util.List;
 public class StockController {
 
     private StockRepo stockDao;
+    private UserStockRepo userStockDao;
 
-    public StockController(StockRepo stockDao) {
+    public StockController(StockRepo stockDao, UserStockRepo userStockDao) {
         this.stockDao = stockDao;
+        this.userStockDao = userStockDao;
     }
 
     @GetMapping("/stocks")
@@ -28,6 +33,13 @@ public class StockController {
 //        }
         view.addAttribute("stocks", stockList);
         return "stock/stock";
+    }
+
+    @GetMapping("/stocks/user/{id}")
+    public String viewUserStock(Model view, @PathVariable long id){
+        List<UserStock> userStockList = userStockDao.findUserStockByUserId(id);
+        view.addAttribute("userStock", userStockList);
+        return "user/profile";
     }
 
 }
