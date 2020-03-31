@@ -66,6 +66,12 @@
 <!--            <artifactId>thymeleaf-extras-springsecurity5</artifactId>-->
 <!--            <version>3.0.4.RELEASE</version>-->
 <!--        </dependency>-->
+
+        <dependency>
+            <groupId>com.mashape.unirest</groupId>
+            <artifactId>unirest-java</artifactId>
+            <version>1.4.9</version>
+        </dependency>
     </dependencies>
 
     <build>
