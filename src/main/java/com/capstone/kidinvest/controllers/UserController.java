@@ -61,5 +61,10 @@ public class UserController {
         return "user/profile";
     }
 
+    @GetMapping("/home/aboutus")
+    public String viewAboutUsPage(){
+        return "aboutus";
+    }
+
 
 }

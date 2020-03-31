@@ -14,13 +14,13 @@
 <div class="container">
 
     <h1 th:text="${stocks.get(0).getName()}"></h1>
-    <h1>OPEN</h1>
+    <h4>OPEN</h4>
     <h5 th:text="${stocks.get(0).getOpenPrice()}"></h5>
-    <h1>HIGH</h1>
+    <h4>HIGH</h4>
     <h5 th:text="${stocks.get(0).getHighPrice()}"></h5>
-    <h1>LOW</h1>
+    <h4>LOW</h4>
     <h5 th:text="${stocks.get(0).getLowPrice()}"></h5>
-    <h1>MARKET PRICE</h1>
+    <h4>MARKET PRICE</h4>
     <h5 th:text="${stocks.get(0).getMarketPrice()}"></h5>
     <button type="button">BUY</button>
     <button type="button">SELL</button>
