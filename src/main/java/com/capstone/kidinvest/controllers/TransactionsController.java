@@ -2,6 +2,7 @@ package com.capstone.kidinvest.controllers;
 
 import com.capstone.kidinvest.models.BusinessTransactions;
 import com.capstone.kidinvest.models.Inventory;
+import com.capstone.kidinvest.models.Sale;
 import com.capstone.kidinvest.models.StockTransaction;
 import com.capstone.kidinvest.repositories.*;
 import org.springframework.stereotype.Controller;
@@ -19,11 +20,14 @@ public class TransactionsController {
     private StockRepo stockDao;
     private StockTransactionRepo stockTransactionDao;
 
-    public TransactionsController(BusinessRepo businessDao, BusinessTransactionsRepo businessTransactionsDao, StockRepo stockDao, StockTransactionRepo stockTransactionDao) {
+    private SaleRepo saleDao;
+
+    public TransactionsController(BusinessRepo businessDao, BusinessTransactionsRepo businessTransactionsDao, StockRepo stockDao, StockTransactionRepo stockTransactionDao, SaleRepo saleDao) {
         this.businessDao = businessDao;
         this.businessTransactionsDao = businessTransactionsDao;
         this.stockDao = stockDao;
         this.stockTransactionDao = stockTransactionDao;
+        this.saleDao = saleDao;
     }
 
     @GetMapping("/transactions/stock/{id}")
@@ -42,10 +46,23 @@ public class TransactionsController {
     }
 
     @GetMapping("/transactions/business/{id}")
-    public String viewBusinessPage(Model view, @PathVariable long id) {
+    public String viewBusinessTransactionsPage(Model view, @PathVariable long id) {
         List<BusinessTransactions> businessTransactionsList = businessTransactionsDao.findBusinessTransactionsByBusinessId(id);
 
         view.addAttribute("businessTransactions", businessTransactionsList);
         return "business/transactions";
+    }
+
+    @GetMapping("/sales/business/{id}")
+    public String viewBusinessSalesPage(Model view, @PathVariable long id) {
+        List<Sale> salesList = saleDao.findSaleByBusinessId(id);
+
+        for(Sale sale : salesList){
+            System.out.println(sale.getProfit());
+            System.out.println(sale.getSaleDate());
+        };
+
+        view.addAttribute("sale", salesList);
+        return "business/sales";
     }
 }
