@@ -79,4 +79,36 @@ public class Business {
     public void setUser(User user) {
         this.user = user;
     }
+
+    public List<BusinessTransactions> getBusinessTransactions() {
+        return businessTransactions;
+    }
+
+    public void setBusinessTransactions(List<BusinessTransactions> businessTransactions) {
+        this.businessTransactions = businessTransactions;
+    }
+
+    public List<Addon> getAddons() {
+        return addons;
+    }
+
+    public void setAddons(List<Addon> addons) {
+        this.addons = addons;
+    }
+
+    public List<Inventory> getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(List<Inventory> inventory) {
+        this.inventory = inventory;
+    }
+
+    public List<Sale> getBusinessSales() {
+        return businessSales;
+    }
+
+    public void setBusinessSales(List<Sale> businessSales) {
+        this.businessSales = businessSales;
+    }
 }
