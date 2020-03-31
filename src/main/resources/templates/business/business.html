@@ -8,15 +8,30 @@
     <div class="container mt-4">
         <h1>Business</h1>
 
-        <th:block th:each="businessTransactions : ${businessTransactions}">
+        <table>
+            <thead>
             <tr>
-                <td th:text="${businessTransactions.getIngredient()}"></td>
-                <td th:text="${businessTransactions.getPurchaseCount()}"></td>
-                <td th:text="${businessTransactions.getPurchaseCount()}"></td>
-                <td th:text="${businessTransactions.getTime()}"></td>
+                <th>
+                    <h4>INGREDIENT</h4>
+                </th>
+                <th>
+                    <h4>PURCHASE COUNT</h4>
+                </th>
+                <th>
+                    <h4>DATE</h4>
+                </th>
             </tr>
-        </th:block>
-
+            </thead>
+            <tbody>
+                <div th:each="businessTransaction : ${businessTransactions}">
+                    <tr>
+                        <td th:text="${businessTransactions.getIngredient()}"></td>
+                        <td th:text="${businessTransactions.getPurchaseCount()}"></td>
+                        <td th:text="${businessTransactions.getTime()}"></td>
+                    </tr>
+                </div>
+            </tbody>
+        </table>
     </div>
 
 <th:block th:include="partials/fragments :: footer"/>
