@@ -1,5 +1,6 @@
 package com.capstone.kidinvest.repositories;
 
+import com.capstone.kidinvest.models.Stock;
 import com.capstone.kidinvest.models.StockTransaction;
 import org.springframework.data.jpa.repository.JpaRepository;
 
