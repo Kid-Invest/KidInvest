@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/fragments.html :: head(title = 'Stock Page')">
+</head>
+<body>
+<th:block th:include="partials/fragments.html :: nav">
+</th:block>
+<div>
+    <h1>STOCK TRANSACTIONS</h1>
+    <h3>RECENT HISTORY</h3>
+</div>
+<br>
+<br>
+
+<div class="container-fluid">
+    <table>
+        <thead>
+        <tr>
+            <th>
+                <h4>STOCK NAME</h4>
+            </th>
+            <th>
+                <h4>DATE</h4>
+            </th>
+            <th>
+                <h4>SHARES BOUGHT/SOLD</h4>
+            </th>
+            <th>
+                <h4>PRICE</h4>
+            </th>
+            <th>
+                <h4>GAIN/LOSS</h4>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="transaction : ${stockTransactions}">
+            <tr>
+                <td th:text="${transaction.getStock().getName()}"></td>
+                <td th:text="${transaction.getTime()}"></td>
+                <td th:text="${transaction.getSharesBoughtSold()}"></td>
+                <td th:text="${transaction.getPrice()}"></td>
+                <td th:text="${transaction.getSharesBoughtSold() * transaction.getPrice()}"></td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+</div>
+
+
+<footer th:replace="partials/fragments.html :: footer">
+</footer>
+<th:block th:include="partials/fragments.html :: scripts">
+</th:block>
+</body>
+</html>

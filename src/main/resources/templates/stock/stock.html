@@ -12,16 +12,21 @@
 <br>
 <br>
 <div class="container">
+
     <h1 th:text="${stocks.get(0).getName()}"></h1>
+    <h1>OPEN</h1>
     <h5 th:text="${stocks.get(0).getOpenPrice()}"></h5>
+    <h1>HIGH</h1>
     <h5 th:text="${stocks.get(0).getHighPrice()}"></h5>
+    <h1>LOW</h1>
     <h5 th:text="${stocks.get(0).getLowPrice()}"></h5>
+    <h1>MARKET PRICE</h1>
     <h5 th:text="${stocks.get(0).getMarketPrice()}"></h5>
     <button type="button">BUY</button>
     <button type="button">SELL</button>
 </div>
 
-<div class="container-fluid">
+<div class="container">
     <table>
         <thead>
         <tr>
@@ -40,7 +45,7 @@
         <th:block th:each="stock : ${stocks}">
             <tr>
                 <td th:text="${stock.getName()}"></td>
-                <td >+3.4%</td>
+                <td>+3.4%</td>
                 <td th:text="${stock.getMarketPrice()}"></td>
             </tr>
         </th:block>
