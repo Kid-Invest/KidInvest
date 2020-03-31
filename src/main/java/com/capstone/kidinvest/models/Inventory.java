@@ -24,6 +24,13 @@ public class Inventory implements Serializable {
     public Inventory() {
     }
 
+    public Inventory(long id, Business business, Ingredient ingredient, long total){
+        this.id = id;
+        this.business = business;
+        this.ingredient = ingredient;
+        this.total = total;
+    }
+
     public Business getBusiness() {
         return this.business;
     }

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/fragments.html :: head(title = 'Profile')">
+</head>
+<body>
+<th:block th:include="partials/fragments.html :: nav">
+</th:block>
+
+    <div class="container">
+        <div>
+            <h2>PORTFOLIO VALUE: $725</h2>
+            <h3>STOCK: $275</h3>
+            <h3>ACCOUNT BALANCE: $500</h3>
+            <a href="/transactions/stock/1">View Stock Transactions</a>
+        </div>
+        <br>
+        <br>
+        <h1 th:text="${userStock.get(0).getStock().getName()}"></h1>
+        <h4>OPEN</h4>
+        <h5 th:text="${userStock.get(0).getStock().getOpenPrice()}"></h5>
+        <h4>HIGH</h4>
+        <h5 th:text="${userStock.get(0).getStock().getHighPrice()}"></h5>
+        <h4>LOW</h4>
+        <h5 th:text="${userStock.get(0).getStock().getLowPrice()}"></h5>
+        <h4>MARKET PRICE</h4>
+        <h5 th:text="${userStock.get(0).getStock().getMarketPrice()}"></h5>
+        <button type="button">BUY</button>
+        <button type="button">SELL</button>
+    </div>
+
+    <div class="container">
+        <table>
+            <thead>
+            <tr>
+                <th>
+                    <h4>NAME</h4>
+                </th>
+                <th>
+                    <h4>TODAY</h4>
+                </th>
+                <th>
+                    <h4>MARKET PRICE</h4>
+                </th>
+                <th>
+                    <h4>SHARES</h4>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <th:block th:each="userStock : ${userStock}">
+                <tr>
+                    <td th:text="${userStock.getStock().getName()}"></td>
+                    <td>+3.4%</td>
+                    <td th:text="${userStock.getStock().getMarketPrice()}"></td>
+                    <td th:text="${userStock.getShares()}"></td>
+                </tr>
+            </th:block>
+            </tbody>
+        </table>
+
+
+    </div>
+
+
+<footer th:replace="partials/fragments.html :: footer">
+</footer>
+<th:block th:include="partials/fragments.html :: scripts">
+</th:block>
+</body>
+</html>

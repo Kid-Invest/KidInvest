@@ -2,8 +2,10 @@ package com.capstone.kidinvest.controllers;
 
 import com.capstone.kidinvest.models.Stock;
 import com.capstone.kidinvest.models.StockTransaction;
+import com.capstone.kidinvest.models.UserStock;
 import com.capstone.kidinvest.repositories.StockRepo;
 import com.capstone.kidinvest.repositories.StockTransactionRepo;
+import com.capstone.kidinvest.repositories.UserStockRepo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,11 +17,11 @@ import java.util.List;
 public class StockController {
 
     private StockRepo stockDao;
-    private StockTransactionRepo stockTransactionDao;
+    private UserStockRepo userStockDao;
 
-    public StockController(StockRepo stockDao, StockTransactionRepo stockTransactionDao) {
+    public StockController(StockRepo stockDao, UserStockRepo userStockDao) {
         this.stockDao = stockDao;
-        this.stockTransactionDao = stockTransactionDao;
+        this.userStockDao = userStockDao;
     }
 
     @GetMapping("/stocks")
@@ -32,21 +34,4 @@ public class StockController {
         view.addAttribute("stocks", stockList);
         return "stock/stock";
     }
-
-    @GetMapping("/stocks/transactions/{id}")
-    public String viewStockTransactionPage(Model view, @PathVariable Long id) {
-        List<StockTransaction> stockTransactionsList = stockTransactionDao.findStockTransactionByUserId(id);
-
-//        for (StockTransaction stockTransaction : stockTransactionsList) {
-//            System.out.println(stockTransaction.getUser().getUsername());
-//            System.out.println(stockTransaction.getStock().getName());
-//            System.out.println(stockTransaction.getSharesBoughtSold());
-//            System.out.println(stockTransaction.getPrice());
-//            System.out.println(stockTransaction.getTime());
-//        }
-        view.addAttribute("stockTransactions", stockTransactionsList);
-        return "stock/transactions";
-    }
-
-
 }

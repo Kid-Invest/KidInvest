@@ -3,5 +3,8 @@ package com.capstone.kidinvest.repositories;
 import com.capstone.kidinvest.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
+
 public interface UserRepo extends JpaRepository<User, Long> {
+    List<User> findUserById(long id);
 }

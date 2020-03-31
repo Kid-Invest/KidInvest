@@ -4,8 +4,9 @@ import com.capstone.kidinvest.models.Business;
 import com.capstone.kidinvest.models.Inventory;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
+
 public interface InventoryRepo extends JpaRepository<Inventory, Long> {
-    Inventory findById(long id);
-    Inventory findByTotal(long total);
-    Inventory findByBusiness(Business business);
+    List<Inventory> findInventoryByBusinessId(long businessId);
+    List<Inventory> findInventoryByIngredientId(long ingredientId);
 }

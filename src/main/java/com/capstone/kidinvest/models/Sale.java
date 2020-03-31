@@ -25,8 +25,6 @@ public class Sale {
     public Sale() {
     }
 
-    ;
-
     //constructor
     public Sale(long id, Date saleDate, double profit, Business business) {
         this.id = id;
