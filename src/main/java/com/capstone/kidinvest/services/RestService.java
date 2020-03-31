@@ -8,6 +8,7 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class RestService {
     private final String apiToken = "api_token=d6PTrQRT1GGzuevKIczQxeFHLKLh6VSSztliEAAAUgC70AjjvhREy2xwqqKe";
+    private final String stocks = "TUP,GME,BKS,WOW,VVNT,BGS,YETI,TWTR,WFC,RCL,DELL,GMED,WRB,PSX,GPC,FRT,GWRE,OGS,EXR,TM";
     private final RestTemplate restTemplate;
 
     public RestService(RestTemplateBuilder restTemplateBuilder){
@@ -15,7 +16,7 @@ public class RestService {
     }
 
     public String getStocksPlainJSON(){
-        String url = "https://api.worldtradingdata.com/api/v1/stock?symbol=SNAP,TWTR,VOD.L&" + apiToken;
+        String url = "https://api.worldtradingdata.com/api/v1/stock?symbol=" + stocks + "&" + apiToken + "&sort_by=name";
         return this.restTemplate.getForObject(url, String.class);
     }
 
