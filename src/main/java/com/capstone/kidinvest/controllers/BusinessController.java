@@ -1,8 +1,7 @@
 package com.capstone.kidinvest.controllers;
 
-import com.capstone.kidinvest.models.BusinessTransactions;
+import com.capstone.kidinvest.models.Inventory;
 import com.capstone.kidinvest.repositories.BusinessRepo;
-import com.capstone.kidinvest.repositories.BusinessTransactionsRepo;
 import com.capstone.kidinvest.repositories.InventoryRepo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,23 +15,20 @@ public class BusinessController {
 
     private BusinessRepo businessDao;
     private InventoryRepo inventoryDao;
-    private BusinessTransactionsRepo businessTransactionsDao;
 
-    public BusinessController(BusinessRepo businessDao, InventoryRepo inventoryDao, BusinessTransactionsRepo businessTransactionsDao) {
+    public BusinessController(BusinessRepo businessDao, InventoryRepo inventoryDao) {
         this.businessDao = businessDao;
         this.inventoryDao = inventoryDao;
-        this.businessTransactionsDao = businessTransactionsDao;
     }
 
     @GetMapping("/business/{id}")
     public String viewBusinessPage(Model view, @PathVariable long id) {
-        List<BusinessTransactions> businessTransactionsList = businessTransactionsDao.findBusinessTransactionsByBusinessId(id);
+        List<Inventory> inventoryList = inventoryDao.findInventoryByBusinessId(id);
 
-        view.addAttribute("businessTransactions", businessTransactionsList);
+        view.addAttribute("inventory", inventoryList);
         return "business/business";
     }
 
-    //transactions list
     //sample template to get business transactions listed
     //display addons
     //update addons

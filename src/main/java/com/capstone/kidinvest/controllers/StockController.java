@@ -14,11 +14,9 @@ import java.util.List;
 public class StockController {
 
     private StockRepo stockDao;
-    private StockTransactionRepo stockTransactionDao;
 
-    public StockController(StockRepo stockDao, StockTransactionRepo stockTransactionDao) {
+    public StockController(StockRepo stockDao) {
         this.stockDao = stockDao;
-        this.stockTransactionDao = stockTransactionDao;
     }
 
     @GetMapping("/stocks")
@@ -31,21 +29,5 @@ public class StockController {
         view.addAttribute("stocks", stockList);
         return "stock/stock";
     }
-
-    @GetMapping("/stocks/transactions")
-    public String viewStockTransactionPage(Model view) {
-        List<StockTransaction> stockTransactionsList = stockTransactionDao.findAll();
-
-//        for (StockTransaction stockTransaction : stockTransactionsList) {
-//            System.out.println(stockTransaction.getUser().getUsername());
-//            System.out.println(stockTransaction.getStock().getName());
-//            System.out.println(stockTransaction.getSharesBoughtSold());
-//            System.out.println(stockTransaction.getPrice());
-//            System.out.println(stockTransaction.getTime());
-//        }
-        view.addAttribute("stockTransactions", stockTransactionsList);
-        return "stock/transactions";
-    }
-
 
 }
