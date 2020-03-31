@@ -7,6 +7,7 @@ import com.capstone.kidinvest.repositories.StockTransactionRepo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -32,9 +33,9 @@ public class StockController {
         return "stock/stock";
     }
 
-    @GetMapping("/stocks/transactions")
-    public String viewStockTransactionPage(Model view) {
-        List<StockTransaction> stockTransactionsList = stockTransactionDao.findAll();
+    @GetMapping("/stocks/transactions/{id}")
+    public String viewStockTransactionPage(Model view, @PathVariable Long id) {
+        List<StockTransaction> stockTransactionsList = stockTransactionDao.findStockTransactionByUserId(id);
 
 //        for (StockTransaction stockTransaction : stockTransactionsList) {
 //            System.out.println(stockTransaction.getUser().getUsername());
