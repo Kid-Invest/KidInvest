@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:include="partials/fragments :: head(Login)">
+</head>
+<body>
+<div th:include="partials/fragments :: nav"></div>
+
+    <h1>Login</h1>
+
+    <form th:action="@{/login}" method="post">
+        <label for="username">Username</label>
+        <input id="username" name="username" type="text" />
+        <br>
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" />
+        <br>
+        <input type="submit" value="Log In" />
+    </form>
+
+<th:block th:include="partials/fragments :: footer"/>
+<th:block th:include="partials/fragments :: scripts"/>
+</body>
+</html>
