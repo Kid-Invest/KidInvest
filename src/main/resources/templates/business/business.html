@@ -5,35 +5,29 @@
 <body>
 <div th:include="partials/fragments :: nav"></div>
 
-    <div class="container mt-4">
+    <div class="container-fluid">
         <h1>Business</h1>
+        <a href="/transactions/business/1">View Business Transactions</a>
 
         <table>
+            <h3>BUSINESS INVENTORY</h3>
             <thead>
             <tr>
                 <th>
                     <h4>INGREDIENT NAME</h4>
                 </th>
                 <th>
-                    <h4>DATE</h4>
-                </th>
-                <th>
-                    <h4>PURCHASE COUNT</h4>
-                </th>
-                <th>
-                    <h4>TOTAL</h4>
+                    <h4>TOTAL AMOUNT</h4>
                 </th>
             </tr>
             </thead>
             <tbody>
-                <div th:each="businessTransaction : ${businessTransactions}">
-                    <tr>
-                        <td th:text="${businessTransaction.getIngredient().getName()}"></td>
-                        <td th:text="${businessTransaction.getTime()}"></td>
-                        <td th:text="${businessTransaction.getPurchaseCount()}"></td>
-                        <td th:text="${businessTransaction.getPurchaseCount() * businessTransaction.getIngredient().getCost()}"></td>
-                    </tr>
-                </div>
+            <div th:each="inventory : ${inventory}">
+                <tr>
+                    <td th:text="${inventory.getIngredient().getName()}"></td>
+                    <td th:text="${inventory.getTotal()}"></td>
+                </tr>
+            </div>
             </tbody>
         </table>
     </div>
