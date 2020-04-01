@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/fragments.html :: head(title = 'Grocery Store')">
+</head>
+<body>
+<th:block th:include="partials/fragments.html :: nav">
+</th:block>
+
+<h1>Welcome to the Store!</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>
+            <h4>INGREDIENT NAME</h4>
+        </th>
+        <th>
+            <h4>PRICE PER INGREDIENT</h4>
+        </th>
+        <th>
+            <h4>QUANTITY</h4>
+        </th>
+        <th>
+            <h4>TOTAL COST</h4>
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <div th:each="ingredient : ${ingredients}">
+        <tr>
+            <td th:text="${ingredient.getName()}"></td>
+            <td th:text="${ingredient.getCost()}" th:id="${(ingredient.getId() - 1) + '_cost'}"></td>
+            <td>
+                <button type="button" class="subtract-btn">-</button>
+                <input type="number" th:value="${0}" th:id="${ingredient.getId() - 1}">
+                <button type="button" class="add-btn">+</button>
+            </td>
+            <td th:text="0.00" th:id="${(ingredient.getId() - 1) + '_total'}"></td>
+        </tr>
+    </div>
+    </tbody>
+</table>
+<h4>Total Purchase Cost:</h4>
+<h4 id="total_purchase_cost">0.00</h4>
+
+<footer th:replace="partials/fragments.html :: footer">
+</footer>
+<th:block th:include="partials/fragments.html :: scripts">
+</th:block>
+<script type="text/javascript" th:src="@{/js/grocery-store.js}"></script>
+</body>
+</html>
