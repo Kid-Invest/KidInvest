@@ -25,13 +25,15 @@
                 let addonEl = $(`#${i}`);
                 let totalCostEl = $(`#${i}_total`);
                 let addonPrice = $(`#${i}_price`).html();
-                newCount = parseInt(addonEl.val()) + 1;
-                $(addonEl).val(newCount);
-                totalCostEl.html(
-                    (newCount * parseFloat(addonPrice)).toFixed(2)
-                );
-                totalCost += parseFloat(addonPrice);
-                $("#total_purchase_cost").html(totalCost.toFixed(2));
+                if (addonEl.val() < '1') {
+                    newCount = parseInt(addonEl.val()) + 1;
+                    $(addonEl).val(newCount);
+                    totalCostEl.html(
+                        (newCount * parseFloat(addonPrice)).toFixed(2)
+                    );
+                    totalCost += parseFloat(addonPrice);
+                    $("#total_purchase_cost").html(totalCost.toFixed(2));
+                }
             });
         }
     });
