@@ -32,9 +32,9 @@
                     <td th:text="${addon.getName()}"></td>
                     <td th:text="${addon.getPrice()}" th:id="${(addon.getId() - 1) + '_price'}"></td>
                     <td>
-                        <button type="button" class="subtract-btn">Remove</button>
                         <input type="number" th:value="${0}" th:id="${addon.getId() - 1}">
                         <button type="button" class="add-btn">Add to Cart</button>
+                        <button type="button" class="subtract-btn">Remove</button>
                     </td>
                     <td th:text="0.00" th:id="${(addon.getId() - 1) + '_total'}"></td>
                 </tr>

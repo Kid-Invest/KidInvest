@@ -7,6 +7,7 @@
 
         // Event listener for add and subtract buttons
         for (let i = 0; i < subtractBtnEl.length; i++) {
+            $('.subtract-btn').hide();
             subtractBtnEl[i].addEventListener("click", function () {
                 let addonEl = $(`#${i}`);
                 let totalCostEl = $(`#${i}_total`);
@@ -26,6 +27,7 @@
                 let totalCostEl = $(`#${i}_total`);
                 let addonPrice = $(`#${i}_price`).html();
                 if (addonEl.val() < '1') {
+                    $('.subtract-btn').show();
                     newCount = parseInt(addonEl.val()) + 1;
                     $(addonEl).val(newCount);
                     totalCostEl.html(
