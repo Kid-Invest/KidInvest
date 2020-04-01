@@ -15,25 +15,31 @@ public class Stock {
     @Column(nullable = false)
     private String name;
 
-    @Column(name = "market_price", nullable = true)
+    @Column(nullable = false)
+    private String ticker;
+
+    @Column(name = "market_price", nullable = false)
     private double marketPrice;
 
-    @Column(name = "open_price", nullable = true)
+    @Column(name = "open_price", nullable = false)
     private double openPrice;
 
-    @Column(name = "low_price", nullable = true)
+    @Column(name = "low_price", nullable = false)
     private double lowPrice;
 
-    @Column(name = "high_price", nullable = true)
+    @Column(name = "high_price", nullable = false)
     private double highPrice;
 
-    @Column(name = "year_low_price", nullable = true)
+    @Column(name = "year_low_price", nullable = false)
     private double yearLowPrice;
 
-    @Column(name = "year_high_price", nullable = true)
+    @Column(name = "year_high_price", nullable = false)
     private double yearHighPrice;
 
-    @Column(nullable = true)
+    @Column(name = "percentage_change", nullable = false)
+    private double change;
+
+    @Column(nullable = false)
     private Timestamp time;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "stock")
@@ -47,15 +53,27 @@ public class Stock {
     }
 
     //Constructor
-    public Stock(long id, String name, double marketPrice, double openPrice, double lowPrice, double highPrice,
+    public Stock(long id, String name, String ticker, double marketPrice, double openPrice, double lowPrice, double highPrice, double yearLowPrice, double yearHighPrice,
                  Timestamp time) {
         this.id = id;
         this.name = name;
+        this.ticker = ticker;
         this.marketPrice = marketPrice;
         this.openPrice = openPrice;
         this.lowPrice = lowPrice;
         this.highPrice = highPrice;
+        this.yearLowPrice = yearLowPrice;
+        this.yearHighPrice = yearHighPrice;
         this.time = time;
+    }
+
+    public Stock(double marketPrice, double openPrice, double lowPrice, double highPrice, double yearLowPrice, double yearHighPrice) {
+        this.marketPrice = marketPrice;
+        this.openPrice = openPrice;
+        this.lowPrice = lowPrice;
+        this.highPrice = highPrice;
+        this.yearLowPrice = yearLowPrice;
+        this.yearHighPrice = yearHighPrice;
     }
 
     // Getters
@@ -65,6 +83,10 @@ public class Stock {
 
     public String getName() {
         return this.name;
+    }
+
+    public String getTicker(){
+        return this.ticker;
     }
 
     public double getMarketPrice() {
@@ -83,6 +105,14 @@ public class Stock {
         return this.highPrice;
     }
 
+    public double getYearLowPrice() {
+        return this.yearLowPrice;
+    }
+
+    public double getYearHighPrice() {
+        return this.yearHighPrice;
+    }
+
     public Timestamp getTime() {
         return this.time;
     }
@@ -94,6 +124,10 @@ public class Stock {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setTicker(String ticker) {
+        this.ticker = ticker;
     }
 
     public void setMarketPrice(double marketPrice) {
@@ -112,7 +146,39 @@ public class Stock {
         this.highPrice = highPrice;
     }
 
+    public void setYearLowPrice(double yearLowPrice) {
+        this.yearLowPrice = yearLowPrice;
+    }
+
+    public void setYearHighPrice(double yearHighPrice) {
+        this.yearHighPrice = yearHighPrice;
+    }
+
     public void setTime(Timestamp time) {
         this.time = time;
+    }
+
+    public double getChange() {
+        return change;
+    }
+
+    public void setChange(double change) {
+        this.change = change;
+    }
+
+    public List<StockTransaction> getTransactionList() {
+        return transactionList;
+    }
+
+    public void setTransactionList(List<StockTransaction> transactionList) {
+        this.transactionList = transactionList;
+    }
+
+    public List<UserStock> getUserStockList() {
+        return userStockList;
+    }
+
+    public void setUserStockList(List<UserStock> userStockList) {
+        this.userStockList = userStockList;
     }
 }
