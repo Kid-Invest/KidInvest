@@ -6,6 +6,8 @@ import com.capstone.kidinvest.models.UserStock;
 import com.capstone.kidinvest.repositories.StockRepo;
 import com.capstone.kidinvest.repositories.StockTransactionRepo;
 import com.capstone.kidinvest.repositories.UserStockRepo;
+import com.capstone.kidinvest.services.RestService;
+import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,12 +28,27 @@ public class StockController {
 
     @GetMapping("/stocks")
     public String viewStockPage(Model view) {
+        RestService restService = new RestService(new RestTemplateBuilder());
+
+        List<Stock> retrieveStockList = restService.parseJSONString(restService.getStocksPlainJSON());
+
+
         List<Stock> stockList = stockDao.findAll();
 
-//        for (Stock stock : stockList) {
-//            System.out.println(stock.getName());
+//        for(int i = 0; i < stockList.size(); i++){
+//            stockList.get(i).setMarketPrice(retrieveStockList.get(i).getMarketPrice());
+//            stockList.get(i).setOpenPrice(retrieveStockList.get(i).getOpenPrice());
+//            stockList.get(i).setLowPrice(retrieveStockList.get(i).getLowPrice());
+//            stockList.get(i).setHighPrice(retrieveStockList.get(i).getHighPrice());
+//            stockList.get(i).setYearLowPrice(retrieveStockList.get(i).getYearLowPrice());
+//            stockList.get(i).setYearHighPrice(retrieveStockList.get(i).getYearHighPrice());
 //        }
-        view.addAttribute("stocks", stockList);
-        return "stock/stock";
+        for (Stock stock : stockList) {
+//            stockDao.save(stock);
+            System.out.println(stock.getName());
+        }
+
+       // view.addAttribute("stocks", stockList);
+        return "/";
     }
 }

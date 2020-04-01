@@ -15,6 +15,9 @@ public class Stock {
     @Column(nullable = false)
     private String name;
 
+    @Column(nullable = true)
+    private String ticker;
+
     @Column(name = "market_price", nullable = true)
     private double marketPrice;
 
@@ -47,15 +50,27 @@ public class Stock {
     }
 
     //Constructor
-    public Stock(long id, String name, double marketPrice, double openPrice, double lowPrice, double highPrice,
+    public Stock(long id, String name, String ticker, double marketPrice, double openPrice, double lowPrice, double highPrice, double yearLowPrice, double yearHighPrice,
                  Timestamp time) {
         this.id = id;
         this.name = name;
+        this.ticker = ticker;
         this.marketPrice = marketPrice;
         this.openPrice = openPrice;
         this.lowPrice = lowPrice;
         this.highPrice = highPrice;
+        this.yearLowPrice = yearLowPrice;
+        this.yearHighPrice = yearHighPrice;
         this.time = time;
+    }
+
+    public Stock(double marketPrice, double openPrice, double lowPrice, double highPrice, double yearLowPrice, double yearHighPrice) {
+        this.marketPrice = marketPrice;
+        this.openPrice = openPrice;
+        this.lowPrice = lowPrice;
+        this.highPrice = highPrice;
+        this.yearLowPrice = yearLowPrice;
+        this.yearHighPrice = yearHighPrice;
     }
 
     // Getters
@@ -65,6 +80,10 @@ public class Stock {
 
     public String getName() {
         return this.name;
+    }
+
+    public String getTicker(){
+        return this.ticker;
     }
 
     public double getMarketPrice() {
@@ -83,6 +102,14 @@ public class Stock {
         return this.highPrice;
     }
 
+    public double getYearLowPrice() {
+        return this.yearLowPrice;
+    }
+
+    public double getYearHighPrice() {
+        return this.yearHighPrice;
+    }
+
     public Timestamp getTime() {
         return this.time;
     }
@@ -94,6 +121,10 @@ public class Stock {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setTicker(String ticker) {
+        this.ticker = ticker;
     }
 
     public void setMarketPrice(double marketPrice) {
@@ -110,6 +141,14 @@ public class Stock {
 
     public void setHighPrice(double highPrice) {
         this.highPrice = highPrice;
+    }
+
+    public void setYearLowPrice(double yearLowPrice) {
+        this.yearLowPrice = yearLowPrice;
+    }
+
+    public void setYearHighPrice(double yearHighPrice) {
+        this.yearHighPrice = yearHighPrice;
     }
 
     public void setTime(Timestamp time) {
