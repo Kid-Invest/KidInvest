@@ -1,7 +1,9 @@
 package com.capstone.kidinvest.controllers;
 
+import com.capstone.kidinvest.models.Addon;
 import com.capstone.kidinvest.models.Ingredient;
 import com.capstone.kidinvest.models.Inventory;
+import com.capstone.kidinvest.repositories.AddonRepo;
 import com.capstone.kidinvest.repositories.BusinessRepo;
 import com.capstone.kidinvest.repositories.IngredientRepo;
 import com.capstone.kidinvest.repositories.InventoryRepo;
@@ -18,11 +20,13 @@ public class BusinessController {
     private BusinessRepo businessDao;
     private InventoryRepo inventoryDao;
     private IngredientRepo ingredientDao;
+    private AddonRepo addonDao;
 
-    public BusinessController(BusinessRepo businessDao, InventoryRepo inventoryDao, IngredientRepo ingredientDao) {
+    public BusinessController(BusinessRepo businessDao, InventoryRepo inventoryDao, IngredientRepo ingredientDao, AddonRepo addonDao) {
         this.businessDao = businessDao;
         this.inventoryDao = inventoryDao;
         this.ingredientDao = ingredientDao;
+        this.addonDao = addonDao;
     }
 
     @GetMapping("/business/{id}")
@@ -40,7 +44,11 @@ public class BusinessController {
         return "business/grocery-store";
     }
 
-    //sample template to get business transactions listed
-    //display addons
-    //update addons
+    @GetMapping("/business/addon")
+    public String viewAddonsPage(Model view) {
+        List<Addon> addonList = addonDao.findAll();
+        view.addAttribute("addons", addonList);
+        return "business/addons";
+    }
+
 }

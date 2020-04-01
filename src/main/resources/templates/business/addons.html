@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/fragments.html :: head(title = 'Purchase Addons')">
+</head>
+<body>
+<th:block th:include="partials/fragments.html :: nav">
+</th:block>
+
+    <div class="container">
+        <h1>Welcome to the Addon Store!</h1>
+
+        <table>
+            <thead>
+            <tr>
+                <th>
+                    <h4>ADDON NAME</h4>
+                </th>
+                <th>
+                    <h4>PRICE</h4>
+                </th>
+                <th>
+                    <h4>QUANTITY</h4>
+                </th>
+                <th>
+                    <h4>TOTAL COST</h4>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <div th:each="addon : ${addons}">
+                <tr>
+                    <td th:text="${addon.getName()}"></td>
+                    <td th:text="${addon.getPrice()}" th:id="${(addon.getId() - 1) + '_price'}"></td>
+                    <td>
+                        <button type="button" class="subtract-btn">-</button>
+                        <input type="number" th:value="${0}" th:id="${addon.getId() - 1}">
+                        <button type="button" class="add-btn">+</button>
+                    </td>
+                    <td th:text="0.00" th:id="${(addon.getId() - 1) + '_total'}"></td>
+                </tr>
+            </div>
+            </tbody>
+        </table>
+        <h4>Total Purchase Cost:</h4>
+        <h4 id="total_purchase_cost">0.00</h4>
+    </div>
+
+<footer th:replace="partials/fragments.html :: footer">
+</footer>
+<th:block th:include="partials/fragments.html :: scripts">
+</th:block>
+<script type="text/javascript" th:src="@{/js/addons.js}"></script>
+</body>
+</html>

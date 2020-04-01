@@ -19,6 +19,8 @@ public class Addon {
     @Column(name = "popularity_bonus", nullable = false)
     private int popularityBonus;
 
+    private double price;
+
     @ManyToMany(mappedBy = "addons")
     private List<Business> businessList;
 
@@ -26,12 +28,12 @@ public class Addon {
     public Addon() {
     }
 
-    ;
-
     //constructor
-    public Addon(long id, int popularityBonus) {
+    public Addon(long id, String name, int popularityBonus, double price) {
         this.id = id;
+        this.name = name;
         this.popularityBonus = popularityBonus;
+        this.price = price;
     }
 
     //getters and setters
@@ -43,12 +45,28 @@ public class Addon {
         this.id = id;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public int getPopularityBonus() {
         return popularityBonus;
     }
 
     public void setPopularityBonus(int popularityBonus) {
         this.popularityBonus = popularityBonus;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     public List<Business> getBusinessList() {
