@@ -18,7 +18,7 @@
                         (newCount * parseFloat(ingredientCost)).toFixed(2)
                     );
                     totalCost -= parseFloat(ingredientCost);
-                    $("#total_purchase_cost").html(totalCost.toFixed(2));
+                    $("#total_purchase_cost").val(totalCost.toFixed(2));
                 }
             });
             addBtnEl[i].addEventListener("click", function () {
@@ -31,7 +31,7 @@
                     (newCount * parseFloat(ingredientCost)).toFixed(2)
                 );
                 totalCost += parseFloat(ingredientCost);
-                $("#total_purchase_cost").html(totalCost.toFixed(2));
+                $("#total_purchase_cost").val(totalCost.toFixed(2));
             });
         }
     });

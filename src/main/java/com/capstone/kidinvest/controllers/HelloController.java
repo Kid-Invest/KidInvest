@@ -9,4 +9,9 @@ public class HelloController {
     public String hello(){
         return "index";
     }
+
+    @GetMapping("/home/aboutus")
+    public String viewAboutUsPage(){
+        return "aboutus";
+    }
 }

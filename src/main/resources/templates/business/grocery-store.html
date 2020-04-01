@@ -8,40 +8,45 @@
 
 <h1>Welcome to the Store!</h1>
 
-<table>
-    <thead>
-    <tr>
-        <th>
-            <h4>INGREDIENT NAME</h4>
-        </th>
-        <th>
-            <h4>PRICE PER INGREDIENT</h4>
-        </th>
-        <th>
-            <h4>QUANTITY</h4>
-        </th>
-        <th>
-            <h4>TOTAL COST</h4>
-        </th>
-    </tr>
-    </thead>
-    <tbody>
-    <div th:each="ingredient : ${ingredients}">
+<form action="/business/grocery-store" method="POST">
+    <table>
+        <thead>
         <tr>
-            <td th:text="${ingredient.getName()}"></td>
-            <td th:text="${ingredient.getCost()}" th:id="${(ingredient.getId() - 1) + '_cost'}"></td>
-            <td>
-                <button type="button" class="subtract-btn">-</button>
-                <input type="number" th:value="${0}" th:id="${ingredient.getId() - 1}">
-                <button type="button" class="add-btn">+</button>
-            </td>
-            <td th:text="0.00" th:id="${(ingredient.getId() - 1) + '_total'}"></td>
+            <th>
+                <h4>INGREDIENT NAME</h4>
+            </th>
+            <th>
+                <h4>PRICE PER INGREDIENT</h4>
+            </th>
+            <th>
+                <h4>QUANTITY</h4>
+            </th>
+            <th>
+                <h4>TOTAL COST</h4>
+            </th>
         </tr>
-    </div>
-    </tbody>
-</table>
-<h4>Total Purchase Cost:</h4>
-<h4 id="total_purchase_cost">0.00</h4>
+        </thead>
+        <tbody>
+        <th:block th:each="ingredient : ${ingredients}">
+            <tr>
+                <td th:text="${ingredient.getName()}"></td>
+                <td th:text="${ingredient.getCost()}" th:id="${(ingredient.getId() - 1) + '_cost'}"></td>
+                <td>
+                    <button type="button" class="subtract-btn">-</button>
+                    <input type="number" th:value="0" th:name="${'ingredient_id' + ingredient.getId()}" th:id="${ingredient.getId() - 1}">
+                    <button type="button" class="add-btn">+</button>
+                </td>
+                <td th:text="0.00" th:id="${(ingredient.getId() - 1) + '_total'}"></td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+    <label for="total_purchase_cost">Total Purchase Cost:</label>
+    <input th:name="total_purchase_cost" id="total_purchase_cost" th:value="0">
+    <button type="submit">BUY INGREDIENTS</button>
+</form>
+
+<a href="/business/1">EXIT GROCERY STORE</a>
 
 <footer th:replace="partials/fragments.html :: footer">
 </footer>
