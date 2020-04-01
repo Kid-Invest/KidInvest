@@ -56,13 +56,15 @@ public class TransactionsController {
     @GetMapping("/sales/business/{id}")
     public String viewBusinessSalesPage(Model view, @PathVariable long id) {
         List<Sale> salesList = saleDao.findSaleByBusinessId(id);
+        //List<Sale> businessSalesList = businessDao.findbusinessSalesbyBusinessId(id);
 
         for(Sale sale : salesList){
             System.out.println(sale.getProfit());
             System.out.println(sale.getSaleDate());
         };
 
-        view.addAttribute("sale", salesList);
+        view.addAttribute("sales", salesList);
+        //view.addAttribute("businessSales", businessSalesList);
         return "business/sales";
     }
 }

@@ -56,8 +56,10 @@ public class UserController {
 
     @GetMapping("/profile/{id}")
     public String viewUserStock(Model view, @PathVariable long id){
-        List<UserStock> userStockList = userStockDao.findUserStockByUserId(id);
-        view.addAttribute("userStock", userStockList);
+//        List<UserStock> userStockList = userStockDao.findUserStockByUserId(id);
+        List<User> userList = userDao.findUserById(id);
+//        view.addAttribute("userStock", userStockList);
+        view.addAttribute("user", userList);
         return "user/profile";
     }
 
