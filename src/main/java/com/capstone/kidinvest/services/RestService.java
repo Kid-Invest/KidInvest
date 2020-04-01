@@ -59,14 +59,14 @@ public class RestService {
             lowPrice = jsonString.substring(jsonString.indexOf("day_low:") + 8, jsonString.indexOf("52_week_high"));
             yearHighPrice = jsonString.substring(jsonString.indexOf("52_week_high:") + 13, jsonString.indexOf("52_week_low"));
             yearLowPrice = jsonString.substring(jsonString.indexOf("52_week_low:") + 12, jsonString.indexOf("day_change"));
-            System.out.println("SYMBOL: " + symbol);
-            System.out.println("NAME: " + name);
-            System.out.println("MARKET PRICE: " + marketPrice);
-            System.out.println("OPEN PRICE: " + openPrice);
-            System.out.println("LOW PRICE: " + lowPrice);
-            System.out.println("HIGH PRICE: " + highPrice);
-            System.out.println("52-WEEK LOW PRICE: " + yearLowPrice);
-            System.out.println("52-WEEK HIGH PRICE: " + yearHighPrice);
+//            System.out.println("SYMBOL: " + symbol);
+//            System.out.println("NAME: " + name);
+//            System.out.println("MARKET PRICE: " + marketPrice);
+//            System.out.println("OPEN PRICE: " + openPrice);
+//            System.out.println("LOW PRICE: " + lowPrice);
+//            System.out.println("HIGH PRICE: " + highPrice);
+//            System.out.println("52-WEEK LOW PRICE: " + yearLowPrice);
+//            System.out.println("52-WEEK HIGH PRICE: " + yearHighPrice);
 //            Stock testStock = new Stock(1, name, Double.parseDouble(marketPrice), Double.parseDouble(openPrice), Double.parseDouble(lowPrice), Double.parseDouble(highPrice), time);
 //            Stock stock = stockDao.
 

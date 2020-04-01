@@ -64,26 +64,26 @@ VALUES (3, 4);
 # insert into `kid_invest_db`.`stocks` (`id`, `name`, `market_price`, `open_price`, `low_price`, `high_price`, `time`) values (15, ''Dynex Capital, Inc.'', 44.69, 43.69, 40.69, 53.69, ''2020-03-27 00:00:00'');
 
 # PRACTICE STOCK
-insert into `kid_invest_db`.`stocks` (`id`, `name`, `ticker`)values (1, 'PNM Resources, Inc.(Holding Co.) ', 'BGS');
-insert into `kid_invest_db`.`stocks` (`id`, `name`, `ticker`)values (2, 'The Community Financial Corporation', 'BKS');
-insert into `kid_invest_db`.`stocks` (`id`, `name`, `ticker`)values (3, 'Rocket Fuel Inc.', 'DELL');
-insert into `kid_invest_db`.`stocks` (`id`, `name`, `ticker`)values (4, 'Gener8 Maritime, Inc.', 'EXR');
-insert into `kid_invest_db`.`stocks` (`id`, `name`, `ticker`)values (5, 'West Pharmaceutical Services, Inc.', 'FRT');
-insert into `kid_invest_db`.`stocks` (`id`, `name`, `ticker`)values (6, 'Monolithic Power Systems, Inc.', 'GME');
-insert into `kid_invest_db`.`stocks` (`id`, `name`, `ticker`)values (7, 'Sibanye Gold Limited', 'GPC');
-insert into `kid_invest_db`.`stocks` (`id`, `name`, `ticker`)values (8, 'Silvercrest Asset Management Group Inc.', 'GMED');
-insert into `kid_invest_db`.`stocks` (`id`, `name`, `ticker`)values (9, 'Cresud S.A.C.I.F. y A.', 'GWRE');
-insert into `kid_invest_db`.`stocks` (`id`, `name`, `ticker`)values (10, 'OFG Bancorp', 'OGS');
-insert into `kid_invest_db`.`stocks` (`id`, `name`, `ticker`)values (11, 'Bankwell Financial Group, Inc.', 'PSX');
-insert into `kid_invest_db`.`stocks` (`id`, `name`, `ticker`)values (12, 'Nuveen Georgia Quality Municipal Income Fund', 'RCL');
-insert into `kid_invest_db`.`stocks` (`id`, `name`, `ticker`)values (13, 'Lantronix, Inc.', 'TM');
-insert into `kid_invest_db`.`stocks` (`id`, `name`, `ticker`)values (14, 'Waste Management, Inc.', 'TUP');
-insert into `kid_invest_db`.`stocks` (`id`, `name`, `ticker`)values (15, 'Dynex Capital, Inc.', 'TWTR');
-insert into `kid_invest_db`.`stocks` (`id`, `name`, `ticker`)values (16, 'Whatever-Company', 'VVNT');
-insert into `kid_invest_db`.`stocks` (`id`, `name`, `ticker`)values (17, 'Lemons on Hand', 'WRB');
-insert into `kid_invest_db`.`stocks` (`id`, `name`, `ticker`)values (18, 'Radical Rodeo', 'WFC');
-insert into `kid_invest_db`.`stocks` (`id`, `name`, `ticker`)values (19, 'Gassiest Gas', 'WOW');
-insert into `kid_invest_db`.`stocks` (`id`, `name`, `ticker`)values (20, 'Car Parts No One Wanted', 'YETI');
+insert into `kid_invest_db`.`stocks` (`id`, `name`, `ticker`, `market_price`, `open_price`, `low_price`, `high_price`, `year_low_price`, `year_high_price`, `percentage_change`, `time`) values (1, 'Frank''s Fresh Foods', 'FFS', 0, 0, 0, 0, 0, 0, 0, '2020-03-27 00:00:00');
+insert into `kid_invest_db`.`stocks` (`id`, `name`, `ticker`, `market_price`, `open_price`, `low_price`, `high_price`, `year_low_price`, `year_high_price`, `percentage_change`, `time`) values (2, 'Dayna''s Daily Bookstore', 'DDS', 0, 0, 0, 0, 0, 0, 0, '2020-03-27 00:00:00');
+insert into `kid_invest_db`.`stocks` (`id`, `name`, `ticker`, `market_price`, `open_price`, `low_price`, `high_price`, `year_low_price`, `year_high_price`, `percentage_change`, `time`) values (3, 'Computers R'' Us', 'CRU', 0, 0, 0, 0, 0, 0, 0, '2020-03-27 00:00:00');
+insert into `kid_invest_db`.`stocks` (`id`, `name`, `ticker`, `market_price`, `open_price`, `low_price`, `high_price`, `year_low_price`, `year_high_price`, `percentage_change`, `time`) values (4, 'Xavier''s Exotic Pets', 'XEP', 0, 0, 0, 0, 0, 0, 0, '2020-03-27 00:00:00');
+insert into `kid_invest_db`.`stocks` (`id`, `name`, `ticker`, `market_price`, `open_price`, `low_price`, `high_price`, `year_low_price`, `year_high_price`, `percentage_change`, `time`) values (5, 'Adele''s Apple Farm', 'AAF', 0, 0, 0, 0, 0, 0, 0, '2020-03-27 00:00:00');
+insert into `kid_invest_db`.`stocks` (`id`, `name`, `ticker`, `market_price`, `open_price`, `low_price`, `high_price`, `year_low_price`, `year_high_price`, `percentage_change`, `time`) values (6, 'George''s Gaming Corner', 'GGC', 0, 0, 0, 0, 0, 0, 0, '2020-03-27 00:00:00');
+insert into `kid_invest_db`.`stocks` (`id`, `name`, `ticker`, `market_price`, `open_price`, `low_price`, `high_price`, `year_low_price`, `year_high_price`, `percentage_change`, `time`) values (7, 'Tony''s Taco Restaurant', 'TTR', 0, 0, 0, 0, 0, 0, 0, '2020-03-27 00:00:00');
+insert into `kid_invest_db`.`stocks` (`id`, `name`, `ticker`, `market_price`, `open_price`, `low_price`, `high_price`, `year_low_price`, `year_high_price`, `percentage_change`, `time`) values (8, 'Phillip''s Pharmacy', 'PHP', 0, 0, 0, 0, 0, 0, 0, '2020-03-27 00:00:00');
+insert into `kid_invest_db`.`stocks` (`id`, `name`, `ticker`, `market_price`, `open_price`, `low_price`, `high_price`, `year_low_price`, `year_high_price`, `percentage_change`, `time`) values (9, 'Hung''s Hat Shop', 'HHS', 0, 0, 0, 0, 0, 0, 0, '2020-03-27 00:00:00');
+insert into `kid_invest_db`.`stocks` (`id`, `name`, `ticker`, `market_price`, `open_price`, `low_price`, `high_price`, `year_low_price`, `year_high_price`, `percentage_change`, `time`) values (10, 'Dolly''s Diamonds', 'DOLLY', 0, 0, 0, 0, 0, 0, 0, '2020-03-27 00:00:00');
+insert into `kid_invest_db`.`stocks` (`id`, `name`, `ticker`, `market_price`, `open_price`, `low_price`, `high_price`, `year_low_price`, `year_high_price`, `percentage_change`, `time`) values (11, 'Froggy Fuel Center', 'FROG', 0, 0, 0, 0, 0, 0, 0, '2020-03-27 00:00:00');
+insert into `kid_invest_db`.`stocks` (`id`, `name`, `ticker`, `market_price`, `open_price`, `low_price`, `high_price`, `year_low_price`, `year_high_price`, `percentage_change`, `time`) values (12, 'Sonny''s Sporting Tickets', 'SST', 0, 0, 0, 0, 0, 0, 0, '2020-03-27 00:00:00');
+insert into `kid_invest_db`.`stocks` (`id`, `name`, `ticker`, `market_price`, `open_price`, `low_price`, `high_price`, `year_low_price`, `year_high_price`, `percentage_change`, `time`) values (13, 'Crazy Carl''s Car Shop', 'CCC', 0, 0, 0, 0, 0, 0, 0, '2020-03-27 00:00:00');
+insert into `kid_invest_db`.`stocks` (`id`, `name`, `ticker`, `market_price`, `open_price`, `low_price`, `high_price`, `year_low_price`, `year_high_price`, `percentage_change`, `time`) values (14, 'Bob''s Bubble Gum', 'BBG', 0, 0, 0, 0, 0, 0, 0, '2020-03-27 00:00:00');
+insert into `kid_invest_db`.`stocks` (`id`, `name`, `ticker`, `market_price`, `open_price`, `low_price`, `high_price`, `year_low_price`, `year_high_price`, `percentage_change`, `time`) values (15, 'Little Princess Phone Store', 'LPPS', 0, 0, 0, 0, 0, 0, 0, '2020-03-27 00:00:00');
+insert into `kid_invest_db`.`stocks` (`id`, `name`, `ticker`, `market_price`, `open_price`, `low_price`, `high_price`, `year_low_price`, `year_high_price`, `percentage_change`, `time`) values (16, 'Bruce''s Backyard Security', 'BSEC', 0, 0, 0, 0, 0, 0, 0, '2020-03-27 00:00:00');
+insert into `kid_invest_db`.`stocks` (`id`, `name`, `ticker`, `market_price`, `open_price`, `low_price`, `high_price`, `year_low_price`, `year_high_price`, `percentage_change`, `time`) values (17, 'Sally''s Stylish Outfits', 'SSO', 0, 0, 0, 0, 0, 0, 0, '2020-03-27 00:00:00');
+insert into `kid_invest_db`.`stocks` (`id`, `name`, `ticker`, `market_price`, `open_price`, `low_price`, `high_price`, `year_low_price`, `year_high_price`, `percentage_change`, `time`) values (18, 'Charlie''s Community Bank', 'CCB', 0, 0, 0, 0, 0, 0, 0, '2020-03-27 00:00:00');
+insert into `kid_invest_db`.`stocks` (`id`, `name`, `ticker`, `market_price`, `open_price`, `low_price`, `high_price`, `year_low_price`, `year_high_price`, `percentage_change`, `time`) values (19, 'Victor''s Vitamin Store', 'VVS', 0, 0, 0, 0, 0, 0, 0, '2020-03-27 00:00:00');
+insert into `kid_invest_db`.`stocks` (`id`, `name`, `ticker`, `market_price`, `open_price`, `low_price`, `high_price`, `year_low_price`, `year_high_price`, `percentage_change`, `time`) values (20, 'Big Bear Storage', 'BEAR', 0, 0, 0, 0, 0, 0, 0, '2020-03-27 00:00:00');
 
 
 # USER HAS STOCK SEEDER

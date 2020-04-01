@@ -14,12 +14,17 @@
 <div class="container">
 
     <h1 th:text="${stocks.get(0).getName()}"></h1>
+    <h1 th:text="${stocks.get(0).getTicker()}"></h1>
     <h4>OPEN</h4>
     <h5 th:text="${stocks.get(0).getOpenPrice()}"></h5>
     <h4>HIGH</h4>
     <h5 th:text="${stocks.get(0).getHighPrice()}"></h5>
+    <h4>52-WEEK HIGH</h4>
+    <h5 th:text="${stocks.get(0).getYearHighPrice()}"></h5>
     <h4>LOW</h4>
     <h5 th:text="${stocks.get(0).getLowPrice()}"></h5>
+    <h4>52-WEEK LOW</h4>
+    <h5 th:text="${stocks.get(0).getYearLowPrice()}"></h5>
     <h4>MARKET PRICE</h4>
     <h5 th:text="${stocks.get(0).getMarketPrice()}"></h5>
     <button type="button">BUY</button>
@@ -34,6 +39,9 @@
                 <h4>NAME</h4>
             </th>
             <th>
+                <h4>TICKER</h4>
+            </th>
+            <th>
                 <h4>TODAY</h4>
             </th>
             <th>
@@ -45,7 +53,8 @@
         <th:block th:each="stock : ${stocks}">
             <tr>
                 <td th:text="${stock.getName()}"></td>
-                <td>+3.4%</td>
+                <td th:text="${stock.getTicker()}"></td>
+                <td th:text="${stock.getChange() + '%'}"></td>
                 <td th:text="${stock.getMarketPrice()}"></td>
             </tr>
         </th:block>
