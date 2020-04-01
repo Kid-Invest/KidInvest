@@ -24,10 +24,10 @@
         </tr>
         </thead>
         <tbody>
-        <div th:each="sales : ${sale}">
+        <div th:each="sale : ${sales}">
             <tr>
-                <td th:text="${sale.getSaleDate()}"></td>
-                <td th:text="${sale.getProfit()}"></td>
+                <td th:text="${sale.saleDate}"></td>
+                <td th:text="${sale.profit}"></td>
             </tr>
         </div>
         </tbody>

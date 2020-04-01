@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:include="partials/fragments :: head(Business-Learning)">
+</head>
+<body>
+<div th:include="partials/fragments :: nav"></div>
+
+<div class="container mt-4">
+    <h1>Business Learning Page!!</h1>
+    <br>
+    <a href="/learning/business/quiz">Take the Quiz!</a>
+</div>
+
+<th:block th:include="partials/fragments :: footer"/>
+<th:block th:include="partials/fragments :: scripts"/>
+</body>
+</html>
