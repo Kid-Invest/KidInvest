@@ -7,6 +7,7 @@ import com.capstone.kidinvest.repositories.BusinessRepo;
 import com.capstone.kidinvest.repositories.IngredientRepo;
 import com.capstone.kidinvest.repositories.InventoryRepo;
 import com.capstone.kidinvest.repositories.UserRepo;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,10 +32,10 @@ public class BusinessController {
         this.userDao = userDao;
     }
 
-    @GetMapping("/business/{id}")
-    public String viewBusinessPage(Model view, @PathVariable long id) {
-        List<Inventory> inventoryList = inventoryDao.findInventoryByBusinessId(id);
-
+    @GetMapping("/business")
+    public String viewBusinessPage(Model view) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        List<Inventory> inventoryList = inventoryDao.findInventoryByBusinessId(user.getId());
         view.addAttribute("inventory", inventoryList);
         return "business/business";
     }
@@ -104,7 +105,7 @@ public class BusinessController {
             }
         }
 
-        return "redirect:/business/1";
+        return "redirect:/business";
     }
 
 
