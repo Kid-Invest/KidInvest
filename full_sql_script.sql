@@ -25,16 +25,16 @@ INSERT INTO `kid_invest_db`.`business` (`id`, `name`, `popularity`, `user_id`)
 VALUES (4, 'hstark''s stand', 0, 4);
 
 # ADD-ONS SEEDER
-INSERT INTO `kid_invest_db`.`addons` (`id`, `name`, `popularity_bonus`)
-VALUES (1, 'candy', 25);
-INSERT INTO `kid_invest_db`.`addons` (`id`, `name`, `popularity_bonus`)
-VALUES (2, 'music', 25);
-INSERT INTO `kid_invest_db`.`addons` (`id`, `name`, `popularity_bonus`)
-VALUES (3, 'sign', 30);
-INSERT INTO `kid_invest_db`.`addons` (`id`, `name`, `popularity_bonus`)
-VALUES (4, 'cooler', 10);
-INSERT INTO `kid_invest_db`.`addons` (`id`, `name`, `popularity_bonus`)
-VALUES (5, 'water filter', 10);
+INSERT INTO `kid_invest_db`.`addons` (`id`, `name`, `popularity_bonus`, `price`)
+VALUES (1, 'candy machine', 25, 75.00);
+INSERT INTO `kid_invest_db`.`addons` (`id`, `name`, `popularity_bonus`, `price`)
+VALUES (2, 'radio', 25, 50.00);
+INSERT INTO `kid_invest_db`.`addons` (`id`, `name`, `popularity_bonus`, `price`)
+VALUES (3, 'sign', 30, 30.00);
+INSERT INTO `kid_invest_db`.`addons` (`id`, `name`, `popularity_bonus`, `price`)
+VALUES (4, 'cooler', 10, 25.00);
+INSERT INTO `kid_invest_db`.`addons` (`id`, `name`, `popularity_bonus`, `price`)
+VALUES (5, 'water filter machine', 10, 90.00);
 
 # BUSINESS HAS ADDONS SEEDER
 INSERT INTO `kid_invest_db`.`business_has_addons` (`business_id`, `addon_id`)
