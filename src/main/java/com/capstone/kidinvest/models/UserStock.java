@@ -27,6 +27,12 @@ public class UserStock implements Serializable {
     }
 
     //Constructor
+    public UserStock(User user, Stock stock, long shares) {
+        this.user = user;
+        this.stock = stock;
+        this.shares = shares;
+    }
+
     public UserStock(long shares) {
         this.shares = shares;
     }

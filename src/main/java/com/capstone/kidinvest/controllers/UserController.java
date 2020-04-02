@@ -22,15 +22,17 @@ public class UserController {
     private UserRepo userDao;
     private UserStockRepo userStockDao;
     private BusinessRepo businessDao;
+    private StockRepo stockDao;
     private IngredientRepo ingredientDao;
     private InventoryRepo inventoryDao;
     private PasswordEncoder passwordEncoder;
 
 
-    public UserController(UserRepo userDao, UserStockRepo userStockDao, BusinessRepo businessDao, IngredientRepo ingredientDao, InventoryRepo inventoryDao, PasswordEncoder passwordEncoder) {
+    public UserController(UserRepo userDao, UserStockRepo userStockDao, BusinessRepo businessDao, StockRepo stockDao, IngredientRepo ingredientDao, InventoryRepo inventoryDao, PasswordEncoder passwordEncoder) {
         this.userDao = userDao;
         this.userStockDao = userStockDao;
         this.businessDao = businessDao;
+        this.stockDao = stockDao;
         this.ingredientDao = ingredientDao;
         this.inventoryDao = inventoryDao;
         this.passwordEncoder = passwordEncoder;
@@ -64,18 +66,23 @@ public class UserController {
             newInventory = new Inventory(newBusniess, ingredient, 0);
             inventoryDao.save(newInventory);
         }
+        // Create initial stocks
+        List<Stock> stockList = stockDao.findAll();
+        UserStock newUserStock = null;
+        for (Stock stock : stockList) {
+            newUserStock = new UserStock(user, stock, 0);
+            userStockDao.save(newUserStock);
+        }
         return "redirect:/profile";
     }
 
     @GetMapping("/profile")
-    public String viewUserStock(Model view){
+    public String viewUserStock(Model view) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User dbUser = userDao.findUserById(user.getId());
         view.addAttribute("user", dbUser);
         return "user/profile";
     }
-
-
 
 
 }
