@@ -34,9 +34,9 @@
             <tr>
                 <td th:text="${addon.getName()}"></td>
                 <td th:text="${addon.getPopularityBonus()}"></td>
-                <td th:text="${addon.getPrice()}" th:id="${(addon.getId() - 1) + '_cost'}"></td>
+                <td th:text="${addon.getPrice()}"></td>
                 <td>
-                    <button type="submit" class="purchase-btn" th:name="${'addon_id' + addon.getId()}">Purchase</button>
+                    <button type="submit" class="purchase-btn" th:name="${'addon_id' + addon.getId()}" th:id="${addon.getPrice()}">Purchase</button>
                 </td>
                 <td th:text="0.00" th:id="${(addon.getId() - 1) + '_total'}"></td>
             </tr>
