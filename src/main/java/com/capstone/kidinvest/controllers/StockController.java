@@ -46,7 +46,7 @@ public class StockController {
         Date date = new Date();
         Timestamp time = new Timestamp(date.getTime());
         // Set all the updated stock info to our stockList that will be used to update the database
-        for(int i = 0; i < stockList.size(); i++){
+        for (int i = 0; i < stockList.size(); i++) {
             stockList.get(i).setMarketPrice(retrievedStockList.get(i).getMarketPrice());
             stockList.get(i).setOpenPrice(retrievedStockList.get(i).getOpenPrice());
             stockList.get(i).setLowPrice(retrievedStockList.get(i).getLowPrice());
@@ -71,7 +71,6 @@ public class StockController {
         view.addAttribute("stocks", stockList);
         return "stock/stock";
     }
-
 
 
 //    @PostMapping(value = "/stocks")
