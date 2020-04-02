@@ -1,10 +1,8 @@
 package com.capstone.kidinvest.controllers;
 
-import com.capstone.kidinvest.models.User;
-import com.capstone.kidinvest.models.UserStock;
-import com.capstone.kidinvest.repositories.UserRepo;
+import com.capstone.kidinvest.models.*;
+import com.capstone.kidinvest.repositories.*;
 //import org.springframework.security.crypto.password.PasswordEncoder;
-import com.capstone.kidinvest.repositories.UserStockRepo;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -23,12 +21,18 @@ public class UserController {
 
     private UserRepo userDao;
     private UserStockRepo userStockDao;
+    private BusinessRepo businessDao;
+    private IngredientRepo ingredientDao;
+    private InventoryRepo inventoryDao;
     private PasswordEncoder passwordEncoder;
 
 
-    public UserController(UserRepo userDao, UserStockRepo userStockDao, PasswordEncoder passwordEncoder) {
+    public UserController(UserRepo userDao, UserStockRepo userStockDao, BusinessRepo businessDao, IngredientRepo ingredientDao, InventoryRepo inventoryDao, PasswordEncoder passwordEncoder) {
         this.userDao = userDao;
         this.userStockDao = userStockDao;
+        this.businessDao = businessDao;
+        this.ingredientDao = ingredientDao;
+        this.inventoryDao = inventoryDao;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -45,22 +49,29 @@ public class UserController {
 
     @PostMapping("/register")
     public String doRegistration(@ModelAttribute User user) {
+        // Create user based on informaiton provided
         String hash = passwordEncoder.encode(user.getPassword());
-        //
         user.setBalance(10000.00);
         user.setPassword(hash);
         userDao.save(user);
+        // Create the business based off the username provided
+        Business newBusniess = new Business(String.format("%s's Lemonade Stand", user.getUsername()), 0, user);
+        businessDao.save(newBusniess);
+        // Create initial inventory
+        List<Ingredient> ingredientList = ingredientDao.findAll();
+        Inventory newInventory = null;
+        for (Ingredient ingredient : ingredientList) {
+            newInventory = new Inventory(newBusniess, ingredient, 0);
+            inventoryDao.save(newInventory);
+        }
         return "redirect:/profile";
     }
 
     @GetMapping("/profile")
     public String viewUserStock(Model view){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-//        List<UserStock> userStockList = userStockDao.findUserStockByUserId(id);
-//        User user = userDao.findUserById(id);
-//        view.addAttribute("userStock", userStockList);
-        view.addAttribute("user", user);
+        User dbUser = userDao.findUserById(user.getId());
+        view.addAttribute("user", dbUser);
         return "user/profile";
     }
 

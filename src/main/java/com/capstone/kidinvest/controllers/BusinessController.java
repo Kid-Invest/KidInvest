@@ -50,26 +50,25 @@ public class BusinessController {
     @PostMapping("/business/grocery-store")
     public String doGroceryPurchase(@RequestParam String ingredient_id1, @RequestParam String ingredient_id2, @RequestParam String ingredient_id3, @RequestParam String ingredient_id4, @RequestParam String ingredient_id5, @RequestParam String ingredient_id6, @RequestParam String ingredient_id7, @RequestParam String ingredient_id8, @RequestParam String ingredient_id9, @RequestParam String total_purchase_cost) {
 
-        System.out.println("LEMONS: " + ingredient_id1);
-        System.out.println("ICE: " + ingredient_id2);
-        System.out.println("SUGAR: " + ingredient_id3);
-        System.out.println("HONEY: " + ingredient_id4);
-        System.out.println("SWEETENER: " + ingredient_id5);
-        System.out.println("STRAWBERRY: " + ingredient_id6);
-        System.out.println("PEACH: " + ingredient_id7);
-        System.out.println("BLUEBERRY: " + ingredient_id8);
-        System.out.println("RASPBERRY: " + ingredient_id9);
-        System.out.println("TOTAL COST: " + total_purchase_cost);
-        List<Inventory> inventoryList = inventoryDao.findInventoryByBusinessId(1);
+//        System.out.println("LEMONS: " + ingredient_id1);
+//        System.out.println("ICE: " + ingredient_id2);
+//        System.out.println("SUGAR: " + ingredient_id3);
+//        System.out.println("HONEY: " + ingredient_id4);
+//        System.out.println("SWEETENER: " + ingredient_id5);
+//        System.out.println("STRAWBERRY: " + ingredient_id6);
+//        System.out.println("PEACH: " + ingredient_id7);
+//        System.out.println("BLUEBERRY: " + ingredient_id8);
+//        System.out.println("RASPBERRY: " + ingredient_id9);
+//        System.out.println("TOTAL COST: " + total_purchase_cost);
         // Subtract from user's balance
-        User user = userDao.findUserById(1);
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User dbUser = userDao.findUserById(user.getId());
+        List<Inventory> inventoryList = inventoryDao.findInventoryByBusinessId(user.getId());
         boolean enoughMoney = false;
-        System.out.println(user.getBalance());
-        if (user.getBalance() >= Double.parseDouble(total_purchase_cost)) {
-            user.setBalance(user.getBalance() - Double.parseDouble(total_purchase_cost));
-            System.out.println(user.getBalance());
-            // Save user's balance
-            userDao.save(user);
+        if (dbUser.getBalance() >= Double.parseDouble(total_purchase_cost)) {
+            dbUser.setBalance(dbUser.getBalance() - Double.parseDouble(total_purchase_cost));
+            // Save dbUser's balance
+            userDao.save(dbUser);
             // Loop through inventory and update inventory based on id
             for (Inventory inventory : inventoryList) {
                 switch ((int)inventory.getIngredient().getId()) {
@@ -104,13 +103,6 @@ public class BusinessController {
                 inventoryDao.save(inventory);
             }
         }
-
         return "redirect:/business";
     }
-
-
-
-    //sample template to get business transactions listed
-    //display addons
-    //update addons
 }

@@ -31,6 +31,12 @@ public class Inventory implements Serializable {
         this.total = total;
     }
 
+    public Inventory(Business business, Ingredient ingredient, long total){
+        this.business = business;
+        this.ingredient = ingredient;
+        this.total = total;
+    }
+
     public Business getBusiness() {
         return this.business;
     }
