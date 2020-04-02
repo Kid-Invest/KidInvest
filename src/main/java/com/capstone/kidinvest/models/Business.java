@@ -47,6 +47,12 @@ public class Business {
         this.user = user;
     }
 
+    public Business(String name, int popularity, User user) {
+        this.name = name;
+        this.popularity = popularity;
+        this.user = user;
+    }
+
     //getters and setters
     public long getId() {
         return id;

@@ -8,7 +8,7 @@
 
 <h1>Welcome to the Store!</h1>
 
-<form action="/business/grocery-store" method="POST">
+<form th:action="@{/business/grocery-store}" th:method="POST">
     <table>
         <thead>
         <tr>
@@ -46,7 +46,7 @@
     <button type="submit">BUY INGREDIENTS</button>
 </form>
 
-<a href="/business/1">EXIT GROCERY STORE</a>
+<a href="/business">EXIT GROCERY STORE</a>
 
 <footer th:replace="partials/fragments.html :: footer">
 </footer>
