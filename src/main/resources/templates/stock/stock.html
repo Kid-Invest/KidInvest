@@ -11,41 +11,80 @@
 </div>
 <br>
 <br>
-<div class="container">
 
-    <h1 th:text="${stocks.get(0).getName()}"></h1>
-    <h1 th:text="${stocks.get(0).getTicker()}"></h1>
-    <h4>OPEN</h4>
-    <h5 th:text="${stocks.get(0).getOpenPrice()}"></h5>
-    <h4>HIGH</h4>
-    <h5 th:text="${stocks.get(0).getHighPrice()}"></h5>
-    <h4>52-WEEK HIGH</h4>
-    <h5 th:text="${stocks.get(0).getYearHighPrice()}"></h5>
-    <h4>LOW</h4>
-    <h5 th:text="${stocks.get(0).getLowPrice()}"></h5>
-    <h4>52-WEEK LOW</h4>
-    <h5 th:text="${stocks.get(0).getYearLowPrice()}"></h5>
-    <h4>MARKET PRICE</h4>
-    <h5 th:text="${stocks.get(0).getMarketPrice()}"></h5>
+<div class="container">
+    <div class="row">
+    <h1 th:text="${currentStock.getName()}"></h1>
+    <h1 th:text="${currentStock.getTicker()}"></h1>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h4>OPEN</h4>
+            <h5 th:text="${currentStock.getOpenPrice()}"></h5>
+            <h4>LOW</h4>
+            <h5 th:text="${currentStock.getLowPrice()}"></h5>
+            <h4>HIGH</h4>
+            <h5 th:text="${currentStock.getHighPrice()}"></h5>
+        </div>
+        <div class="col">
+            <h4>52-WEEK LOW</h4>
+            <h5 th:text="${currentStock.getYearLowPrice()}"></h5>
+            <h4>52-WEEK HIGH</h4>
+            <h5 th:text="${currentStock.getYearHighPrice()}"></h5>
+            <h4>MARKET PRICE</h4>
+            <h5 th:text="${currentStock.getMarketPrice()}"></h5>
+        </div>
+    </div>
     <button type="button">BUY</button>
     <button type="button">SELL</button>
+
 </div>
+<div class="container">
+
+        <!-- MODAL -->
+<!--        <div class="modal fade" id="buyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"-->
+<!--             aria-hidden="true">-->
+<!--            <div class="modal-dialog modal-dialog-centered" role="document">-->
+<!--                <div class="modal-content">-->
+<!--                    <div class="modal-header">-->
+<!--                        <h5 class="" th:text="${stock.name}"></h5>-->
+<!--                        <h5 th:text="${' - $' + stock.marketPrice}" th:id="${(stock.id - 1) + '_cost'}"></h5>-->
+<!--                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--                            <span aria-hidden="true">&times;</span>-->
+<!--                        </button>-->
+<!--                    </div>-->
+<!--                    <div class="modal-body">-->
+<!--                        <h4 th:text="0.00" th:id="${(stock.id - 1) + '_total'}" class="total_purchase_cost"></h4>-->
+<!--                        <button type="button" class="subtract-btn">-</button>-->
+<!--                        <input type="number" th:value="0" th:name="${'stock_id' + stock.id}"-->
+<!--                               th:id="${stock.id - 1}">-->
+<!--                        <button type="button" class="add-btn">+</button>-->
+<!--                    </div>-->
+<!--                    <div class="modal-footer">-->
+<!--                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+<!--                        <button type="button" class="btn btn-primary">Save changes</button>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 
 <div class="container">
     <table>
         <thead>
         <tr>
             <th>
-                <h4>NAME</h4>
+                <h6>NAME</h6>
             </th>
             <th>
-                <h4>TICKER</h4>
+                <h6>TICKER</h6>
             </th>
             <th>
-                <h4>TODAY</h4>
+                <h6>TODAY</h6>
             </th>
             <th>
-                <h4>MARKET PRICE</h4>
+                <h6>MARKET PRICE</h6>
             </th>
         </tr>
         </thead>
@@ -56,6 +95,7 @@
                 <td th:text="${stock.getTicker()}"></td>
                 <td th:text="${stock.getChange() + '%'}"></td>
                 <td th:text="${stock.getMarketPrice()}"></td>
+                <td><a th:href="@{|/stocks?ticker=${stock.getTicker()}|}">View</a></td>
             </tr>
         </th:block>
         </tbody>
@@ -75,5 +115,6 @@
 </footer>
 <th:block th:include="partials/fragments.html :: scripts">
 </th:block>
+<script type="text/javascript" th:src="@{/js/stock-buy-sell.js}"></script>
 </body>
 </html>
