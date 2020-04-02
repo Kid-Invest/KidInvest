@@ -1,14 +1,7 @@
 package com.capstone.kidinvest.controllers;
 
-import com.capstone.kidinvest.models.Addon;
-import com.capstone.kidinvest.models.Ingredient;
-import com.capstone.kidinvest.models.Inventory;
-import com.capstone.kidinvest.repositories.AddonRepo;
-import com.capstone.kidinvest.models.User;
-import com.capstone.kidinvest.repositories.BusinessRepo;
-import com.capstone.kidinvest.repositories.IngredientRepo;
-import com.capstone.kidinvest.repositories.InventoryRepo;
-import com.capstone.kidinvest.repositories.UserRepo;
+import com.capstone.kidinvest.models.*;
+import com.capstone.kidinvest.repositories.*;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Controller
@@ -27,13 +22,15 @@ public class BusinessController {
     private IngredientRepo ingredientDao;
     private AddonRepo addonDao;
     private UserRepo userDao;
+    private BusinessTransactionsRepo businessTransactionsDao;
 
-    public BusinessController(BusinessRepo businessDao, InventoryRepo inventoryDao, IngredientRepo ingredientDao, AddonRepo addonDao, UserRepo userDao) {
+    public BusinessController(BusinessRepo businessDao, InventoryRepo inventoryDao, IngredientRepo ingredientDao, AddonRepo addonDao, UserRepo userDao, BusinessTransactionsRepo businessTransactionsDao) {
         this.businessDao = businessDao;
         this.inventoryDao = inventoryDao;
         this.ingredientDao = ingredientDao;
         this.addonDao = addonDao;
         this.userDao = userDao;
+        this.businessTransactionsDao = businessTransactionsDao;
     }
 
     @GetMapping("/business")
@@ -129,44 +126,61 @@ public class BusinessController {
         // Subtract from user's balance
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User dbUser = userDao.findUserById(user.getId());
-        List<Inventory> inventoryList = inventoryDao.findInventoryByBusinessId(user.getId());
+        Business dbUserBusiness = businessDao.findBusinessById(dbUser.getId());
+        List<Inventory> inventoryList = inventoryDao.findInventoryByBusinessId(dbUserBusiness.getId());
+        Timestamp time = new Timestamp(new java.util.Date().getTime());
+
         boolean enoughMoney = false;
         if (dbUser.getBalance() >= Double.parseDouble(total_purchase_cost)) {
             dbUser.setBalance(dbUser.getBalance() - Double.parseDouble(total_purchase_cost));
             // Save dbUser's balance
             userDao.save(dbUser);
             // Loop through inventory and update inventory based on id
+            long ingredientTotal;
             for (Inventory inventory : inventoryList) {
+                ingredientTotal = 0;
                 switch ((int)inventory.getIngredient().getId()) {
                     case 1:
-                        inventory.setTotal(inventory.getTotal() + Long.parseLong(ingredient_id1));
+                        ingredientTotal = Long.parseLong(ingredient_id1);
+                        inventory.setTotal(inventory.getTotal() + ingredientTotal);
                         break;
                     case 2:
-                        inventory.setTotal(inventory.getTotal() + Long.parseLong(ingredient_id2));
+                        ingredientTotal = Long.parseLong(ingredient_id2);
+                        inventory.setTotal(inventory.getTotal() + ingredientTotal);
                         break;
                     case 3:
-                        inventory.setTotal(inventory.getTotal() + Long.parseLong(ingredient_id3));
+                        ingredientTotal = Long.parseLong(ingredient_id3);
+                        inventory.setTotal(inventory.getTotal() + ingredientTotal);
                         break;
                     case 4:
-                        inventory.setTotal(inventory.getTotal() + Long.parseLong(ingredient_id4));
+                        ingredientTotal = Long.parseLong(ingredient_id4);
+                        inventory.setTotal(inventory.getTotal() + ingredientTotal);
                         break;
                     case 5:
-                        inventory.setTotal(inventory.getTotal() + Long.parseLong(ingredient_id5));
+                        ingredientTotal = Long.parseLong(ingredient_id5);
+                        inventory.setTotal(inventory.getTotal() + ingredientTotal);
                         break;
                     case 6:
-                        inventory.setTotal(inventory.getTotal() + Long.parseLong(ingredient_id6));
+                        ingredientTotal = Long.parseLong(ingredient_id6);
+                        inventory.setTotal(inventory.getTotal() + ingredientTotal);
                         break;
                     case 7:
-                        inventory.setTotal(inventory.getTotal() + Long.parseLong(ingredient_id7));
+                        ingredientTotal = Long.parseLong(ingredient_id7);
+                        inventory.setTotal(inventory.getTotal() + ingredientTotal);
                         break;
                     case 8:
-                        inventory.setTotal(inventory.getTotal() + Long.parseLong(ingredient_id8));
+                        ingredientTotal = Long.parseLong(ingredient_id8);
+                        inventory.setTotal(inventory.getTotal() + ingredientTotal);
                         break;
                     case 9:
-                        inventory.setTotal(inventory.getTotal() + Long.parseLong(ingredient_id9));
+                        ingredientTotal = Long.parseLong(ingredient_id9);
+                        inventory.setTotal(inventory.getTotal() + ingredientTotal);
                         break;
                 }
-                inventoryDao.save(inventory);
+                if (ingredientTotal != 0) {
+                    businessTransactionsDao.save(new BusinessTransactions(dbUserBusiness, inventory.getIngredient(), ingredientTotal, time));
+                    inventoryDao.save(inventory);
+                }
             }
         }
         return "redirect:/business";

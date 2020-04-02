@@ -25,6 +25,24 @@ public class BusinessTransactions implements Serializable {
 
     private Timestamp time;
 
+    public BusinessTransactions() {
+    }
+
+    public BusinessTransactions(long id, Business business, Ingredient ingredient, long purchaseCount, Timestamp time) {
+        this.id = id;
+        this.business = business;
+        this.ingredient = ingredient;
+        this.purchaseCount = purchaseCount;
+        this.time = time;
+    }
+
+    public BusinessTransactions(Business business, Ingredient ingredient, long purchaseCount, Timestamp time) {
+        this.business = business;
+        this.ingredient = ingredient;
+        this.purchaseCount = purchaseCount;
+        this.time = time;
+    }
+
     public Business getBusiness() {
         return this.business;
     }
