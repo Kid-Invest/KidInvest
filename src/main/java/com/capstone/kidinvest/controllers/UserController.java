@@ -57,13 +57,13 @@ public class UserController {
         user.setPassword(hash);
         userDao.save(user);
         // Create the business based off the username provided
-        Business newBusniess = new Business(String.format("%s's Lemonade Stand", user.getUsername()), 0, user);
-        businessDao.save(newBusniess);
+        Business newBusiness = new Business(String.format("%s's Lemonade Stand", user.getUsername()), 0, user);
+        businessDao.save(newBusiness);
         // Create initial inventory
         List<Ingredient> ingredientList = ingredientDao.findAll();
         Inventory newInventory = null;
         for (Ingredient ingredient : ingredientList) {
-            newInventory = new Inventory(newBusniess, ingredient, 0);
+            newInventory = new Inventory(newBusiness, ingredient, 0);
             inventoryDao.save(newInventory);
         }
         // Create initial stocks
