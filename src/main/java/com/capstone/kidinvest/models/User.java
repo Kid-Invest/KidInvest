@@ -63,7 +63,18 @@ public class User {
         this.viewedStore = viewedStore;
     }
 
-    ;
+    public User(User copy) {
+        this.id = copy.id;
+        this.username = copy.username;
+        this.password = copy.password;
+        this.email = copy.email;
+        this.balance = copy.balance;
+        this.viewedPortfolio = copy.viewedPortfolio;
+        this.viewedStocks = copy.viewedStocks;
+        this.viewedTransactions = copy.viewedTransactions;
+        this.viewedStand = copy.viewedStand;
+        this.viewedStore = copy.viewedStore;
+    }
 
     //getters and setters
     public long getId() {

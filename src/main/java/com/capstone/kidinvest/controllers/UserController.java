@@ -5,6 +5,9 @@ import com.capstone.kidinvest.models.UserStock;
 import com.capstone.kidinvest.repositories.UserRepo;
 //import org.springframework.security.crypto.password.PasswordEncoder;
 import com.capstone.kidinvest.repositories.UserStockRepo;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,18 +17,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
+//@ComponentScan("com.capstone.kidinvest")
 @Controller
 public class UserController {
 
     private UserRepo userDao;
     private UserStockRepo userStockDao;
-    //private PasswordEncoder passwordEncoder;
+    private PasswordEncoder passwordEncoder;
 
 
-    public UserController(UserRepo userDao, UserStockRepo userStockDao) {
+    public UserController(UserRepo userDao, UserStockRepo userStockDao, PasswordEncoder passwordEncoder) {
         this.userDao = userDao;
         this.userStockDao = userStockDao;
-        //this.passwordEncoder = passwordEncoder;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @GetMapping("/login")
@@ -41,23 +45,20 @@ public class UserController {
 
     @PostMapping("/register")
     public String doRegistration(@ModelAttribute User user) {
-        //String hash = passwordEncoder.encode(user.getPassword());
-        //user.setPassword(hash);
+        String hash = passwordEncoder.encode(user.getPassword());
+        //
+        user.setBalance(10000.00);
+        user.setPassword(hash);
         userDao.save(user);
-        return "redirect:/login";
+        return "redirect:/profile";
     }
 
-//    @GetMapping("/profile/user/{id}")
-//    public String viewProfilePage(Model view, @PathVariable long id){
-//        List<User> userList = userDao.findUserById(id);
-//        view.addAttribute("user", userList);
-//        return "user/profile";
-//    }
+    @GetMapping("/profile")
+    public String viewUserStock(Model view){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-    @GetMapping("/profile/{id}")
-    public String viewUserStock(Model view, @PathVariable long id){
 //        List<UserStock> userStockList = userStockDao.findUserStockByUserId(id);
-        User user = userDao.findUserById(id);
+//        User user = userDao.findUserById(id);
 //        view.addAttribute("userStock", userStockList);
         view.addAttribute("user", user);
         return "user/profile";

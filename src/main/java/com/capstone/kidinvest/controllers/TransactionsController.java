@@ -1,10 +1,8 @@
 package com.capstone.kidinvest.controllers;
 
-import com.capstone.kidinvest.models.BusinessTransactions;
-import com.capstone.kidinvest.models.Inventory;
-import com.capstone.kidinvest.models.Sale;
-import com.capstone.kidinvest.models.StockTransaction;
+import com.capstone.kidinvest.models.*;
 import com.capstone.kidinvest.repositories.*;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,9 +28,10 @@ public class TransactionsController {
         this.saleDao = saleDao;
     }
 
-    @GetMapping("/transactions/stock/{id}")
-    public String viewStockTransactionPage(Model view, @PathVariable long id) {
-        List<StockTransaction> stockTransactionsList = stockTransactionDao.findStockTransactionsByUserId(id);
+    @GetMapping("/transactions/stock")
+    public String viewStockTransactionPage(Model view) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        List<StockTransaction> stockTransactionsList = stockTransactionDao.findStockTransactionsByUserId(user.getId());
 
 //        for (StockTransaction stockTransaction : stockTransactionsList) {
 //            System.out.println(stockTransaction.getUser().getUsername());
@@ -45,17 +44,18 @@ public class TransactionsController {
         return "stock/transactions";
     }
 
-    @GetMapping("/transactions/business/{id}")
-    public String viewBusinessTransactionsPage(Model view, @PathVariable long id) {
-        List<BusinessTransactions> businessTransactionsList = businessTransactionsDao.findBusinessTransactionsByBusinessId(id);
-
+    @GetMapping("/transactions/business")
+    public String viewBusinessTransactionsPage(Model view) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        List<BusinessTransactions> businessTransactionsList = businessTransactionsDao.findBusinessTransactionsByBusinessId(user.getId());
         view.addAttribute("businessTransactions", businessTransactionsList);
         return "business/transactions";
     }
 
-    @GetMapping("/sales/business/{id}")
-    public String viewBusinessSalesPage(Model view, @PathVariable long id) {
-        List<Sale> salesList = saleDao.findSaleByBusinessId(id);
+    @GetMapping("/sales")
+    public String viewBusinessSalesPage(Model view) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        List<Sale> salesList = saleDao.findSaleByBusinessId(user.getId());
         //List<Sale> businessSalesList = businessDao.findbusinessSalesbyBusinessId(id);
 
         for(Sale sale : salesList){
