@@ -103,7 +103,7 @@ public class BusinessController {
 //                inventoryDao.save(inventory);
 //            }
         }
-        return "redirect:/business/1";
+        return "redirect:/business";
     }
 
     @GetMapping("/business/grocery-store")
