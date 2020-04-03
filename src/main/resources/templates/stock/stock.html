@@ -6,7 +6,7 @@
 <th:block th:include="partials/fragments.html :: nav">
 </th:block>
 <div>
-    <h1>BALANCE: $500</h1>
+    <h1>BALANCE: $<span th:text="${user.balance}" th:id="user-balance">500</span> </h1>
     <h6>(Buying Power)</h6>
 </div>
 <br>
@@ -14,8 +14,8 @@
 
 <div class="container">
     <div class="row">
-    <h1 th:text="${currentStock.getName()}"></h1>
-    <h1 th:text="${currentStock.getTicker()}"></h1>
+    <h1 th:text="${currentStock.name}"></h1>
+    <h1 th:text="${currentStock.ticker}"></h1>
     </div>
     <div class="row">
         <div class="col">
@@ -35,40 +35,37 @@
             <h5 th:text="${currentStock.getMarketPrice()}"></h5>
         </div>
     </div>
-    <button type="button">BUY</button>
-    <button type="button">SELL</button>
+    <button type="button" data-target="#buyModal" data-toggle="modal">BUY</button>
+    <button type="button" data-target="#sellModal" data-toggle="modal">SELL</button>
 
+    <!-- MODAL -->
+    <div class="modal fade" id="buyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="" th:text="${currentStock.name }"></h5>
+                    <h5> - $<span th:text="${currentStock.marketPrice}" th:id="marketPrice"></span></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+<!--                    <label for="total_purchase_cost">Total Purchase Cost:</label>-->
+<!--                    <input th:name="total_purchase_cost" id="total_purchase_cost" th:value="0">-->
+                    <h4 th:text="0.00" th:id="currentStock_total"></h4>
+                    <button type="button" id="subtract-btn">-</button>
+                    <input type="number" th:value="0" th:name="${currentStock.id}" th:id="currentStock">
+                    <button type="button" id="add-btn">+</button>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Purchase</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <div class="container">
-
-        <!-- MODAL -->
-<!--        <div class="modal fade" id="buyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"-->
-<!--             aria-hidden="true">-->
-<!--            <div class="modal-dialog modal-dialog-centered" role="document">-->
-<!--                <div class="modal-content">-->
-<!--                    <div class="modal-header">-->
-<!--                        <h5 class="" th:text="${stock.name}"></h5>-->
-<!--                        <h5 th:text="${' - $' + stock.marketPrice}" th:id="${(stock.id - 1) + '_cost'}"></h5>-->
-<!--                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-<!--                            <span aria-hidden="true">&times;</span>-->
-<!--                        </button>-->
-<!--                    </div>-->
-<!--                    <div class="modal-body">-->
-<!--                        <h4 th:text="0.00" th:id="${(stock.id - 1) + '_total'}" class="total_purchase_cost"></h4>-->
-<!--                        <button type="button" class="subtract-btn">-</button>-->
-<!--                        <input type="number" th:value="0" th:name="${'stock_id' + stock.id}"-->
-<!--                               th:id="${stock.id - 1}">-->
-<!--                        <button type="button" class="add-btn">+</button>-->
-<!--                    </div>-->
-<!--                    <div class="modal-footer">-->
-<!--                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
-<!--                        <button type="button" class="btn btn-primary">Save changes</button>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
 
 <div class="container">
     <table>

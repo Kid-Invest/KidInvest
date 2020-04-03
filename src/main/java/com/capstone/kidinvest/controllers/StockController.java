@@ -66,6 +66,7 @@ public class StockController {
             currentStock = stockDao.findStockByTicker(ticker);
         }
 
+        view.addAttribute("user", userDao.findUserById(user.getId()));
         view.addAttribute("currentStock", currentStock);
         view.addAttribute("userStocks", userStockList);
         view.addAttribute("stocks", stockList);
@@ -74,19 +75,25 @@ public class StockController {
 
 
 
-//    @PostMapping(value = "/stocks")
-//    public String buyStockButton(@RequestParam String stock_id1, @RequestParam String market_price) {
-//        List<UserStock> userStockList = userStockDao.findUserStockByUserId(1);
-//        System.out.println(stock_id1);
-//
-//        User user = userDao.findUserById(1);
-//        if (user.getBalance() >= Double.parseDouble(market_price)) {
-//            user.setBalance(user.getBalance() - Double.parseDouble(market_price));
-//            System.out.println(user.getBalance());
-//            // Save user's balance
-////            userStockDao.save(stockDao.findById(Long.parseLong(stock_id1)));
-//        }
-//        return "redirect:stock/stock";
-//    }
+    @PostMapping(value = "/stocks")
+    public String buyStockButton(@RequestParam long currentStockId, @RequestParam String total_purchase_cost) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User dbUser = userDao.findUserById(user.getId());
+
+        UserStock dbUserStock = userStockDao.findUserStockById(dbUser.getId());
+        Stock stock = stockDao.findStockById(currentStockId);
+//        UserStock usersStock = userStockDao.findUserStockByStock(stock);
+
+        if (dbUser.getBalance() >= Double.parseDouble(total_purchase_cost)) { // change market_price to total
+            dbUser.setBalance(dbUser.getBalance() - Double.parseDouble(total_purchase_cost));
+
+            // Save user's balance
+            userDao.save(dbUser);
+
+            dbUserStock.setShares(dbUserStock.getShares() + currentStockId);
+            userStockDao.save(dbUserStock);
+        }
+        return "redirect:stock/stock";
+    }
 
 }
