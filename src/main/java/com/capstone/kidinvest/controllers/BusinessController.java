@@ -49,7 +49,7 @@ public class BusinessController {
     }
 
     @PostMapping("/business/addon")
-    public String doAddonPurchase(@RequestParam String addon_id1, @RequestParam String addon_id2, @RequestParam String addon_id3, @RequestParam String addon_id4, @RequestParam String addon_id5, @RequestParam String total_purchase_cost) {
+    public String doAddonPurchase(@RequestParam String addon_id1, @RequestParam String addon_id2, @RequestParam String addon_id3, @RequestParam String addon_id4, @RequestParam String addon_id5) {
 
         System.out.println("Candy Machine: " + addon_id1);
         System.out.println("Radio: " + addon_id2);
@@ -61,45 +61,12 @@ public class BusinessController {
         User user = userDao.findUserById(1);
         boolean enoughMoney = false;
         System.out.println(user.getBalance());
-        if (user.getBalance() >= Double.parseDouble(total_purchase_cost)) {
-            user.setBalance(user.getBalance() - Double.parseDouble(total_purchase_cost));
-            System.out.println(user.getBalance());
-            // Save user's balance
-            userDao.save(user);
-            // Loop through inventory and update inventory based on id
-//            for (Inventory inventory : inventoryList) {
-//                switch ((int)inventory.getIngredient().getId()) {
-//                    case 1:
-//                        inventory.setTotal(inventory.getTotal() + Long.parseLong(addon_id1));
-//                        break;
-//                    case 2:
-//                        inventory.setTotal(inventory.getTotal() + Long.parseLong(addon_id2));
-//                        break;
-//                    case 3:
-//                        inventory.setTotal(inventory.getTotal() + Long.parseLong(addon_id3));
-//                        break;
-//                    case 4:
-//                        inventory.setTotal(inventory.getTotal() + Long.parseLong(addon_id4));
-//                        break;
-//                    case 5:
-//                        inventory.setTotal(inventory.getTotal() + Long.parseLong(addon_id5));
-//                        break;
-//                    case 6:
-//                        inventory.setTotal(inventory.getTotal() + Long.parseLong(addon_id6));
-//                        break;
-//                    case 7:
-//                        inventory.setTotal(inventory.getTotal() + Long.parseLong(addon_id7));
-//                        break;
-//                    case 8:
-//                        inventory.setTotal(inventory.getTotal() + Long.parseLong(addon_id8));
-//                        break;
-//                    case 9:
-//                        inventory.setTotal(inventory.getTotal() + Long.parseLong(addon_id9));
-//                        break;
-//                }
-//                inventoryDao.save(inventory);
-//            }
-        }
+//        if (user.getBalance() >= Double.parseDouble(total_purchase_cost)) {
+//            user.setBalance(user.getBalance() - Double.parseDouble(total_purchase_cost));
+//            System.out.println(user.getBalance());
+//            // Save user's balance
+//            userDao.save(user);
+//        }
         return "redirect:/business";
     }
 

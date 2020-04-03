@@ -21,12 +21,6 @@
             <th>
                 <h4>PRICE PER ADDON</h4>
             </th>
-            <th>
-                <h4>QUANTITY</h4>
-            </th>
-            <th>
-                <h4>TOTAL COST</h4>
-            </th>
         </tr>
         </thead>
         <tbody>
@@ -36,9 +30,9 @@
                 <td th:text="${addon.getPopularityBonus()}"></td>
                 <td th:text="${addon.getPrice()}"></td>
                 <td>
-                    <button type="submit" class="purchase-btn" th:name="${'addon_id' + addon.getId()}" th:id="${addon.getPrice()}">Purchase</button>
+                    <input type="text" th:name="${'addon_' + addon.getId()}" th:id="${addon.getId() - 1}" hidden>
+                    <button type="submit" class="purchase-btn" th:id="${addon.getPrice()}">Purchase</button>
                 </td>
-                <td th:text="0.00" th:id="${(addon.getId() - 1) + '_total'}"></td>
             </tr>
         </th:block>
         </tbody>
@@ -54,6 +48,6 @@
 </footer>
 <th:block th:include="partials/fragments.html :: scripts">
 </th:block>
-<script type="text/javascript" th:src="@{/js/grocery-store.js}"></script>
+<script type="text/javascript" th:src="@{/js/addons.js}"></script>
 </body>
 </html>
