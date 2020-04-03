@@ -37,7 +37,7 @@ public class BusinessController {
     public String viewBusinessPage(Model view) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<Inventory> inventoryList = inventoryDao.findInventoryByBusinessId(user.getId());
-        view.addAttribute("inventory", inventoryList);
+        view.addAttribute("inventoryList", inventoryList);
         return "business/business";
     }
 
@@ -185,4 +185,14 @@ public class BusinessController {
         }
         return "redirect:/business";
     }
+
+    @GetMapping("/business/open-stand")
+    public String viewOpenStorePage(Model view) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        List<Inventory> inventoryList = inventoryDao.findInventoryByBusinessId(user.getId());
+
+        view.addAttribute("inventoryList", inventoryList);
+        return "business/open-stand";
+    }
+
 }
