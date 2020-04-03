@@ -8,7 +8,7 @@
 
 <h1>Welcome to the Store!</h1>
 
-<form th:action="@{/business/addon}" th:method="POST">
+<div>
     <table>
         <thead>
         <tr>
@@ -25,19 +25,20 @@
         </thead>
         <tbody>
         <th:block th:each="addon : ${addons}">
-            <tr>
-                <td th:text="${addon.getName()}"></td>
-                <td th:text="${addon.getPopularityBonus()}"></td>
-                <td th:text="${addon.getPrice()}"></td>
-                <td>
-                    <input type="text" value="false" th:name="${'addon_id' + addon.getId()}" th:id="${addon.getId() - 1}" hidden>
-                    <button type="submit" class="purchase-btn">Purchase</button>
-                </td>
-            </tr>
+            <form th:action="@{/business/addon}" th:method="POST" th:object="${addon}">
+                <tr>
+                    <td><input th:field="*{name}" th:value="${addon.getName()}"></td>
+                    <td><input th:field="*{popularityBonus}" th:value="${addon.getPopularityBonus()}"></td>
+                    <td><input th:field="*{price}" th:value="${addon.getPrice()}"></td>
+                    <td>
+                        <button type="submit" class="purchase-btn">Purchase</button>
+                    </td>
+                </tr>
+            </form>
         </th:block>
         </tbody>
     </table>
-</form>
+</div>
 
 <a href="/business">EXIT STORE</a>
 
@@ -45,6 +46,6 @@
 </footer>
 <th:block th:include="partials/fragments.html :: scripts">
 </th:block>
-<script type="text/javascript" th:src="@{/js/addons.js}"></script>
+<!--<script type="text/javascript" th:src="@{/js/addons.js}"></script>-->
 </body>
 </html>

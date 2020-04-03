@@ -5,10 +5,7 @@ import com.capstone.kidinvest.repositories.*;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
 import java.sql.Timestamp;
@@ -49,12 +46,14 @@ public class BusinessController {
     }
 
     @PostMapping("/business/addon")
-    public String doAddonPurchase(@RequestParam String addon_id1, @RequestParam String addon_id2, @RequestParam String addon_id3, @RequestParam String addon_id4, @RequestParam String addon_id5) {
-        System.out.println("Candy Machine: " + addon_id1);
-        System.out.println("Radio: " + addon_id2);
-        System.out.println("Sign: " + addon_id3);
-        System.out.println("Cooler: " + addon_id4);
-        System.out.println("water filter machine: " + addon_id5);
+    public String doAddonPurchase(@ModelAttribute Addon addon) {
+//        System.out.println("Candy Machine: " + addon_id1);
+//        System.out.println("Radio: " + addon_id2);
+//        System.out.println("Sign: " + addon_id3);
+//        System.out.println("Cooler: " + addon_id4);
+//        System.out.println("water filter machine: " + addon_id5);
+
+        System.out.println(addon.getName());
         //List<Addon> addonList = addonDao.findAddonByBusinessId(1);
         // Subtract from user's balance
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
