@@ -50,7 +50,6 @@ public class BusinessController {
 
     @PostMapping("/business/addon")
     public String doAddonPurchase(@RequestParam String addon_id1, @RequestParam String addon_id2, @RequestParam String addon_id3, @RequestParam String addon_id4, @RequestParam String addon_id5) {
-
         System.out.println("Candy Machine: " + addon_id1);
         System.out.println("Radio: " + addon_id2);
         System.out.println("Sign: " + addon_id3);
@@ -58,7 +57,8 @@ public class BusinessController {
         System.out.println("water filter machine: " + addon_id5);
         //List<Addon> addonList = addonDao.findAddonByBusinessId(1);
         // Subtract from user's balance
-        User user = userDao.findUserById(1);
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User dbUser = userDao.findUserById(user.getId());
         boolean enoughMoney = false;
         System.out.println(user.getBalance());
 //        if (user.getBalance() >= Double.parseDouble(total_purchase_cost)) {
@@ -67,7 +67,8 @@ public class BusinessController {
 //            // Save user's balance
 //            userDao.save(user);
 //        }
-        return "redirect:/business";
+//        return "redirect:/business";
+        return "redirect:/";
     }
 
     @GetMapping("/business/grocery-store")

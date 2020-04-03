@@ -8,7 +8,7 @@
 
 <h1>Welcome to the Store!</h1>
 
-<form action="/business/addon" method="POST">
+<form th:action="@{/business/addon}" th:method="POST">
     <table>
         <thead>
         <tr>
@@ -30,8 +30,8 @@
                 <td th:text="${addon.getPopularityBonus()}"></td>
                 <td th:text="${addon.getPrice()}"></td>
                 <td>
-                    <input type="text" th:name="${'addon_' + addon.getId()}" th:id="${addon.getId() - 1}" hidden>
-                    <button type="submit" class="purchase-btn" th:id="${addon.getPrice()}">Purchase</button>
+                    <input type="text" value="false" th:name="${'addon_id' + addon.getId()}" th:id="${addon.getId() - 1}" hidden>
+                    <button type="submit" class="purchase-btn">Purchase</button>
                 </td>
             </tr>
         </th:block>
