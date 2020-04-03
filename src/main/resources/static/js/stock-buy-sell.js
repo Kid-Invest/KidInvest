@@ -24,7 +24,7 @@
         });
         addBtnEl.addEventListener("click", function (){
             newCount = parseInt(currentStockEl.val()) + 1;
-            if (userBalance >= currentTotalEl) {
+            if (userBalance >= (newCount * marketPriceEl)) {
                 currentStockEl.val(newCount);
                 currentTotalEl.html((newCount * parseFloat(marketPriceEl)).toFixed(2));
             }
