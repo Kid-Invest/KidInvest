@@ -46,7 +46,7 @@ public class StockController {
         Date date = new Date();
         Timestamp time = new Timestamp(date.getTime());
         // Set all the updated stock info to our stockList that will be used to update the database
-        for(int i = 0; i < stockList.size(); i++){
+        for (int i = 0; i < stockList.size(); i++) {
             stockList.get(i).setMarketPrice(retrievedStockList.get(i).getMarketPrice());
             stockList.get(i).setOpenPrice(retrievedStockList.get(i).getOpenPrice());
             stockList.get(i).setLowPrice(retrievedStockList.get(i).getLowPrice());
@@ -75,6 +75,7 @@ public class StockController {
 
 
 
+
     @PostMapping(value = "/stocks")
     public String buyStockButton(@RequestParam long currentStockId, @RequestParam String total_purchase_cost) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -95,5 +96,21 @@ public class StockController {
         }
         return "redirect:stock/stock";
     }
+
+//    @PostMapping(value = "/stocks")
+//    public String buyStockButton(@RequestParam String stock_id1, @RequestParam String market_price) {
+//        List<UserStock> userStockList = userStockDao.findUserStockByUserId(1);
+//        System.out.println(stock_id1);
+//
+//        User user = userDao.findUserById(1);
+//        if (user.getBalance() >= Double.parseDouble(market_price)) {
+//            user.setBalance(user.getBalance() - Double.parseDouble(market_price));
+//            System.out.println(user.getBalance());
+//            // Save user's balance
+////            userStockDao.save(stockDao.findById(Long.parseLong(stock_id1)));
+//        }
+//        return "redirect:stock/stock";
+//    }
+
 
 }

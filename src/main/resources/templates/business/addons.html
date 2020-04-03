@@ -8,7 +8,7 @@
 
 <h1>Welcome to the Store!</h1>
 
-<form action="/business/addon" method="POST">
+<form th:action="@{/business/addon}" th:method="POST">
     <table>
         <thead>
         <tr>
@@ -21,12 +21,6 @@
             <th>
                 <h4>PRICE PER ADDON</h4>
             </th>
-            <th>
-                <h4>QUANTITY</h4>
-            </th>
-            <th>
-                <h4>TOTAL COST</h4>
-            </th>
         </tr>
         </thead>
         <tbody>
@@ -34,18 +28,15 @@
             <tr>
                 <td th:text="${addon.getName()}"></td>
                 <td th:text="${addon.getPopularityBonus()}"></td>
-                <td th:text="${addon.getPrice()}" th:id="${(addon.getId() - 1) + '_cost'}"></td>
+                <td th:text="${addon.getPrice()}"></td>
                 <td>
-                    <button type="submit" class="purchase-btn" th:name="${'addon_id' + addon.getId()}">Purchase</button>
+                    <input type="text" value="false" th:name="${'addon_id' + addon.getId()}" th:id="${addon.getId() - 1}" hidden>
+                    <button type="submit" class="purchase-btn">Purchase</button>
                 </td>
-                <td th:text="0.00" th:id="${(addon.getId() - 1) + '_total'}"></td>
             </tr>
         </th:block>
         </tbody>
     </table>
-<!--    <label for="total_purchase_cost">Total Purchase Cost:</label>-->
-<!--    <input th:name="total_purchase_cost" id="total_purchase_cost" th:value="0">-->
-<!--    <button type="submit">BUY ADDONS</button>-->
 </form>
 
 <a href="/business">EXIT STORE</a>
@@ -54,6 +45,6 @@
 </footer>
 <th:block th:include="partials/fragments.html :: scripts">
 </th:block>
-<script type="text/javascript" th:src="@{/js/grocery-store.js}"></script>
+<script type="text/javascript" th:src="@{/js/addons.js}"></script>
 </body>
 </html>

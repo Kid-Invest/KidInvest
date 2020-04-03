@@ -14,8 +14,11 @@
         <a href="/business/grocery-store">Purchase Inventory</a>
         <br>
         <a href="/business/addon">Purchase Addon</a>
+        <br>
+        <a href="/business/open-stand">Open Stand</a>
+
+        <h3>BUSINESS INVENTORY</h3>
         <table>
-            <h3>BUSINESS INVENTORY</h3>
             <thead>
             <tr>
                 <th>
@@ -27,12 +30,12 @@
             </tr>
             </thead>
             <tbody>
-            <div th:each="inventory : ${inventory}">
+            <th:block th:each="inventory : ${inventoryList}">
                 <tr>
                     <td th:text="${inventory.getIngredient().getName()}"></td>
                     <td th:text="${inventory.getTotal()}"></td>
                 </tr>
-            </div>
+            </th:block>
             </tbody>
         </table>
     </div>

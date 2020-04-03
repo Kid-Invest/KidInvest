@@ -7,6 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface BusinessRepo extends JpaRepository<Business, Long> {
-    //List<Sale> findbusinessSalesbyBusinessId(long id);
     Business findBusinessById(long id);
 }
