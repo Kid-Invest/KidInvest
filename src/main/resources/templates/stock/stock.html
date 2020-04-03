@@ -39,31 +39,33 @@
     <button type="button" data-target="#sellModal" data-toggle="modal">SELL</button>
 
     <!-- MODAL -->
-    <div class="modal fade" id="buyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-         aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="" th:text="${currentStock.name }"></h5>
-                    <h5> - $<span th:text="${currentStock.marketPrice}" th:id="marketPrice"></span></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-<!--                    <label for="total_purchase_cost">Total Purchase Cost:</label>-->
-<!--                    <input th:name="total_purchase_cost" id="total_purchase_cost" th:value="0">-->
-                    <h4 th:text="0.00" th:id="currentStock_total"></h4>
-                    <button type="button" id="subtract-btn">-</button>
-                    <input type="number" th:value="0" th:name="${currentStock.id}" th:id="currentStock">
-                    <button type="button" id="add-btn">+</button>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Purchase</button>
+    <form th:action="@{/stocks}" th:method="POST">
+        <div class="modal fade" id="buyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+             aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="" th:text="${currentStock.name }"></h5>
+                        <h5> - $<span th:text="${currentStock.marketPrice}" th:id="marketPrice"></span></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+    <!--                    <label for="total_purchase_cost">Total Purchase Cost:</label>-->
+    <!--                    <input th:name="currentStock_total" th:id="currentStock_total" th:value="0">-->
+                        <h4 th:text="0.00" th:id="currentStock_total"></h4>
+                        <button type="button" id="subtract-btn">-</button>
+                        <input type="number" th:value="0" th:name="stockShares" th:id="currentStock">
+                        <button type="button" id="add-btn">+</button>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit">Purchase</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
 </div>
 <div class="container">
 

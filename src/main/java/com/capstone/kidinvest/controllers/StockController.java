@@ -77,24 +77,28 @@ public class StockController {
 
 
     @PostMapping(value = "/stocks")
-    public String buyStockButton(@RequestParam long currentStockId, @RequestParam String total_purchase_cost) {
+    public String buyStockButton(@RequestParam long stockShares,
+                                 @RequestParam(value = "ticker", defaultValue = "FFS") String ticker,
+                                 @RequestParam String currentStock_total) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User dbUser = userDao.findUserById(user.getId());
 
-        UserStock dbUserStock = userStockDao.findUserStockById(dbUser.getId());
-        Stock stock = stockDao.findStockById(currentStockId);
+        Stock stock = stockDao.findStockByTicker(ticker);
+        UserStock dbUserStock = userStockDao.findUserStockById(stock.getId());
+
 //        UserStock usersStock = userStockDao.findUserStockByStock(stock);
 
-        if (dbUser.getBalance() >= Double.parseDouble(total_purchase_cost)) { // change market_price to total
-            dbUser.setBalance(dbUser.getBalance() - Double.parseDouble(total_purchase_cost));
+        if (dbUser.getBalance() >= Double.parseDouble(currentStock_total)) { // change market_price to total
+            dbUser.setBalance(dbUser.getBalance() - Double.parseDouble(currentStock_total));
 
             // Save user's balance
             userDao.save(dbUser);
 
-            dbUserStock.setShares(dbUserStock.getShares() + currentStockId);
+
+            dbUserStock.setShares(dbUserStock.getShares() + stockShares);
             userStockDao.save(dbUserStock);
         }
-        return "redirect:stock/stock";
+        return "stock/stock";
     }
 
 //    @PostMapping(value = "/stocks")
