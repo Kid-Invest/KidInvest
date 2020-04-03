@@ -40,34 +40,51 @@ public class BusinessController {
 
     @GetMapping("/business/addon")
     public String viewAddonsPage(Model view) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Business userBusiness = businessDao.findBusinessById(user.getId());
         List<Addon> addonList = addonDao.findAll();
+        List<Addon> businessAddonList = addonDao.findAddonsByBusinessId(userBusiness.getId());
+        view.addAttribute("businessAddons", businessAddonList);
         view.addAttribute("addons", addonList);
         return "business/addons";
     }
 
     @PostMapping("/business/addon")
-    public String doAddonPurchase(@ModelAttribute Addon addon) {
+    public String doAddonPurchase(@RequestParam long id) {
 //        System.out.println("Candy Machine: " + addon_id1);
 //        System.out.println("Radio: " + addon_id2);
 //        System.out.println("Sign: " + addon_id3);
 //        System.out.println("Cooler: " + addon_id4);
 //        System.out.println("water filter machine: " + addon_id5);
 
-        System.out.println(addon.getName());
+        System.out.println(id);
+
         //List<Addon> addonList = addonDao.findAddonByBusinessId(1);
         // Subtract from user's balance
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User dbUser = userDao.findUserById(user.getId());
-        boolean enoughMoney = false;
-        System.out.println(user.getBalance());
-//        if (user.getBalance() >= Double.parseDouble(total_purchase_cost)) {
-//            user.setBalance(user.getBalance() - Double.parseDouble(total_purchase_cost));
-//            System.out.println(user.getBalance());
-//            // Save user's balance
-//            userDao.save(user);
-//        }
-//        return "redirect:/business";
-        return "redirect:/";
+        Business userBusiness = businessDao.findBusinessById(dbUser.getId());
+        // Find out if user has the addon
+        List<Addon> addonList = addonDao.findAddonsByBusinessId(userBusiness.getId());
+        Addon selectedAddon = addonDao.findAddonById(id);
+        boolean alreadyPurchased = false;
+        for (Addon addon : addonList) {
+            if (addon.getId() == id) {
+                alreadyPurchased = true;
+            }
+            System.out.println("User already purchased: " + addon.getName());
+        }
+
+        // If it's not already purchased, then add to the table and deduct from the user's balance
+        if (!alreadyPurchased) {
+            if (dbUser.getBalance() >= selectedAddon.getPrice()) {
+                dbUser.setBalance(dbUser.getBalance() - selectedAddon.getPrice());
+                // Save user's balance
+                addonDao.insertBusinessAddon(userBusiness, selectedAddon);
+                userDao.save(dbUser);
+            }
+        }
+        return "redirect:/business";
     }
 
     @GetMapping("/business/grocery-store")

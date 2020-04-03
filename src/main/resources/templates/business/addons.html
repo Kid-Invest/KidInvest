@@ -8,37 +8,45 @@
 
 <h1>Welcome to the Store!</h1>
 
-<div>
-    <table>
-        <thead>
-        <tr>
-            <th>
-                <h4>INGREDIENT NAME</h4>
-            </th>
-            <th>
-                <h4>POPULARITY BONUS</h4>
-            </th>
-            <th>
-                <h4>PRICE PER ADDON</h4>
-            </th>
-        </tr>
-        </thead>
-        <tbody>
-        <th:block th:each="addon : ${addons}">
-            <form th:action="@{/business/addon}" th:method="POST" th:object="${addon}">
-                <tr>
-                    <td><input th:field="*{name}" th:value="${addon.getName()}"></td>
-                    <td><input th:field="*{popularityBonus}" th:value="${addon.getPopularityBonus()}"></td>
-                    <td><input th:field="*{price}" th:value="${addon.getPrice()}"></td>
+
+<table>
+    <thead>
+    <tr>
+        <th>
+            <h4>INGREDIENT NAME</h4>
+        </th>
+        <th>
+            <h4>POPULARITY BONUS</h4>
+        </th>
+        <th>
+            <h4>PRICE PER ADDON</h4>
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <th:block th:each="addon : ${addons}">
+        <form th:action="@{/business/addon}" th:method="POST">
+            <tr>
+                <th:block th:if="${businessAddons.contains(addon)}">
+                    <td><h4 th:text="${addon.name}"></h4></td>
+                    <td><h4 th:text="${addon.popularityBonus}"></h4></td>
+                    <td><h4 th:text="${addon.price}"></h4></td>
+                    <td>Already Purchased </td>
+                </th:block>
+                <th:block th:if="${!businessAddons.contains(addon)}">
+                    <td><h4 th:text="${addon.name}"></h4></td>
+                    <td><h4 th:text="${addon.popularityBonus}"></h4></td>
+                    <td><h4 th:text="${addon.price}"></h4></td>
+                    <input type="text" th:name="id" th:value="${addon.getId()}" hidden>
                     <td>
                         <button type="submit" class="purchase-btn">Purchase</button>
                     </td>
-                </tr>
-            </form>
-        </th:block>
-        </tbody>
-    </table>
-</div>
+                </th:block>
+            </tr>
+        </form>
+    </th:block>
+    </tbody>
+</table>
 
 <a href="/business">EXIT STORE</a>
 
