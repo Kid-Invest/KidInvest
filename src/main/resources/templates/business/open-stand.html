@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:include="partials/fragments :: head(Lemonade-Stand)">
+</head>
+<body>
+<div th:include="partials/fragments :: nav"></div>
+
+<h3>BUSINESS INVENTORY</h3>
+<div class="container-fluid">
+    <h1>Lemonade Stand</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>
+                <h4>INGREDIENT NAME</h4>
+            </th>
+            <th>
+                <h4>TOTAL AMOUNT</h4>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="inventory : ${inventoryList}">
+            <tr>
+                <td th:text="${inventory.getIngredient().getName()}"></td>
+                <td th:text="${inventory.getTotal()}"></td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+</div>
+
+<th:block th:include="partials/fragments :: footer"/>
+<th:block th:include="partials/fragments :: scripts"/>
+</body>
+</html>

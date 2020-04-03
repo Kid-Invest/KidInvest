@@ -1,22 +1,12 @@
 {
     $(document).ready(() => {
-        const purchaseBtn = $(".purchase-btn");
-        let totalCost = 0;
-
+        const purchaseBtnEl = $(".purchase-btn");
         // Event listener for purchase buttons
-        for (let i = 0; i < purchaseBtn.length; i++) {
-            purchaseBtn[i].click(function () {
-                let addonID = $(`#${i}`);
-                // let totalCostEl = $(`#${i}_total`);
-                let addonCost = $(`#${i}_cost`).html();
-                let totalPurchaseCost = $(`#purchase_cost_${i}`);
-
-                    // totalPurchaseCost.html(
-                    //     (parseFloat(addonCost)).toFixed(2)
-                    // );
-                    totalCost += parseFloat(addonCost);
-                    totalPurchaseCost.val(totalCost.toFixed(2));
-            });
+        for (let i = 0; i < purchaseBtnEl.length; i++) {
+            purchaseBtnEl[i].addEventListener("click", function() {
+                let hiddenInputEl = $(`#${i}`);
+                hiddenInputEl.val("true");
+            })
         }
     });
 }

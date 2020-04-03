@@ -37,7 +37,7 @@ public class BusinessController {
     public String viewBusinessPage(Model view) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<Inventory> inventoryList = inventoryDao.findInventoryByBusinessId(user.getId());
-        view.addAttribute("inventory", inventoryList);
+        view.addAttribute("inventoryList", inventoryList);
         return "business/business";
     }
 
@@ -49,8 +49,7 @@ public class BusinessController {
     }
 
     @PostMapping("/business/addon")
-    public String doAddonPurchase(@RequestParam String addon_id1, @RequestParam String addon_id2, @RequestParam String addon_id3, @RequestParam String addon_id4, @RequestParam String addon_id5, @RequestParam String total_purchase_cost) {
-
+    public String doAddonPurchase(@RequestParam String addon_id1, @RequestParam String addon_id2, @RequestParam String addon_id3, @RequestParam String addon_id4, @RequestParam String addon_id5) {
         System.out.println("Candy Machine: " + addon_id1);
         System.out.println("Radio: " + addon_id2);
         System.out.println("Sign: " + addon_id3);
@@ -58,49 +57,18 @@ public class BusinessController {
         System.out.println("water filter machine: " + addon_id5);
         //List<Addon> addonList = addonDao.findAddonByBusinessId(1);
         // Subtract from user's balance
-        User user = userDao.findUserById(1);
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User dbUser = userDao.findUserById(user.getId());
         boolean enoughMoney = false;
         System.out.println(user.getBalance());
-        if (user.getBalance() >= Double.parseDouble(total_purchase_cost)) {
-            user.setBalance(user.getBalance() - Double.parseDouble(total_purchase_cost));
-            System.out.println(user.getBalance());
-            // Save user's balance
-            userDao.save(user);
-            // Loop through inventory and update inventory based on id
-//            for (Inventory inventory : inventoryList) {
-//                switch ((int)inventory.getIngredient().getId()) {
-//                    case 1:
-//                        inventory.setTotal(inventory.getTotal() + Long.parseLong(addon_id1));
-//                        break;
-//                    case 2:
-//                        inventory.setTotal(inventory.getTotal() + Long.parseLong(addon_id2));
-//                        break;
-//                    case 3:
-//                        inventory.setTotal(inventory.getTotal() + Long.parseLong(addon_id3));
-//                        break;
-//                    case 4:
-//                        inventory.setTotal(inventory.getTotal() + Long.parseLong(addon_id4));
-//                        break;
-//                    case 5:
-//                        inventory.setTotal(inventory.getTotal() + Long.parseLong(addon_id5));
-//                        break;
-//                    case 6:
-//                        inventory.setTotal(inventory.getTotal() + Long.parseLong(addon_id6));
-//                        break;
-//                    case 7:
-//                        inventory.setTotal(inventory.getTotal() + Long.parseLong(addon_id7));
-//                        break;
-//                    case 8:
-//                        inventory.setTotal(inventory.getTotal() + Long.parseLong(addon_id8));
-//                        break;
-//                    case 9:
-//                        inventory.setTotal(inventory.getTotal() + Long.parseLong(addon_id9));
-//                        break;
-//                }
-//                inventoryDao.save(inventory);
-//            }
-        }
-        return "redirect:/business";
+//        if (user.getBalance() >= Double.parseDouble(total_purchase_cost)) {
+//            user.setBalance(user.getBalance() - Double.parseDouble(total_purchase_cost));
+//            System.out.println(user.getBalance());
+//            // Save user's balance
+//            userDao.save(user);
+//        }
+//        return "redirect:/business";
+        return "redirect:/";
     }
 
     @GetMapping("/business/grocery-store")
@@ -185,4 +153,14 @@ public class BusinessController {
         }
         return "redirect:/business";
     }
+
+    @GetMapping("/business/open-stand")
+    public String viewOpenStorePage(Model view) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        List<Inventory> inventoryList = inventoryDao.findInventoryByBusinessId(user.getId());
+
+        view.addAttribute("inventoryList", inventoryList);
+        return "business/open-stand";
+    }
+
 }
