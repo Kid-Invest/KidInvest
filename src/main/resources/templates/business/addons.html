@@ -8,36 +8,45 @@
 
 <h1>Welcome to the Store!</h1>
 
-<form th:action="@{/business/addon}" th:method="POST">
-    <table>
-        <thead>
-        <tr>
-            <th>
-                <h4>INGREDIENT NAME</h4>
-            </th>
-            <th>
-                <h4>POPULARITY BONUS</h4>
-            </th>
-            <th>
-                <h4>PRICE PER ADDON</h4>
-            </th>
-        </tr>
-        </thead>
-        <tbody>
-        <th:block th:each="addon : ${addons}">
+
+<table>
+    <thead>
+    <tr>
+        <th>
+            <h4>INGREDIENT NAME</h4>
+        </th>
+        <th>
+            <h4>POPULARITY BONUS</h4>
+        </th>
+        <th>
+            <h4>PRICE PER ADDON</h4>
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <th:block th:each="addon : ${addons}">
+        <form th:action="@{/business/addon}" th:method="POST">
             <tr>
-                <td th:text="${addon.getName()}"></td>
-                <td th:text="${addon.getPopularityBonus()}"></td>
-                <td th:text="${addon.getPrice()}"></td>
-                <td>
-                    <input type="text" value="false" th:name="${'addon_id' + addon.getId()}" th:id="${addon.getId() - 1}" hidden>
-                    <button type="submit" class="purchase-btn">Purchase</button>
-                </td>
+                <th:block th:if="${businessAddons.contains(addon)}">
+                    <td><h4 th:text="${addon.name}"></h4></td>
+                    <td><h4 th:text="${addon.popularityBonus}"></h4></td>
+                    <td><h4 th:text="${addon.price}"></h4></td>
+                    <td>Already Purchased </td>
+                </th:block>
+                <th:block th:if="${!businessAddons.contains(addon)}">
+                    <td><h4 th:text="${addon.name}"></h4></td>
+                    <td><h4 th:text="${addon.popularityBonus}"></h4></td>
+                    <td><h4 th:text="${addon.price}"></h4></td>
+                    <input type="text" th:name="id" th:value="${addon.getId()}" hidden>
+                    <td>
+                        <button type="submit" class="purchase-btn">Purchase</button>
+                    </td>
+                </th:block>
             </tr>
-        </th:block>
-        </tbody>
-    </table>
-</form>
+        </form>
+    </th:block>
+    </tbody>
+</table>
 
 <a href="/business">EXIT STORE</a>
 
@@ -45,6 +54,6 @@
 </footer>
 <th:block th:include="partials/fragments.html :: scripts">
 </th:block>
-<script type="text/javascript" th:src="@{/js/addons.js}"></script>
+<!--<script type="text/javascript" th:src="@{/js/addons.js}"></script>-->
 </body>
 </html>
