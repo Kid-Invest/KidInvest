@@ -6,28 +6,44 @@
         const currentTotalEl = $("#currentStock_total");
         const marketPriceEl = $("#marketPrice").html();
         const userBalance = $("#user-balance").html();
+
+        const buyBtn = $("#buyBtn")[0];
+        const sellBtn = $("#sellBtn")[0];
+        const stockActionEl = $("#stockAction");
+        const modalBuySellBtn = $("#modal-buy-sell-btn");
+        const ownShares = $("#ownShares");
+
         let newCount = 0;
-        let totalCost = 0;
-        console.log(subtractBtnEl);
-        console.log(currentStockEl.val());
-        console.log(currentTotalEl);
-        console.log(userBalance);
-        console.log(marketPriceEl);
 
         subtractBtnEl.addEventListener("click", function (){
             console.log(subtractBtnEl);
             newCount = parseInt(currentStockEl.val()) - 1;
             if (newCount >= 1){
                 currentStockEl.val(newCount);
-                currentTotalEl.html((newCount * parseFloat(marketPriceEl)).toFixed(2));
+                currentTotalEl.val((newCount * parseFloat(marketPriceEl)).toFixed(2));
             }
         });
         addBtnEl.addEventListener("click", function (){
             newCount = parseInt(currentStockEl.val()) + 1;
-            if (userBalance >= (newCount * marketPriceEl)) {
+
+            if ((userBalance >= (newCount * marketPriceEl)) && (stockActionEl.val() === "buy")) {
                 currentStockEl.val(newCount);
-                currentTotalEl.html((newCount * parseFloat(marketPriceEl)).toFixed(2));
+                currentTotalEl.val((newCount * parseFloat(marketPriceEl)).toFixed(2));
             }
+            if((newCount <= parseInt(ownShares.html())) && (stockActionEl.val() === "sell")){
+                currentStockEl.val(newCount);
+                currentTotalEl.val((newCount * parseFloat(marketPriceEl)).toFixed(2));
+
+            }
+        });
+
+        buyBtn.addEventListener("click", function () {
+            modalBuySellBtn.html("Buy");
+            stockActionEl.val("buy");
+        });
+        sellBtn.addEventListener("click", function () {
+            modalBuySellBtn.html("Sell");
+            stockActionEl.val("sell");
         });
     });
 }
