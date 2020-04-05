@@ -19,15 +19,21 @@ public class BusinessController {
     private IngredientRepo ingredientDao;
     private AddonRepo addonDao;
     private UserRepo userDao;
+    private LemonadeRepo lemonadeDao;
+    private LemonadeIngredientRepo lemonadeIngredientDao;
     private BusinessTransactionsRepo businessTransactionsDao;
+    private SaleRepo saleDao;
 
-    public BusinessController(BusinessRepo businessDao, InventoryRepo inventoryDao, IngredientRepo ingredientDao, AddonRepo addonDao, UserRepo userDao, BusinessTransactionsRepo businessTransactionsDao) {
+    public BusinessController(BusinessRepo businessDao, InventoryRepo inventoryDao, IngredientRepo ingredientDao, LemonadeIngredientRepo lemonadeIngredientDao, AddonRepo addonDao, UserRepo userDao, LemonadeRepo lemonadeDao, BusinessTransactionsRepo businessTransactionsDao, SaleRepo saleDao) {
         this.businessDao = businessDao;
         this.inventoryDao = inventoryDao;
         this.ingredientDao = ingredientDao;
         this.addonDao = addonDao;
         this.userDao = userDao;
+        this.lemonadeDao = lemonadeDao;
+        this.lemonadeIngredientDao = lemonadeIngredientDao;
         this.businessTransactionsDao = businessTransactionsDao;
+        this.saleDao = saleDao;
     }
 
     @GetMapping("/business")
@@ -123,7 +129,7 @@ public class BusinessController {
             long ingredientTotal;
             for (Inventory inventory : inventoryList) {
                 ingredientTotal = 0;
-                switch ((int)inventory.getIngredient().getId()) {
+                switch ((int) inventory.getIngredient().getId()) {
                     case 1:
                         ingredientTotal = Long.parseLong(ingredient_id1);
                         inventory.setTotal(inventory.getTotal() + ingredientTotal);
@@ -172,12 +178,60 @@ public class BusinessController {
     }
 
     @GetMapping("/business/open-stand")
-    public String viewOpenStorePage(Model view) {
+    public String viewOpenStorePage(Model view, @RequestParam(value = "missingIngredient", defaultValue = "null") String missingIngredient) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<Inventory> inventoryList = inventoryDao.findInventoryByBusinessId(user.getId());
 
+        view.addAttribute("missingIngredient", missingIngredient);
         view.addAttribute("inventoryList", inventoryList);
         return "business/open-stand";
+    }
+
+    @PostMapping("/business/open-stand")
+    public String doLemonadeSale(@RequestParam String requested_lemonade_id) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User dbUser = userDao.findUserById(user.getId());
+        Business userBusiness = businessDao.findBusinessById(dbUser.getId());
+        Lemonade selectedLemonade = lemonadeDao.getOne(Long.parseLong(requested_lemonade_id));
+        Inventory userInventoryItem = null;
+        Date date = new Date(new java.util.Date().getTime());
+        Sale dailySales = saleDao.findSaleBySaleDate(date);
+
+        // Get list of ingredients and loop through and
+        List<LemonadeIngredient> lemonadeIngredientList = lemonadeIngredientDao.findLemonadeIngredientByLemonadeId(selectedLemonade.getId());
+        boolean enoughIngredients = hasEnoughIngredients(userBusiness, lemonadeIngredientList);
+        if (enoughIngredients) {
+            for (LemonadeIngredient lemonadeIngredient : lemonadeIngredientList) {
+                userInventoryItem = inventoryDao.getInventoryByBusinessIdAndIngredientId(userBusiness.getId(), lemonadeIngredient.getIngredient().getId());
+                userInventoryItem.setTotal(userInventoryItem.getTotal() - lemonadeIngredient.getCount());
+                inventoryDao.save(userInventoryItem);
+            }
+            // Increase balance based off sale
+            dbUser.setBalance(dbUser.getBalance() + selectedLemonade.getPrice());
+            // Save user's balance
+            userDao.save(dbUser);
+            // Insert a new sale into sales table
+            if (dailySales != null) {
+                saleDao.updateSale(dailySales.getProfit() + selectedLemonade.getPrice(), date, userBusiness);
+            } else {
+                saleDao.insertSale(selectedLemonade.getPrice(), date, userBusiness);
+            }
+            return "redirect:/business/open-stand";
+        } else {
+            return "redirect:/business/open-stand?missingIngredient=true";
+        }
+    }
+
+    private boolean hasEnoughIngredients(Business business, List<LemonadeIngredient> lemonadeIngredientList) {
+        // Check to see if there's enough ingredients
+        long totalIngredientsInInventory;
+        for (LemonadeIngredient lemonadeIngredient : lemonadeIngredientList) {
+            totalIngredientsInInventory = inventoryDao.findTotalByBusinessIdAAndIngredientId(business.getId(), lemonadeIngredient.getIngredient().getId());
+            if (totalIngredientsInInventory < lemonadeIngredient.getCount()) {
+                return false;
+            }
+        }
+        return true;
     }
 
 }
