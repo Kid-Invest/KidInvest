@@ -161,6 +161,7 @@ public class BusinessController {
                         inventory.setTotal(inventory.getTotal() + ingredientTotal);
                         break;
                 }
+                // Update's the transactions page
                 if (ingredientTotal != 0) {
                     businessTransactionsDao.save(new BusinessTransactions(dbUserBusiness, inventory.getIngredient(), ingredientTotal, time));
                     inventoryDao.save(inventory);

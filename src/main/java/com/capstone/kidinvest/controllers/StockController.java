@@ -1,9 +1,11 @@
 package com.capstone.kidinvest.controllers;
 
 import com.capstone.kidinvest.models.Stock;
+import com.capstone.kidinvest.models.StockTransaction;
 import com.capstone.kidinvest.models.User;
 import com.capstone.kidinvest.models.UserStock;
 import com.capstone.kidinvest.repositories.StockRepo;
+import com.capstone.kidinvest.repositories.StockTransactionRepo;
 import com.capstone.kidinvest.repositories.UserRepo;
 import com.capstone.kidinvest.repositories.UserStockRepo;
 import com.capstone.kidinvest.services.RestService;
@@ -26,11 +28,13 @@ public class StockController {
     private StockRepo stockDao;
     private UserRepo userDao;
     private UserStockRepo userStockDao;
+    private StockTransactionRepo stockTransactionDao;
 
-    public StockController(StockRepo stockDao, UserRepo userDao, UserStockRepo userStockDao) {
+    public StockController(StockRepo stockDao, UserRepo userDao, UserStockRepo userStockDao, StockTransactionRepo stockTransactionDao) {
         this.stockDao = stockDao;
         this.userDao = userDao;
         this.userStockDao = userStockDao;
+        this.stockTransactionDao = stockTransactionDao;
     }
 
     @GetMapping("/stocks")
@@ -85,6 +89,8 @@ public class StockController {
         User dbUser = userDao.findUserById(user.getId());
 //        Stock stock = stockDao.findStockByTicker(ticker);
         List<UserStock> userStockList = userStockDao.findUserStockByUserId(user.getId());
+        Stock selectedStock = stockDao.findStockByTicker(ticker);
+        Timestamp time = new Timestamp(new java.util.Date().getTime());
             for (UserStock userStock : userStockList){
                 if (userStock.getStock().getTicker().equalsIgnoreCase(ticker)){
                     if (stockAction.equalsIgnoreCase("sell")){
@@ -98,17 +104,23 @@ public class StockController {
             // CHECKS FOR THE CORRESPONDING stockAction BUY/SELL
             if (stockAction.equalsIgnoreCase("buy")){
                 //CHECKS IF USER HAS ENOUGH AND MAKES PURCHASE
-                if (dbUser.getBalance() >= Double.parseDouble(currentStock_total)) { // change market_price to total
+                if (dbUser.getBalance() >= Double.parseDouble(currentStock_total)) {
                     dbUser.setBalance(dbUser.getBalance() - Double.parseDouble(currentStock_total));
                     //   Save user's balance
                     userDao.save(dbUser);
+                    // Update the stock transactions table
+                    stockTransactionDao.save(new StockTransaction(dbUser, selectedStock, stockShares, selectedStock.getMarketPrice(), time));
                 }
             } else {
                 // stockAction "SELL" AND UPDATES USERS BALANCE
                 dbUser.setBalance(dbUser.getBalance() + Double.parseDouble(currentStock_total));
                 //   Save user's balance
                 userDao.save(dbUser);
+                stockTransactionDao.save(new StockTransaction(dbUser, selectedStock, -stockShares, selectedStock.getMarketPrice(), time));
             }
-        return "redirect:/stocks";
+
+
+
+        return "redirect:/stocks?ticker=" + ticker;
     }
 }
