@@ -34,6 +34,15 @@ public class StockTransaction implements Serializable {
     }
 
     //Constructor
+    public StockTransaction(User user, Stock stock, long sharesBoughtSold, double price, Timestamp time) {
+        this.user = user;
+        this.stock = stock;
+        this.sharesBoughtSold = sharesBoughtSold;
+        this.price = price;
+        this.time = time;
+    }
+
+
     public StockTransaction(long sharesBoughtSold, double price, Timestamp time) {
         this.sharesBoughtSold = sharesBoughtSold;
         this.price = price;

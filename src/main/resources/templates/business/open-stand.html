@@ -5,7 +5,9 @@
 <body>
 <div th:include="partials/fragments :: nav"></div>
 
-<h3>BUSINESS INVENTORY</h3>
+
+<h1 th:if="${missingIngredient.equals('true')}">Error not enough ingredients</h1>
+<h3>CURRENT INVENTORY</h3>
 <div class="container-fluid">
     <h1>Lemonade Stand</h1>
     <table>
@@ -30,7 +32,19 @@
     </table>
 </div>
 
+STAND OPTIONS
+<br>
+<form th:action="@{/business/open-stand}" th:method="POST">
+    <input type="text" th:value="1" th:name="requested_lemonade_id" hidden>
+    <button type="submit">Sell Lemonade</button>
+<!--    <button>Sell Strawberry Lemonade</button>-->
+<!--    <button>Sell Peach Lemonade</button>-->
+<!--    <button>Sell Blueberry Lemonade</button>-->
+<!--    <button>Sell Raspberry Lemonade</button>-->
+</form>
+
 <th:block th:include="partials/fragments :: footer"/>
 <th:block th:include="partials/fragments :: scripts"/>
+<script type="text/javascript" th:src="@{/js/lemonade-stand.js}"></script>
 </body>
 </html>

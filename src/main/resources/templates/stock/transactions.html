@@ -40,7 +40,7 @@
                     <td th:text="${transaction.getTime()}"></td>
                     <td th:text="${transaction.getSharesBoughtSold()}"></td>
                     <td th:text="${transaction.getPrice()}"></td>
-                    <td th:text="${transaction.getSharesBoughtSold() * transaction.getPrice()}"></td>
+                    <td th:text="${-(transaction.getSharesBoughtSold() * transaction.getPrice())}"></td>
                 </tr>
             </th:block>
             </tbody>

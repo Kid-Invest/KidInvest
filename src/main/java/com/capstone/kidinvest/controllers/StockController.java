@@ -5,6 +5,7 @@ import com.capstone.kidinvest.models.StockTransaction;
 import com.capstone.kidinvest.models.User;
 import com.capstone.kidinvest.models.UserStock;
 import com.capstone.kidinvest.repositories.StockRepo;
+import com.capstone.kidinvest.repositories.StockTransactionRepo;
 import com.capstone.kidinvest.repositories.UserRepo;
 import com.capstone.kidinvest.repositories.UserStockRepo;
 import com.capstone.kidinvest.services.RestService;
@@ -14,7 +15,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -28,19 +28,23 @@ public class StockController {
     private StockRepo stockDao;
     private UserRepo userDao;
     private UserStockRepo userStockDao;
+    private StockTransactionRepo stockTransactionDao;
 
-    public StockController(StockRepo stockDao, UserRepo userDao, UserStockRepo userStockDao) {
+    public StockController(StockRepo stockDao, UserRepo userDao, UserStockRepo userStockDao, StockTransactionRepo stockTransactionDao) {
         this.stockDao = stockDao;
         this.userDao = userDao;
         this.userStockDao = userStockDao;
+        this.stockTransactionDao = stockTransactionDao;
     }
 
     @GetMapping("/stocks")
     public String viewStockPage(Model view, @RequestParam(value = "ticker", defaultValue = "FFS") String ticker) {
         RestService restService = new RestService(new RestTemplateBuilder());
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User dbUser = userDao.findUserById(user.getId());
         List<UserStock> userStockList = userStockDao.findUserStockByUserId(user.getId());
         List<Stock> retrievedStockList = restService.parseJSONString(restService.getStocksPlainJSON());
+        UserStock currentUserStock = null;
         List<Stock> stockList = stockDao.findAll();
         Stock currentStock = null;
         Date date = new Date();
@@ -66,7 +70,9 @@ public class StockController {
             currentStock = stockDao.findStockByTicker(ticker);
         }
 
-        view.addAttribute("user", userDao.findUserById(user.getId()));
+        currentUserStock = userStockDao.findUserStockByStockIdAndUserId(currentStock.getId(), dbUser.getId());
+        view.addAttribute("currentUserStock", currentUserStock);
+        view.addAttribute("user", dbUser);
         view.addAttribute("currentStock", currentStock);
         view.addAttribute("userStocks", userStockList);
         view.addAttribute("stocks", stockList);
@@ -74,47 +80,47 @@ public class StockController {
     }
 
 
-
-
     @PostMapping(value = "/stocks")
     public String buyStockButton(@RequestParam long stockShares,
                                  @RequestParam(value = "ticker", defaultValue = "FFS") String ticker,
-                                 @RequestParam String currentStock_total) {
+                                 @RequestParam String currentStock_total,
+                                 @RequestParam String stockAction) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User dbUser = userDao.findUserById(user.getId());
+//        Stock stock = stockDao.findStockByTicker(ticker);
+        List<UserStock> userStockList = userStockDao.findUserStockByUserId(user.getId());
+        Stock selectedStock = stockDao.findStockByTicker(ticker);
+        Timestamp time = new Timestamp(new java.util.Date().getTime());
+            for (UserStock userStock : userStockList){
+                if (userStock.getStock().getTicker().equalsIgnoreCase(ticker)){
+                    if (stockAction.equalsIgnoreCase("sell")){
+                        userStock.setShares(userStock.getShares() - stockShares);
+                    } else {
+                        userStock.setShares(userStock.getShares() + stockShares);
+                    }
+                    userStockDao.save(userStock);
+                }
+            }
+            // CHECKS FOR THE CORRESPONDING stockAction BUY/SELL
+            if (stockAction.equalsIgnoreCase("buy")){
+                //CHECKS IF USER HAS ENOUGH AND MAKES PURCHASE
+                if (dbUser.getBalance() >= Double.parseDouble(currentStock_total)) {
+                    dbUser.setBalance(dbUser.getBalance() - Double.parseDouble(currentStock_total));
+                    //   Save user's balance
+                    userDao.save(dbUser);
+                    // Update the stock transactions table
+                    stockTransactionDao.save(new StockTransaction(dbUser, selectedStock, stockShares, selectedStock.getMarketPrice(), time));
+                }
+            } else {
+                // stockAction "SELL" AND UPDATES USERS BALANCE
+                dbUser.setBalance(dbUser.getBalance() + Double.parseDouble(currentStock_total));
+                //   Save user's balance
+                userDao.save(dbUser);
+                stockTransactionDao.save(new StockTransaction(dbUser, selectedStock, -stockShares, selectedStock.getMarketPrice(), time));
+            }
 
-        Stock stock = stockDao.findStockByTicker(ticker);
-        UserStock dbUserStock = userStockDao.findUserStockById(stock.getId());
-
-//        UserStock usersStock = userStockDao.findUserStockByStock(stock);
-
-        if (dbUser.getBalance() >= Double.parseDouble(currentStock_total)) { // change market_price to total
-            dbUser.setBalance(dbUser.getBalance() - Double.parseDouble(currentStock_total));
-
-            // Save user's balance
-            userDao.save(dbUser);
 
 
-            dbUserStock.setShares(dbUserStock.getShares() + stockShares);
-            userStockDao.save(dbUserStock);
-        }
-        return "stock/stock";
+        return "redirect:/stocks?ticker=" + ticker;
     }
-
-//    @PostMapping(value = "/stocks")
-//    public String buyStockButton(@RequestParam String stock_id1, @RequestParam String market_price) {
-//        List<UserStock> userStockList = userStockDao.findUserStockByUserId(1);
-//        System.out.println(stock_id1);
-//
-//        User user = userDao.findUserById(1);
-//        if (user.getBalance() >= Double.parseDouble(market_price)) {
-//            user.setBalance(user.getBalance() - Double.parseDouble(market_price));
-//            System.out.println(user.getBalance());
-//            // Save user's balance
-////            userStockDao.save(stockDao.findById(Long.parseLong(stock_id1)));
-//        }
-//        return "redirect:stock/stock";
-//    }
-
-
 }

@@ -9,4 +9,5 @@ import java.util.List;
 public interface LemonadeIngredientRepo extends JpaRepository<LemonadeIngredient, Long> {
 
     List<LemonadeIngredient> findLemonadeIngredientByLemonadeId(long lemonadeId);
+
 }
