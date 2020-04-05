@@ -8,13 +8,28 @@
 <div class="container mt-4">
     <h1>Business Quiz Page!!</h1>
     <br>
-    <div class="section">
+    <div class="section1">
         <h3 class="question">1. First Question</h3>
-
+        <ul class="answers1">
+            <li class="incorrect">a. option 1a.</li>
+            <li class="incorrect">b. option 1b.</li>
+            <li class="correct">c. option 1c</li>
+            <li class="incorrect">d. option 1d</li>
+        </ul>
+    </div>
+    <div class="section2">
+        <h3 class="question">2. Second Question</h3>
+        <ul class="answers2">
+            <li class="incorrect">a. option 2a.</li>
+            <li class="correct">b. option 2b.</li>
+            <li class="incorrect">c. option 2c</li>
+            <li class="incorrect">d. option 2d</li>
+        </ul>
     </div>
 </div>
 
 <th:block th:include="partials/fragments :: footer"/>
 <th:block th:include="partials/fragments :: scripts"/>
+<script type="text/javascript" th:src="@{/js/businessQuiz.js}"></script>
 </body>
 </html>
