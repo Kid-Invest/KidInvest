@@ -1,24 +1,24 @@
 {
 
     let businessQuestions = [{
-        question: "question 1?",
-        choices: ["a", "b", "c", "d"],
+        question: "1. question?",
+        choices: ["wrong", "right", "wrong", "wrong"],
         correctAnswer: 1
     }, {
-        question: "question 2?",
-        choices: ["a", "b", "c", "d"],
+        question: "2. question?",
+        choices: ["wrong", "wrong", "right", "wrong"],
         correctAnswer: 2
     }, {
-        question: "question 3?",
-        choices: ["a", "b", "c", "d"],
+        question: "3. question?",
+        choices: ["wrong", "right", "wrong", "wrong"],
         correctAnswer: 1
     }, {
-        question: "question 4?",
-        choices: ["a", "b", "c", "d"],
+        question: "4. question?",
+        choices: ["right", "wrong", "wrong", "wrong"],
         correctAnswer: 0
     }, {
-        question: "question 5?",
-        choices: ["a", "b", "c", "d"],
+        question: "5. question 5?",
+        choices: ["right", "wrong", "wrong", "wrong"],
         correctAnswer: 0
     }];
 
@@ -142,33 +142,44 @@
 
     function displayResults() {
 
+        let resultAll = $(document).find(".resultAll");
+
         for(let i = 0; i < businessResults.length; i++){
 
             let numChoices = businessQuestions[i].choices.length;
             let choice;
-
+            let color = businessResults[i].color;
 
             if(businessResults[i].userAnswer === businessResults[i].correctAnswer){
-                console.log('question ' + (i + 1) + ': ' + businessResults[i].question);
-                // console.log('question ' + (i + 1) + ': ' + businessResults[i].question);
+                $('<div>' + businessResults[i].question + '</div>').appendTo(resultAll);
                 for (let j = 0; j < numChoices; j++) {
                     choice = businessQuestions[i].choices[j];
-                    // $('<li><input type="radio" value=' + j + ' name="dynradio" />' + choice + '</li>').appendTo(choiceList);
-                    console.log(choice);
+                    if(businessResults[i].correctAnswer === j){
+                        $('<li style="background-color: lightgreen; color: green">' + choice + '</li>').appendTo(resultAll);
+                    } else {
+                        $('<li>' + choice + '</li>').appendTo(resultAll);
+                    }
                 }
-                console.log('your correct answer was' + (i + 1) + ': ' + businessResults[i].correctAnswer);
-                console.log('correct answer ' + (i + 1) + ': ' + businessResults[i].color);
+                // $('<div> you correctly answered <span style="background-color:' + color +'">' + businessResults[i].correctAnswer + '</span></div>').appendTo(resultAll);
             } else {
-                console.log('question ' + (i + 1) + ': ' + businessResults[i].question);
-                // console.log('question ' + (i + 1) + ': ' + businessResults[i].question);
+                $('<div>' + businessResults[i].question + '</div>').appendTo(resultAll);
                 for (let j = 0; j < numChoices; j++) {
                     choice = businessQuestions[i].choices[j];
-                    // $('<li><input type="radio" value=' + j + ' name="dynradio" />' + choice + '</li>').appendTo(choiceList);
-                    console.log(choice);
+                    if(businessResults[i].correctAnswer === j){
+                        $('<li style="background-color: lightgreen; color: green">' + choice + '</li>').appendTo(resultAll);
+                    } else if(businessResults[i].userAnswer === j){
+                        $('<li style="background-color: palevioletred; color: darkred">' + choice + '</li>').appendTo(resultAll);
+
+                    } else {
+                        $('<li>' + choice + '</li>').appendTo(resultAll);
+                    }
                 }
-                console.log('the correct answer was' + (i + 1) + ': ' + businessResults[i].correctAnswer);
-                console.log('your answer was' + (i + 1) + ': ' + businessResults[i].userAnswer);
-                console.log('correct answer ' + (i + 1) + ': ' + businessResults[i].color);
+                // $('<div> the correct answer was <span style="background-color:' + color +'">' + businessResults[i].correctAnswer + '</span></div>').appendTo(resultAll);
+                // $('<div> you answered: <span style="background-color:' + color +'">' + businessResults[i].correctAnswer + '</span></div>').appendTo(resultAll);
+
+                // console.log('the correct answer was' + (i + 1) + ': ' + businessResults[i].correctAnswer);
+                // console.log('your answer was' + (i + 1) + ': ' + businessResults[i].userAnswer);
+                // console.log('correct answer ' + (i + 1) + ': ' + businessResults[i].color);
             }
 
         }
