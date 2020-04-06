@@ -46,7 +46,7 @@
                     // TODO: Remove any message -> not sure if this is efficient to call this each time....
                     $(document).find(".quizMessage").hide();
 
-                    if (value === businessQuestions[currentQuestion].correctAnswer) {
+                    if (value == businessQuestions[currentQuestion].correctAnswer) {
                         correctAnswers++;
                     }
 
@@ -132,11 +132,16 @@
             let numChoices = businessQuestions[i].choices.length;
             let choice;
 
-            if(resultArray[i].userAnswer === resultArray[i].correctAnswer){
+            console.log(resultArray[i].userAnswer);
+            console.log(typeof (resultArray[i].userAnswer));
+            console.log(resultArray[i].correctAnswer);
+            console.log(typeof (resultArray[i].correctAnswer));
+
+            if(resultArray[i].userAnswer == resultArray[i].correctAnswer){
                 $('<div>' + resultArray[i].question + '</div>').appendTo(resultAll);
                 for (let j = 0; j < numChoices; j++) {
                     choice = businessQuestions[i].choices[j];
-                    if(resultArray[i].correctAnswer === j){
+                    if(resultArray[i].correctAnswer == j){
                         $('<li style="background-color: lightgreen; color: green">' + choice + '</li>').appendTo(resultAll);
                     } else {
                         $('<li>' + choice + '</li>').appendTo(resultAll);
@@ -148,9 +153,9 @@
                 $('<div>' + resultArray[i].question + '</div>').appendTo(resultAll);
                 for (let j = 0; j < numChoices; j++) {
                     choice = businessQuestions[i].choices[j];
-                    if(resultArray[i].correctAnswer === j){
+                    if(resultArray[i].correctAnswer == j){
                         $('<li style="background-color: lightgreen; color: darkgreen">' + choice + '</li>').appendTo(resultAll);
-                    } else if(resultArray[i].userAnswer === j){
+                    } else if(resultArray[i].userAnswer == j){
                         $('<li style="background-color: palevioletred; color: darkred">' + choice + '</li>').appendTo(resultAll);
                     } else {
                         $('<li>' + choice + '</li>').appendTo(resultAll);
