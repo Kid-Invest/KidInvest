@@ -1,26 +1,6 @@
 {
-    // $(document).ready(() => {
-    //     console.log("hello");
-    //     let incorrectEl = $('.incorrect');
-    //     let correctEl = $('.correct');
-    //
-    //     // Event listener for incorrect answers
-    //     incorrectEl.click(function() {
-    //         $(this).css('color', 'red')
-    //     });
-    //     correctEl.click(function() {
-    //         $(this).css('color', 'green')
-    //     });
-    // });
-    /**
-     * Created with JetBrains WebStorm.
-     * User: pwanwu
-     * Date: 18/09/2013
-     * Time: 17:41
-     * To change this template use File | Settings | File Templates.
-     */
 
-    var questions = [{
+    var businessQuestions = [{
         question: "question 1?",
         choices: ["a", "b", "c", "d"],
         correctAnswer: 1
@@ -65,29 +45,40 @@
                     // TODO: Remove any message -> not sure if this is efficient to call this each time....
                     $(document).find(".quizMessage").hide();
 
-                    if (value == questions[currentQuestion].correctAnswer) {
+                    if (value == businessQuestions[currentQuestion].correctAnswer) {
                         correctAnswers++;
+                        //below changes quiz messages if I want to display "correct" or "incorrect" but need to figure out how to not move to next page at the same time
+                        // $(document).find(".quizMessage").text("Correct!");
+                        // $(document).find(".quizMessage").show();
                     }
+                    // else {
+                    //     $(document).find(".quizMessage").text("Incorrect.");
+                    //     $(document).find(".quizMessage").show();
+                    // }
 
                     currentQuestion++; // Since we have already displayed the first question on DOM ready
-                    if (currentQuestion < questions.length) {
+                    if (currentQuestion < (businessQuestions.length -1)) {
                         displayCurrentQuestion();
+                    } else if(currentQuestion === (businessQuestions.length -1)){
+                        displayCurrentQuestion();
+                        $(document).find(".nextButton").text("Submit")
                     } else {
                         displayScore();
                         //                    $(document).find(".nextButton").toggle();
                         //                    $(document).find(".playAgainButton").toggle();
                         // Change the text in the next button to ask if user wants to play again
-                        $(document).find(".nextButton").text("Play Again?");
+                        $(document).find(".nextButton").hide();
                         quizOver = true;
                     }
                 }
-            } else { // quiz is over and clicked the next button (which now displays 'Play Again?'
-                quizOver = false;
-                $(document).find(".nextButton").text("Next Question");
-                resetQuiz();
-                displayCurrentQuestion();
-                hideScore();
             }
+            // else { // quiz is over and clicked the next button (which now displays 'Play Again?'
+            //     quizOver = false;
+            //     $(document).find(".nextButton").text("Next Question");
+            //     resetQuiz();
+            //     displayCurrentQuestion();
+            //     hideScore();
+            // }
         });
 
     });
@@ -97,10 +88,10 @@
 
         console.log("In display current Question");
 
-        var question = questions[currentQuestion].question;
+        var question = businessQuestions[currentQuestion].question;
         var questionClass = $(document).find(".quizContainer > .question");
         var choiceList = $(document).find(".quizContainer > .choiceList");
-        var numChoices = questions[currentQuestion].choices.length;
+        var numChoices = businessQuestions[currentQuestion].choices.length;
 
         // Set the questionClass text to the current question
         $(questionClass).text(question);
@@ -110,20 +101,21 @@
 
         var choice;
         for (i = 0; i < numChoices; i++) {
-            choice = questions[currentQuestion].choices[i];
+            choice = businessQuestions[currentQuestion].choices[i];
             $('<li><input type="radio" value=' + i + ' name="dynradio" />' + choice + '</li>').appendTo(choiceList);
         }
     }
 
-    function resetQuiz() {
-        currentQuestion = 0;
-        correctAnswers = 0;
-        hideScore();
-    }
+    // function resetQuiz() {
+    //     currentQuestion = 0;
+    //     correctAnswers = 0;
+    //     hideScore();
+    // }
 
     function displayScore() {
-        $(document).find(".quizContainer > .result").text("You scored: " + correctAnswers + " out of: " + questions.length);
+        $(document).find(".quizContainer > .result").text("You scored: " + correctAnswers + " out of " + businessQuestions.length);
         $(document).find(".quizContainer > .result").show();
+        $(document).find("h1").text("Quiz Complete!");
     }
 
     function hideScore() {
