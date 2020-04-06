@@ -80,6 +80,14 @@ public class UserController {
     public String viewUserStock(Model view) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User dbUser = userDao.findUserById(user.getId());
+        List<UserStock> userStockList = userStockDao.findUserStockByUserId(dbUser.getId());
+        long portfolioValue = 0;
+        for (UserStock userStock : userStockList) {
+            portfolioValue += (userStock.getStock().getMarketPrice() * userStock.getShares());
+        }
+
+        view.addAttribute("portfolioValue", portfolioValue);
+        view.addAttribute("userStocks", userStockList);
         view.addAttribute("user", dbUser);
         return "user/profile";
     }
