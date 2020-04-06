@@ -22,7 +22,7 @@
         correctAnswer: 0
     }];
 
-    let businessResults = [];
+    let resultArray = [];
     let currentQuestion = 0;
     let correctAnswers = 0;
     let quizOver = false;
@@ -46,32 +46,17 @@
                     // TODO: Remove any message -> not sure if this is efficient to call this each time....
                     $(document).find(".quizMessage").hide();
 
-                    if (value == businessQuestions[currentQuestion].correctAnswer) {
+                    if (value === businessQuestions[currentQuestion].correctAnswer) {
                         correctAnswers++;
-                        //below changes quiz messages if I want to display "correct" or "incorrect" but need to figure out how to not move to next page at the same time
-                        // $(document).find(".quizMessage").text("Correct!");
-                        // $(document).find(".quizMessage").show();
-                        let correctAnswer = {
-                            question: businessQuestions[currentQuestion].question,
-                            choices: businessQuestions[currentQuestion].choices,
-                            correctAnswer: businessQuestions[currentQuestion].correctAnswer,
-                            color: "green",
-                            userAnswer: value
-                        };
-                        businessResults.push(correctAnswer);
                     }
-                    else {
-                        // $(document).find(".quizMessage").text("Incorrect.");
-                        // $(document).find(".quizMessage").show();
-                        let incorrectAnswer = {
-                            question: businessQuestions[currentQuestion].question,
-                            choices: businessQuestions[currentQuestion].choices,
-                            correctAnswer: businessQuestions[currentQuestion].correctAnswer,
-                            color: "red",
-                            userAnswer: value,
-                        };
-                        businessResults.push(incorrectAnswer);
-                    }
+
+                    let resultObject = {
+                        question: businessQuestions[currentQuestion].question,
+                        choices: businessQuestions[currentQuestion].choices,
+                        correctAnswer: businessQuestions[currentQuestion].correctAnswer,
+                        userAnswer: value
+                    };
+                    resultArray.push(resultObject);
 
                     currentQuestion++; // Since we have already displayed the first question on DOM ready
                     if (currentQuestion < (businessQuestions.length -1)) {
@@ -80,6 +65,10 @@
                         displayCurrentQuestion();
                         $(document).find(".nextButton").text("Submit")
                     } else {
+                        let questionClass = $(document).find(".quizContainer > .question");
+                        let choiceList = $(document).find(".quizContainer > .choiceList");
+                        $(questionClass).hide();
+                        $(choiceList).hide();
                         displayScore();
                         //                    $(document).find(".nextButton").toggle();
                         //                    $(document).find(".playAgainButton").toggle();
@@ -120,15 +109,9 @@
         let choice;
         for (let i = 0; i < numChoices; i++) {
             choice = businessQuestions[currentQuestion].choices[i];
-            $('<li><input type="radio" value=' + i + ' name="dynradio" />' + choice + '</li>').appendTo(choiceList);
+            $('<li><input type="radio" value="' + i + '" name="dynradio" />' + choice + '</li>').appendTo(choiceList);
         }
     }
-
-    // function resetQuiz() {
-    //     currentQuestion = 0;
-    //     correctAnswers = 0;
-    //     hideScore();
-    // }
 
     function displayScore() {
         $(document).find(".quizContainer > .result").text("You scored: " + correctAnswers + " out of " + businessQuestions.length);
@@ -144,44 +127,37 @@
 
         let resultAll = $(document).find(".resultAll");
 
-        for(let i = 0; i < businessResults.length; i++){
+        for(let i = 0; i < resultArray.length; i++){
 
             let numChoices = businessQuestions[i].choices.length;
             let choice;
-            let color = businessResults[i].color;
 
-            if(businessResults[i].userAnswer === businessResults[i].correctAnswer){
-                $('<div>' + businessResults[i].question + '</div>').appendTo(resultAll);
+            if(resultArray[i].userAnswer === resultArray[i].correctAnswer){
+                $('<div>' + resultArray[i].question + '</div>').appendTo(resultAll);
                 for (let j = 0; j < numChoices; j++) {
                     choice = businessQuestions[i].choices[j];
-                    if(businessResults[i].correctAnswer === j){
+                    if(resultArray[i].correctAnswer === j){
                         $('<li style="background-color: lightgreen; color: green">' + choice + '</li>').appendTo(resultAll);
                     } else {
                         $('<li>' + choice + '</li>').appendTo(resultAll);
                     }
                 }
-                // $('<div> you correctly answered <span style="background-color:' + color +'">' + businessResults[i].correctAnswer + '</span></div>').appendTo(resultAll);
+                console.log(resultArray[i].userAnswer);
+                console.log(resultArray[i].correctAnswer);
             } else {
-                $('<div>' + businessResults[i].question + '</div>').appendTo(resultAll);
+                $('<div>' + resultArray[i].question + '</div>').appendTo(resultAll);
                 for (let j = 0; j < numChoices; j++) {
                     choice = businessQuestions[i].choices[j];
-                    if(businessResults[i].correctAnswer === j){
-                        $('<li style="background-color: lightgreen; color: green">' + choice + '</li>').appendTo(resultAll);
-                    } else if(businessResults[i].userAnswer === j){
+                    if(resultArray[i].correctAnswer === j){
+                        $('<li style="background-color: lightgreen; color: darkgreen">' + choice + '</li>').appendTo(resultAll);
+                    } else if(resultArray[i].userAnswer === j){
                         $('<li style="background-color: palevioletred; color: darkred">' + choice + '</li>').appendTo(resultAll);
-
                     } else {
                         $('<li>' + choice + '</li>').appendTo(resultAll);
                     }
                 }
-                // $('<div> the correct answer was <span style="background-color:' + color +'">' + businessResults[i].correctAnswer + '</span></div>').appendTo(resultAll);
-                // $('<div> you answered: <span style="background-color:' + color +'">' + businessResults[i].correctAnswer + '</span></div>').appendTo(resultAll);
-
-                // console.log('the correct answer was' + (i + 1) + ': ' + businessResults[i].correctAnswer);
-                // console.log('your answer was' + (i + 1) + ': ' + businessResults[i].userAnswer);
-                // console.log('correct answer ' + (i + 1) + ': ' + businessResults[i].color);
+                // console.log(resultArray[i].userAnswer);
             }
-
         }
     }
 }
