@@ -2,6 +2,7 @@ package com.capstone.kidinvest.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class LearningController {
@@ -23,6 +24,11 @@ public class LearningController {
 
     @GetMapping("/learning/stock/quiz")
     public String viewStockQuizPage(){
+        return "learning/stockQuiz";
+    }
+
+    @PostMapping("/learning/stock/quiz")
+    public String doAddResultToBalance(){
         return "learning/stockQuiz";
     }
 
