@@ -6,67 +6,69 @@
 <th:block th:include="partials/fragments.html :: nav">
 </th:block>
 
-    <div class="container">
-        <div>
-            <h1 th:text="${user.getUsername()}"></h1>
-            <h3>STOCK: $275</h3>
-            <h3>ACCOUNT BALANCE:</h3>
-            <h4 th:text="${user.getBalance()}"></h4>
-            <h2>PORTFOLIO VALUE: $725</h2>
-            <a href="/transactions/stock">View Stock Transactions</a>
-        </div>
-        <br>
-<!--        <br>-->
-<!--        <h1 th:text="${userStock.get(0).getStock().getName()}"></h1>-->
-<!--        <h4>OPEN</h4>-->
-<!--        <h5 th:text="${userStock.get(0).getStock().getOpenPrice()}"></h5>-->
-<!--        <h4>HIGH</h4>-->
-<!--        <h5 th:text="${userStock.get(0).getStock().getHighPrice()}"></h5>-->
-<!--        <h4>LOW</h4>-->
-<!--        <h5 th:text="${userStock.get(0).getStock().getLowPrice()}"></h5>-->
-<!--        <h4>MARKET PRICE</h4>-->
-<!--        <h5 th:text="${userStock.get(0).getStock().getMarketPrice()}"></h5>-->
-<!--        <button type="button">BUY</button>-->
-<!--        <button type="button">SELL</button>-->
-<!--    </div>-->
+<div class="container">
+    <div>
+        <h1 th:text="${user.getUsername()}"></h1>
+        <h3>STOCK VALUATION:</h3>
+        <h4>$<span th:text="${#numbers.formatDecimal(portfolioValue, 0, 'DEFAULT', 2, 'DEFAULT')}"></span></h4>
+        <h3>ACCOUNT BALANCE:</h3>
+        <h4>$<span th:text="${#numbers.formatDecimal(user.getBalance(), 0, 'DEFAULT', 2, 'DEFAULT')}"></span></h4>
+        <h2>PORTFOLIO VALUE:</h2>
+        <h4>$<span
+                th:text="${#numbers.formatDecimal(portfolioValue + user.getBalance(), 0, 'DEFAULT', 2, 'DEFAULT')}"></span>
+        </h4>
+    </div>
+    <br>
 
-<!--    <div class="container">-->
-<!--        <table>-->
-<!--            <thead>-->
-<!--            <tr>-->
-<!--                <th>-->
-<!--                    <h4>NAME</h4>-->
-<!--                </th>-->
-<!--                <th>-->
-<!--                    <h4>TODAY</h4>-->
-<!--                </th>-->
-<!--                <th>-->
-<!--                    <h4>MARKET PRICE</h4>-->
-<!--                </th>-->
-<!--                <th>-->
-<!--                    <h4>SHARES</h4>-->
-<!--                </th>-->
-<!--            </tr>-->
-<!--            </thead>-->
-<!--            <tbody>-->
-<!--            <th:block th:each="userStock : ${userStock}">-->
-<!--                <tr>-->
-<!--                    <td th:text="${userStock.getStock().getName()}"></td>-->
-<!--                    <td>+3.4%</td>-->
-<!--                    <td th:text="${userStock.getStock().getMarketPrice()}"></td>-->
-<!--                    <td th:text="${userStock.getShares()}"></td>-->
-<!--                </tr>-->
-<!--            </th:block>-->
-<!--            </tbody>-->
-<!--        </table>-->
+    <div>
+        <a href="/transactions/stock">View Stock Transactions</a>
+        <table>
+            <thead>
+            <tr>
+                <th><h1>STOCKS OWNED:</h1></th>
+                <th>TODAY</th>
+                <th>SHARES</th>
+            </tr>
+            </thead>
+            <tbody>
 
 
+            <th:block th:each="userStock : ${userStocks}">
+                <th:block th:if="${userStock.getShares() > 0}">
+                    <tr class="stock-row" th:id="${userStock.getStock().getName()}">
+                        <td th:text="${userStock.getStock().getName()}"></td>
+                        <td><span
+                                th:text="${#numbers.formatDecimal(userStock.getStock().getChange(), 0, 'DEFAULT', 2, 'DEFAULT')}"></span>%
+                        </td>
+                        <td th:text="${userStock.getShares()}"></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <ul style="display: none">
+                                <li>Open: <span th:text="${userStock.getStock().getOpenPrice()}"></span></li>
+                                <li>High: <span th:text="${userStock.getStock().getHighPrice()}"></span></li>
+                                <li>Low: <span th:text="${userStock.getStock().getLowPrice()}"></span></li>
+
+                                <li>Your Avg. Purchase Price: <span>Need to UPDATE</span></li>
+                                <li>Current Market Price: <span th:text="${userStock.getStock().getMarketPrice()}"></span></li>
+                                <li>Total Return Per Sale: <span>Need to fix</span></li>
+                            </ul>
+                        </td>
+                    </tr>
+                </th:block>
+            </th:block>
+
+
+            </tbody>
+        </table>
+    </div>
 </div>
-
 
 <footer th:replace="partials/fragments.html :: footer">
 </footer>
 <th:block th:include="partials/fragments.html :: scripts">
 </th:block>
+<script type="text/javascript" th:src="@{/js/lemonade-stand.js}"></script>
+
 </body>
 </html>
