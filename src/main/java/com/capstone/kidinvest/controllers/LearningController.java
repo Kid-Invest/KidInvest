@@ -27,10 +27,10 @@ public class LearningController {
         return "learning/stockQuiz";
     }
 
-    @PostMapping("/learning/stock/quiz")
-    public String doAddResultToBalance(){
-        return "learning/stockQuiz";
-    }
+//    @PostMapping("/learning/stock/quiz")
+//    public String doAddResultToBalance(){
+//        return "learning/stockQuiz";
+//    }
 
     @GetMapping("/learning/business/quiz")
     public String viewBusinessQuizPage(){
