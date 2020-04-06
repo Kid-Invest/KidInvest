@@ -22,6 +22,7 @@
         correctAnswer: 0
     }];
 
+    //defaults and buckets
     let resultArray = [];
     let currentQuestion = 0;
     let correctAnswers = 0;
@@ -37,19 +38,22 @@
         $(this).find(".nextButton").on("click", function () {
             if (!quizOver) {
 
+                //stores user answer
                 value = $("input[type='radio']:checked").val();
 
                 if (value == undefined) {
+                    //prompts user for an answer if they haven't selected an answer
                     $(document).find(".quizMessage").text("Please select an answer");
                     $(document).find(".quizMessage").show();
                 } else {
-                    // TODO: Remove any message -> not sure if this is efficient to call this each time....
+                    // hides message if they have now answered
                     $(document).find(".quizMessage").hide();
 
                     if (value == businessQuestions[currentQuestion].correctAnswer) {
                         correctAnswers++;
                     }
 
+                    //holds user answer and can be compared correct/incorrect later
                     let resultObject = {
                         question: businessQuestions[currentQuestion].question,
                         choices: businessQuestions[currentQuestion].choices,
@@ -58,13 +62,15 @@
                     };
                     resultArray.push(resultObject);
 
-                    currentQuestion++; // Since we have already displayed the first question on DOM ready
+                    currentQuestion++; // moves to next question
                     if (currentQuestion < (businessQuestions.length -1)) {
                         displayCurrentQuestion();
                     } else if(currentQuestion === (businessQuestions.length -1)){
+                        //last question button display changes to "submit"
                         displayCurrentQuestion();
                         $(document).find(".nextButton").text("Submit")
                     } else {
+                        // Quiz is now over
                         let questionClass = $(document).find(".quizContainer > .question");
                         let choiceList = $(document).find(".quizContainer > .choiceList");
                         $(questionClass).hide();
@@ -72,19 +78,14 @@
                         displayScore();
                         //                    $(document).find(".nextButton").toggle();
                         //                    $(document).find(".playAgainButton").toggle();
-                        // Change the text in the next button to ask if user wants to play again
                         $(document).find(".nextButton").hide();
                         quizOver = true;
                         displayResults();
                     }
                 }
             }
-            // else { // quiz is over and clicked the next button (which now displays 'Play Again?'
-            //     quizOver = false;
-            //     $(document).find(".nextButton").text("Next Question");
-            //     resetQuiz();
-            //     displayCurrentQuestion();
-            //     hideScore();
+            // else { // quiz is over Need to lock out of quiz and only show results
+            //     quizOver = true;
             // }
         });
 
@@ -132,10 +133,6 @@
             let numChoices = businessQuestions[i].choices.length;
             let choice;
 
-            console.log(resultArray[i].userAnswer);
-            console.log(typeof (resultArray[i].userAnswer));
-            console.log(resultArray[i].correctAnswer);
-            console.log(typeof (resultArray[i].correctAnswer));
 
             if(resultArray[i].userAnswer == resultArray[i].correctAnswer){
                 $('<div>' + resultArray[i].question + '</div>').appendTo(resultAll);
@@ -147,8 +144,6 @@
                         $('<li>' + choice + '</li>').appendTo(resultAll);
                     }
                 }
-                console.log(resultArray[i].userAnswer);
-                console.log(resultArray[i].correctAnswer);
             } else {
                 $('<div>' + resultArray[i].question + '</div>').appendTo(resultAll);
                 for (let j = 0; j < numChoices; j++) {
@@ -161,7 +156,6 @@
                         $('<li>' + choice + '</li>').appendTo(resultAll);
                     }
                 }
-                // console.log(resultArray[i].userAnswer);
             }
         }
     }
