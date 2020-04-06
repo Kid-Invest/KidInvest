@@ -81,6 +81,7 @@
                         $(document).find(".nextButton").hide();
                         quizOver = true;
                         displayResults();
+                        sendScoreToHTML();
                     }
                 }
             }
@@ -158,5 +159,11 @@
                 }
             }
         }
+    }
+
+    function sendScoreToHTML(){
+        let quizContainer = $(document).find(".quizContainer");
+        let thElement = ('<input th:name="quiz_result" id="quiz_result" th:value="'+ (correctAnswers * 1000) +'" hidden>');
+        $(thElement).appendTo(quizContainer)
     }
 }
