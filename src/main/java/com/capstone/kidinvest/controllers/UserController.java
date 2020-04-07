@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.List;
+import java.util.*;
 
 //@ComponentScan("com.capstone.kidinvest")
 @Controller
@@ -93,7 +93,46 @@ public class UserController {
     }
 
     @GetMapping("/profile/leaderboard")
-    public String viewLeaderboard(){
+    public String viewLeaderboard(Model view){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User dbUser = userDao.findUserById(user.getId());
+        List<UserStock> dbUserStockList = userStockDao.findUserStockByUserId(dbUser.getId());
+        List<User> userList = userDao.findAll();
+        //create hashmap
+        HashMap<String, Double> userMap = new HashMap<>();
+        //loop through all users
+        for(int i = 1; i < userList.size() + 1; i++){
+            User eachUser = userDao.findUserById(i);
+            List<UserStock> userStockList = userStockDao.findUserStockByUserId(i);
+            double stockValuation = 0;
+            for (UserStock userStock : userStockList) {
+                stockValuation += (userStock.getStock().getMarketPrice() * userStock.getShares());
+            }
+            //add balance
+            double portfolioValue = stockValuation + eachUser.getBalance();
+            //pass info into hashmap
+             String mappedName = eachUser.getUsername();
+            userMap.putIfAbsent(mappedName, portfolioValue);
+        };
+        //create list from elements of hashmap before sorting
+        List<HashMap.Entry<String, Double>> hmapList = new LinkedList<HashMap.Entry<String, Double>>(userMap.entrySet());
+        //sort the list
+        Collections.sort(hmapList, new Comparator<HashMap.Entry<String, Double>>() {
+            @Override
+            public int compare(Map.Entry<String, Double> o1, Map.Entry<String, Double> o2) {
+                return (o1.getValue()).compareTo(o2.getValue());
+            }
+        });
+        //put sorted data back into hashmap
+        HashMap<String, Double> sortedMap = new LinkedHashMap<String, Double>();
+        userMap.entrySet()
+                .stream()
+                .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+                .forEachOrdered(x -> sortedMap.put(x.getKey(), x.getValue()));
+
+        view.addAttribute("dbUser", dbUser);
+        //access sorted hashmap
+        view.addAttribute("sortedMap", sortedMap);
         return "user/leaderboard";
     }
 
