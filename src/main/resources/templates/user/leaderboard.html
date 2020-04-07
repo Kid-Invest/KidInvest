@@ -7,7 +7,7 @@
 
     <div class="container">
         <h1>Leaderboard</h1>
-<!--        <h5 th:text="${users.getValue(dbUser.getId())}"></h5>-->
+        <h5 th:text="${'Your Portfolio Value: $' + sortedMap.get(dbUser.getUsername())}"></h5>
         <table>
             <thead>
                 <tr>
@@ -19,9 +19,7 @@
                 <div th:each="entry : ${sortedMap}">
                     <tr>
                         <td th:text="${entry.key}"></td>
-                    </tr>
-                    <tr>
-                        <td th:text="${entry.value}"></td>
+                        <td th:text="${'$' + entry.value}"></td>
                     </tr>
                 </div>
             </tbody>
