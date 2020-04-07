@@ -11,16 +11,25 @@
         <table>
             <thead>
                 <tr>
+                    <th></th>
                     <th><h4>USERNAME</h4></th>
                     <th><h4>PORTFOLIO VALUE</h4></th>
                 </tr>
             </thead>
             <tbody>
-                <div th:each="entry : ${sortedMap}">
-                    <tr>
-                        <td th:text="${entry.key}"></td>
-                        <td th:text="${'$' + entry.value}"></td>
-                    </tr>
+                <div th:each="entry, iStat : ${sortedMap}">
+                    <div th:switch="${dbUser.getUsername() == entry.key}">
+                        <tr th:case="${true}" style="background-color: darkseagreen">
+                            <td th:text="${iStat.count}"></td>
+                            <td th:text="${entry.key}"></td>
+                            <td th:text="${'$' + entry.value}"></td>
+                        </tr>
+                        <tr th:case="*">
+                            <td th:text="${iStat.count}"></td>
+                            <td th:text="${entry.key}"></td>
+                            <td th:text="${'$' + entry.value}"></td>
+                        </tr>
+                    </div>
                 </div>
             </tbody>
         </table>
