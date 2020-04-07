@@ -68,20 +68,22 @@
                     } else if(currentQuestion === (stockQuestions.length -1)){
                         //last question button display changes to "submit"
                         displayCurrentQuestion();
-                        $(document).find(".nextButton").text("Submit")
+                        $(document).find(".nextButton").text("Submit");
                     } else {
                         // Quiz is now over
+                        $(document).find(".nextButton").html(
+                            '<button type="submit"></button>' +
+                            '<input th:name="quiz_result" id="quiz_result" th:value="' + (correctAnswers * 1000) + '" hidden>')
                         let questionClass = $(document).find(".quizContainer > .question");
                         let choiceList = $(document).find(".quizContainer > .choiceList");
                         $(questionClass).hide();
                         $(choiceList).hide();
                         displayScore();
-                        //                    $(document).find(".nextButton").toggle();
-                        //                    $(document).find(".playAgainButton").toggle();
-                        $(document).find(".nextButton").hide();
+
+                        // $(document).find(".nextButton").hide();
                         quizOver = true;
                         displayResults();
-                        sendScoreToHTML();
+                        // sendScoreToHTML();
                     }
                 }
             }
@@ -162,8 +164,8 @@
     }
 
     function sendScoreToHTML(){
-        let quizContainer = $(document).find(".quizContainer");
-        let thElement = ('<input th:name="quiz_result" id="quiz_result" th:value="'+ (correctAnswers * 1000) +'" hidden>');
-        $(thElement).appendTo(quizContainer)
+        let formContainer = $(document).find(".formContainer");
+        let thElement = ('<input th:name="quiz_result" id="quiz_result" th:value="' + (correctAnswers * 1000) + '">');
+        $(thElement).appendTo(formContainer)
     }
 }

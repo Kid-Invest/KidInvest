@@ -33,7 +33,7 @@ public class LearningController {
     @PostMapping("/learning/stock/quiz")
     public String doAddResultToBalance(@RequestParam String quiz_result){
         System.out.println(quiz_result);
-        return "learning/stockQuiz";
+        return "redirect:/learning/stock";
     }
 
     @GetMapping("/learning/business/quiz")
