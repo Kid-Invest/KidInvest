@@ -13,8 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 //@ComponentScan("com.capstone.kidinvest")
 @Controller
@@ -115,9 +114,25 @@ public class UserController {
             String mappedName = eachUser.getUsername();
             userMap.putIfAbsent(mappedName, portfolioValue);
         };
+        //create list from elements of hashmap before sorting
+        List<HashMap.Entry<String, Double>> hmapList = new LinkedList<HashMap.Entry<String, Double>>(userMap.entrySet());
+        //sort the list
+        Collections.sort(hmapList, new Comparator<HashMap.Entry<String, Double>>() {
+            @Override
+            public int compare(Map.Entry<String, Double> o1, Map.Entry<String, Double> o2) {
+                return (o1.getValue()).compareTo(o2.getValue());
+            }
+        });
+        //put sorted data back into hashmap
+        HashMap<String, Double> sortedMap = new LinkedHashMap<String, Double>();
+        userMap.entrySet()
+                .stream()
+                .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+                .forEachOrdered(x -> sortedMap.put(x.getKey(), x.getValue()));
+
         view.addAttribute("dbUser", dbUser);
-        //access hashmap
-        view.addAttribute("userMap", userMap);
+        //access sorted hashmap
+        view.addAttribute("sortedMap", sortedMap);
         return "user/leaderboard";
     }
 
