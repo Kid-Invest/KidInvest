@@ -14,4 +14,10 @@ public class HelloController {
     public String viewAboutUsPage(){
         return "aboutus";
     }
+
+    @GetMapping("/game")
+    public String viewGame() {
+
+        return "business/game";
+    }
 }

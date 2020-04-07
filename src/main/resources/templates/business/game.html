@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/fragments.html :: head(title = 'Canvas API')">
+</head>
+<body onload="init();">
+
+
+<th:block th:include="partials/fragments.html :: nav">
+</th:block>
+
+<h1>Hello</h1>
+<canvas id="demoCanvas" width="500" height="300"></canvas>
+
+
+<footer th:replace="partials/fragments.html :: footer">
+</footer>
+<th:block th:include="partials/fragments.html :: scripts">
+</th:block>
+<script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+<script type="text/javascript" th:src="@{/js/game.js}"></script>
+
+</body>
+</html>
