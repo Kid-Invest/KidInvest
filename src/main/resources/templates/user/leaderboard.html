@@ -5,7 +5,23 @@
 <body>
 <div th:include="partials/fragments :: nav"></div>
 
-    <h1>Leaderboard</h1>
+    <div class="container">
+        <h1>Leaderboard</h1>
+        <table>
+            <tr>
+                <th><h1>USERNAME</h1></th>
+                <th><h1>PORTFOLIO VALUE</h1></th>
+            </tr>
+            <tr>
+                <td>testUser</td>
+                <td>$10,000.00</td>
+            </tr>
+            <tr>
+                <td>daynaL</td>
+                <td>$9,925.00</td>
+            </tr>
+        </table>
+    </div>
 
 <th:block th:include="partials/fragments :: footer"/>
 <th:block th:include="partials/fragments :: scripts"/>
