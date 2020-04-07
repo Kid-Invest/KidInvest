@@ -7,6 +7,7 @@
 
     <div class="container">
         <h1>Leaderboard</h1>
+<!--        <h5 th:text="${users.getValue(dbUser.getId())}"></h5>-->
         <table>
             <thead>
                 <tr>
@@ -15,14 +16,12 @@
                 </tr>
             </thead>
             <tbody>
-                <div th:each="eachUser : ${eachUser}">
+                <div th:each="entry : ${userMap}">
                     <tr>
-                        <td th:text="${eachUser.username}"></td>
-                        <td>$10,000.00</td>
+                        <td th:text="${entry.key}"></td>
                     </tr>
                     <tr>
-                        <td>daynaL</td>
-                        <td>$9,925.00</td>
+                        <td th:text="${entry.value}"></td>
                     </tr>
                 </div>
             </tbody>

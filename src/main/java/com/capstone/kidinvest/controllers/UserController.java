@@ -100,7 +100,8 @@ public class UserController {
         List<UserStock> dbUserStockList = userStockDao.findUserStockByUserId(dbUser.getId());
         List<User> userList = userDao.findAll();
         //create hashmap
-        HashMap<Long, Double> userHash = new HashMap<>();
+        HashMap<String, Double> userMap = new HashMap<>();
+        //loop through all users
         for(int i = 1; i < userList.size(); i++){
             User eachUser = userDao.findUserById(i);
             List<UserStock> userStockList = userStockDao.findUserStockByUserId(i);
@@ -110,17 +111,13 @@ public class UserController {
             }
             //add balance
             double portfolioValue = stockValuation + eachUser.getBalance();
-
             //pass info into hashmap
-            userHash.putIfAbsent(eachUser.getId(), portfolioValue);
-//            view.addAttribute("eachUser", eachUser);
-//            view.addAttribute("portfolioValue", portfolioValue);
-//            view.addAttribute("userStocks", userStockList);
+            String mappedName = eachUser.getUsername();
+            userMap.putIfAbsent(mappedName, portfolioValue);
         };
         view.addAttribute("dbUser", dbUser);
-//        view.addAttribute("users", userList);
         //access hashmap
-        view.addAttribute("users", userHash);
+        view.addAttribute("userMap", userMap);
         return "user/leaderboard";
     }
 
