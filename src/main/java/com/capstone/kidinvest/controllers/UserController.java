@@ -101,7 +101,7 @@ public class UserController {
         //create hashmap
         HashMap<String, Double> userMap = new HashMap<>();
         //loop through all users
-        for(int i = 1; i < userList.size(); i++){
+        for(int i = 1; i < userList.size() + 1; i++){
             User eachUser = userDao.findUserById(i);
             List<UserStock> userStockList = userStockDao.findUserStockByUserId(i);
             double stockValuation = 0;
@@ -111,7 +111,7 @@ public class UserController {
             //add balance
             double portfolioValue = stockValuation + eachUser.getBalance();
             //pass info into hashmap
-            String mappedName = eachUser.getUsername();
+             String mappedName = eachUser.getUsername();
             userMap.putIfAbsent(mappedName, portfolioValue);
         };
         //create list from elements of hashmap before sorting
