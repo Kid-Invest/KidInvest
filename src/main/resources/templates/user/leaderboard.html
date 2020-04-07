@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
-<head th:include="partials/fragments :: head('Creators')">
+<head th:include="partials/fragments :: head('Leaderboard')">
 </head>
 <body>
 <div th:include="partials/fragments :: nav"></div>
@@ -8,18 +8,24 @@
     <div class="container">
         <h1>Leaderboard</h1>
         <table>
-            <tr>
-                <th><h1>USERNAME</h1></th>
-                <th><h1>PORTFOLIO VALUE</h1></th>
-            </tr>
-            <tr>
-                <td>testUser</td>
-                <td>$10,000.00</td>
-            </tr>
-            <tr>
-                <td>daynaL</td>
-                <td>$9,925.00</td>
-            </tr>
+            <thead>
+                <tr>
+                    <th><h4>USERNAME</h4></th>
+                    <th><h4>PORTFOLIO VALUE</h4></th>
+                </tr>
+            </thead>
+            <tbody>
+                <div th:each="eachUser : ${eachUser}">
+                    <tr>
+                        <td th:text="${eachUser.username}"></td>
+                        <td>$10,000.00</td>
+                    </tr>
+                    <tr>
+                        <td>daynaL</td>
+                        <td>$9,925.00</td>
+                    </tr>
+                </div>
+            </tbody>
         </table>
     </div>
 

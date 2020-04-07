@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.HashMap;
 import java.util.List;
 
 //@ComponentScan("com.capstone.kidinvest")
@@ -93,7 +94,33 @@ public class UserController {
     }
 
     @GetMapping("/profile/leaderboard")
-    public String viewLeaderboard(){
+    public String viewLeaderboard(Model view){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User dbUser = userDao.findUserById(user.getId());
+        List<UserStock> dbUserStockList = userStockDao.findUserStockByUserId(dbUser.getId());
+        List<User> userList = userDao.findAll();
+        //create hashmap
+        HashMap<Long, Double> userHash = new HashMap<>();
+        for(int i = 1; i < userList.size(); i++){
+            User eachUser = userDao.findUserById(i);
+            List<UserStock> userStockList = userStockDao.findUserStockByUserId(i);
+            double stockValuation = 0;
+            for (UserStock userStock : userStockList) {
+                stockValuation += (userStock.getStock().getMarketPrice() * userStock.getShares());
+            }
+            //add balance
+            double portfolioValue = stockValuation + eachUser.getBalance();
+
+            //pass info into hashmap
+            userHash.putIfAbsent(eachUser.getId(), portfolioValue);
+//            view.addAttribute("eachUser", eachUser);
+//            view.addAttribute("portfolioValue", portfolioValue);
+//            view.addAttribute("userStocks", userStockList);
+        };
+        view.addAttribute("dbUser", dbUser);
+//        view.addAttribute("users", userList);
+        //access hashmap
+        view.addAttribute("users", userHash);
         return "user/leaderboard";
     }
 
