@@ -92,4 +92,9 @@ public class UserController {
         return "user/profile";
     }
 
+    @GetMapping("/profile/leaderboard")
+    public String viewLeaderboard(){
+        return "user/leaderboard";
+    }
+
 }
