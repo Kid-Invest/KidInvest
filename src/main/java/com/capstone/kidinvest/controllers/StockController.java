@@ -43,7 +43,7 @@ public class StockController {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User dbUser = userDao.findUserById(user.getId());
         List<UserStock> userStockList = userStockDao.findUserStockByUserId(user.getId());
-        List<Stock> retrievedStockList = restService.parseJSONString(restService.getStocksPlainJSON());
+        List<Stock> retrievedStockList = restService.retrieveStockData(restService.getStocksPlainJSON());
         UserStock currentUserStock = null;
         List<Stock> stockList = stockDao.findAll();
         Stock currentStock = null;
@@ -92,34 +92,33 @@ public class StockController {
         List<UserStock> userStockList = userStockDao.findUserStockByUserId(user.getId());
         Stock selectedStock = stockDao.findStockByTicker(ticker);
         Timestamp time = new Timestamp(new java.util.Date().getTime());
-            for (UserStock userStock : userStockList){
-                if (userStock.getStock().getTicker().equalsIgnoreCase(ticker)){
-                    if (stockAction.equalsIgnoreCase("sell")){
-                        userStock.setShares(userStock.getShares() - stockShares);
-                    } else {
-                        userStock.setShares(userStock.getShares() + stockShares);
-                    }
-                    userStockDao.save(userStock);
+        for (UserStock userStock : userStockList) {
+            if (userStock.getStock().getTicker().equalsIgnoreCase(ticker)) {
+                if (stockAction.equalsIgnoreCase("sell")) {
+                    userStock.setShares(userStock.getShares() - stockShares);
+                } else {
+                    userStock.setShares(userStock.getShares() + stockShares);
                 }
+                userStockDao.save(userStock);
             }
-            // CHECKS FOR THE CORRESPONDING stockAction BUY/SELL
-            if (stockAction.equalsIgnoreCase("buy")){
-                //CHECKS IF USER HAS ENOUGH AND MAKES PURCHASE
-                if (dbUser.getBalance() >= Double.parseDouble(currentStock_total)) {
-                    dbUser.setBalance(dbUser.getBalance() - Double.parseDouble(currentStock_total));
-                    //   Save user's balance
-                    userDao.save(dbUser);
-                    // Update the stock transactions table
-                    stockTransactionDao.save(new StockTransaction(dbUser, selectedStock, stockShares, selectedStock.getMarketPrice(), time));
-                }
-            } else {
-                // stockAction "SELL" AND UPDATES USERS BALANCE
-                dbUser.setBalance(dbUser.getBalance() + Double.parseDouble(currentStock_total));
+        }
+        // CHECKS FOR THE CORRESPONDING stockAction BUY/SELL
+        if (stockAction.equalsIgnoreCase("buy")) {
+            //CHECKS IF USER HAS ENOUGH AND MAKES PURCHASE
+            if (dbUser.getBalance() >= Double.parseDouble(currentStock_total)) {
+                dbUser.setBalance(dbUser.getBalance() - Double.parseDouble(currentStock_total));
                 //   Save user's balance
                 userDao.save(dbUser);
-                stockTransactionDao.save(new StockTransaction(dbUser, selectedStock, -stockShares, selectedStock.getMarketPrice(), time));
+                // Update the stock transactions table
+                stockTransactionDao.save(new StockTransaction(dbUser, selectedStock, stockShares, selectedStock.getMarketPrice(), time));
             }
-
+        } else {
+            // stockAction "SELL" AND UPDATES USERS BALANCE
+            dbUser.setBalance(dbUser.getBalance() + Double.parseDouble(currentStock_total));
+            //   Save user's balance
+            userDao.save(dbUser);
+            stockTransactionDao.save(new StockTransaction(dbUser, selectedStock, -stockShares, selectedStock.getMarketPrice(), time));
+        }
 
 
         return "redirect:/stocks?ticker=" + ticker;
