@@ -5,109 +5,131 @@
 <body>
 <th:block th:include="partials/fragments.html :: nav">
 </th:block>
-<div>
-    <h1>BALANCE: $<span th:text="${user.balance}" th:id="user-balance">500</span> </h1>
+
+
+<div class="p-3">
+    <h2 class="mb-0">BALANCE: $<span th:text="${user.balance}" th:id="user-balance">500</span></h2>
     <h6>(Buying Power)</h6>
 </div>
-<br>
-<br>
 
-<div class="container">
-    <div class="row">
-    <h1 th:text="${currentStock.name}"></h1>
-    <h1 th:text="${currentStock.ticker}"></h1>
-    </div>
-    <div class="row">
-        <div class="col">
-            <h4>OPEN</h4>
-            <h5 th:text="${currentStock.getOpenPrice()}"></h5>
-            <h4>LOW</h4>
-            <h5 th:text="${currentStock.getLowPrice()}"></h5>
-            <h4>HIGH</h4>
-            <h5 th:text="${currentStock.getHighPrice()}"></h5>
-        </div>
-        <div class="col">
-            <h4>52-WEEK LOW</h4>
-            <h5 th:text="${currentStock.getYearLowPrice()}"></h5>
-            <h4>52-WEEK HIGH</h4>
-            <h5 th:text="${currentStock.getYearHighPrice()}"></h5>
-            <h4>MARKET PRICE</h4>
-            <h5 th:text="${currentStock.getMarketPrice()}"></h5>
-        </div>
-    </div>
-    <button type="button" data-target="#modal" data-toggle="modal" id="buyBtn">BUY</button>
-    <button th:if="${currentUserStock.shares > 0}" type="button" data-target="#modal" data-toggle="modal" id="sellBtn">
-        SELL</button>
 
-    <!-- MODAL -->
-    <form th:action="@{/stocks}" th:method="POST">
-        <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-             aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="" th:text="${currentStock.name}"></h5>
-                        <h5> - $<span th:text="${currentStock.marketPrice}" th:id="marketPrice"></span></h5>
-                        <h6>Currently Owned: <span th:text="${currentUserStock.shares}" id="ownShares"></span>
-                        </h6>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+<div class="container p-0 mb-3">
+    <div class="d-flex align-items-center mb-1">
+        <h1 class="ml-3 mr-4" th:text="${currentStock.name}">Sample Company</h1>
+        <h1 class="ml-3 mb-0" th:text="${currentStock.ticker}">SCC</h1>
+    </div>
+    <div class="row mx-3 d-flex justify-content-around stock-stats">
+        <div class="col p-0 mx-3 my-3 d-flex align-content-center flex-column text-center">
+            <h2 class="m-0">OPEN</h2>
+            <h4 class="pb-3" th:text="${currentStock.getOpenPrice()}">$30.00</h4>
+
+            <h2 class="m-0">LOW</h2>
+            <h4 class="pb-3" th:text="${currentStock.getLowPrice()}">$30.00</h4>
+
+            <h2 class="m-0">HIGH</h2>
+            <h4 th:text="${currentStock.getHighPrice()}">$30.00</h4>
+        </div>
+        <div class="col p-0 mx-3 my-3 d-flex align-content-center flex-column text-center">
+            <!--                <h2 class="m-0">52-WEEK LOW</h2>-->
+            <!--                <h4 class="pb-3" th:text="${currentStock.getYearLowPrice()}">$30.00</h4>-->
+
+            <!--                <h2 class="m-0">52-WEEK HIGH</h2>-->
+            <!--                <h4 class="pb-3" th:text="${currentStock.getYearHighPrice()}">$30.00</h4>-->
+
+            <h2 class="m-0">MARKET PRICE</h2>
+            <h4 th:text="${currentStock.getMarketPrice()}">$30.00</h4>
+        </div>
+        <div class="col py-3 mx-3 d-flex align-items-center justify-content-around flex-column text-center">
+            <button class="mx-3 mt-2 mb-1 buy-stock-btn" type="button" data-target="#modal" data-toggle="modal"
+                    id="buyBtn"><i class="far fa-money-bill-alt fa-md"></i> BUY
+            </button>
+            <button class="mx-3 mt-2 mb-1 sell-stock-btn" th:if="${currentUserStock.shares > 0}" type="button"
+                    data-target="#modal"
+                    data-toggle="modal" id="sellBtn"><i class="fas fa-hand-holding-usd fa-md"></i>
+                SELL
+            </button>
+        </div>
+    </div>
+</div>
+
+
+<!-- MODAL -->
+<form th:action="@{/stocks}" th:method="POST">
+    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <div class="d-flex flex-column">
+                        <div>
+                            <h5 class="mb-0"><span th:text="${currentStock.name}">Sample Company</span>
+                                $<span th:text="${currentStock.marketPrice}" th:id="marketPrice">100.00</span></h5>
+                        </div>
+                        <div>
+                            <h5 class="mb-0">Currently Owned:
+                                <span th:text="${currentUserStock.shares}" id="ownShares">4</span></h5>
+                        </div>
                     </div>
-                    <div class="modal-body">
-                        <h4><input th:value="0.00" th:name="currentStock_total" th:id="currentStock_total"></h4>
-                        <button type="button" id="subtract-btn">-</button>
-                        <input type="number" th:value="0" th:name="stockShares" th:id="currentStock">
-                        <input type="text" th:name="ticker" th:value="${currentStock.ticker}" hidden>
-                        <button type="button" id="add-btn">+</button>
-                    </div>
-                    <div class="modal-footer">
-                        <input type="text" th:name="stockAction" id="stockAction" th:value="buy" hidden>
-                        <button type="submit" id="modal-buy-sell-btn">Buy</button>
-                    </div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true"><i class="fas fa-times"></i></span></button>
+                </div>
+                <div class="modal-body text-center">
+                    <h4><input th:value="0.00" th:name="currentStock_total"
+                               th:id="currentStock_total" placeholder="Total Cost"
+                               class="current-stock-total mb-2 text-center" readonly></h4>
+                    <button type="button" id="subtract-btn"><i class="fas fa-minus"></i></button>
+                    <input type="number" th:value="0" class="text-center" placeholder="# Shares"
+                           th:name="stockShares"
+                           th:id="currentStock" readonly>
+                    <input type="text" th:name="ticker" th:value="${currentStock.ticker}" hidden>
+                    <button type="button" id="add-btn"><i class="fas fa-plus"></i></button>
+                </div>
+                <div class="modal-footer border-0">
+                    <input type="text" th:name="stockAction" id="stockAction" th:value="buy" hidden>
+                    <button type="submit" id="modal-buy-sell-btn" class="modal-buy-btn m-0">Buy</button>
                 </div>
             </div>
         </div>
-    </form>
-</div>
-<div class="container">
+    </div>
+</form>
+
 
 <div class="container">
-    <table>
-        <thead>
-        <tr>
-            <th>
-                <h6>NAME</h6>
-            </th>
-            <th>
-                <h6>TICKER</h6>
-            </th>
-            <th>
-                <h6>TODAY</h6>
-            </th>
-            <th>
-                <h6>MARKET PRICE</h6>
-            </th>
-        </tr>
-        </thead>
-        <tbody>
-        <th:block th:each="stock : ${stocks}">
-            <tr>
-                <td th:text="${stock.getName()}"></td>
-                <td th:text="${stock.getTicker()}"></td>
-                <td th:text="${stock.getChange() + '%'}"></td>
-                <td th:text="${stock.getMarketPrice()}"></td>
-                <td><a th:href="@{|/stocks?ticker=${stock.getTicker()}|}">View</a></td>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr class="text-center">
+                <th class="border-0">
+                    <p class="mb-0">NAME</p>
+                </th>
+                <th class="border-0">
+                    <p class="mb-0">TICKER</p>
+                </th>
+                <th class="border-0">
+                    <p class="mb-0">TODAY</p>
+                </th>
+                <th class="border-0">
+                    <p class="mb-0">MARKET PRICE</p>
+                </th>
             </tr>
-        </th:block>
-        </tbody>
-    </table>
-
-
+            </thead>
+            <tbody>
+            <th:block th:each="stock : ${stocks}">
+                <tr class="text-center table-stocks">
+                    <td class="align-middle border-0" th:text="${stock.getName()}">Sample Company</td>
+                    <td class="align-middle border-0" th:text="${stock.getTicker()}">SCC</td>
+                    <td class="align-middle border-0" th:text="${stock.getChange() + '%'}">-3.48%</td>
+                    <td class="align-middle border-0" th:text="${stock.getMarketPrice()}">$32</td>
+                    <td class="align-middle border-0 text-center"><a th:href="@{|/stocks?ticker=${stock.getTicker()}|}"
+                                                                     href="#">View</a></td>
+                </tr>
+            </th:block>
+            </tbody>
+        </table>
+    </div>
 </div>
 
-<footer th:replace="partials/fragments.html :: footer">
-</footer>
+<footer th:replace="partials/fragments.html :: footer"></footer>
 <th:block th:include="partials/fragments.html :: scripts">
 </th:block>
 <script type="text/javascript" th:src="@{/js/stock-buy-sell.js}"></script>

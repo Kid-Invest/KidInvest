@@ -1,14 +1,28 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head th:include="partials/fragments :: head(Home)">
+    <meta charset="UTF-8">
+    <!-- Required meta tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/81b9c5abe3.js" crossorigin="anonymous"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../static/css/custom.css">
+    <title th:text="${title}"></title>
 </head>
 <body>
 <div th:include="partials/fragments :: nav"></div>
 
         <div class="container">
-            <h1>Welcome to Kid Invest!!</h1>
-            <h1> - From Dayna, Charlie, and Hung</h1>
-            <br>
+            <div class="main-content d-flex flex-column justify-content-center align-items-center">
+                <h1 class="mb-0">Welcome to <span class="homepage-logo">Kid Invest</span></h1>
+                <h3>Nothing sour here, just money!</h3>
+                <a href="/login" class="mt-4"><button class="buy-stock-btn">Start Investing</button></a>
+            </div>
         </div>
 
 <th:block th:include="partials/fragments :: footer"/>

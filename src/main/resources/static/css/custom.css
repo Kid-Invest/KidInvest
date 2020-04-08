@@ -1,3 +1,289 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&family=Sniglet:wght@400;800&display=swap');
+
+:root{
+    --primary-gold-color: #FFB202;
+    --deep-pink-color: #FE0298;
+    --medium-violet: #94227F;
+    --dark-magenta: #510F47;
+    --dark-orange: #FF3E02;
+    --royal-blue: #085EE5;
+    --cadet-blue: #51B9BE;
+    --dark-cyan: #264C51;
+    --green: #377221;
+    --font-primary: #FFFFEB;
+    --font-cream-color: #FDDFB9;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--cadet-blue);
+    color: #fff;
+    font-family: 'Sniglet', cursive;
+}
+
+
+/*NAVBAR*/
+.navbar {
+    color: #fff;
+    background-color: var(--dark-cyan);
+}
+.navbar-brand {
+    color: #fff;
+    font-size: 25px;
+    font-weight: 800;
+}
+.navbar-toggler-icon {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    padding-left: 40px;
+}
+ul li a.nav-link {
+    color: #fff;
+}
+.logout-btn {
+    background: none;
+    border: none;
+    color: #fff;
+}
+ul li a.nav-link:hover,
+.logout-btn:hover,
+.navbar-brand:hover,
+.navbar-toggler-icon:hover {
+    color: var(--primary-gold-color);
+}
+.navbar-toggler:focus{
+    outline: 0;
+}
+
+
+/*HOME PAGE*/
+.main-content {
+    min-height: 100vh;
+    margin: 0;
+}
+.main-content>h1 {
+    text-align: center;
+    font-size: 4em;
+}
+.homepage-logo {
+    color: var(--primary-gold-color);
+    font-weight: 800;
+}
+
+
+/*STOCKS CONTAINER*/
+.stock-stats {
+    border: 2px var(--dark-cyan) solid;
+    border-radius: 10px;
+    background-color: var(--dark-cyan);
+}
+.buy-stock-btn, .sell-stock-btn {
+    padding: 0;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 25px;
+    color: var(--dark-cyan);
+    height: 2em;
+    width: 10em;
+    background-color: var(--primary-gold-color);
+    border: 3px var(--primary-gold-color) solid;
+    border-radius: 50px;
+}
+.buy-stock-btn:focus, .sell-stock-btn:focus {
+    outline: 0;
+}
+.buy-stock-btn:hover, .sell-stock-btn:hover {
+    color: #fff;
+    transition: color .2s ease-in;
+}
+
+
+/*TABLE CONTAINER*/
+table {
+    border-radius: 10px;
+    background-color: var(--dark-cyan);
+}
+/*tbody {*/
+/*    border: 1px #fff solid;*/
+/*    border-radius: 10px;*/
+/*    border-top: none;*/
+/*}*/
+th {
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+td {
+    font-size: 1.2em;
+}
+th, td {
+    color: var(--font-primary);
+}
+td>a {
+    background-color: var(--primary-gold-color);
+    border: 3px var(--primary-gold-color) solid;
+    border-radius: 50px;
+    text-decoration: none;
+    color: var(--dark-cyan);
+    padding: 2px 20px;
+}
+td>a:hover {
+    color: #fff;
+    text-decoration: none;
+    transition: color .2s ease-in;
+}
+td>a:focus{
+    outline: 0;
+}
+tbody tr:nth-child(even){
+    background-color: #64A6AD;
+}
+tbody tr:nth-child(odd){
+    background-color: var(--cadet-blue);
+}
+
+tbody.dropdown-row tr:nth-child(2n+0) {
+    background-color: var(--cadet-blue);
+}
+
+
+/*STOCK MODAL*/
+.modal-content {
+    border-radius: 10px;
+    background-color: var(--dark-cyan);
+
+}
+.current-stock-total, input[type=number] {
+    background-color: var(--dark-cyan);
+    border-width: 0 0 2px;
+    border-color: #fff;
+    color: #fff;
+    outline: 0;
+}
+.fa-minus, .fa-plus {
+    padding-top: 1px;
+    color: var(--dark-cyan);
+    width: 1em;
+}
+#subtract-btn, #add-btn {
+    border: 2px var(--primary-gold-color) solid;
+    border-radius: 10px;
+    padding: 2px;
+    background-color: var(--primary-gold-color);
+}
+input[type=number] {
+    width: 15%;
+    -moz-appearance: textfield;
+}
+/*CHROME, SAFARI, EDGE, OPERA*/
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.modal-buy-btn {
+    padding: 0;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 15px;
+    color: var(--dark-cyan);
+    height: 2em;
+    width: 5em;
+    background-color: var(--primary-gold-color);
+    border: 2px var(--primary-gold-color) solid;
+    border-radius: 50px;
+}
+.modal-buy-btn:hover {
+    color: #fff;
+    transition: color .2s ease-in;
+}
+::placeholder {
+    color: #fff;
+    opacity: 1;
+}
+.modal-buy-btn:focus, #subtract-btn:focus, #add-btn:focus, .close:focus {
+    outline: 0;
+}
+
+
+/*REGISTER*/
+.register-body, .login-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+}
+.register-body .container, .login-body .container {
+    padding: 2rem;
+    border: 3px var(--dark-cyan) solid;
+    border-radius: 10px;
+    background-color: var(--dark-cyan);
+}
+.login-body .container, .register-body .container {
+    max-width: 400px;
+}
+.login-warn {
+    color: var(--dark-orange);
+}
+.invest {
+    font-size: 50px;
+    font-weight: 800;
+}
+.sign-up, .login-body h1 {
+    color: var(--primary-gold-color);
+    font-weight: 600;
+}
+input[type=text].email,
+input[type=text].username,
+input[type=password].password,
+input[type=password].password{
+    background-color: var(--dark-cyan);
+    border-width: 0 0 2px;
+    border-color: #fff;
+    color: #fff;
+    outline: 0;
+}
+.register-btn, .login-btn {
+    padding: 0;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 18px;
+    color: var(--dark-cyan);
+    height: 2em;
+    width: 8em;
+    background-color: var(--primary-gold-color);
+    border: 2px var(--primary-gold-color) solid;
+    border-radius: 50px;
+}
+.register-btn:hover, .login-btn:hover {
+    color: #fff;
+    transition: color .2s ease-in;
+}
+
+
+/*PROFILE PAGE*/
+.profile-stocks {
+    background-color: var(--dark-cyan);
+    border: 1px var(--dark-cyan) solid;
+    border-radius: 10px;
+    max-width: 1078px;
+}
+.stat-title {
+    font-size: 20px;
+}
+.dropdown-row {
+    background-color: var(--cadet-blue);
+}
+
+
+
+
 .hideBtn {
     display: none;
 }

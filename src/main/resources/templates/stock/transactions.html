@@ -1,51 +1,69 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="partials/fragments.html :: head(title = 'Stock Page')">
+    <meta charset="UTF-8">
+    <!-- Required meta tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/81b9c5abe3.js" crossorigin="anonymous"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../static/css/custom.css">
+    <title th:text="${title}"></title>
 </head>
 <body>
 <th:block th:include="partials/fragments.html :: nav">
 </th:block>
 
-    <div class="container-fluid">
-        <div>
-            <h1>STOCK TRANSACTIONS</h1>
-            <h3>RECENT HISTORY</h3>
-        </div>
-        <br>
-        <br>
-        <table>
+<div class="container">
+    <div class="pt-3">
+        <h1 class="mb-0">STOCK TRANSACTIONS</h1>
+        <h3>RECENT HISTORY</h3>
+    </div>
+    <br>
+    <br>
+</div>
+
+<div class="container">
+    <div class="table-responsive">
+        <table class="table">
             <thead>
-            <tr>
-                <th>
-                    <h4>STOCK NAME</h4>
-                </th>
-                <th>
-                    <h4>DATE</h4>
-                </th>
-                <th>
-                    <h4>SHARES BOUGHT/SOLD</h4>
-                </th>
-                <th>
-                    <h4>PRICE</h4>
-                </th>
-                <th>
-                    <h4>GAIN/LOSS</h4>
-                </th>
-            </tr>
+                <tr class="text-center">
+                    <th class="border-0">
+                        <p class="mb-0">NAME</p>
+                    </th>
+                    <th class="border-0">
+                        <p class="mb-0">DATE</p>
+                    </th>
+                    <th class="border-0">
+                        <p class="mb-0">SHARES BOUGHT/SOLD</p>
+                    </th>
+                    <th class="border-0">
+                        <p class="mb-0">PRICE</p>
+                    </th>
+                    <th class="border-0">
+                        <p class="mb-0">GAIN/LOSS</p>
+                    </th>
+                </tr>
             </thead>
             <tbody>
-            <th:block th:each="transaction : ${stockTransactions}">
-                <tr>
-                    <td th:text="${transaction.getStock().getName()}"></td>
-                    <td th:text="${transaction.getTime()}"></td>
-                    <td th:text="${transaction.getSharesBoughtSold()}"></td>
-                    <td th:text="${transaction.getPrice()}"></td>
-                    <td th:text="${-(transaction.getSharesBoughtSold() * transaction.getPrice())}"></td>
-                </tr>
-            </th:block>
+                <th:block th:each="transaction : ${stockTransactions}">
+                    <tr class="text-center">
+                        <td class="align-middle border-0" th:text="${transaction.getStock().getName()}">Sample Company</td>
+                        <td class="align-middle border-0" th:text="${transaction.getTime()}">10/10/10 00:00:00</td>
+                        <td class="align-middle border-0" th:text="${transaction.getSharesBoughtSold()}">4</td>
+                        <td class="align-middle border-0" th:text="${transaction.getPrice()}">$25.00</td>
+                        <td class="align-middle border-0"
+                            th:text="${-(transaction.getSharesBoughtSold() * transaction.getPrice())}">$100</td>
+                    </tr>
+                </th:block>
             </tbody>
         </table>
     </div>
+</div>
 
 
 <footer th:replace="partials/fragments.html :: footer">
