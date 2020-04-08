@@ -23,7 +23,7 @@
     }];
 
     //defaults and buckets
-    let resultArray = [];
+    let stockResultArray = [];
     let currentQuestion = 0;
     let correctAnswers = 0;
     let quizOver = false;
@@ -33,6 +33,7 @@
         // Display the first question
         displayCurrentQuestion();
         $(this).find(".quizMessage").hide();
+        $(document).find("#formSubmit").hide();
 
         // On clicking next, display the next question
         $(this).find(".nextButton").on("click", function () {
@@ -60,30 +61,31 @@
                         correctAnswer: stockQuestions[currentQuestion].correctAnswer,
                         userAnswer: value
                     };
-                    resultArray.push(resultObject);
+                    stockResultArray.push(resultObject);
 
                     currentQuestion++; // moves to next question
-                    if (currentQuestion < (stockQuestions.length -1)) {
+                    if (currentQuestion < (stockQuestions.length - 1)) {
                         displayCurrentQuestion();
-                    } else if(currentQuestion === (stockQuestions.length -1)){
+                    } else if(currentQuestion === (stockQuestions.length - 1)){
                         //last question button display changes to "submit"
                         displayCurrentQuestion();
                         $(document).find(".nextButton").text("Submit");
                     } else {
                         // Quiz is now over
-                        $(document).find(".nextButton").html(
-                            '<button type="submit"></button>' +
-                            '<input th:name="quiz_result" id="quiz_result" th:value="' + (correctAnswers * 1000) + '" hidden>')
-                        let questionClass = $(document).find(".quizContainer > .question");
-                        let choiceList = $(document).find(".quizContainer > .choiceList");
-                        $(questionClass).hide();
-                        $(choiceList).hide();
-                        displayScore();
+                        $(document).find(".nextButton").hide();
 
-                        // $(document).find(".nextButton").hide();
+                            // html('<button type="submit"></button>' +
+                            // '<input th:name="quiz_result" id="quiz_result" th:value="' + (correctAnswers * 1000) + '" hidden>');
+                        $(document).find(".quizContainer > .question").hide();
+                        $(document).find(".quizContainer > .choiceList").hide();
+                        displayScore();
                         quizOver = true;
-                        displayResults();
+
+                        // displayResults();
                         // sendScoreToHTML();
+                        $(document).find("#formSubmit").show();
+                            // .append('<button type="submit" id="viewResultsBtn">View Results</button>' +
+                            // '<input th:name="quiz_result" id="quiz_result" th:value="0" hidden>');
                     }
                 }
             }
@@ -92,25 +94,26 @@
             // }
         });
 
+        //this is where i should code the onclick
+        $('#viewResultsBtn').on("click", function(){
+            $('#quiz_result').val(correctAnswers * 500);
+            // displayResults();
+        });
     });
 
 // This displays the current question AND the choices
     function displayCurrentQuestion() {
-
-        console.log("In display current Question");
-
         let question = stockQuestions[currentQuestion].question;
         let questionClass = $(document).find(".quizContainer > .question");
         let choiceList = $(document).find(".quizContainer > .choiceList");
         let numChoices = stockQuestions[currentQuestion].choices.length;
+        let choice;
 
         // Set the questionClass text to the current question
         $(questionClass).text(question);
-
         // Remove all current <li> elements (if any)
         $(choiceList).find("li").remove();
 
-        let choice;
         for (let i = 0; i < numChoices; i++) {
             choice = stockQuestions[currentQuestion].choices[i];
             $('<li><input type="radio" value="' + i + '" name="dynradio" />' + choice + '</li>').appendTo(choiceList);
@@ -127,15 +130,12 @@
         $(document).find(".result").hide();
     }
 
-    function displayResults() {
-
-        let resultAll = $(document).find(".resultAll");
+    function displayResults(resultArray) {
+        let resultAll = $(document).find("#resultPage");
 
         for(let i = 0; i < resultArray.length; i++){
-
             let numChoices = stockQuestions[i].choices.length;
             let choice;
-
 
             if(resultArray[i].userAnswer == resultArray[i].correctAnswer){
                 $('<div>' + resultArray[i].question + '</div>').appendTo(resultAll);

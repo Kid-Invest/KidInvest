@@ -5,7 +5,7 @@
 <body>
 <div th:include="partials/fragments :: nav"></div>
 
-<form th:action="@{/business/stock/quiz}" th:method="POST">
+<form th:action="@{/learning/stock/quiz}" th:method="POST">
     <div class="quizContainer container">
         <h1>Take the Stock Quiz!</h1>
 
@@ -16,12 +16,17 @@
         <div class="resultAll"></div>
         <div class="nextButton">Next Question</div>
         <br>
+        <div id="formSubmit">
+            <button type="submit" id="viewResultsBtn">View Results</button>
+            <input th:name="quiz_result" id="quiz_result" th:value="0" hidden>
+        </div>
+
     </div>
 </form>
 
 <th:block th:include="partials/fragments :: footer"/>
 <th:block th:include="partials/fragments :: scripts"/>
-<script type="text/javascript" th:src="@{/js/quiz.js}"></script>
+<!--<script type="text/javascript" th:src="@{/js/quiz.js}"></script>-->
 <script type="text/javascript" th:src="@{/js/stockQuiz.js}"></script>
 </body>
 </html>

@@ -57,15 +57,7 @@ public class BusinessController {
 
     @PostMapping("/business/addon")
     public String doAddonPurchase(@RequestParam long id) {
-//        System.out.println("Candy Machine: " + addon_id1);
-//        System.out.println("Radio: " + addon_id2);
-//        System.out.println("Sign: " + addon_id3);
-//        System.out.println("Cooler: " + addon_id4);
-//        System.out.println("water filter machine: " + addon_id5);
 
-        System.out.println(id);
-
-        //List<Addon> addonList = addonDao.findAddonByBusinessId(1);
         // Subtract from user's balance
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User dbUser = userDao.findUserById(user.getId());

@@ -23,7 +23,7 @@
     }];
 
     //defaults and buckets
-    let resultArray = [];
+    let businessResultArray = [];
     let currentQuestion = 0;
     let correctAnswers = 0;
     let quizOver = false;
@@ -60,7 +60,7 @@
                         correctAnswer: businessQuestions[currentQuestion].correctAnswer,
                         userAnswer: value
                     };
-                    resultArray.push(resultObject);
+                    businessResultArray.push(resultObject);
 
                     currentQuestion++; // moves to next question
                     if (currentQuestion < (businessQuestions.length -1)) {
@@ -80,7 +80,7 @@
                         //                    $(document).find(".playAgainButton").toggle();
                         $(document).find(".nextButton").hide();
                         quizOver = true;
-                        displayResults();
+                        displayResults(businessResultArray);
                     }
                 }
             }
@@ -124,7 +124,7 @@
         $(document).find(".result").hide();
     }
 
-    function displayResults() {
+    function displayResults(resultArray) {
 
         let resultAll = $(document).find(".resultAll");
 
