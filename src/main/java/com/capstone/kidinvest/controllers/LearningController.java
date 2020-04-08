@@ -38,20 +38,20 @@ public class LearningController {
     }
 
     @PostMapping("/learning/stock/quiz")
-    public String doAddStockResultToBalance(@RequestParam String quiz_result){
+    public String doAddStockResultToBalance(@RequestParam String quiz_result, @RequestParam String quiz_boolean){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User dbUser = userDao.findUserById(user.getId());
         // Increase user's balance based off quiz result ($500/correct answer)
         dbUser.setBalance(dbUser.getBalance() + Double.parseDouble(quiz_result));
         // Save user's balance
         userDao.save(dbUser);
-        return "redirect:/learning";
+        return "learning/stockQuiz";
     }
 
     @GetMapping("/learning/business/quiz")
     public String viewBusinessQuizPage(){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        return "redirect:/learning";
+        return "learning/businessQuiz";
     }
 
     @PostMapping("/learning/business/quiz")
