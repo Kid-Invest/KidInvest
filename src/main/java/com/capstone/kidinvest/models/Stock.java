@@ -76,6 +76,13 @@ public class Stock {
         this.yearHighPrice = yearHighPrice;
     }
 
+    public Stock(double marketPrice, double openPrice, double lowPrice, double highPrice) {
+        this.marketPrice = marketPrice;
+        this.openPrice = openPrice;
+        this.lowPrice = lowPrice;
+        this.highPrice = highPrice;
+    }
+
     // Getters
     public long getId() {
         return this.id;

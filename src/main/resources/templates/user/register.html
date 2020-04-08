@@ -1,41 +1,53 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="partials/fragments.html :: head(title = 'Register with Kid Invest!')">
+        <meta charset="UTF-8">
+        <!-- Required meta tags -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+              integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <!-- Font Awesome -->
+        <script src="https://kit.fontawesome.com/81b9c5abe3.js" crossorigin="anonymous"></script>
+        <!-- Custom CSS -->
+        <link rel="stylesheet" type="text/css" href="../../static/css/custom.css"/>
 </head>
-<body>
+<body class="register-body">
 <th:block th:include="partials/fragments.html :: nav"/>
+    <div class="text-center px-2">
+        <h3>WHEN THE WORLD GIVES YOU <span class="lemons">LEMONS</span>,</h3>
+        <h1 class="invest">INVEST!</h1>
+    </div>
 
-
-        <h3>WHEN THE WORLD GIVES YOU LEMONS,</h3>
-        <h1>INVEST</h1>
-        <br>
-        <h4>SIGN-UP</h4>
-
-        <form th:action="@{/register}" th:method="POST" th:object="${user}">
-            <label th:for="email">
-                Email:
-                <input type="text" th:field="*{email}" placeholder="email...">
+<div class="container">
+    <h1 class="text-center mb-4 sign-up">SIGN-UP</h1>
+    <form th:action="@{/register}" th:method="POST" th:object="${user}">
+        <div class="d-flex flex-column justify-content-center align-items-center">
+           <label th:for="email">
+               <input type="text" class="email" th:field="*{email}" placeholder="Email">
             </label>
             <br>
             <label th:for="username">
-                Username:
-                <input type="text" th:field="*{username}" placeholder="username...">
+                <input type="text" class="username" th:field="*{username}" placeholder="Username">
             </label>
             <br>
             <label th:for="password">
-                Password:
-                <input type="password" th:field="*{password}" placeholder="password...">
+                <input type="password" class="password" th:field="*{password}" placeholder="Password">
             </label>
             <br>
             <label th:for="confirm">
-                Confirm password:
-                <input type="password" th:id="confirm" th:name="confirm" placeholder="confirm password...">
+                <input type="password" class="password" th:id="confirm" th:name="confirm"
+                       placeholder="Confirm password">
             </label>
             <br>
-            <button type="submit">Register</button>
-        </form>
-        <a href="/login"><button>Login</button></a>
-
+            <button type="submit" class="register-btn mt-1">Register</button>
+        </div>
+    </form>
+    <div class="d-flex justify-content-center align-items-center pt-2 mb-0">
+        <a href="/login"><button class="login-btn">Login</button></a>
+    </div>
+</div>
 
 <footer th:replace="partials/fragments.html :: footer"></footer>
 <th:block th:include="partials/fragments.html :: scripts"/>

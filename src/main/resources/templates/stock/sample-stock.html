@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <!-- Required meta tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/81b9c5abe3.js" crossorigin="anonymous"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="../../static/css/custom.css"/>
+</head>
+<body class="stock-body">
+    <th:block th:include="partials/fragments.html :: nav">
+    </th:block>
+
+    <!--NAVBAR START-->
+        <nav class="navbar navbar-expand-lg">
+            <a class="navbar-brand" href="/">Kid Invest</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="custom-toggler navbar-toggler-icon"><i class="fas fa-bars"></i></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto text-right">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/profile">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/stocks">Stocks</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/business">Lemonade Stand</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/learning">Learning</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/home/aboutus">About Us</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="!isAuthenticated()">
+                        <a class="nav-link" href="/register">Register Account</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="!isAuthenticated()">
+                        <a class="nav-link" href="/login">Login</a>
+                    </li>
+                    <li class="nav-item d-flex justify-content-end" sec:authorize="isAuthenticated()">
+                        <form th:action="@{/logout}" th:method="post">
+                            <button type="submit" class="nav-link logout-btn">Logout</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    <!--NAVBAR END-->
+
+
+    <div class="p-3">
+        <h2 class="mb-0">BALANCE: $<span th:text="${user.balance}" th:id="user-balance">500</span> </h2>
+        <h6>(Buying Power)</h6>
+    </div>
+
+
+    <div class="container p-0 mb-3">
+        <div class="d-flex align-items-center mb-1">
+            <h1 class="ml-3 mr-4" th:text="${currentStock.name}">Sample Company</h1>
+            <h1 class="ml-3 mb-0" th:text="${currentStock.ticker}">SCC</h1>
+        </div>
+        <div class="row mx-3 d-flex justify-content-around stock-stats">
+            <div class="col p-0 mx-3 my-3 d-flex align-content-center flex-column text-center">
+                <h2 class="m-0">OPEN</h2>
+                <h4 class="pb-3" th:text="${currentStock.getOpenPrice()}">$30.00</h4>
+
+                <h2 class="m-0">LOW</h2>
+                <h4 class="pb-3" th:text="${currentStock.getLowPrice()}">$30.00</h4>
+
+                <h2 class="m-0">HIGH</h2>
+                <h4 th:text="${currentStock.getHighPrice()}">$30.00</h4>
+            </div>
+            <div class="col p-0 mx-3 my-3 d-flex align-content-center flex-column text-center">
+                <h2 class="m-0">52-WEEK LOW</h2>
+                <h4 class="pb-3" th:text="${currentStock.getYearLowPrice()}">$30.00</h4>
+
+                <h2 class="m-0">52-WEEK HIGH</h2>
+                <h4 class="pb-3" th:text="${currentStock.getYearHighPrice()}">$30.00</h4>
+
+                <h2 class="m-0">MARKET PRICE</h2>
+                <h4 th:text="${currentStock.getMarketPrice()}">$30.00</h4>
+            </div>
+            <div class="col py-3 mx-3 d-flex align-items-center justify-content-around flex-column text-center">
+                <button class="mx-3 mt-2 mb-1 buy-stock-btn" type="button" data-target="#modal" data-toggle="modal"
+                        id="buyBtn"><i class="far fa-money-bill-alt fa-md"></i>  BUY
+                </button>
+                <button class="mx-3 mt-2 mb-1 sell-stock-btn" th:if="${currentUserStock.shares > 0}" type="button"
+                        data-target="#modal"
+                        data-toggle="modal" id="sellBtn"><i class="fas fa-hand-holding-usd fa-md"></i>
+                    SELL</button>
+            </div>
+        </div>
+    </div>
+
+
+        <!-- MODAL -->
+        <form th:action="@{/stocks}" th:method="POST">
+            <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+                 aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header border-0">
+                            <div class="d-flex flex-column">
+                                <div>
+                                    <h5 class="mb-0"><span th:text="${currentStock.name}">Sample Company</span>
+                                        $<span th:text="${currentStock.marketPrice}" th:id="marketPrice">100.00</span></h5>
+                                </div>
+                                <div>
+                                    <h5 class="mb-0">Currently Owned:
+                                        <span th:text="${currentUserStock.shares}" id="ownShares">4</span></h5>
+                                </div>
+                            </div>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fas fa-times"></i></span></button>
+                        </div>
+                        <div class="modal-body text-center">
+                            <h4><input th:value="0.00" th:name="currentStock_total"
+                                       th:id="currentStock_total" placeholder="Total Cost"
+                                       class="current-stock-total mb-2 text-center"
+                                       disabled></h4>
+                            <button type="button" id="subtract-btn"><i class="fas fa-minus"></i></button>
+                            <input type="number" th:value="0" class="text-center" placeholder="# Shares"
+                                   th:name="stockShares"
+                                   th:id="currentStock">
+                            <input type="text" th:name="ticker" th:value="${currentStock.ticker}" hidden>
+                            <button type="button" id="add-btn"><i class="fas fa-plus"></i></button>
+                        </div>
+                        <div class="modal-footer border-0">
+                            <input type="text" th:name="stockAction" id="stockAction" th:value="buy" hidden>
+                            <button type="submit" id="modal-buy-sell-btn" class="modal-buy-btn m-0">Buy</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+
+    <div class="container">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr class="text-center">
+                        <th class="border-0">
+                            <p class="mb-0">NAME</p>
+                        </th>
+                        <th class="border-0">
+                            <p class="mb-0">TICKER</p>
+                        </th>
+                        <th class="border-0">
+                            <p class="mb-0">TODAY</p>
+                        </th>
+                        <th class="border-0">
+                            <p class="mb-0">MARKET PRICE</p>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <th:block th:each="stock : ${stocks}">
+                        <tr class="text-center table-stocks">
+                            <td class="align-middle border-0" th:text="${stock.getName()}">Sample Company</td>
+                            <td class="align-middle border-0" th:text="${stock.getTicker()}">SCC</td>
+                            <td class="align-middle border-0" th:text="${stock.getChange() + '%'}">-3.48%</td>
+                            <td class="align-middle border-0" th:text="${stock.getMarketPrice()}">$32</td>
+                            <td class="align-middle border-0 text-center"><a th:href="@{|/stocks?ticker=${stock.getTicker()}|}"
+                                                                 href="#">View</a></td>
+                        </tr>
+                        <tr class="text-center table-stocks">
+                            <td class="align-middle border-0" th:text="${stock.getName()}">Sample Company</td>
+                            <td class="align-middle border-0" th:text="${stock.getTicker()}">SCC</td>
+                            <td class="align-middle border-0" th:text="${stock.getChange() + '%'}">-3.48%</td>
+                            <td class="align-middle border-0" th:text="${stock.getMarketPrice()}">$32</td>
+                            <td class="align-middle border-0 text-center"><a th:href="@{|/stocks?ticker=${stock.getTicker()}|}"
+                                                                             href="#">View</a></td>
+                        </tr>
+                        <tr class="text-center table-stocks">
+                            <td class="align-middle border-0" th:text="${stock.getName()}">Sample Company</td>
+                            <td class="align-middle border-0" th:text="${stock.getTicker()}">SCC</td>
+                            <td class="align-middle border-0" th:text="${stock.getChange() + '%'}">-3.48%</td>
+                            <td class="align-middle border-0" th:text="${stock.getMarketPrice()}">$32</td>
+                            <td class="align-middle border-0 text-center"><a th:href="@{|/stocks?ticker=${stock.getTicker()}|}"
+                                                                             href="#">View</a></td>
+                        </tr>
+                        <tr class="text-center table-stocks">
+                            <td class="align-middle border-0" th:text="${stock.getName()}">Sample Company</td>
+                            <td class="align-middle border-0" th:text="${stock.getTicker()}">SCC</td>
+                            <td class="align-middle border-0" th:text="${stock.getChange() + '%'}">-3.48%</td>
+                            <td class="align-middle border-0" th:text="${stock.getMarketPrice()}">$32</td>
+                            <td class="align-middle border-0 text-center"><a th:href="@{|/stocks?ticker=${stock.getTicker()}|}"
+                                                                             href="#">View</a></td>
+                        </tr>
+                    </th:block>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+<footer th:replace="partials/fragments.html :: footer"></footer>
+<th:block th:include="partials/fragments.html :: scripts">
+</th:block>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+<script type="text/javascript" th:src="@{/js/stock-buy-sell.js}"></script>
+</body>
+</html>
