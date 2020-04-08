@@ -28,12 +28,14 @@
     let correctAnswers = 0;
     let quizOver = false;
     let resultsSent = false;
+    let quizTaken = false;
 
     $(document).ready(function () {
+        let quizTaken = $('#quiz_boolean').val();
+        console.log(typeof quizTaken);
+        console.log(typeof !quizTaken);
 
-        if(!quizOver){
-
-
+        if(quizTaken === "false"){
             // Display the first question
             displayCurrentQuestion();
             $(this).find(".quizMessage").hide();
@@ -96,7 +98,7 @@
                         //onclick, results are sent to balance
                         $('#viewResultsBtn').on("click", function(){
                             $('#quiz_result').val(correctAnswers * 500);
-                            $('#quiz_boolean').val(true);
+                            // $('#quiz_boolean').val(true);
                             resultsSent = true;
                             quizOver = true;
                         });
@@ -106,8 +108,12 @@
                 }
             });
         } else {
-            displayScore();
-            displayResults();
+            // displayScore();
+            // displayResults();
+            // $(document).find("#formSubmit").hide();
+            // $(document).find(".nextButton").hide();
+            $(document).find('.quizDiv').html("<h1>Quiz Already Taken</h1>")
+            $('#quiz_boolean').val(true);
         }
     });
 
