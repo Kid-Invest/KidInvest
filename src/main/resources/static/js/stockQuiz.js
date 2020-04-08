@@ -23,7 +23,7 @@
     }];
 
     //defaults and buckets
-    let stockResultArray = [];
+    let resultArray = [];
     let currentQuestion = 0;
     let correctAnswers = 0;
     let quizOver = false;
@@ -61,7 +61,7 @@
                         correctAnswer: stockQuestions[currentQuestion].correctAnswer,
                         userAnswer: value
                     };
-                    stockResultArray.push(resultObject);
+                    resultArray.push(resultObject);
 
                     currentQuestion++; // moves to next question
                     if (currentQuestion < (stockQuestions.length - 1)) {
@@ -72,7 +72,7 @@
                         $(document).find(".nextButton").text("Submit");
                     } else {
                         // Quiz is now over
-                        $(document).find(".nextButton").hide();
+                        $(document).find(".nextButton").html("Display Results");
 
                             // html('<button type="submit"></button>' +
                             // '<input th:name="quiz_result" id="quiz_result" th:value="' + (correctAnswers * 1000) + '" hidden>');
@@ -81,24 +81,40 @@
                         displayScore();
                         quizOver = true;
 
-                        // displayResults();
+                        displayResults();
                         // sendScoreToHTML();
-                        $(document).find("#formSubmit").show();
+                        // $(document).find("#formSubmit").show();
                             // .append('<button type="submit" id="viewResultsBtn">View Results</button>' +
                             // '<input th:name="quiz_result" id="quiz_result" th:value="0" hidden>');
                     }
                 }
             }
-            // else { // quiz is over Need to lock out of quiz and only show results
-            //     quizOver = true;
-            // }
+            else { // quizOver = true;
+                displayResults();
+                // quiz is over Need to lock out of quiz and only show results
+                $(document).find(".nextButton").hide();
+
+
+                $(document).find("#formSubmit").show();
+
+                //this is where i should code the onclick
+                $('#viewResultsBtn').on("click", function(){
+                    $('#quiz_result').val(correctAnswers * 500);
+                    // displayResults();
+                });
+            }
         });
 
-        //this is where i should code the onclick
-        $('#viewResultsBtn').on("click", function(){
-            $('#quiz_result').val(correctAnswers * 500);
-            // displayResults();
-        });
+        // if(quizOver){
+        //
+        //
+        //     // html('<button type="submit"></button>' +
+        //     // '<input th:name="quiz_result" id="quiz_result" th:value="' + (correctAnswers * 1000) + '" hidden>');
+        //     $(document).find(".quizContainer > .question").hide();
+        //     $(document).find(".quizContainer > .choiceList").hide();
+        //
+        //
+        // }
     });
 
 // This displays the current question AND the choices
@@ -130,8 +146,8 @@
         $(document).find(".result").hide();
     }
 
-    function displayResults(resultArray) {
-        let resultAll = $(document).find("#resultPage");
+    function displayResults() {
+        let resultAll = $(document).find(".resultAll");
 
         for(let i = 0; i < resultArray.length; i++){
             let numChoices = stockQuestions[i].choices.length;
@@ -163,9 +179,9 @@
         }
     }
 
-    function sendScoreToHTML(){
-        let formContainer = $(document).find(".formContainer");
-        let thElement = ('<input th:name="quiz_result" id="quiz_result" th:value="' + (correctAnswers * 1000) + '">');
-        $(thElement).appendTo(formContainer)
-    }
+    // function sendScoreToHTML(){
+    //     let formContainer = $(document).find(".formContainer");
+    //     let thElement = ('<input th:name="quiz_result" id="quiz_result" th:value="' + (correctAnswers * 1000) + '">');
+    //     $(thElement).appendTo(formContainer)
+    // }
 }
