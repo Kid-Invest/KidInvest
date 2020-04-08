@@ -19,13 +19,15 @@ public class RestService {
     }
 
     //api token and Stock Tickers
-    private final String apiToken = "api_token=d6PTrQRT1GGzuevKIczQxeFHLKLh6VSSztliEAAAUgC70AjjvhREy2xwqqKe";
+//    private final String apiToken = "api_token=d6PTrQRT1GGzuevKIczQxeFHLKLh6VSSztliEAAAUgC70AjjvhREy2xwqqKe";
+    private final String apiToken = "token=9c31ce94ea898d6f2aaa16dba11d47f3bc4d2499";
     private final String stocks = "TUP,GME,BKS,WOW,VVNT,BGS,YETI,TWTR,WFC,RCL,DELL,GMED,WRB,PSX,GPC,FRT,GWRE,OGS,EXR,TM";
 
 
     //Request returns in JSON format
     public String getStocksPlainJSON(){
-        String url = "https://api.worldtradingdata.com/api/v1/stock?symbol=" + stocks + "&" + apiToken + "&sort_by=name";
+//        String url = "https://api.worldtradingdata.com/api/v1/stock?symbol=" + stocks + "&" + apiToken + "&sort_by=name";
+        String url = "https://api.tiingo.com/iex/?tickers=" + stocks + "&" + apiToken;
         return this.restTemplate.getForObject(url, String.class);
     }
 
@@ -40,22 +42,39 @@ public class RestService {
         System.out.println(jsonString);
         while (jsonString.contains("{")) {
 
-            symbol = jsonString.substring(jsonString.indexOf("symbol:") + 7, jsonString.indexOf("name:"));
-            name = jsonString.substring(jsonString.indexOf("name:") + 5, jsonString.indexOf("currency:"));
-            marketPrice = jsonString.substring(jsonString.indexOf("price:") + 6, jsonString.indexOf("price_open"));
-            openPrice = jsonString.substring(jsonString.indexOf("price_open:") + 11 , jsonString.indexOf("day_high"));
-            highPrice = jsonString.substring(jsonString.indexOf("day_high:") + 9, jsonString.indexOf("day_low"));
-            lowPrice = jsonString.substring(jsonString.indexOf("day_low:") + 8, jsonString.indexOf("52_week_high"));
-            yearHighPrice = jsonString.substring(jsonString.indexOf("52_week_high:") + 13, jsonString.indexOf("52_week_low"));
-            yearLowPrice = jsonString.substring(jsonString.indexOf("52_week_low:") + 12, jsonString.indexOf("day_change"));
+//            symbol = jsonString.substring(jsonString.indexOf("symbol:") + 7, jsonString.indexOf("name:"));
+//            name = jsonString.substring(jsonString.indexOf("name:") + 5, jsonString.indexOf("currency:"));
+//            marketPrice = jsonString.substring(jsonString.indexOf("price:") + 6, jsonString.indexOf("price_open"));
+//            openPrice = jsonString.substring(jsonString.indexOf("price_open:") + 11 , jsonString.indexOf("day_high"));
+//            highPrice = jsonString.substring(jsonString.indexOf("day_high:") + 9, jsonString.indexOf("day_low"));
+//            lowPrice = jsonString.substring(jsonString.indexOf("day_low:") + 8, jsonString.indexOf("52_week_high"));
+//            yearHighPrice = jsonString.substring(jsonString.indexOf("52_week_high:") + 13, jsonString.indexOf("52_week_low"));
+//            yearLowPrice = jsonString.substring(jsonString.indexOf("52_week_low:") + 12, jsonString.indexOf("day_change"));
+
+            marketPrice = jsonString.substring(jsonString.indexOf("tngoLast:") + 9, jsonString.indexOf("askPrice"));
+            openPrice = jsonString.substring(jsonString.indexOf("open:") + 5 , jsonString.indexOf("prevClose"));
+//            System.out.println("open: " + openPrice);
+//            System.out.println("low: " + jsonString.substring(jsonString.indexOf("low:") + 4, jsonString.indexOf(
+//                    "last:")));
+            lowPrice = jsonString.substring(jsonString.indexOf("low:") + 4, jsonString.indexOf("last:"));
+
+
+            highPrice = jsonString.substring(jsonString.indexOf("high:") + 4, jsonString.indexOf("lastSize:"));
+
+//            stockList.add(new Stock(
+//                    Double.parseDouble(marketPrice),
+//                    Double.parseDouble(openPrice),
+//                    Double.parseDouble(lowPrice),
+//                    Double.parseDouble(highPrice),
+//                    Double.parseDouble(yearLowPrice),
+//                    Double.parseDouble(yearHighPrice)
+//            ));
 
             stockList.add(new Stock(
                     Double.parseDouble(marketPrice),
                     Double.parseDouble(openPrice),
                     Double.parseDouble(lowPrice),
-                    Double.parseDouble(highPrice),
-                    Double.parseDouble(yearLowPrice),
-                    Double.parseDouble(yearHighPrice)
+                    Double.parseDouble(highPrice)
             ));
 
             try {
@@ -66,7 +85,6 @@ public class RestService {
         }
         return stockList;
     }
-
 }
 
 

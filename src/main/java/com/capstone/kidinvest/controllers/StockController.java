@@ -55,8 +55,8 @@ public class StockController {
             stockList.get(i).setOpenPrice(retrievedStockList.get(i).getOpenPrice());
             stockList.get(i).setLowPrice(retrievedStockList.get(i).getLowPrice());
             stockList.get(i).setHighPrice(retrievedStockList.get(i).getHighPrice());
-            stockList.get(i).setYearLowPrice(retrievedStockList.get(i).getYearLowPrice());
-            stockList.get(i).setYearHighPrice(retrievedStockList.get(i).getYearHighPrice());
+//            stockList.get(i).setYearLowPrice(retrievedStockList.get(i).getYearLowPrice());
+//            stockList.get(i).setYearHighPrice(retrievedStockList.get(i).getYearHighPrice());
         }
         // Determine the change percentage and then save/update all the stocks in the database
         for (Stock stock : stockList) {
@@ -71,6 +71,7 @@ public class StockController {
         }
 
         currentUserStock = userStockDao.findUserStockByStockIdAndUserId(currentStock.getId(), dbUser.getId());
+        System.out.println(currentStock);
         view.addAttribute("currentUserStock", currentUserStock);
         view.addAttribute("user", dbUser);
         view.addAttribute("currentStock", currentStock);
