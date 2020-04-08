@@ -80,12 +80,6 @@
                         $(document).find(".quizContainer > .choiceList").hide();
                         displayScore();
                         quizOver = true;
-
-                        displayResults();
-                        // sendScoreToHTML();
-                        // $(document).find("#formSubmit").show();
-                            // .append('<button type="submit" id="viewResultsBtn">View Results</button>' +
-                            // '<input th:name="quiz_result" id="quiz_result" th:value="0" hidden>');
                     }
                 }
             }
@@ -93,11 +87,9 @@
                 displayResults();
                 // quiz is over Need to lock out of quiz and only show results
                 $(document).find(".nextButton").hide();
-
-
                 $(document).find("#formSubmit").show();
 
-                //this is where i should code the onclick
+                //onclick, results are sent to balance
                 $('#viewResultsBtn').on("click", function(){
                     $('#quiz_result').val(correctAnswers * 500);
                     // displayResults();
@@ -137,7 +129,8 @@
     }
 
     function displayScore() {
-        $(document).find(".quizContainer > .result").text("You scored: " + correctAnswers + " out of " + stockQuestions.length);
+        $(document).find(".quizContainer > .result").html("You scored: " + correctAnswers + " out of " + stockQuestions.length +
+                                                          "<br> You have earned: $" + (correctAnswers * 500) + "!");
         $(document).find(".quizContainer > .result").show();
         $(document).find("h1").text("Quiz Complete!");
     }
