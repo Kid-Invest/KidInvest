@@ -2,16 +2,16 @@ USE kid_invest_db;
 
 # USERS SEEDER
 insert into `kid_invest_db`.`users` (`id`, `username`, `password`, `email`, `balance`, `viewed_portfolio`,
-                                     `viewed_stand`, `viewed_stocks`, `viewed_store`, `viewed_transactions`, `takenStockQuiz`, `takenBusinessQuiz`)
+                                     `viewed_stand`, `viewed_stocks`, `viewed_store`, `viewed_transactions`, `completed_stock_quiz`, `completed_business_quiz`)
 values (1, 'dhurry0', 'JkH7rSdicfB', 'dhalvorsen0@discuz.net', 18638.23, 1, 1, 1, 1, 1, 0, 0);
 insert into `kid_invest_db`.`users` (`id`, `username`, `password`, `email`, `balance`, `viewed_portfolio`,
-                                     `viewed_stand`, `viewed_stocks`, `viewed_store`, `viewed_transactions`, `takenStockQuiz`, `takenBusinessQuiz`)
+                                     `viewed_stand`, `viewed_stocks`, `viewed_store`, `viewed_transactions`, `completed_stock_quiz`, `completed_business_quiz`)
 values (2, 'kmarran1', '2gcW9jG4U2TY', 'dbagge1@delicious.com', 10559.32, 0, 0, 0, 0, 0, 0, 0);
 insert into `kid_invest_db`.`users` (`id`, `username`, `password`, `email`, `balance`, `viewed_portfolio`,
-                                     `viewed_stand`, `viewed_stocks`, `viewed_store`, `viewed_transactions`, `takenStockQuiz`, `takenBusinessQuiz`)
+                                     `viewed_stand`, `viewed_stocks`, `viewed_store`, `viewed_transactions`, `completed_stock_quiz`, `completed_business_quiz`)
 values (3, 'rottee2', 'oxKJf96', 'agresser2@paypal.com', 19292.8, 0, 0, 0, 0, 0, 0, 0);
 insert into `kid_invest_db`.`users` (`id`, `username`, `password`, `email`, `balance`, `viewed_portfolio`,
-                                     `viewed_stand`, `viewed_stocks`, `viewed_store`, `viewed_transactions`, `takenStockQuiz`, `takenBusinessQuiz`)
+                                     `viewed_stand`, `viewed_stocks`, `viewed_store`, `viewed_transactions`, `completed_stock_quiz`, `completed_business_quiz`)
 values (4, 'hstark3', 'wGvHrA9oJfH', 'ksheppard3@eventbrite.com', 12349.08, 0, 0, 0, 0, 0, 0, 0);
 
 # BUSINESSES SEEDER
