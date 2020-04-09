@@ -1,26 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="partials/fragments.html :: head(title = 'Register with Kid Invest!')">
-        <meta charset="UTF-8">
-        <!-- Required meta tags -->
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-              integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <!-- Font Awesome -->
-        <script src="https://kit.fontawesome.com/81b9c5abe3.js" crossorigin="anonymous"></script>
-        <!-- Custom CSS -->
-        <link rel="stylesheet" type="text/css" href="../../static/css/custom.css"/>
 </head>
-<body class="register-body">
+<body>
 <th:block th:include="partials/fragments.html :: nav"/>
+
+<div class="page-content">
+    <div class="register-body d-flex justify-content-center flex-column">
     <div class="text-center px-2">
         <h3>WHEN THE WORLD GIVES YOU <span class="lemons">LEMONS</span>,</h3>
         <h1 class="invest">INVEST!</h1>
     </div>
 
-<div class="container">
+    <div class="container">
     <h1 class="text-center mb-4 sign-up">SIGN-UP</h1>
     <form th:action="@{/register}" th:method="POST" th:object="${user}">
         <div class="d-flex flex-column justify-content-center align-items-center">
@@ -47,6 +39,8 @@
     <div class="d-flex justify-content-center align-items-center pt-2 mb-0">
         <a href="/login"><button class="login-btn">Login</button></a>
     </div>
+</div>
+</div>
 </div>
 
 <footer th:replace="partials/fragments.html :: footer"></footer>

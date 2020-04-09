@@ -43,7 +43,7 @@
                     <a class="nav-link" href="/home/aboutus">About Us</a>
                 </li>
                 <li class="nav-item" sec:authorize="!isAuthenticated()">
-                    <a class="nav-link" href="/register">Register Account</a>
+                    <a class="nav-link" href="/register">Register</a>
                 </li>
                 <li class="nav-item" sec:authorize="!isAuthenticated()">
                     <a class="nav-link" href="/login">Login</a>
@@ -62,7 +62,12 @@
 
 <!--FOOTER-->
 <footer th:fragment="footer">
-    &copy; 2020 KidInvest
+    <div class="container-fluid footer text-center">
+        <div class="pt-1">
+            &copy; 2020 Kid Invest
+        </div>
+    </div>
+
 </footer>
 
 <!--SCRIPTS-->

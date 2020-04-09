@@ -1,21 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head th:include="partials/fragments :: head(Login)">
-    <meta charset="UTF-8">
-    <!-- Required meta tags -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <!-- Font Awesome -->
-    <script src="https://kit.fontawesome.com/81b9c5abe3.js" crossorigin="anonymous"></script>
-    <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="../static/css/custom.css"/>
 </head>
 <body class="">
 <div th:include="partials/fragments :: nav"></div>
-
+<div class="page-content">
 <div class="login-body">
 <div class="container text-center">
     <h1 class="mb-4">Log In</h1>
@@ -38,6 +27,7 @@
             <input type="submit" class="login-btn mt-2" value="Log In"/>
         </div>
     </form>
+</div>
 </div>
 </div>
 
