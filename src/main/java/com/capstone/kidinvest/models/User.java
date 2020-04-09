@@ -182,4 +182,32 @@ public class User {
     public void setTakenBusinessQuiz(int takenBusinessQuiz) {
         this.takenBusinessQuiz = takenBusinessQuiz;
     }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+    public boolean isViewedPortfolio() {
+        return viewedPortfolio;
+    }
+
+    public void setViewedPortfolio(boolean viewedPortfolio) {
+        this.viewedPortfolio = viewedPortfolio;
+    }
+
+    public List<StockTransaction> getTransactionList() {
+        return transactionList;
+    }
+
+    public void setTransactionList(List<StockTransaction> transactionList) {
+        this.transactionList = transactionList;
+    }
+
+    public List<UserStock> getUserStockList() {
+        return userStockList;
+    }
+
+    public void setUserStockList(List<UserStock> userStockList) {
+        this.userStockList = userStockList;
+    }
 }
