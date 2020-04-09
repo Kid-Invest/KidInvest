@@ -9,19 +9,20 @@
     --royal-blue: #085EE5;
     --cadet-blue: #51B9BE;
     --dark-cyan: #264C51;
-    --green: #377221;
+    --green: #0D8D00;
     --font-primary: #FFFFEB;
-    --font-cream-color: #FDDFB9;
+    --cream-color: #FFDAB5;
 }
 
 * {
     box-sizing: border-box;
 }
-
+html,
 body {
     background-color: var(--cadet-blue);
     color: #fff;
     font-family: 'Sniglet', cursive;
+    height: 100%;
 }
 
 
@@ -57,14 +58,32 @@ ul li a.nav-link:hover,
 .navbar-toggler-icon:hover {
     color: var(--primary-gold-color);
 }
-.navbar-toggler:focus{
+.navbar-toggler:focus,
+.buy-stock-btn:focus, .sell-stock-btn:focus,
+td>a:focus, .modal-buy-btn:focus, .login-btn:focus,
+#subtract-btn:focus, #add-btn:focus, .close:focus{
     outline: 0;
+}
+.page-content {
+    min-height: 100vh;
+}
+
+
+/*FOOTER*/
+.footer {
+    padding: 1em 0;
+    margin: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: var(--dark-cyan);
+    color: #969597;
+    text-align: center;
 }
 
 
 /*HOME PAGE*/
 .main-content {
-    min-height: 100vh;
+    min-height: 90vh;
     margin: 0;
 }
 .main-content>h1 {
@@ -95,9 +114,6 @@ ul li a.nav-link:hover,
     border: 3px var(--primary-gold-color) solid;
     border-radius: 50px;
 }
-.buy-stock-btn:focus, .sell-stock-btn:focus {
-    outline: 0;
-}
 .buy-stock-btn:hover, .sell-stock-btn:hover {
     color: #fff;
     transition: color .2s ease-in;
@@ -109,17 +125,12 @@ table {
     border-radius: 10px;
     background-color: var(--dark-cyan);
 }
-/*tbody {*/
-/*    border: 1px #fff solid;*/
-/*    border-radius: 10px;*/
-/*    border-top: none;*/
-/*}*/
 th {
-    font-size: 1.5rem;
+    font-size: 2vh;
     font-weight: 400;
 }
 td {
-    font-size: 1.2em;
+    font-size: 2vh;
 }
 th, td {
     color: var(--font-primary);
@@ -137,27 +148,39 @@ td>a:hover {
     text-decoration: none;
     transition: color .2s ease-in;
 }
-td>a:focus{
-    outline: 0;
-}
 tbody tr:nth-child(even){
     background-color: #64A6AD;
 }
 tbody tr:nth-child(odd){
     background-color: var(--cadet-blue);
 }
-
 tbody.dropdown-row tr:nth-child(2n+0) {
     background-color: var(--cadet-blue);
 }
+tr.owned-stock-stats {
+    display: none;
+    width: 100%;
+}
+.div-stats {
+    display: none;
+}
+.show-more:hover {
+    cursor: pointer;
+}
+
 
 
 /*STOCK MODAL*/
 .modal-content {
     border-radius: 10px;
     background-color: var(--dark-cyan);
-
 }
+/*.balance-container {*/
+/*    background-color: var(--primary-gold-color);*/
+/*    border: 1px var(--primary-gold-color) solid;*/
+/*    border-radius: 10px;*/
+/*    color: var(--dark-cyan);*/
+/*}*/
 .current-stock-total, input[type=number] {
     background-color: var(--dark-cyan);
     border-width: 0 0 2px;
@@ -206,8 +229,14 @@ input[type=number]::-webkit-inner-spin-button {
     color: #fff;
     opacity: 1;
 }
-.modal-buy-btn:focus, #subtract-btn:focus, #add-btn:focus, .close:focus {
-    outline: 0;
+
+/* Change autocomplete styles in WebKit */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: #fff !important;
 }
 
 
@@ -216,7 +245,7 @@ input[type=number]::-webkit-inner-spin-button {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
+    min-height: 90vh;
     margin: 0;
 }
 .register-body .container, .login-body .container {
@@ -279,6 +308,50 @@ input[type=password].password{
 }
 .dropdown-row {
     background-color: var(--cadet-blue);
+}
+
+/*FA ICON COLOR*/
+.yellow {
+    color: var(--primary-gold-color);
+}
+.pink1 {
+    color: #FF7DA8;
+}
+.pink2 {
+    color: var(--deep-pink-color);
+}
+.violet {
+   color: var(--dark-magenta);
+}
+.orange1 {
+    color: #FF4803;
+}
+.orange2 {
+    color: var(--dark-orange);
+}
+.red1{
+    color: #9C0002;
+}
+.blue1 {
+    color: var(--cadet-blue);
+}
+.blue2 {
+    color: var(--royal-blue);
+}
+.blue3 {
+    color: var(--dark-cyan);
+}
+.green {
+    color: var(--green);
+}
+.grey {
+    color: #AFB6B5;
+}
+.brown {
+    color: #A6773A;
+}
+.brown2 {
+    color: #68382B;
 }
 
 
