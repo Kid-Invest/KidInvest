@@ -2,17 +2,17 @@ USE kid_invest_db;
 
 # USERS SEEDER
 insert into `kid_invest_db`.`users` (`id`, `username`, `password`, `email`, `balance`, `viewed_portfolio`,
-                                     `viewed_stand`, `viewed_stocks`, `viewed_store`, `viewed_transactions`)
-values (1, 'dhurry0', 'JkH7rSdicfB', 'dhalvorsen0@discuz.net', 18638.23, 1, 1, 1, 1, 1);
+                                     `viewed_stand`, `viewed_stocks`, `viewed_store`, `viewed_transactions`, `completed_stock_quiz`, `completed_business_quiz`)
+values (1, 'dhurry0', 'JkH7rSdicfB', 'dhalvorsen0@discuz.net', 18638.23, 1, 1, 1, 1, 1, 0, 0);
 insert into `kid_invest_db`.`users` (`id`, `username`, `password`, `email`, `balance`, `viewed_portfolio`,
-                                     `viewed_stand`, `viewed_stocks`, `viewed_store`, `viewed_transactions`)
-values (2, 'kmarran1', '2gcW9jG4U2TY', 'dbagge1@delicious.com', 10559.32, 0, 0, 0, 0, 0);
+                                     `viewed_stand`, `viewed_stocks`, `viewed_store`, `viewed_transactions`, `completed_stock_quiz`, `completed_business_quiz`)
+values (2, 'kmarran1', '2gcW9jG4U2TY', 'dbagge1@delicious.com', 10559.32, 0, 0, 0, 0, 0, 0, 0);
 insert into `kid_invest_db`.`users` (`id`, `username`, `password`, `email`, `balance`, `viewed_portfolio`,
-                                     `viewed_stand`, `viewed_stocks`, `viewed_store`, `viewed_transactions`)
-values (3, 'rottee2', 'oxKJf96', 'agresser2@paypal.com', 19292.8, 0, 0, 0, 0, 0);
+                                     `viewed_stand`, `viewed_stocks`, `viewed_store`, `viewed_transactions`, `completed_stock_quiz`, `completed_business_quiz`)
+values (3, 'rottee2', 'oxKJf96', 'agresser2@paypal.com', 19292.8, 0, 0, 0, 0, 0, 0, 0);
 insert into `kid_invest_db`.`users` (`id`, `username`, `password`, `email`, `balance`, `viewed_portfolio`,
-                                     `viewed_stand`, `viewed_stocks`, `viewed_store`, `viewed_transactions`)
-values (4, 'hstark3', 'wGvHrA9oJfH', 'ksheppard3@eventbrite.com', 12349.08, 0, 0, 0, 0, 0);
+                                     `viewed_stand`, `viewed_stocks`, `viewed_store`, `viewed_transactions`, `completed_stock_quiz`, `completed_business_quiz`)
+values (4, 'hstark3', 'wGvHrA9oJfH', 'ksheppard3@eventbrite.com', 12349.08, 0, 0, 0, 0, 0, 0, 0);
 
 # BUSINESSES SEEDER
 INSERT INTO `kid_invest_db`.`business` (`id`, `name`, `popularity`, `user_id`)
@@ -87,38 +87,38 @@ insert into `kid_invest_db`.`stocks` (`id`, `name`, `ticker`, `market_price`, `o
 
 
 # USER HAS STOCK SEEDER
-insert into `kid_invest_db`.`user_has_stocks` (`user_id`, `stock_id`, `shares`)
-values (1, 1, 4);
-insert into `kid_invest_db`.`user_has_stocks` (`user_id`, `stock_id`, `shares`)
-values (1, 11, 12);
-insert into `kid_invest_db`.`user_has_stocks` (`user_id`, `stock_id`, `shares`)
-values (1, 4, 4);
-insert into `kid_invest_db`.`user_has_stocks` (`user_id`, `stock_id`, `shares`)
-values (2, 5, 3);
-insert into `kid_invest_db`.`user_has_stocks` (`user_id`, `stock_id`, `shares`)
-values (2, 7, 24);
-insert into `kid_invest_db`.`user_has_stocks` (`user_id`, `stock_id`, `shares`)
-values (2, 14, 25);
-insert into `kid_invest_db`.`user_has_stocks` (`user_id`, `stock_id`, `shares`)
-values (2, 3, 14);
-insert into `kid_invest_db`.`user_has_stocks` (`user_id`, `stock_id`, `shares`)
-values (2, 2, 24);
-insert into `kid_invest_db`.`user_has_stocks` (`user_id`, `stock_id`, `shares`)
-values (3, 15, 8);
-insert into `kid_invest_db`.`user_has_stocks` (`user_id`, `stock_id`, `shares`)
-values (3, 12, 25);
-insert into `kid_invest_db`.`user_has_stocks` (`user_id`, `stock_id`, `shares`)
-values (3, 1, 4);
-insert into `kid_invest_db`.`user_has_stocks` (`user_id`, `stock_id`, `shares`)
-values (3, 11, 13);
-insert into `kid_invest_db`.`user_has_stocks` (`user_id`, `stock_id`, `shares`)
-values (4, 9, 24);
-insert into `kid_invest_db`.`user_has_stocks` (`user_id`, `stock_id`, `shares`)
-values (4, 4, 24);
-insert into `kid_invest_db`.`user_has_stocks` (`user_id`, `stock_id`, `shares`)
-values (4, 8, 21);
-insert into `kid_invest_db`.`user_has_stocks` (`user_id`, `stock_id`, `shares`)
-values (4, 10, 5);
+insert into `kid_invest_db`.`user_has_stocks` (`user_id`, `stock_id`, `shares`, `avg_purchase_price`)
+values (1, 1, 4, 0);
+insert into `kid_invest_db`.`user_has_stocks` (`user_id`, `stock_id`, `shares`, `avg_purchase_price`)
+values (1, 11, 12, 0);
+insert into `kid_invest_db`.`user_has_stocks` (`user_id`, `stock_id`, `shares`, `avg_purchase_price`)
+values (1, 4, 4, 0);
+insert into `kid_invest_db`.`user_has_stocks` (`user_id`, `stock_id`, `shares`, `avg_purchase_price`)
+values (2, 5, 3, 0);
+insert into `kid_invest_db`.`user_has_stocks` (`user_id`, `stock_id`, `shares`, `avg_purchase_price`)
+values (2, 7, 24, 0);
+insert into `kid_invest_db`.`user_has_stocks` (`user_id`, `stock_id`, `shares`, `avg_purchase_price`)
+values (2, 14, 25, 0);
+insert into `kid_invest_db`.`user_has_stocks` (`user_id`, `stock_id`, `shares`, `avg_purchase_price`)
+values (2, 3, 14, 0);
+insert into `kid_invest_db`.`user_has_stocks` (`user_id`, `stock_id`, `shares`, `avg_purchase_price`)
+values (2, 2, 24, 0);
+insert into `kid_invest_db`.`user_has_stocks` (`user_id`, `stock_id`, `shares`, `avg_purchase_price`)
+values (3, 15, 8, 0);
+insert into `kid_invest_db`.`user_has_stocks` (`user_id`, `stock_id`, `shares`, `avg_purchase_price`)
+values (3, 12, 25, 0);
+insert into `kid_invest_db`.`user_has_stocks` (`user_id`, `stock_id`, `shares`, `avg_purchase_price`)
+values (3, 1, 4, 0);
+insert into `kid_invest_db`.`user_has_stocks` (`user_id`, `stock_id`, `shares`, `avg_purchase_price`)
+values (3, 11, 13, 0);
+insert into `kid_invest_db`.`user_has_stocks` (`user_id`, `stock_id`, `shares`, `avg_purchase_price`)
+values (4, 9, 24, 0);
+insert into `kid_invest_db`.`user_has_stocks` (`user_id`, `stock_id`, `shares`, `avg_purchase_price`)
+values (4, 4, 24, 0);
+insert into `kid_invest_db`.`user_has_stocks` (`user_id`, `stock_id`, `shares`, `avg_purchase_price`)
+values (4, 8, 21, 0);
+insert into `kid_invest_db`.`user_has_stocks` (`user_id`, `stock_id`, `shares`, `avg_purchase_price`)
+values (4, 10, 5, 0);
 
 
 # STOCK TRANSACTION SEEDER
