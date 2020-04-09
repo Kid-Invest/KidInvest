@@ -22,8 +22,12 @@ public class LearningController {
         return "learning/learning";
     }
 
+    //this counts how many times stock quiz post method has been called
+    private int done = 0;
+
     @GetMapping("/learning/stock")
-    public String viewStockLearningPage(){
+    public String viewStockLearningPage(Model view){
+        view.addAttribute("quizComplete", done);
         return "learning/stockLearning";
     }
 
@@ -39,16 +43,12 @@ public class LearningController {
         return "learning/stockQuiz";
     }
 
-    private int done = 0;
-
     @PostMapping("/learning/stock/quiz")
-    public String doAddStockResultToBalance(Model view, @RequestParam String quiz_result, @RequestParam boolean quiz_boolean){
+    public String doAddStockResultToBalance(Model view, @RequestParam String quiz_result){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User dbUser = userDao.findUserById(user.getId());
 
         if(done != 0){
-            boolean quizTaken = true;
-            view.addAttribute("quiz_boolean", quizTaken);
             System.out.println("quiz taken is true");
         } else {
             // Increase user's balance based off quiz result ($500/correct answer)

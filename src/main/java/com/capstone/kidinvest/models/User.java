@@ -37,6 +37,12 @@ public class User {
     @Column(name = "viewed_store")
     private boolean viewedStore;
 
+    @Column(name = "completed_stock_quiz")
+    private int takenStockQuiz;
+
+    @Column(name = "completed_business_quiz")
+    private int takenBusinessQuiz;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<StockTransaction> transactionList;
 
@@ -50,7 +56,7 @@ public class User {
     ;
 
     //constructor
-    public User(long id, String username, String password, String email, Double balance, boolean viewedPortfolio, boolean viewedTransactions, boolean viewedStocks, boolean viewedStand, boolean viewedStore) {
+    public User(long id, String username, String password, String email, Double balance, boolean viewedPortfolio, boolean viewedTransactions, boolean viewedStocks, boolean viewedStand, boolean viewedStore, int takenStockQuiz, int takenBusinessQuiz) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -61,6 +67,8 @@ public class User {
         this.viewedTransactions = viewedTransactions;
         this.viewedStand = viewedStand;
         this.viewedStore = viewedStore;
+        this.takenStockQuiz = takenStockQuiz;
+        this.takenBusinessQuiz = takenBusinessQuiz;
     }
 
     public User(User copy) {
@@ -74,6 +82,8 @@ public class User {
         this.viewedTransactions = copy.viewedTransactions;
         this.viewedStand = copy.viewedStand;
         this.viewedStore = copy.viewedStore;
+        this.takenStockQuiz = copy.takenStockQuiz;
+        this.takenBusinessQuiz = copy.takenBusinessQuiz;
     }
 
     //getters and setters
@@ -155,5 +165,21 @@ public class User {
 
     public void setViewedStore(boolean viewedStore) {
         this.viewedStore = viewedStore;
+    }
+
+    public int getTakenStockQuiz() {
+        return takenStockQuiz;
+    }
+
+    public void setTakenStockQuiz(int takenStockQuiz) {
+        this.takenStockQuiz = takenStockQuiz;
+    }
+
+    public int getTakenBusinessQuiz() {
+        return takenBusinessQuiz;
+    }
+
+    public void setTakenBusinessQuiz(int takenBusinessQuiz) {
+        this.takenBusinessQuiz = takenBusinessQuiz;
     }
 }

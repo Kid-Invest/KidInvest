@@ -28,14 +28,14 @@
     let correctAnswers = 0;
     let quizOver = false;
     let resultsSent = false;
-    let quizTaken = false;
+    // let quizTaken = false;
 
     $(document).ready(function () {
         let quizTaken = $('#quiz_boolean').val();
         console.log(typeof quizTaken);
         console.log(typeof !quizTaken);
 
-        if(quizTaken === "false"){
+
             // Display the first question
             displayCurrentQuestion();
             $(this).find(".quizMessage").hide();
@@ -107,14 +107,15 @@
                     }
                 }
             });
-        } else {
-            // displayScore();
-            // displayResults();
-            // $(document).find("#formSubmit").hide();
-            // $(document).find(".nextButton").hide();
-            $(document).find('.quizDiv').html("<h1>Quiz Already Taken</h1>")
-            $('#quiz_boolean').val(true);
-        }
+        // } else {
+        //     // displayScore();
+        //     // displayResults();
+        //     // $(document).find("#formSubmit").hide();
+        //     // $(document).find(".nextButton").hide();
+        //     $(document).find('.quizDiv').html("<h1>Quiz Already Taken</h1>")
+        //     // $('#quiz_boolean').val(true);
+        //
+        // }
     });
 
 // This displays the current question AND the choices
