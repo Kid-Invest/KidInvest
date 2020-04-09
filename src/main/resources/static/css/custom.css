@@ -88,7 +88,10 @@ td>a:focus, .modal-buy-btn:focus, .login-btn:focus,
 }
 .main-content>h1 {
     text-align: center;
-    font-size: 4em;
+    font-size: 6em;
+}
+.main-content>h3 {
+    font-size: 3em;
 }
 .homepage-logo {
     color: var(--primary-gold-color);
