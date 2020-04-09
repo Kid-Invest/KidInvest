@@ -2,17 +2,17 @@ USE kid_invest_db;
 
 # USERS SEEDER
 insert into `kid_invest_db`.`users` (`id`, `username`, `password`, `email`, `balance`, `viewed_portfolio`,
-                                     `viewed_stand`, `viewed_stocks`, `viewed_store`, `viewed_transactions`)
-values (1, 'dhurry0', 'JkH7rSdicfB', 'dhalvorsen0@discuz.net', 18638.23, 1, 1, 1, 1, 1);
+                                     `viewed_stand`, `viewed_stocks`, `viewed_store`, `viewed_transactions`, `takenStockQuiz`, `takenBusinessQuiz`)
+values (1, 'dhurry0', 'JkH7rSdicfB', 'dhalvorsen0@discuz.net', 18638.23, 1, 1, 1, 1, 1, 0, 0);
 insert into `kid_invest_db`.`users` (`id`, `username`, `password`, `email`, `balance`, `viewed_portfolio`,
-                                     `viewed_stand`, `viewed_stocks`, `viewed_store`, `viewed_transactions`)
-values (2, 'kmarran1', '2gcW9jG4U2TY', 'dbagge1@delicious.com', 10559.32, 0, 0, 0, 0, 0);
+                                     `viewed_stand`, `viewed_stocks`, `viewed_store`, `viewed_transactions`, `takenStockQuiz`, `takenBusinessQuiz`)
+values (2, 'kmarran1', '2gcW9jG4U2TY', 'dbagge1@delicious.com', 10559.32, 0, 0, 0, 0, 0, 0, 0);
 insert into `kid_invest_db`.`users` (`id`, `username`, `password`, `email`, `balance`, `viewed_portfolio`,
-                                     `viewed_stand`, `viewed_stocks`, `viewed_store`, `viewed_transactions`)
-values (3, 'rottee2', 'oxKJf96', 'agresser2@paypal.com', 19292.8, 0, 0, 0, 0, 0);
+                                     `viewed_stand`, `viewed_stocks`, `viewed_store`, `viewed_transactions`, `takenStockQuiz`, `takenBusinessQuiz`)
+values (3, 'rottee2', 'oxKJf96', 'agresser2@paypal.com', 19292.8, 0, 0, 0, 0, 0, 0, 0);
 insert into `kid_invest_db`.`users` (`id`, `username`, `password`, `email`, `balance`, `viewed_portfolio`,
-                                     `viewed_stand`, `viewed_stocks`, `viewed_store`, `viewed_transactions`)
-values (4, 'hstark3', 'wGvHrA9oJfH', 'ksheppard3@eventbrite.com', 12349.08, 0, 0, 0, 0, 0);
+                                     `viewed_stand`, `viewed_stocks`, `viewed_store`, `viewed_transactions`, `takenStockQuiz`, `takenBusinessQuiz`)
+values (4, 'hstark3', 'wGvHrA9oJfH', 'ksheppard3@eventbrite.com', 12349.08, 0, 0, 0, 0, 0, 0, 0);
 
 # BUSINESSES SEEDER
 INSERT INTO `kid_invest_db`.`business` (`id`, `name`, `popularity`, `user_id`)
