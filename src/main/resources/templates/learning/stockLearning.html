@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
-<head th:include="partials/fragments :: head(Stock-Learning)">
+<head th:include="partials/fragments :: head(title = 'Stock Basics')">
 </head>
 <body>
 <div th:include="partials/fragments :: nav"></div>
 
-<div class="container mt-4">
-    <h1>Stock Learning Page!!</h1>
-    <br>
-    <a href="/learning/stock/quiz">Take the Quiz!</a>
-</div>
+    <div class="container mt-4">
+        <h1>Stock Learning Page!!</h1>
+        <br>
+        <div th:if='${dbUser.getTakenStockQuiz() == 0}'>
+            <a href="/learning/stock/quiz">Take the Quiz!</a>
+        </div>
+        <a href="/learning">Back to Learning</a>
+    </div>
 
 <th:block th:include="partials/fragments :: footer"/>
 <th:block th:include="partials/fragments :: scripts"/>
