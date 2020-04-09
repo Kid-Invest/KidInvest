@@ -52,28 +52,39 @@ public class LearningController {
             userDao.save(dbUser);
             System.out.println("added to balance");
         }
-        return "redirect:/learning/stock";
+        return "redirect:/profile";
     }
 
     @GetMapping("/learning/business")
-    public String viewBusinessLearningPage(){
+    public String viewBusinessLearningPage(Model view){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User dbUser = userDao.findUserById(user.getId());
+
+        view.addAttribute("dbUser", dbUser);
         return "learning/businessLearning";
     }
 
     @GetMapping("/learning/business/quiz")
     public String viewBusinessQuizPage(){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User dbUser = userDao.findUserById(user.getId());
         return "learning/businessQuiz";
     }
 
     @PostMapping("/learning/business/quiz")
-    public String doAddBusinessResultToBalance(@RequestParam String quiz_result){
+    public String doAddBusinessResultToBalance(Model view, @RequestParam String quiz_result){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User dbUser = userDao.findUserById(user.getId());
-        // Increase user's balance based off quiz result ($500/correct answer)
-        dbUser.setBalance(dbUser.getBalance() + Double.parseDouble(quiz_result));
-        // Save user's balance
-        userDao.save(dbUser);
-        return "redirect:/learning";
+        int taken = dbUser.getTakenBusinessQuiz();
+
+        if(taken == 0){
+            // Increase user's balance based off quiz result ($500/correct answer)
+            dbUser.setBalance(dbUser.getBalance() + Double.parseDouble(quiz_result));
+            dbUser.setTakenBusinessQuiz(1);
+            // Save user's balance and takenbusinessquiz
+            userDao.save(dbUser);
+            System.out.println("added to balance");
+        }
+        return "redirect:/profile";
     }
 }

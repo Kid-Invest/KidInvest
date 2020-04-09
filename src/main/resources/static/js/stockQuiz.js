@@ -79,7 +79,7 @@
                         }
                         else {
                             // Quiz is now over
-                            $(document).find(".nextButton").html("Display Results");
+                            $(document).find(".nextButton").html("Display Results Before Sending Earnings to Balance");
 
                             $(document).find(".quizContainer > .question").hide();
                             $(document).find(".quizContainer > .choiceList").hide();
@@ -98,7 +98,6 @@
                         //onclick, results are sent to balance
                         $('#viewResultsBtn').on("click", function(){
                             $('#quiz_result').val(correctAnswers * 500);
-                            // $('#quiz_boolean').val(true);
                             resultsSent = true;
                             quizOver = true;
                         });
@@ -107,18 +106,9 @@
                     }
                 }
             });
-        // } else {
-        //     // displayScore();
-        //     // displayResults();
-        //     // $(document).find("#formSubmit").hide();
-        //     // $(document).find(".nextButton").hide();
-        //     $(document).find('.quizDiv').html("<h1>Quiz Already Taken</h1>")
-        //     // $('#quiz_boolean').val(true);
-        //
-        // }
     });
 
-// This displays the current question AND the choices
+    // This displays the current question AND the choices
     function displayCurrentQuestion() {
         let question = stockQuestions[currentQuestion].question;
         let questionClass = $(document).find(".quizContainer > .question");

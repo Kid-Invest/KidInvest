@@ -2,37 +2,44 @@
 
     let businessQuestions = [{
         question: "1. question?",
-        choices: ["wrong", "right", "wrong", "wrong"],
-        correctAnswer: 1
+        choices: ["right", "wrong", "wrong", "wrong"],
+        correctAnswer: 0
     }, {
         question: "2. question?",
+        choices: ["right", "wrong", "wrong", "wrong"],
+        correctAnswer: 0
+    }, {
+        question: "3. question?",
         choices: ["wrong", "wrong", "right", "wrong"],
         correctAnswer: 2
     }, {
-        question: "3. question?",
+        question: "4. question?",
         choices: ["wrong", "right", "wrong", "wrong"],
         correctAnswer: 1
     }, {
-        question: "4. question?",
-        choices: ["right", "wrong", "wrong", "wrong"],
-        correctAnswer: 0
-    }, {
         question: "5. question 5?",
-        choices: ["right", "wrong", "wrong", "wrong"],
-        correctAnswer: 0
+        choices: ["wrong", "right", "wrong", "wrong"],
+        correctAnswer: 1
     }];
 
     //defaults and buckets
-    let businessResultArray = [];
+    let resultArray = [];
     let currentQuestion = 0;
     let correctAnswers = 0;
     let quizOver = false;
+    let resultsSent = false;
+    // let quizTaken = false;
 
     $(document).ready(function () {
+        let quizTaken = $('#quiz_boolean').val();
+        console.log(typeof quizTaken);
+        console.log(typeof !quizTaken);
+
 
         // Display the first question
         displayCurrentQuestion();
         $(this).find(".quizMessage").hide();
+        $(document).find("#formSubmit").hide();
 
         // On clicking next, display the next question
         $(this).find(".nextButton").on("click", function () {
@@ -60,54 +67,60 @@
                         correctAnswer: businessQuestions[currentQuestion].correctAnswer,
                         userAnswer: value
                     };
-                    businessResultArray.push(resultObject);
+                    resultArray.push(resultObject);
 
                     currentQuestion++; // moves to next question
-                    if (currentQuestion < (businessQuestions.length -1)) {
+                    if (currentQuestion < (businessQuestions.length - 1)) {
                         displayCurrentQuestion();
-                    } else if(currentQuestion === (businessQuestions.length -1)){
+                    } else if(currentQuestion === (businessQuestions.length - 1)){
                         //last question button display changes to "submit"
                         displayCurrentQuestion();
-                        $(document).find(".nextButton").text("Submit")
-                    } else {
+                        $(document).find(".nextButton").text("Submit");
+                    }
+                    else {
                         // Quiz is now over
-                        let questionClass = $(document).find(".quizContainer > .question");
-                        let choiceList = $(document).find(".quizContainer > .choiceList");
-                        $(questionClass).hide();
-                        $(choiceList).hide();
+                        $(document).find(".nextButton").html("Display Results Before Sending Earnings to Balance");
+
+                        $(document).find(".quizContainer > .question").hide();
+                        $(document).find(".quizContainer > .choiceList").hide();
                         displayScore();
-                        //                    $(document).find(".nextButton").toggle();
-                        //                    $(document).find(".playAgainButton").toggle();
-                        $(document).find(".nextButton").hide();
                         quizOver = true;
-                        displayResults(businessResultArray);
                     }
                 }
             }
-            // else { // quiz is over Need to lock out of quiz and only show results
-            //     quizOver = true;
-            // }
-        });
+            else { // quizOver = true;
+                displayResults();
+                // quiz is over Need to lock out of quiz and only show results
+                $(document).find(".nextButton").hide();
+                if(!resultsSent){
+                    $(document).find("#formSubmit").show();
 
+                    //onclick, results are sent to balance
+                    $('#viewResultsBtn').on("click", function(){
+                        $('#quiz_result').val(correctAnswers * 500);
+                        resultsSent = true;
+                        quizOver = true;
+                    });
+                } else {
+                    $(document).find("#formSubmit").hide();
+                }
+            }
+        });
     });
 
-// This displays the current question AND the choices
+    // This displays the current question AND the choices
     function displayCurrentQuestion() {
-
-        console.log("In display current Question");
-
         let question = businessQuestions[currentQuestion].question;
         let questionClass = $(document).find(".quizContainer > .question");
         let choiceList = $(document).find(".quizContainer > .choiceList");
         let numChoices = businessQuestions[currentQuestion].choices.length;
+        let choice;
 
         // Set the questionClass text to the current question
         $(questionClass).text(question);
-
         // Remove all current <li> elements (if any)
         $(choiceList).find("li").remove();
 
-        let choice;
         for (let i = 0; i < numChoices; i++) {
             choice = businessQuestions[currentQuestion].choices[i];
             $('<li><input type="radio" value="' + i + '" name="dynradio" />' + choice + '</li>').appendTo(choiceList);
@@ -115,7 +128,8 @@
     }
 
     function displayScore() {
-        $(document).find(".quizContainer > .result").text("You scored: " + correctAnswers + " out of " + businessQuestions.length);
+        $(document).find(".quizContainer > .result").html("You scored: " + correctAnswers + " out of " + businessQuestions.length +
+            "<br> You have earned: $" + (correctAnswers * 500) + "!");
         $(document).find(".quizContainer > .result").show();
         $(document).find("h1").text("Quiz Complete!");
     }
@@ -124,15 +138,12 @@
         $(document).find(".result").hide();
     }
 
-    function displayResults(resultArray) {
-
+    function displayResults() {
         let resultAll = $(document).find(".resultAll");
 
         for(let i = 0; i < resultArray.length; i++){
-
             let numChoices = businessQuestions[i].choices.length;
             let choice;
-
 
             if(resultArray[i].userAnswer == resultArray[i].correctAnswer){
                 $('<div>' + resultArray[i].question + '</div>').appendTo(resultAll);
