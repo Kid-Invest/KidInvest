@@ -1,41 +1,30 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="partials/fragments.html :: head(title = 'Profile')">
-    <meta charset="UTF-8">
-    <!-- Required meta tags -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <!-- Font Awesome -->
-    <script src="https://kit.fontawesome.com/81b9c5abe3.js" crossorigin="anonymous"></script>
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="../../static/css/custom.css">
-    <title th:text="${title}"></title>
 </head>
 <body>
 <th:block th:include="partials/fragments.html :: nav">
 </th:block>
 
-<div class="container">
+<div class="container page-content">
     <div>
-        <h1 th:text="${user.getUsername()}">Charlie23</h1>
+        <h1 class="pt-2 pl-4" th:text="${user.getUsername()}">Charlie23</h1>
 
         <div class="d-flex justify-content-between">
             <div class="">
-                <p class="mb-0">PORTFOLIO VALUE: $<span th:text="${#numbers.formatDecimal(portfolioValue + user.getBalance(), 0, 'DEFAULT', 2, 'DEFAULT')}">50</span></p>
+                <p class="mb-0 pl-4">PORTFOLIO VALUE: $<span
+                        th:text="${#numbers.formatDecimal(portfolioValue + user.getBalance(), 0, 'DEFAULT', 2, 'DEFAULT')}">50</span></p>
             </div>
-            <div class="">
-                <a href="/profile/leaderboard">View Leaderboard</a>
-                <a href="/transactions/stock">View Stock Transactions</a>
+            <div class="pr-4 text-right d-inline-flex">
+                <a class="pr-3" href="/profile/leaderboard"><h6>View Leaderboard</h6></a>
+                <a href="/transactions/stock"><h6>View Stock Transactions</h6></a>
             </div>
         </div>
 
         <div class="container profile-stocks">
-            <div class="row py-5">
+            <div class="row my-3">
                 <div class="col">
-                    <div class="d-flex flex-column justify-content-center align-items-center">
+                    <div class="p-0 mx-3 my-3 d-flex flex-column justify-content-center align-content-center">
                         <h4>STOCK VALUATION: $<span th:text="${#numbers.formatDecimal(portfolioValue, 0, 'DEFAULT', 2, 'DEFAULT')}">20</span></h4>
                         <h4>ACCOUNT BALANCE: $<span th:text="${#numbers.formatDecimal(user.getBalance(), 0, 'DEFAULT', 2, 'DEFAULT')}">35</span></h4>
                     </div>
@@ -45,12 +34,6 @@
                 </div>
             </div>
         </div>
-
-<!--        <h2>PORTFOLIO VALUE:</h2>-->
-<!--        <h4>$<span-->
-<!--                th:text="${#numbers.formatDecimal(portfolioValue + user.getBalance(), 0, 'DEFAULT', 2, 'DEFAULT')}">50-->
-<!--        </span>-->
-<!--        </h4>-->
     </div>
     <br>
 
@@ -73,16 +56,17 @@
                 <tbody class="dropdown-row">
                     <th:block th:each="userStock : ${userStocks}">
                         <th:block th:if="${userStock.getShares() > 0}">
-                            <tr class="stock-row text-center table-stocks" th:id="${userStock.getStock().getName()}">
+                            <tr class="stock-row text-center table-stocks"
+                                th:id="${userStock.getStock().getName()}">
                                 <td class="border-0" th:text="${userStock.getStock().getName()}">Sample Company</td>
                                 <td class="border-0"><span
                                         th:text="${#numbers.formatDecimal(userStock.getStock().getChange(), 0, 'DEFAULT', 2, 'DEFAULT')}">3.25</span>%
                                 </td>
                                 <td class="border-0" th:text="${userStock.getShares()}">4</td>
                             </tr>
-                            <tr style="display: none">
+                            <tr class="stock-row-stats" style="display: none">
                                 <td colspan="3" class="border-0">
-                                    <div class="row mx-3 d-flex justify-content-around">
+                                    <div class="row mx-3 d-flex justify-content-around div-stats">
                                         <div class="col d-flex align-content-center flex-column text-center">
                                             <p class="mb-0 stat-title">OPEN</p>
                                             <p>$<span th:text="${userStock.getStock().getOpenPrice()}">40</span></p>
@@ -136,7 +120,7 @@
 </footer>
 <th:block th:include="partials/fragments.html :: scripts">
 </th:block>
-<script type="text/javascript" th:src="@{/js/lemonade-stand.js}"></script>
+<script type="text/javascript" th:src="@{/js/profile.js}" src="../../static/js/profile.js"></script>
 
 </body>
 </html>
