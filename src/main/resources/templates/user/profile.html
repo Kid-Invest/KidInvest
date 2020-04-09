@@ -79,13 +79,13 @@
                                         </div>
                                         <div class="col d-flex align-content-center flex-column text-center">
                                             <p class="mb-0 stat-title">AVG COST</p>
-                                            <p>$<span>Need to UPDATE</span></p>
+                                            <p>$<span th:text="${userStock.getAvg_purchase_price()}"></span></p>
 
                                             <p class="mb-0 stat-title">CURR MKT</p>
                                             <p>$<span th:text="${userStock.getStock().getMarketPrice()}">50</span></p>
 
-                                            <p class="mb-0 pb-0 stat-title">Price Per Share</p>
-                                            <p class="mb-0">$<span>Need to fix</span></p>
+                                            <p class="mb-0 pb-0 stat-title">TOTAL RETURN PER SHARE</p>
+                                            <p class="mb-0">$<span th:text="${#numbers.formatDecimal(userStock.getStock().getMarketPrice() - userStock.getAvg_purchase_price(), 0, 'DEFAULT', 2, 'DEFAULT')}"></span></p>
                                         </div>
                                     </div>
 <!--                                    <ul style="display: none">-->

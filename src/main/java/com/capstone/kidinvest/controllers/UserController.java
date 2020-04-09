@@ -72,7 +72,7 @@ public class UserController {
         List<Stock> stockList = stockDao.findAll();
         UserStock newUserStock = null;
         for (Stock stock : stockList) {
-            newUserStock = new UserStock(user, stock, 0);
+            newUserStock = new UserStock(user, stock, 0, 0);
             userStockDao.save(newUserStock);
         }
         return "redirect:/profile";

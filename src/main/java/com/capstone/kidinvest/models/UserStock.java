@@ -22,15 +22,19 @@ public class UserStock implements Serializable {
     @Column
     private long shares;
 
+    @Column
+    private double avg_purchase_price;
+
     //Default Constructor
     public UserStock() {
     }
 
     //Constructor
-    public UserStock(User user, Stock stock, long shares) {
+    public UserStock(User user, Stock stock, long shares, double avg_purchase_price) {
         this.user = user;
         this.stock = stock;
         this.shares = shares;
+        this.avg_purchase_price = avg_purchase_price;
     }
 
     public UserStock(long shares) {
@@ -69,5 +73,13 @@ public class UserStock implements Serializable {
 
     public void setStock(Stock stock) {
         this.stock = stock;
+    }
+
+    public double getAvg_purchase_price() {
+        return this.avg_purchase_price;
+    }
+
+    public void setAvg_purchase_price(double avg_purchase_price) {
+        this.avg_purchase_price = avg_purchase_price;
     }
 }

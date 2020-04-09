@@ -94,9 +94,16 @@ public class StockController {
         Timestamp time = new Timestamp(new java.util.Date().getTime());
         for (UserStock userStock : userStockList) {
             if (userStock.getStock().getTicker().equalsIgnoreCase(ticker)) {
+
                 if (stockAction.equalsIgnoreCase("sell")) {
                     userStock.setShares(userStock.getShares() - stockShares);
+                    // if user sells all their shares, reset the avg purchase price
+                    if (userStock.getShares() == 0) {
+                        userStock.setAvg_purchase_price(0);
+                    }
                 } else {
+                    double newAvgPurchasePrice = this.calculateAveragePurchasePrice(userStock.getStock().getId(), dbUser.getId(), stockShares, userStock.getStock().getMarketPrice());
+                    userStock.setAvg_purchase_price(newAvgPurchasePrice);
                     userStock.setShares(userStock.getShares() + stockShares);
                 }
                 userStockDao.save(userStock);
@@ -122,5 +129,19 @@ public class StockController {
 
 
         return "redirect:/stocks?ticker=" + ticker;
+    }
+
+    private double calculateAveragePurchasePrice(long stockId, long userId, long purchaseShares, double marketPrice) {
+        UserStock userStock = userStockDao.findUserStockByStockIdAndUserId(stockId, userId);
+        // if you do not have any shares, then the average price is equal to the market price
+        if (userStock.getShares() == 0) {
+            return userStock.getStock().getMarketPrice();
+        }
+        else {
+            // calculate current total shares w/ their average purchase price
+            double oldTotal = userStock.getShares() * userStock.getAvg_purchase_price();
+            double newTotal = purchaseShares * marketPrice;
+            return (oldTotal + newTotal) / (userStock.getShares() + purchaseShares);
+        }
     }
 }
