@@ -94,6 +94,12 @@ public class UserController {
         return "user/profile";
     }
 
+//    public static void main(String[] args) {
+//        UserController userController = new UserController();
+//        List<UserStock> dbUserStockList = userStockDao.findUserStockByUserId(1);
+//    }
+
+
     @GetMapping("/profile/leaderboard")
     public String viewLeaderboard(Model view){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -104,10 +110,13 @@ public class UserController {
         HashMap<String, Double> userMap = new HashMap<>();
         //loop through all users
         for(int i = 1; i < userList.size() + 1; i++){
+            System.out.println(i);
             User eachUser = userDao.findUserById(i);
             List<UserStock> userStockList = userStockDao.findUserStockByUserId(i);
             double stockValuation = 0;
             for (UserStock userStock : userStockList) {
+                System.out.println(userStock.getUser().getUsername());
+                System.out.println(userStock.getStock().getTicker());
                 stockValuation += (userStock.getStock().getMarketPrice() * userStock.getShares());
             }
             //add balance
