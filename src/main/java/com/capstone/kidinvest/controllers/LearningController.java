@@ -22,18 +22,13 @@ public class LearningController {
         return "learning/learning";
     }
 
-    //this counts how many times stock quiz post method has been called
-    private int done = 0;
-
     @GetMapping("/learning/stock")
     public String viewStockLearningPage(Model view){
-        view.addAttribute("quizComplete", done);
-        return "learning/stockLearning";
-    }
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User dbUser = userDao.findUserById(user.getId());
 
-    @GetMapping("/learning/business")
-    public String viewBusinessLearningPage(){
-        return "learning/businessLearning";
+        view.addAttribute("dbUser", dbUser);
+        return "learning/stockLearning";
     }
 
     @GetMapping("/learning/stock/quiz")
@@ -47,18 +42,22 @@ public class LearningController {
     public String doAddStockResultToBalance(Model view, @RequestParam String quiz_result){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User dbUser = userDao.findUserById(user.getId());
+        int taken = dbUser.getTakenStockQuiz();
 
-        if(done != 0){
-            System.out.println("quiz taken is true");
-        } else {
+        if(taken == 0){
             // Increase user's balance based off quiz result ($500/correct answer)
             dbUser.setBalance(dbUser.getBalance() + Double.parseDouble(quiz_result));
-            // Save user's balance
+            dbUser.setTakenStockQuiz(1);
+            // Save user's balance and takenstockquiz
             userDao.save(dbUser);
             System.out.println("added to balance");
-            done++;
         }
         return "redirect:/learning/stock";
+    }
+
+    @GetMapping("/learning/business")
+    public String viewBusinessLearningPage(){
+        return "learning/businessLearning";
     }
 
     @GetMapping("/learning/business/quiz")

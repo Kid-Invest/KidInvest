@@ -55,6 +55,8 @@ public class UserController {
         String hash = passwordEncoder.encode(user.getPassword());
         user.setBalance(10000.00);
         user.setPassword(hash);
+        user.setTakenBusinessQuiz(0);
+        user.setTakenStockQuiz(0);
         userDao.save(user);
         // Create the business based off the username provided
         Business newBusiness = new Business(String.format("%s's Lemonade Stand", user.getUsername()), 0, user);
