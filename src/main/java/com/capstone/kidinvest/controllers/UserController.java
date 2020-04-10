@@ -55,8 +55,13 @@ public class UserController {
         String hash = passwordEncoder.encode(user.getPassword());
         user.setBalance(10000.00);
         user.setPassword(hash);
-        user.setTakenBusinessQuiz(0);
-        user.setTakenStockQuiz(0);
+        user.setTakenBusinessQuiz(false);
+        user.setTakenStockQuiz(false);
+        user.setViewedPortfolio(false);
+        user.setViewedStocks(false);
+        user.setViewedTransactions(false);
+        user.setViewedStand(false);
+        user.setViewedStore(false);
         userDao.save(user);
         // Create the business based off the username provided
         Business newBusiness = new Business(String.format("%s's Lemonade Stand", user.getUsername()), 0, user);
@@ -75,7 +80,7 @@ public class UserController {
             newUserStock = new UserStock(user, stock, 0, 0);
             userStockDao.save(newUserStock);
         }
-        return "redirect:/profile";
+        return "redirect:/login";
     }
 
     @GetMapping("/profile")
@@ -87,7 +92,6 @@ public class UserController {
         for (UserStock userStock : userStockList) {
             portfolioValue += (userStock.getStock().getMarketPrice() * userStock.getShares());
         }
-
         view.addAttribute("portfolioValue", portfolioValue);
         view.addAttribute("userStocks", userStockList);
         view.addAttribute("user", dbUser);
@@ -98,7 +102,6 @@ public class UserController {
 //        UserController userController = new UserController();
 //        List<UserStock> dbUserStockList = userStockDao.findUserStockByUserId(1);
 //    }
-
 
     @GetMapping("/profile/leaderboard")
     public String viewLeaderboard(Model view){

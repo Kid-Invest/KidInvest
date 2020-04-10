@@ -38,10 +38,10 @@ public class User {
     private boolean viewedStore;
 
     @Column(name = "completed_stock_quiz")
-    private int takenStockQuiz;
+    private boolean takenStockQuiz;
 
     @Column(name = "completed_business_quiz")
-    private int takenBusinessQuiz;
+    private boolean takenBusinessQuiz;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<StockTransaction> transactionList;
@@ -56,7 +56,7 @@ public class User {
     ;
 
     //constructor
-    public User(long id, String username, String password, String email, Double balance, boolean viewedPortfolio, boolean viewedTransactions, boolean viewedStocks, boolean viewedStand, boolean viewedStore, int takenStockQuiz, int takenBusinessQuiz) {
+    public User(long id, String username, String password, String email, Double balance, boolean viewedPortfolio, boolean viewedTransactions, boolean viewedStocks, boolean viewedStand, boolean viewedStore, boolean takenStockQuiz, boolean takenBusinessQuiz) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -167,19 +167,19 @@ public class User {
         this.viewedStore = viewedStore;
     }
 
-    public int getTakenStockQuiz() {
+    public boolean getTakenStockQuiz() {
         return takenStockQuiz;
     }
 
-    public void setTakenStockQuiz(int takenStockQuiz) {
+    public void setTakenStockQuiz(boolean takenStockQuiz) {
         this.takenStockQuiz = takenStockQuiz;
     }
 
-    public int getTakenBusinessQuiz() {
+    public boolean getTakenBusinessQuiz() {
         return takenBusinessQuiz;
     }
 
-    public void setTakenBusinessQuiz(int takenBusinessQuiz) {
+    public void setTakenBusinessQuiz(boolean takenBusinessQuiz) {
         this.takenBusinessQuiz = takenBusinessQuiz;
     }
 
@@ -209,5 +209,13 @@ public class User {
 
     public void setUserStockList(List<UserStock> userStockList) {
         this.userStockList = userStockList;
+    }
+
+    public boolean isTakenStockQuiz() {
+        return takenStockQuiz;
+    }
+
+    public boolean isTakenBusinessQuiz() {
+        return takenBusinessQuiz;
     }
 }
