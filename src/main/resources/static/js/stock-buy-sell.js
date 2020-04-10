@@ -13,7 +13,10 @@
         const modalBuySellBtn = $("#modal-buy-sell-btn");
         const ownShares = $("#ownShares");
 
+        let newCount = 0;
+
         subtractBtnEl.addEventListener("click", function (){
+            console.log(subtractBtnEl);
             newCount = parseInt(currentStockEl.val()) - 1;
             if (newCount >= 1){
                 currentStockEl.val(newCount);
@@ -22,7 +25,8 @@
         });
         addBtnEl.addEventListener("click", function (){
             newCount = parseInt(currentStockEl.val()) + 1;
-            if ((Number.parseFloat(userBalance.split(",").join("")) >= (newCount * marketPriceEl)) && (stockActionEl.val() === "buy")) {
+
+            if (((Number.parseFloat(userBalance.split(",").join(""))  >= (newCount * marketPriceEl)) && (stockActionEl.val() === "buy"))) {
                 currentStockEl.val(newCount);
                 currentTotalEl.val((newCount * parseFloat(marketPriceEl)).toFixed(2));
             }

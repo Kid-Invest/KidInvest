@@ -21,7 +21,7 @@ html,
 body {
     background-color: var(--cadet-blue);
     color: #fff;
-    font-family: 'Sniglet', cursive;
+    font-family: 'Sniglet', sans-serif;
     height: 100%;
 }
 
@@ -60,8 +60,8 @@ ul li a.nav-link:hover,
 }
 .navbar-toggler:focus,
 .buy-stock-btn:focus, .sell-stock-btn:focus,
-td>a:focus, .modal-buy-btn:focus, .login-btn:focus,
-#subtract-btn:focus, #add-btn:focus, .close:focus{
+td>a:focus, .modal-buy-btn:focus, .register-btn:focus, .logout-btn:focus,
+.login-btn:focus, #subtract-btn:focus, #add-btn:focus, .close:focus{
     outline: 0;
 }
 .page-content {
@@ -105,7 +105,7 @@ td>a:focus, .modal-buy-btn:focus, .login-btn:focus,
     border-radius: 10px;
     background-color: var(--dark-cyan);
 }
-.buy-stock-btn, .sell-stock-btn {
+.buy-stock-btn, .sell-stock-btn{
     padding: 0;
     margin-left: 10px;
     margin-right: 10px;
@@ -117,7 +117,7 @@ td>a:focus, .modal-buy-btn:focus, .login-btn:focus,
     border: 3px var(--primary-gold-color) solid;
     border-radius: 50px;
 }
-.buy-stock-btn:hover, .sell-stock-btn:hover {
+.buy-stock-btn:hover, .sell-stock-btn:hover{
     color: #fff;
     transition: color .2s ease-in;
 }
@@ -157,9 +157,13 @@ tbody tr:nth-child(even){
 tbody tr:nth-child(odd){
     background-color: var(--cadet-blue);
 }
-tbody.dropdown-row tr:nth-child(2n+0) {
+tbody.dropdown-row tr:nth-child(4n), tbody.dropdown-row tr:nth-child(4n-1){
     background-color: var(--cadet-blue);
 }
+tbody.dropdown-row tr:nth-child(4n-2), tbody.dropdown-row tr:nth-child(4n-3){
+    background-color: #64A6AD;
+}
+
 tr.owned-stock-stats {
     display: none;
     width: 100%;
@@ -178,12 +182,12 @@ tr.owned-stock-stats {
     border-radius: 10px;
     background-color: var(--dark-cyan);
 }
-/*.balance-container {*/
-/*    background-color: var(--primary-gold-color);*/
-/*    border: 1px var(--primary-gold-color) solid;*/
-/*    border-radius: 10px;*/
-/*    color: var(--dark-cyan);*/
-/*}*/
+.balance-container {
+    background-color: var(--primary-gold-color);
+    border: 1px var(--primary-gold-color) solid;
+    border-radius: 10px;
+    color: var(--dark-cyan);
+}
 .current-stock-total, input[type=number] {
     background-color: var(--dark-cyan);
     border-width: 0 0 2px;
@@ -195,6 +199,9 @@ tr.owned-stock-stats {
     padding-top: 1px;
     color: var(--dark-cyan);
     width: 1em;
+}
+.fa-minus:hover, .fa-plus:hover {
+    color: #fff;
 }
 #subtract-btn, #add-btn {
     border: 2px var(--primary-gold-color) solid;
@@ -293,18 +300,28 @@ input[type=password].password{
     border: 2px var(--primary-gold-color) solid;
     border-radius: 50px;
 }
-.register-btn:hover, .login-btn:hover {
+.register-btn:hover, .login-btn:hover, .portfolio-lb-stock-links > a:hover {
     color: #fff;
     transition: color .2s ease-in;
 }
 
 
 /*PROFILE PAGE*/
+.portfolio-lb-stock-links > a{
+    background-color: var(--primary-gold-color);
+    border: 3px var(--primary-gold-color) solid;
+    border-radius: 50px;
+    text-decoration: none;
+    color: var(--dark-cyan);
+    /*padding: 2px 20px;*/
+    height: 50px;
+    width: 210px;
+}
 .profile-stocks {
     background-color: var(--dark-cyan);
     border: 1px var(--dark-cyan) solid;
     border-radius: 10px;
-    max-width: 1078px;
+    /*max-width: 1078px;*/
 }
 .stat-title {
     font-size: 20px;
