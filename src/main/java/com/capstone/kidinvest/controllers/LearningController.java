@@ -42,12 +42,12 @@ public class LearningController {
     public String doAddStockResultToBalance(Model view, @RequestParam String quiz_result){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User dbUser = userDao.findUserById(user.getId());
-        int taken = dbUser.getTakenStockQuiz();
+        boolean taken = dbUser.getTakenStockQuiz();
 
-        if(taken == 0){
+        if(!taken){
             // Increase user's balance based off quiz result ($500/correct answer)
             dbUser.setBalance(dbUser.getBalance() + Double.parseDouble(quiz_result));
-            dbUser.setTakenStockQuiz(1);
+            dbUser.setTakenStockQuiz(true);
             // Save user's balance and takenstockquiz
             userDao.save(dbUser);
             System.out.println("added to balance");
@@ -75,12 +75,12 @@ public class LearningController {
     public String doAddBusinessResultToBalance(Model view, @RequestParam String quiz_result){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User dbUser = userDao.findUserById(user.getId());
-        int taken = dbUser.getTakenBusinessQuiz();
+        boolean taken = dbUser.getTakenBusinessQuiz();
 
-        if(taken == 0){
+        if(!taken){
             // Increase user's balance based off quiz result ($500/correct answer)
             dbUser.setBalance(dbUser.getBalance() + Double.parseDouble(quiz_result));
-            dbUser.setTakenBusinessQuiz(1);
+            dbUser.setTakenBusinessQuiz(true);
             // Save user's balance and takenbusinessquiz
             userDao.save(dbUser);
             System.out.println("added to balance");

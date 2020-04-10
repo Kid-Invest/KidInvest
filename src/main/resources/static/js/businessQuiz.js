@@ -31,9 +31,9 @@
     // let quizTaken = false;
 
     $(document).ready(function () {
-        let quizTaken = $('#quiz_boolean').val();
-        console.log(typeof quizTaken);
-        console.log(typeof !quizTaken);
+        // let quizTaken = $('#quiz_boolean').val();
+        // console.log(typeof quizTaken);
+        // console.log(typeof !quizTaken);
 
 
         // Display the first question
