@@ -80,7 +80,7 @@ public class UserController {
             newUserStock = new UserStock(user, stock, 0, 0);
             userStockDao.save(newUserStock);
         }
-        return "redirect:/profile";
+        return "redirect:/login";
     }
 
     @GetMapping("/profile")
