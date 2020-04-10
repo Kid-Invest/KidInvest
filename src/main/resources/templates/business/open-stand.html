@@ -4,47 +4,36 @@
 </head>
 <body>
 <div th:include="partials/fragments :: nav"></div>
+<div id="lemonade-game"></div>
+<button>END GAME</button>
+<h1>Inventory</h1>
+<label for="lemons">Lemons</label>
+<input type="number" value="20" name="lemons" id="lemons" readonly>
+<label for="ice">Ice</label>
+<input type="number" value="20" name="ice" id="ice" readonly>
+<label for="sugars">Sugar</label>
+<input type="number" value="20" name="sugars" id="sugars" readonly>
+<label for="sweetener">Sweetener</label>
+<input type="number" value="20" name="sweetener" id="sweetener" readonly>
+<label for="honey">Honey</label>
+<input type="number" value="20" name="honey" id="honey" readonly>
+<label for="strawberry">Strawberry</label>
+<input type="number" value="20" name="strawberry" id="strawberry" readonly>
+<label for="peach">Peach</label>
+<input type="number" value="20" name="peach" id="peach" readonly>
+<label for="blueberry">Blueberry</label>
+<input type="number" value="20" name="blueberry" id="blueberry" readonly>
+<label for="raspberry">Raspberry</label>
+<input type="number" value="20" name="raspberry" id="raspberry" readonly>
 
+<div th:include="partials/fragments :: footer"></div>
+<div th:include="partials/fragments :: scripts"></div>
+<script type="text/javascript" th:src="@{/js/lemonade-stand.js}"></script>
+<script
+        src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+        crossorigin="anonymous"></script>
+<script src="//cdn.jsdelivr.net/npm/phaser@3.22.0/dist/phaser.js"></script>
 
-<h1 th:if="${missingIngredient.equals('true')}">Error not enough ingredients</h1>
-<h3>CURRENT INVENTORY</h3>
-<div class="container-fluid">
-    <h1>Lemonade Stand</h1>
-    <table>
-        <thead>
-        <tr>
-            <th>
-                <h4>INGREDIENT NAME</h4>
-            </th>
-            <th>
-                <h4>TOTAL AMOUNT</h4>
-            </th>
-        </tr>
-        </thead>
-        <tbody>
-        <th:block th:each="inventory : ${inventoryList}">
-            <tr>
-                <td th:text="${inventory.getIngredient().getName()}"></td>
-                <td th:text="${inventory.getTotal()}"></td>
-            </tr>
-        </th:block>
-        </tbody>
-    </table>
-</div>
-
-STAND OPTIONS
-<br>
-<form th:action="@{/business/open-stand}" th:method="POST">
-    <input type="text" th:value="1" th:name="requested_lemonade_id" hidden>
-    <button type="submit">Sell Lemonade</button>
-<!--    <button>Sell Strawberry Lemonade</button>-->
-<!--    <button>Sell Peach Lemonade</button>-->
-<!--    <button>Sell Blueberry Lemonade</button>-->
-<!--    <button>Sell Raspberry Lemonade</button>-->
-</form>
-
-<th:block th:include="partials/fragments :: footer"/>
-<th:block th:include="partials/fragments :: scripts"/>
-<script type="text/javascript" th:src="@{/js/profile.js}"></script>
 </body>
 </html>
