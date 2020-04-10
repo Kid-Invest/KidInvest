@@ -18,17 +18,12 @@ public class LearningController {
     }
 
     @GetMapping("/learning")
-    public String viewLearningPage(){
-        return "learning/learning";
-    }
-
-    @GetMapping("/learning/stock")
-    public String viewStockLearningPage(Model view){
+    public String viewLearningPage(Model view){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User dbUser = userDao.findUserById(user.getId());
 
         view.addAttribute("dbUser", dbUser);
-        return "learning/stockLearning";
+        return "learning/learning";
     }
 
     @GetMapping("/learning/stock/quiz")
@@ -53,15 +48,6 @@ public class LearningController {
             System.out.println("added to balance");
         }
         return "redirect:/profile";
-    }
-
-    @GetMapping("/learning/business")
-    public String viewBusinessLearningPage(Model view){
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User dbUser = userDao.findUserById(user.getId());
-
-        view.addAttribute("dbUser", dbUser);
-        return "learning/businessLearning";
     }
 
     @GetMapping("/learning/business/quiz")

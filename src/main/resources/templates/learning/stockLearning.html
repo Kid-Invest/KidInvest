@@ -5,11 +5,14 @@
 <body>
 <div th:include="partials/fragments :: nav"></div>
 
-    <div class="container mt-4">
+    <div class="container stockContainer mt-4">
         <h1>Stock Learning Page!!</h1>
         <br>
         <div th:if='${dbUser.getTakenStockQuiz() == false}'>
             <a href="/learning/stock/quiz">Take the Quiz!</a>
+        </div>
+        <div th:if='${dbUser.getTakenStockQuiz() == true}'>
+            <h6>Quiz Already Taken</h6>
         </div>
         <a href="/learning">Back to Learning</a>
 
