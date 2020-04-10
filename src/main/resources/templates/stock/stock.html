@@ -16,6 +16,7 @@
             <h6 class="text-center">(Buying Power)</h6>
         </div>
     </div>
+
 </div>
 
 
@@ -59,10 +60,10 @@
     <div class="row mx-3 d-flex justify-content-around stock-stats">
         <div class="col p-0 mx-3 my-3 d-flex align-content-center flex-column text-center">
             <h2 class="m-0">OPEN</h2>
-            <h4 class="pb-3" th:text="${#numbers.formatDecimal(currentStock.getOpenPrice(), 0, 'DEFAULT', 2, 'DEFAULT')}">$30.00</h4>
+            <h4 class="pb-3" th:text="${currentStock.getOpenPrice()}">$30.00</h4>
 
             <h2 class="m-0">MARKET PRICE</h2>
-            <h4 th:text="${#numbers.formatDecimal(currentStock.getMarketPrice(), 0, 'DEFAULT', 2, 'DEFAULT')}">$30.00</h4>
+            <h4 th:text="${currentStock.getMarketPrice()}">$30.00</h4>
         </div>
         <div class="col p-0 mx-3 my-3 d-flex align-content-center flex-column text-center">
             <!--                <h2 class="m-0">52-WEEK LOW</h2>-->
@@ -71,10 +72,10 @@
             <!--                <h2 class="m-0">52-WEEK HIGH</h2>-->
             <!--                <h4 class="pb-3" th:text="${currentStock.getYearHighPrice()}">$30.00</h4>-->
             <h2 class="m-0">LOW</h2>
-            <h4 class="pb-3" th:text="${#numbers.formatDecimal(currentStock.getLowPrice(), 0, 'DEFAULT', 2, 'DEFAULT')}">$30.00</h4>
+            <h4 class="pb-3" th:text="${currentStock.getLowPrice()}">$30.00</h4>
 
             <h2 class="m-0">HIGH</h2>
-            <h4 th:text="${#numbers.formatDecimal(currentStock.getHighPrice(), 0, 'DEFAULT', 2, 'DEFAULT')}">$30.00</h4>
+            <h4 th:text="${currentStock.getHighPrice()}">$30.00</h4>
         </div>
         <div class="col py-3 mx-3 d-flex align-items-center justify-content-around flex-column text-center">
             <button class="mx-3 mt-2 mb-1 buy-stock-btn" type="button" data-target="#modal" data-toggle="modal"
@@ -100,7 +101,7 @@
                     <div class="d-flex flex-column">
                         <div>
                             <h5 class="mb-0"><span th:text="${currentStock.name}">Sample Company</span>
-                                $<span th:text="${#numbers.formatDecimal(currentStock.marketPrice, 0, 'DEFAULT', 2, 'DEFAULT')}" th:id="marketPrice">100.00</span></h5>
+                                $<span th:text="${currentStock.marketPrice}" th:id="marketPrice">100.00</span></h5>
                         </div>
                         <div>
                             <h5 class="mb-0">Currently Owned:
@@ -159,13 +160,15 @@
                     <td class="align-middle border-0 px-0" th:text="${stock.getTicker()}">SCC</td>
                     <td class="align-middle border-0 px-0 text-right">
                         <span th:style="${stock.getChange()} > 0 ? 'color: #0D8D00' : 'color: #FF3E02'">
-                            <th:block th:if="${stock.getChange()} > 0"><i class="fas fa-chevron-up fa-sm"></i></th:block>
-                            <th:block th:unless="${stock.getChange()} > 0"><i class="fas fa-chevron-down fa-sm"></i></th:block>
+                            <th:block
+                                    th:if="${stock.getChange()} > 0"><i class="fas fa-chevron-up fa-sm"></i></th:block>
+                            <th:block
+                                    th:unless="${stock.getChange()} > 0"><i class="fas fa-chevron-down fa-sm"></i></th:block>
                         </span>
                     </td>
                     <td class="align-middle border-0 px-0">
                         <span class="align-middle daily-percentage"
-                              th:text="${#numbers.formatDecimal(stock.getChange(), 0, 'DEFAULT', 2, 'DEFAULT') + '%'}"></span>
+                              th:text="${stock.getChange() + '%'}"></span>
                     </td>
                     <td class="align-middle border-0 px-0" th:text="${#numbers.formatDecimal(stock.getMarketPrice(), 0, 'DEFAULT', 2, 'DEFAULT')}">$32</td>
                     <td class="align-middle border-0 text-center px-0"><a

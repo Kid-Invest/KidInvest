@@ -5,35 +5,26 @@
 <body>
 <div th:include="partials/fragments :: nav"></div>
 <div id="lemonade-game"></div>
-<button>END GAME</button>
-<h1>Inventory</h1>
-<label for="lemons">Lemons</label>
-<input type="number" value="20" name="lemons" id="lemons" readonly>
-<label for="ice">Ice</label>
-<input type="number" value="20" name="ice" id="ice" readonly>
-<label for="sugars">Sugar</label>
-<input type="number" value="20" name="sugars" id="sugars" readonly>
-<label for="sweetener">Sweetener</label>
-<input type="number" value="20" name="sweetener" id="sweetener" readonly>
-<label for="honey">Honey</label>
-<input type="number" value="20" name="honey" id="honey" readonly>
-<label for="strawberry">Strawberry</label>
-<input type="number" value="20" name="strawberry" id="strawberry" readonly>
-<label for="peach">Peach</label>
-<input type="number" value="20" name="peach" id="peach" readonly>
-<label for="blueberry">Blueberry</label>
-<input type="number" value="20" name="blueberry" id="blueberry" readonly>
-<label for="raspberry">Raspberry</label>
-<input type="number" value="20" name="raspberry" id="raspberry" readonly>
+
+<form th:action="@{/business/open-stand}" th:method="POST">
+    <label for="earnings">Total Earnings</label>
+    <input type="number" value="0" th:name="earnings" id="earnings" readonly>
+    <button type="submit">CLOSE SHOP</button>
+    <h1>Current Inventory</h1>
+    <th:block th:each="inventoryItem : ${inventoryList}">
+        <label th:for="${inventoryItem.getIngredient().getName()}" th:text="${inventoryItem.getIngredient().getName()}"></label>
+        <input type="number" th:value="${inventoryItem.getTotal()}" th:name="${'ingredient_id' + inventoryItem.getIngredient().getId()}" th:id="${inventoryItem.getIngredient().getName()}" readonly>
+    </th:block>
+</form>
 
 <div th:include="partials/fragments :: footer"></div>
 <div th:include="partials/fragments :: scripts"></div>
-<script type="text/javascript" th:src="@{/js/lemonade-stand.js}"></script>
 <script
         src="https://code.jquery.com/jquery-3.4.1.js"
         integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
         crossorigin="anonymous"></script>
 <script src="//cdn.jsdelivr.net/npm/phaser@3.22.0/dist/phaser.js"></script>
+<script type="text/javascript" th:src="@{/js/lemonade-stand.js}"></script>
 
 </body>
 </html>
