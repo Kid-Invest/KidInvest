@@ -41,6 +41,56 @@
                 this.generatedBuyer = false;
                 this.game.globals = new Map();
 
+                console.log(lemonsEl[0].value);
+                console.log(sugarsEl[0].value);
+                console.log(iceEl[0].value);
+                console.log(sweetenerEl[0].value);
+                console.log(honeyEl[0].value);
+                console.log(strawberryEl[0].value);
+                console.log(peachEl[0].value);
+                console.log(blueberryEl[0].value);
+                console.log(raspberryEl[0].value);
+                this.inventory = [
+                    // 0
+                    {
+                        key: 'lemon',  // 0
+                        amount: lemonsEl[0].value
+                    },
+                    {
+                        key: 'sugar', // 1
+                        amount: sugarsEl[0].value
+                    },
+                    {
+                        key: 'ice', // 2
+                        amount: iceEl[0].value
+                    },
+
+                    {
+                        key: 'sweetener', // 3
+                        amount: sweetenerEl[0].value
+                    },
+                    {
+                        key: 'honey', // 4
+                        amount: honeyEl[0].value
+                    },
+                    {
+                        key: 'strawberry', // 5
+                        amount: strawberryEl[0].value
+                    },
+                    {
+                        key: 'peach', // 6
+                        amount: peachEl[0].value
+                    },
+                    {
+                        key: 'blueberry', // 7
+                        amount: blueberryEl[0].value
+                    },
+                    {
+                        key: 'raspberry', // 8
+                        amount: raspberryEl[0].value
+                    }
+                ]
+
                 this.totalEarnings = 0;
                 this.kids = [
                     {
@@ -360,6 +410,11 @@
                 console.log(this.moneyAudio);
                 console.log(this.sadAudio);
                 this.backgroundAudioPlaying = false;
+                // console.log(this.canPurchase('lemon'));
+                // console.log(this.canPurchase('strawberry'));
+                // console.log(this.canPurchase('peach'));
+                // console.log(this.canPurchase('blueberry'));
+                // console.log(this.canPurchase('raspberry'));
             };
 
 
@@ -425,6 +480,7 @@
                 }
 
                 if (buyer.walkedUp && buyer.boughtLemonade && !buyer.walkedLeft && this.counter === 1) {
+                    this.makeLemonade(this.buyerChoice);
                     this.totalEarnings += this.increaseEarnings(this.lemonades[this.buyerChoiceId].price);
                 }
                 // buyer.boughtLemonade = true at this point
@@ -502,29 +558,36 @@
                 if (buyer.doneDeciding && !buyer.boughtLemonade && !buyer.gotAngry && this.counter === 0) {
                     this.counter++;
                     this.doThinking();
-                    this.sellerEmotion.setTexture('money');
+                    if (this.canPurchase(this.buyerChoice)) {
+                        this.sellerEmotion.setTexture('money');
+                    } else {
+
+                    }
+
                     this.buyerEmotion.setTexture(this.buyerChoice);
                     this.sellerEmotion.alpha = 1;
                     this.tween.play();
                     // if buyer has not bought a lemonade then wait until he purchases one
                     if (!buyer.boughtLemonade && !buyer.gotAngry) {
                         // sold a lemonade
-                        this.canPurchase(this.buyerChoice);
+
                         this.sellerEmotion.on('pointerdown', function (pointer) {
                             // console.log("clicked money");
                             // stop the seller's emotion
+                            if (this.canPurchase(this.buyerChoice)) {
+                                this.sellerEmotion.setTexture('superhappy');
+                                this.buyerEmotion.setTexture('wave');
+                                // this.tween.restart();
+                                this.time.delayedCall(2000, function () {
+                                    this.sellerEmotion.setTexture('peace');
+                                }, [], this);
+                                buyer.boughtLemonade = true;
+                            }
 
-                            this.sellerEmotion.setTexture('superhappy');
-                            this.buyerEmotion.setTexture('wave');
-                            // this.tween.restart();
-                            this.time.delayedCall(2000, function () {
-                                this.sellerEmotion.setTexture('peace');
-                            }, [], this);
-                            buyer.boughtLemonade = true;
                         }, gameScene);
 
                         // if 10 seconds pass and user did not click the money button, then seller leaves angry
-                        this.time.delayedCall(10000, function () {
+                        this.time.delayedCall(6000, function () {
                             if (!buyer.boughtLemonade) {
                                 console.log("im angry");
                                 this.sellerEmotion.setTexture('drop');
@@ -553,48 +616,107 @@
 
             gameScene.canPurchase = function (lemonade) {
                 console.log(lemonade);
-                let lemons = lemonsEl[0].value;
-                let sugars = sugarsEl[0].value;
-                let ice = iceEl[0].value;
-                let sweeteners = sweetenerEl[0].value;
-                let honey = honeyEl[0].value;
-                let strawberries = strawberryEl[0].value;
-                let peaches = peachEl[0].value;
-                let blueberries = blueberryEl[0].value;
-                let raspberries = raspberryEl[0].value;
+                // let lemons = lemonsEl[0].value;
+                // let sugars = sugarsEl[0].value;
+                // let ice = iceEl[0].value;
+                // let sweeteners = sweetenerEl[0].value;
+                // let honey = honeyEl[0].value;
+                // let strawberries = strawberryEl[0].value;
+                // let peaches = peachEl[0].value;
+                // let blueberries = blueberryEl[0].value;
+                // let raspberries = raspberryEl[0].value;
+
                 switch (lemonade) {
                     case 'lemon':
-                        console.log("lemon found");
-                        break;
+                        return !((this.inventory[0].amount < 2) || (this.inventory[1].amount < 2) || (this.inventory[2].amount < 2));
+
                     case 'strawberry':
-                        console.log("strawberry found");
-                        break;
+                        return !((this.inventory[0].amount < 1) || (this.inventory[1].amount < 2) || (this.inventory[2].amount < 2) || (this.inventory[5] < 3));
                     case 'blueberry':
-                        console.log("blueberry found");
-                        break;
+                        return !((this.inventory[0].amount < 1) || (this.inventory[4].amount < 1) || (this.inventory[2].amount < 2) || (this.inventory[3].amount < 1) || (this.inventory[7] < 8));
+
                     case 'peach':
-                        console.log("peach found");
-                        break;
+                        return !((this.inventory[0].amount < 1) || (this.inventory[4].amount < 2) || (this.inventory[2].amount < 2) || (this.inventory[6] < 1));
                     case 'raspberry':
-                        console.log("raspberry found");
-                        break;
+                        return !((this.inventory[0].amount < 1) || (this.inventory[1].amount < 1) || (this.inventory[2].amount < 2) || (this.inventory[3].amount < 1) || (this.inventory[8] < 8));
+
                     default:
                         console.log("defaulting");
+                        return true;
                 }
-
-                console.log(lemons);
-                console.log(sugars);
-                console.log(ice);
-                console.log(sweeteners);
-                console.log(honey);
-                console.log(strawberries);
-                console.log(peaches);
-                console.log(blueberries);
-                console.log(raspberries);
-                let hasEnoughIngredients = true;
-
             }
 
+            gameScene.makeLemonade = function (lemonade) {
+                    // you have enough ingredients so reduce the inventory and make the sale!
+                if (lemonade === 'lemon') {
+                    this.inventory[0].amount -= 2;
+                    this.inventory[1].amount -= 2;
+                    this.inventory[2].amount -= 2;
+                    console.log(this.inventory[0].amount);
+                    console.log(this.inventory[1].amount);
+                    console.log(this.inventory[2].amount);
+                    lemonsEl[0].value -= 2;
+                    sugarsEl[0].value -= 2;
+                    iceEl[0].value -= 2;
+                } else if (lemonade === 'strawberry') {
+                    this.inventory[0].amount -= 1;
+                    this.inventory[1].amount -= 2;
+                    this.inventory[2].amount -= 2;
+                    this.inventory[5].amount -= 3;
+                    lemonsEl[0].value -= 1;
+                    sugarsEl[0].value -= 2;
+                    iceEl[0].value -= 2;
+                    strawberryEl[0].value -= 3;
+                } else if (lemonade === 'blueberry') {
+                    this.inventory[0].amount -= 1;
+                    this.inventory[4].amount -= 1;
+                    this.inventory[2].amount -= 2;
+                    this.inventory[3].amount -= 1;
+                    this.inventory[7].amount -= 8;
+                    lemonsEl[0].value -= 1;
+                    honeyEl[0].value -= 1;
+                    iceEl[0].value -= 2;
+                    sweetenerEl[0].value -= 1;
+                    blueberryEl[0].value -= 8;
+                } else if (lemonade === 'peach') {
+                    this.inventory[0].amount -= 1;
+                    this.inventory[4].amount -= 2;
+                    this.inventory[2].amount -= 2;
+                    this.inventory[6].amount -= 1;
+                    lemonsEl[0].value -= 1;
+                    honeyEl[0].value -= 2;
+                    iceEl[0].value -= 2;
+                    peachEl[0].value -= 1;
+                } else if (lemonade === 'raspberry') {
+                    this.inventory[0].amount -= 1;
+                    this.inventory[1].amount -= 1;
+                    this.inventory[2].amount -= 2;
+                    this.inventory[3].amount -= 1;
+                    this.inventory[8].amount -= 8;
+                    lemonsEl[0].value -= 1;
+                    sugarsEl[0].value -= 1;
+                    iceEl[0].value -= 2;
+                    sweetenerEl[0].value -= 1;
+                    raspberryEl[0].value -= 8;
+                }
+
+            }
+           /* gameScene.makeStrawberryLemonade = function () {
+                    // you have enough ingredients so reduce the inventory and make the sale!
+
+            }
+            gameScene.makeBlueberryLemonade = function () {
+                    // you have enough ingredients so reduce the inventory and make the sale!
+
+            }
+            gameScene.makePeachLemonade = function () {
+                    // you have enough ingredients so reduce the inventory and make the sale!
+
+            }
+            gameScene.makeRaspberryLemonade = function () {
+                    // you have enough ingredients so reduce the inventory and make the sale!
+
+            }*/
 
             let config = {
                 type: Phaser.AUTO,

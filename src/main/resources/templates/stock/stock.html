@@ -11,7 +11,7 @@
 
 <div class="container p-3">
     <div class="balance-container">
-        <h2 class="mb-0">BALANCE: $<span th:text="${user.balance}" th:id="user-balance">500</span></h2>
+        <h2 class="mb-0">BALANCE: $<span th:text="${#numbers.formatDecimal(user.balance, 0, 'DEFAULT', 2, 'DEFAULT')}" th:id="user-balance">500</span></h2>
         <h6>(Buying Power)</h6>
     </div>
 
