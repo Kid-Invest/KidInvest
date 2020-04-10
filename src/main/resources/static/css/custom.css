@@ -321,7 +321,7 @@ input[type=password].password{
     background-color: var(--dark-cyan);
     border: 1px var(--dark-cyan) solid;
     border-radius: 10px;
-    max-width: 1078px;
+    /*max-width: 1078px;*/
 }
 .stat-title {
     font-size: 20px;
