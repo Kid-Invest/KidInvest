@@ -1,25 +1,15 @@
 {
     $(document).ready(() => {
-            let lemonsEl = $('#lemons');
+            let lemonsEl = $('#lemon');
             let iceEl = $('#ice');
-            let sugarsEl = $('#sugars');
+            let sugarsEl = $('#sugar');
             let sweetenerEl = $('#sweetener');
             let honeyEl = $('#honey');
             let strawberryEl = $('#strawberry');
             let peachEl = $('#peach');
             let blueberryEl = $('#blueberry');
             let raspberryEl = $('#raspberry');
-            console.log("here");
-            console.log(lemonsEl[0].value);
-            console.log(sugarsEl[0].value);
-            console.log(iceEl[0].value);
-            console.log(sweetenerEl[0].value);
-            console.log(honeyEl[0].value);
-            console.log(strawberryEl[0].value);
-            console.log(peachEl[0].value);
-            console.log(blueberryEl[0].value);
-            console.log(raspberryEl[0].value);
-            console.log("here");
+            let earningsEl = $('#earnings');
 
             let gameScene = new Phaser.Scene('Game');
 
@@ -312,6 +302,7 @@
                 this.load.image('wave', '/assets/emotions/wave.png');
                 this.load.image('money', '/assets/emotions/money.png');
                 this.load.image('drop', '/assets/emotions/drop.png');
+                this.load.image('nostock', '/assets/emotions/nostock.png');
                 // Load audio
                 this.load.audio('backgroundAudio', '/assets/audio/background-song-v2.mp3');
                 this.load.audio('moneyAudio', '/assets/audio/money-sound-v2.mp3');
@@ -406,15 +397,7 @@
                 this.moneyAudio.volume = 0;
                 this.sadAudio.volume = 0;
                 this.backgroundAudio.loop = true;
-                console.log(this.backgroundAudio);
-                console.log(this.moneyAudio);
-                console.log(this.sadAudio);
                 this.backgroundAudioPlaying = false;
-                // console.log(this.canPurchase('lemon'));
-                // console.log(this.canPurchase('strawberry'));
-                // console.log(this.canPurchase('peach'));
-                // console.log(this.canPurchase('blueberry'));
-                // console.log(this.canPurchase('raspberry'));
             };
 
 
@@ -469,7 +452,7 @@
                 // walk up y:190 is in front of stand, if he has not walked up
                 if (!buyer.walkedUp) {
                     this.walkForward(buyer);
-                    console.log("walking up");
+                    // console.log("walking up");
                 }
                 // buyer.walkedUp = true at this point
 
@@ -561,7 +544,7 @@
                     if (this.canPurchase(this.buyerChoice)) {
                         this.sellerEmotion.setTexture('money');
                     } else {
-
+                        this.sellerEmotion.setTexture('nostock');
                     }
 
                     this.buyerEmotion.setTexture(this.buyerChoice);
@@ -602,6 +585,7 @@
 
             gameScene.increaseEarnings = function (earnings) {
                 this.earningsText.setText('Total Earnings($): ' + (this.totalEarnings + earnings));
+                earningsEl[0].value = parseFloat(earningsEl[0].value) + earnings;
                 this.moneyAudio.play();
                 this.counter++;
                 return earnings;
@@ -615,17 +599,6 @@
             };
 
             gameScene.canPurchase = function (lemonade) {
-                console.log(lemonade);
-                // let lemons = lemonsEl[0].value;
-                // let sugars = sugarsEl[0].value;
-                // let ice = iceEl[0].value;
-                // let sweeteners = sweetenerEl[0].value;
-                // let honey = honeyEl[0].value;
-                // let strawberries = strawberryEl[0].value;
-                // let peaches = peachEl[0].value;
-                // let blueberries = blueberryEl[0].value;
-                // let raspberries = raspberryEl[0].value;
-
                 switch (lemonade) {
                     case 'lemon':
                         return !((this.inventory[0].amount < 2) || (this.inventory[1].amount < 2) || (this.inventory[2].amount < 2));
@@ -639,7 +612,6 @@
                         return !((this.inventory[0].amount < 1) || (this.inventory[4].amount < 2) || (this.inventory[2].amount < 2) || (this.inventory[6] < 1));
                     case 'raspberry':
                         return !((this.inventory[0].amount < 1) || (this.inventory[1].amount < 1) || (this.inventory[2].amount < 2) || (this.inventory[3].amount < 1) || (this.inventory[8] < 8));
-
                     default:
                         console.log("defaulting");
                         return true;
@@ -647,7 +619,7 @@
             }
 
             gameScene.makeLemonade = function (lemonade) {
-                    // you have enough ingredients so reduce the inventory and make the sale!
+                // you have enough ingredients so reduce the inventory and make the sale!
                 if (lemonade === 'lemon') {
                     this.inventory[0].amount -= 2;
                     this.inventory[1].amount -= 2;
@@ -701,22 +673,6 @@
                 }
 
             }
-           /* gameScene.makeStrawberryLemonade = function () {
-                    // you have enough ingredients so reduce the inventory and make the sale!
-
-            }
-            gameScene.makeBlueberryLemonade = function () {
-                    // you have enough ingredients so reduce the inventory and make the sale!
-
-            }
-            gameScene.makePeachLemonade = function () {
-                    // you have enough ingredients so reduce the inventory and make the sale!
-
-            }
-            gameScene.makeRaspberryLemonade = function () {
-                    // you have enough ingredients so reduce the inventory and make the sale!
-
-            }*/
 
             let config = {
                 type: Phaser.AUTO,

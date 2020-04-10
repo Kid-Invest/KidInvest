@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -180,38 +181,77 @@ public class BusinessController {
     }
 
     @PostMapping("/business/open-stand")
-    public String doLemonadeSale(@RequestParam String requested_lemonade_id) {
+    public String doLemonadeSale(@RequestParam String earnings, @RequestParam String ingredient_id1, @RequestParam String ingredient_id2, @RequestParam String ingredient_id3, @RequestParam String ingredient_id4, @RequestParam String ingredient_id5, @RequestParam String ingredient_id6, @RequestParam String ingredient_id7, @RequestParam String ingredient_id8, @RequestParam String ingredient_id9) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User dbUser = userDao.findUserById(user.getId());
         Business userBusiness = businessDao.findBusinessById(dbUser.getId());
-        Lemonade selectedLemonade = lemonadeDao.getOne(Long.parseLong(requested_lemonade_id));
-        Inventory userInventoryItem = null;
+//        Lemonade selectedLemonade = lemonadeDao.getOne(Long.parseLong(requested_lemonade_id));
+        List<Integer> updatedInventoryList = new ArrayList<>();
+        updatedInventoryList.add(Integer.parseInt(ingredient_id1));
+        updatedInventoryList.add(Integer.parseInt(ingredient_id2));
+        updatedInventoryList.add(Integer.parseInt(ingredient_id3));
+        updatedInventoryList.add(Integer.parseInt(ingredient_id4));
+        updatedInventoryList.add(Integer.parseInt(ingredient_id5));
+        updatedInventoryList.add(Integer.parseInt(ingredient_id6));
+        updatedInventoryList.add(Integer.parseInt(ingredient_id7));
+        updatedInventoryList.add(Integer.parseInt(ingredient_id8));
+        updatedInventoryList.add(Integer.parseInt(ingredient_id9));
+        List<Inventory> userInventoryList = inventoryDao.findInventoryByBusinessId(userBusiness.getId());
         Date date = new Date(new java.util.Date().getTime());
         Sale dailySales = saleDao.findSaleBySaleDate(date);
 
-        // Get list of ingredients and loop through and
-        List<LemonadeIngredient> lemonadeIngredientList = lemonadeIngredientDao.findLemonadeIngredientByLemonadeId(selectedLemonade.getId());
-        boolean enoughIngredients = hasEnoughIngredients(userBusiness, lemonadeIngredientList);
-        if (enoughIngredients) {
-            for (LemonadeIngredient lemonadeIngredient : lemonadeIngredientList) {
-                userInventoryItem = inventoryDao.getInventoryByBusinessIdAndIngredientId(userBusiness.getId(), lemonadeIngredient.getIngredient().getId());
-                userInventoryItem.setTotal(userInventoryItem.getTotal() - lemonadeIngredient.getCount());
-                inventoryDao.save(userInventoryItem);
-            }
-            // Increase balance based off sale
-            dbUser.setBalance(dbUser.getBalance() + selectedLemonade.getPrice());
-            // Save user's balance
-            userDao.save(dbUser);
+        // set the user's inventory to the new values from the game
+        for (int i = 0; i < updatedInventoryList.size(); i++) {
+            userInventoryList.get(i).setTotal(updatedInventoryList.get(i));
+            inventoryDao.save(userInventoryList.get(i));
+        }
+
+        System.out.println("LEMONS: " + ingredient_id1);
+        System.out.println("ICE: " + ingredient_id2);
+        System.out.println("SUGAR: " + ingredient_id3);
+        System.out.println("HONEY: " + ingredient_id4);
+        System.out.println("SWEETENER: " + ingredient_id5);
+        System.out.println("STRAWBERRY: " + ingredient_id6);
+        System.out.println("PEACH: " + ingredient_id7);
+        System.out.println("BLUEBERRY: " + ingredient_id8);
+        System.out.println("RASPBERRY: " + ingredient_id9);
+        System.out.println("TOTAL EARNINGS: " + earnings);
+
+        // increase the user's balance based on the earnings
+        dbUser.setBalance(dbUser.getBalance() + Double.parseDouble(earnings));
+        userDao.save(dbUser);
+
             // Insert a new sale into sales table
             if (dailySales != null) {
-                saleDao.updateSale(dailySales.getProfit() + selectedLemonade.getPrice(), date, userBusiness);
+                saleDao.updateSale(dailySales.getProfit() + Double.parseDouble(earnings), date, userBusiness);
             } else {
-                saleDao.insertSale(selectedLemonade.getPrice(), date, userBusiness);
+                saleDao.insertSale(Double.parseDouble(earnings), date, userBusiness);
             }
-            return "redirect:/business/open-stand";
-        } else {
-            return "redirect:/business/open-stand?missingIngredient=true";
-        }
+
+        // Get list of ingredients and loop through and
+//        List<LemonadeIngredient> lemonadeIngredientList = lemonadeIngredientDao.findLemonadeIngredientByLemonadeId(selectedLemonade.getId());
+//        boolean enoughIngredients = hasEnoughIngredients(userBusiness, lemonadeIngredientList);
+//        if (enoughIngredients) {
+//            for (LemonadeIngredient lemonadeIngredient : lemonadeIngredientList) {
+//                userInventoryItem = inventoryDao.getInventoryByBusinessIdAndIngredientId(userBusiness.getId(), lemonadeIngredient.getIngredient().getId());
+//                userInventoryItem.setTotal(userInventoryItem.getTotal() - lemonadeIngredient.getCount());
+//                inventoryDao.save(userInventoryItem);
+//            }
+//            // Increase balance based off sale
+//            dbUser.setBalance(dbUser.getBalance() + selectedLemonade.getPrice());
+//            // Save user's balance
+//            userDao.save(dbUser);
+//            // Insert a new sale into sales table
+//            if (dailySales != null) {
+//                saleDao.updateSale(dailySales.getProfit() + selectedLemonade.getPrice(), date, userBusiness);
+//            } else {
+//                saleDao.insertSale(selectedLemonade.getPrice(), date, userBusiness);
+//            }
+//            return "redirect:/business/open-stand";
+//        } else {
+//            return "redirect:/business/open-stand?missingIngredient=true";
+//        }
+        return "redirect:/business";
     }
 
     private boolean hasEnoughIngredients(Business business, List<LemonadeIngredient> lemonadeIngredientList) {
