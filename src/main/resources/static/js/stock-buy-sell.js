@@ -26,7 +26,7 @@
         addBtnEl.addEventListener("click", function (){
             newCount = parseInt(currentStockEl.val()) + 1;
 
-            if ((userBalance >= (newCount * marketPriceEl)) && (stockActionEl.val() === "buy")) {
+            if (((Number.parseFloat(userBalance.split(",").join(""))  >= (newCount * marketPriceEl)) && (stockActionEl.val() === "buy"))) {
                 currentStockEl.val(newCount);
                 currentTotalEl.val((newCount * parseFloat(marketPriceEl)).toFixed(2));
             }
