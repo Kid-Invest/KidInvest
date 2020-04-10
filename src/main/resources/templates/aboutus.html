@@ -5,11 +5,34 @@
 <body>
 <div th:include="partials/fragments :: nav"></div>
 
-<h1>Carlos Delgado III</h1>
-<h1>Dayna Leal</h1>
-<h1>Hung Ly</h1>
+<div class="page-content">
+    <h1>Carlos Delgado III</h1>
+    <h1>Dayna Leal</h1>
+    <h1>Hung Ly</h1>
+
+    <div class="container">
+    <div class="card-group">
+
+        <div class="card">
+            <div class="d-flex flex-column justify-content-between align-items-center">
+                <div class="card-body pb-0">
+                    <h5 class="card-title">Hung Ly</h5>
+                    <p class="card-text">Software Developer</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    <img src="/img/Hung.png" class="about-us-img" alt="Hung's profile">
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    </div>
 
 
+
+
+
+</div>
 <th:block th:include="partials/fragments :: footer"/>
 <th:block th:include="partials/fragments :: scripts"/>
 </body>

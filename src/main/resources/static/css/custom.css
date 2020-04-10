@@ -330,6 +330,25 @@ input[type=password].password{
     background-color: var(--cadet-blue);
 }
 
+
+/*ABOUT US*/
+.card {
+    background-color: #353535;
+    background-image: linear-gradient(#353535 0%, #d7d7d7 74%);
+
+    border: none;
+    max-width: 18rem;
+    overflow: hidden;
+}
+.card-body > .card-title {
+
+}
+.about-us-img{
+    height: 362px;
+    max-width: 290px;
+}
+
+
 /*FA ICON COLOR*/
 .yellow {
     color: var(--primary-gold-color);
