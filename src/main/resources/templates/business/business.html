@@ -5,41 +5,103 @@
 <body>
 <div th:include="partials/fragments :: nav"></div>
 
-    <div class="container-fluid">
-        <h1>Business</h1>
-        <a href="/transactions/business">View Business Transactions</a>
-        <br>
-        <a href="/sales">View Daily Business Sales</a>
-        <br>
-        <a href="/business/grocery-store">Purchase Inventory</a>
-        <br>
-        <a href="/business/addon">Purchase Addon</a>
-        <br>
-        <a href="/business/open-stand">Open Stand</a>
+<div class="container-fluid page-content">
 
-        <h3>BUSINESS INVENTORY</h3>
-        <table>
-            <thead>
-            <tr>
-                <th>
-                    <h4>INGREDIENT NAME</h4>
-                </th>
-                <th>
-                    <h4>TOTAL AMOUNT</h4>
-                </th>
-            </tr>
-            </thead>
-            <tbody>
-            <th:block th:each="inventory : ${inventoryList}">
-                <tr>
-                    <td th:text="${inventory.getIngredient().getName()}"></td>
-                    <td th:text="${inventory.getTotal()}"></td>
-                </tr>
-            </th:block>
-            </tbody>
-        </table>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-sm-12 mt-5 d-flex flex-column justify-content-start align-items-center">
+                <h1 class="mb-0 text-center">LEMONADE STAND</h1>
+                <div class="d-inline-flex business-link-group justify-content-center p-3">
+                    <ul class="d-flex flex-column justify-content-between pl-2 pr-2 mb-0">
+                        <li class="mt-2 mb-1">
+                            <div class="row mx-auto">
+                                <i class="fas fa-lemon fa-2x yellow text-left px-2 mx-auto"></i>
+                                <a href="/business/open-stand" class="business-link  mx-auto">Let's sell some lemonades!</a>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="row mx-auto">
+                                <i class="fas fa-comments-dollar fa-2x text-left px-2 mx-auto"></i>
+                                <a href="/business/addon" class="business-link mx-auto">Addons: Get people talking!</a>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="row mx-auto">
+                                <i class="fas fa-store fa-2x orange1 text-left px-2 mx-auto"></i>
+                                <a href="/business/grocery-store" class="business-link mx-auto">Running low on ingredients?</a>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="row mx-auto">
+                                <i class="fas fa-receipt fa-2x text-left px-2 mx-auto"></i>
+                                <a href="/transactions/business" class="business-link mx-auto">What you have purchased.</a>
+                            </div>
+                        </li>
+                        <li class="mt-1 mb-2">
+                            <div class="row mx-auto">
+                                <i class="fas fa-file-invoice-dollar fa-2x green text-left pr-4 mx-auto"></i>
+                                <a href="/sales" class="business-link pl-1 mx-auto">What you have sold.</a>
+                            </div>
+                        </li>
+                    </ul>
+<!--                    <ul class="pl-0 d-flex flex-column justify-content-start pr-2 mb-0">-->
+<!--                        &lt;!&ndash;                <li class="list-group-item"><a href="/business/open-stand">Open Lemonade Stand</a></li>&ndash;&gt;-->
+<!--                        &lt;!&ndash;                <li class="list-group-item"><a href="/business/addon">Lemonade Stand Addons</a></li>&ndash;&gt;-->
+<!--                        &lt;!&ndash;                <li class="list-group-item"><a href="/business/grocery-store">Purchase Ingredients</a></li>&ndash;&gt;-->
+<!--                        &lt;!&ndash;                <li class="list-group-item"><a href="/transactions/business">Ingredient Purchases</a></li>&ndash;&gt;-->
+<!--                        &lt;!&ndash;                <li class="list-group-item"><a href="/sales">Daily Lemonade Sales</a></li>&ndash;&gt;-->
+<!--                        <li class="mt-2 mb-1">-->
+<!--                            <a href="/business/open-stand" class="business-link ml-1">Let's sell some lemonades!</a>-->
+<!--                        </li>-->
+<!--                        <li class="my-1">-->
+<!--                            <a href="/business/addon" class="business-link">Get people talking!</a>-->
+<!--                        </li>-->
+<!--                        <li class="my-1">-->
+<!--                            <a href="/business/grocery-store" class="business-link">Running low on ingredients?</a>-->
+<!--                        </li>-->
+<!--                        <li class="my-1">-->
+<!--                            <a href="/transactions/business" class="business-link">What you have purchased.</a>-->
+<!--                        </li>-->
+<!--                        <li class="mt-1 mb-2">-->
+<!--                            <a href="/sales" class="business-link">What you have sold.</a>-->
+<!--                        </li>-->
+<!--                    </ul>-->
+                </div>
+            </div>
+
+            <div class="col-lg-8 col-sm-12 mt-5">
+                <h1 class="mb-0 text-center">LEMONADE INVENTORY</h1>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                        <tr class="text-center ">
+                            <th class="border-0 px-0">
+                                <p class="mb-0">INGREDIENTS</p>
+                            </th>
+                            <th class="border-0 px-0">
+                                <p class="mb-0">TOTAL</p>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <th:block th:each="inventory : ${inventoryList}">
+                            <tr class="text-center table-stocks">
+                                <td class="align-middle border-0 px-0"
+                                    th:text="${inventory.getIngredient().getName()}"></td>
+                                <td class="align-middle border-0 px-0" th:text="${inventory.getTotal()}"></td>
+                            </tr>
+                        </th:block>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
 
+
+</div>
 <th:block th:include="partials/fragments :: footer"/>
 <th:block th:include="partials/fragments :: scripts"/>
 </body>
