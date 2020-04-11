@@ -11,9 +11,7 @@
     <div class="px-3 pt-3 pb-4">
         <div class="row">
             <div class="col-lg-2 px-0 ml-3 mr-3 balance-container">
-<!--                <h1 class="mb-0 text-center" th:text="${user.getUsername()}">Charlie23</h1>-->
-                <h1 class="mb-0 text-center">charlie delgado</h1>
-
+                <h1 class="mb-0 text-center" th:text="${user.getUsername()}">Charlie23</h1>
             </div>
         </div>
     </div>
@@ -21,9 +19,7 @@
         <div class="container">
             <div class="row">
                 <div class="col">
-<!--                    <h1 class="" th:text="${user.getUsername()}">Charlie23</h1>-->
-                    <h5 class="mb-0">PORTFOLIO VALUE: $<span
-                            th:text="${#numbers.formatDecimal(portfolioValue + user.getBalance(), 0, 'DEFAULT', 2, 'DEFAULT')}">50</span></h5>
+                    <h5 class="mb-0">PORTFOLIO VALUE: $<span th:text="${#numbers.formatDecimal(portfolioValue + user.getBalance(), 0, 'DEFAULT', 2, 'DEFAULT')}">50</span></h5>
                 </div>
             </div>
         </div>
