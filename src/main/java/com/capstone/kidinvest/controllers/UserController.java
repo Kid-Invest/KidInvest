@@ -52,6 +52,8 @@ public class UserController {
     @PostMapping("/register")
     public String doRegistration(@ModelAttribute User user) {
         // Create user based on informaiton provided
+        System.out.println("SELECTED ID: " + user.getCharacterId());
+
         String hash = passwordEncoder.encode(user.getPassword());
         user.setBalance(10000.00);
         user.setPassword(hash);
@@ -70,7 +72,7 @@ public class UserController {
         List<Ingredient> ingredientList = ingredientDao.findAll();
         Inventory newInventory = null;
         for (Ingredient ingredient : ingredientList) {
-            newInventory = new Inventory(newBusiness, ingredient, 0);
+            newInventory = new Inventory(newBusiness, ingredient, 25);
             inventoryDao.save(newInventory);
         }
         // Create initial stocks
