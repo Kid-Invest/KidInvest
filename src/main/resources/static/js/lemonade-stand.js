@@ -10,8 +10,11 @@
             let blueberryEl = $('#blueberry');
             let raspberryEl = $('#raspberry');
             let earningsEl = $('#earnings');
+            let popBonusEl = $('#popBonus');
 
-            let gameScene = new Phaser.Scene('Game');
+        console.log(popBonusEl[0].value);
+
+        let gameScene = new Phaser.Scene('Game');
 
 
             gameScene.init = function init() {
@@ -254,7 +257,7 @@
 
             gameScene.preload = function preload() {
                 // Background
-                this.load.image('background', '/assets/background-loaded.png');
+                this.load.image('background', '/assets/background-blank.png');
                 // Kids
                 this.load.spritesheet('kid1', '/assets/kids/kid-f-1.png', {frameWidth: 32, frameHeight: 32});
                 this.load.spritesheet('kid2', '/assets/kids/kid-f-2.png', {frameWidth: 32, frameHeight: 32});
@@ -303,6 +306,19 @@
                 this.load.image('money', '/assets/emotions/money.png');
                 this.load.image('drop', '/assets/emotions/drop.png');
                 this.load.image('nostock', '/assets/emotions/nostock.png');
+                // Load addons
+                this.load.image('bigtable', '/assets/addons/bigtable.png');
+                this.load.image('bigtree', '/assets/addons/bigtree.png');
+                this.load.image('chairs', '/assets/addons/chairs.png');
+                this.load.image('fountain', '/assets/addons/fountain.png');
+                this.load.image('fridge', '/assets/addons/fridge.png');
+                this.load.image('lights', '/assets/addons/lights.png');
+                this.load.image('plant', '/assets/addons/plant.png');
+                this.load.image('radio', '/assets/addons/radio.png');
+                this.load.image('sign', '/assets/addons/sign.png');
+                this.load.image('trashcan', '/assets/addons/trashcan.png');
+
+
                 // Load audio
                 this.load.audio('backgroundAudio', '/assets/audio/background-song-v2.mp3');
                 this.load.audio('moneyAudio', '/assets/audio/money-sound-v2.mp3');

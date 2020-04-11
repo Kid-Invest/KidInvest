@@ -5,7 +5,10 @@
 <body>
 <div th:include="partials/fragments :: nav"></div>
 <div id="lemonade-game"></div>
-
+<th:block th:each="addon : ${addonList}">
+    <input type="text" th:value="${addon.getName()}" th:id="${addon.getName()}" hidden>
+</th:block>
+<input type="number" th:value="${popBonus}" id="popBonus" hidden>
 <form th:action="@{/business/open-stand}" th:method="POST">
     <label for="earnings">Total Earnings</label>
     <input type="number" value="0" th:name="earnings" id="earnings" readonly>

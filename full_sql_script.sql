@@ -2,17 +2,17 @@ USE kid_invest_db;
 
 # USERS SEEDER
 insert into `kid_invest_db`.`users` (`id`, `username`, `password`, `email`, `balance`, `viewed_portfolio`,
-                                     `viewed_stand`, `viewed_stocks`, `viewed_store`, `viewed_transactions`, `completed_stock_quiz`, `completed_business_quiz`)
-values (1, 'dhurry0', 'JkH7rSdicfB', 'dhalvorsen0@discuz.net', 18638.23, true, true, true, true, true, true, true);
+                                     `viewed_stand`, `viewed_stocks`, `viewed_store`, `viewed_transactions`, `completed_stock_quiz`, `completed_business_quiz`, `character_id`)
+values (1, 'dhurry0', 'JkH7rSdicfB', 'dhalvorsen0@discuz.net', 18638.23, true, true, true, true, true, true, true, 1);
 insert into `kid_invest_db`.`users` (`id`, `username`, `password`, `email`, `balance`, `viewed_portfolio`,
-                                     `viewed_stand`, `viewed_stocks`, `viewed_store`, `viewed_transactions`, `completed_stock_quiz`, `completed_business_quiz`)
-values (2, 'kmarran1', '2gcW9jG4U2TY', 'dbagge1@delicious.com', 10559.32, false, false, false, false, false, true, true);
+                                     `viewed_stand`, `viewed_stocks`, `viewed_store`, `viewed_transactions`, `completed_stock_quiz`, `completed_business_quiz`, `character_id`)
+values (2, 'kmarran1', '2gcW9jG4U2TY', 'dbagge1@delicious.com', 10559.32, false, false, false, false, false, true, true, 1);
 insert into `kid_invest_db`.`users` (`id`, `username`, `password`, `email`, `balance`, `viewed_portfolio`,
-                                     `viewed_stand`, `viewed_stocks`, `viewed_store`, `viewed_transactions`, `completed_stock_quiz`, `completed_business_quiz`)
-values (3, 'rottee2', 'oxKJf96', 'agresser2@paypal.com', 19292.8, false, false, false, false, false, false, true);
+                                     `viewed_stand`, `viewed_stocks`, `viewed_store`, `viewed_transactions`, `completed_stock_quiz`, `completed_business_quiz`, `character_id`)
+values (3, 'rottee2', 'oxKJf96', 'agresser2@paypal.com', 19292.8, false, false, false, false, false, false, true, 1);
 insert into `kid_invest_db`.`users` (`id`, `username`, `password`, `email`, `balance`, `viewed_portfolio`,
-                                     `viewed_stand`, `viewed_stocks`, `viewed_store`, `viewed_transactions`, `completed_stock_quiz`, `completed_business_quiz`)
-values (4, 'hstark3', 'wGvHrA9oJfH', 'ksheppard3@eventbrite.com', 12349.08, false, false, false, false, false, false, false);
+                                     `viewed_stand`, `viewed_stocks`, `viewed_store`, `viewed_transactions`, `completed_stock_quiz`, `completed_business_quiz`, `character_id`)
+values (4, 'hstark3', 'wGvHrA9oJfH', 'ksheppard3@eventbrite.com', 12349.08, false, false, false, false, false, false, false, 1);
 
 # BUSINESSES SEEDER
 INSERT INTO `kid_invest_db`.`business` (`id`, `name`, `popularity`, `user_id`)
@@ -26,15 +26,25 @@ VALUES (4, 'hstark''s stand', 0, 4);
 
 # ADD-ONS SEEDER
 INSERT INTO `kid_invest_db`.`addons` (`id`, `name`, `popularity_bonus`, `price`)
-VALUES (1, 'candy machine', 25, 75.00);
+VALUES (1, 'Big Tree', 40, 4500.00);
 INSERT INTO `kid_invest_db`.`addons` (`id`, `name`, `popularity_bonus`, `price`)
-VALUES (2, 'radio', 25, 50.00);
+VALUES (2, 'Radio', 10, 150.00);
 INSERT INTO `kid_invest_db`.`addons` (`id`, `name`, `popularity_bonus`, `price`)
-VALUES (3, 'sign', 30, 30.00);
+VALUES (3, 'Sign', 20, 300.00);
 INSERT INTO `kid_invest_db`.`addons` (`id`, `name`, `popularity_bonus`, `price`)
-VALUES (4, 'cooler', 10, 25.00);
+VALUES (4, 'Trash Cans', 10, 150.00);
 INSERT INTO `kid_invest_db`.`addons` (`id`, `name`, `popularity_bonus`, `price`)
-VALUES (5, 'water filter machine', 10, 90.00);
+VALUES (5, 'Plants', 20, 300.00);
+INSERT INTO `kid_invest_db`.`addons` (`id`, `name`, `popularity_bonus`, `price`)
+VALUES (6, 'Lights', 30, 1850.00);
+INSERT INTO `kid_invest_db`.`addons` (`id`, `name`, `popularity_bonus`, `price`)
+VALUES (7, 'Fridge', 30, 2300.00);
+INSERT INTO `kid_invest_db`.`addons` (`id`, `name`, `popularity_bonus`, `price`)
+VALUES (8, 'Chairs', 20, 1500.00);
+INSERT INTO `kid_invest_db`.`addons` (`id`, `name`, `popularity_bonus`, `price`)
+VALUES (9, 'Big Table', 20, 1000.00);
+INSERT INTO `kid_invest_db`.`addons` (`id`, `name`, `popularity_bonus`, `price`)
+VALUES (10, 'Fountain', 50, 7000.00);
 
 # BUSINESS HAS ADDONS SEEDER
 INSERT INTO `kid_invest_db`.`business_has_addons` (`business_id`, `addon_id`)
