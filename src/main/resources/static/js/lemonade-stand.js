@@ -291,14 +291,14 @@
                 // Background
                 this.load.image('background', '/assets/background-blank.png');
                 // Kids
-                this.load.spritesheet('kid1', '/assets/kids/kid-f-1.png', {frameWidth: 32, frameHeight: 32});
-                this.load.spritesheet('kid2', '/assets/kids/kid-f-2.png', {frameWidth: 32, frameHeight: 32});
-                this.load.spritesheet('kid3', '/assets/kids/kid-f-3.png', {frameWidth: 32, frameHeight: 32});
-                this.load.spritesheet('kid4', '/assets/kids/kid-f-4.png', {frameWidth: 32, frameHeight: 32});
-                this.load.spritesheet('kid5', '/assets/kids/kid-m-1.png', {frameWidth: 32, frameHeight: 32});
-                this.load.spritesheet('kid6', '/assets/kids/kid-m-2.png', {frameWidth: 32, frameHeight: 32});
-                this.load.spritesheet('kid7', '/assets/kids/kid-m-3.png', {frameWidth: 32, frameHeight: 32});
-                this.load.spritesheet('kid8', '/assets/kids/kid-m-4.png', {frameWidth: 32, frameHeight: 32});
+                this.load.image('kid1', '/assets/kids/kid-f-1.png');
+                this.load.image('kid2', '/assets/kids/kid-f-2.png');
+                this.load.image('kid3', '/assets/kids/kid-f-3.png');
+                this.load.image('kid4', '/assets/kids/kid-f-4.png');
+                this.load.image('kid5', '/assets/kids/kid-m-1.png');
+                this.load.image('kid6', '/assets/kids/kid-m-2.png');
+                this.load.image('kid7', '/assets/kids/kid-m-3.png');
+                this.load.image('kid8', '/assets/kids/kid-m-4.png');
                 // Female Buyers
                 this.load.spritesheet('buyer1', '/assets/buyers/buyer-f-1.png', {frameWidth: 32, frameHeight: 32});
                 this.load.spritesheet('buyer2', '/assets/buyers/buyer-f-2.png', {frameWidth: 32, frameHeight: 32});
