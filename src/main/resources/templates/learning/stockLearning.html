@@ -5,14 +5,92 @@
 <body>
 <div th:include="partials/fragments :: nav"></div>
 
-    <div class="container mt-4">
+    <div class="container stockContainer mt-4">
         <h1>Stock Learning Page!!</h1>
         <br>
         <div th:if='${dbUser.getTakenStockQuiz() == false}'>
             <a href="/learning/stock/quiz">Take the Quiz!</a>
         </div>
+        <div th:if='${dbUser.getTakenStockQuiz() == true}'>
+            <h6>Quiz Already Taken</h6>
+        </div>
         <a href="/learning">Back to Learning</a>
+
+
+        <!--START OF FEATURETTES-->
+        <hr class="featurette-divider">
+        <div class="row featurette">
+            <div class="col-md-7">
+                <h2>Heading</h2>
+                <h5 class="text-muted">Muted Heading</h5>
+                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error facilis inventore ipsa minima minus nostrum perspiciatis possimus quidem sed vel.</p>
+            </div>
+            <div class="col-md-5">
+                <h2>space for img</h2>
+            </div>
+        </div>
+        <!--second featurette-->
+        <hr class="featurette-divider">
+        <div class="row featurette">
+            <div class="col-md-7 order-md-2">
+                <h2>Heading</h2>
+                <h5 class="text-muted">Muted Heading</h5>
+                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error facilis inventore ipsa minima minus nostrum perspiciatis possimus quidem sed vel.</p>
+            </div>
+            <div class="col-md-5 order-md-1">
+                <h2>space for img</h2>
+            </div>
+        </div>
+        <!--third featurette-->
+        <hr class="featurette-divider">
+        <div class="row featurette">
+            <div class="col-md-7">
+                <h2>Heading</h2>
+                <h5 class="text-muted">Muted Heading</h5>
+                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error facilis inventore ipsa minima minus nostrum perspiciatis possimus quidem sed vel.</p>
+            </div>
+            <div class="col-md-5">
+                <h2>space for img</h2>
+            </div>
+        </div>
+        <!--forth featurette-->
+        <hr class="featurette-divider">
+        <div class="row featurette">
+            <div class="col-md-7 order-md-2">
+                <h2>Heading</h2>
+                <h5 class="text-muted">Muted Heading</h5>
+                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error facilis inventore ipsa minima minus nostrum perspiciatis possimus quidem sed vel.</p>
+            </div>
+            <div class="col-md-5 order-md-1">
+                <h2>space for img</h2>
+            </div>
+        </div>
+        <!--fifth featurette-->
+        <hr class="featurette-divider">
+        <div class="row featurette">
+            <div class="col-md-7">
+                <h2>Heading</h2>
+                <h5 class="text-muted">Muted Heading</h5>
+                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error facilis inventore ipsa minima minus nostrum perspiciatis possimus quidem sed vel.</p>
+            </div>
+            <div class="col-md-5">
+                <h2>space for img</h2>
+            </div>
+        </div>
+        <!--sixth featurette-->
+        <hr class="featurette-divider">
+        <div class="row featurette">
+            <div class="col-md-7 order-md-2">
+                <h2>Heading</h2>
+                <h5 class="text-muted">Muted Heading</h5>
+                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error facilis inventore ipsa minima minus nostrum perspiciatis possimus quidem sed vel.</p>
+            </div>
+            <div class="col-md-5 order-md-1">
+                <h2>space for img</h2>
+            </div>
+        </div>
     </div>
+
 
 <th:block th:include="partials/fragments :: footer"/>
 <th:block th:include="partials/fragments :: scripts"/>

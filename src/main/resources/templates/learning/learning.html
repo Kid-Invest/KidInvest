@@ -8,9 +8,176 @@
     <div class="container mt-4">
         <h1>Learning Page!!</h1>
         <br>
-        <a href="/learning/stock">Learn About Stock!</a>
+    </div>
+
+    <!--LEARN ABOUT BUSINESS-->
+    <div class="container businessContainer mt-4">
+        <h3>Learn about business!</h3>
         <br>
-        <a href="/learning/business">Learn About Business!</a>
+        <div th:if='${dbUser.getTakenBusinessQuiz() == false}'>
+            <a href="/learning/business/quiz">Take the Business Quiz!</a>
+        </div>
+        <div th:if='${dbUser.getTakenBusinessQuiz() == true}'>
+            <h6>Business Quiz Has Already Been Taken</h6>
+        </div>
+
+        <!--START OF FEATURETTES-->
+        <hr class="featurette-divider">
+        <div class="row featurette">
+            <div class="col-md-7">
+                <h2>Account Balance</h2>
+                <p class="lead">Your account balance is the amount of money you have after adding all your business and stock earnings and subtracting all your purchases. You will begin with $10,000 and may use this money to buy inventory, addons, and stock. You will also be able to earn $500 for every correct answer on your quizzes!</p>
+            </div>
+            <div class="col-md-5">
+                <h2>space for img</h2>
+            </div>
+        </div>
+        <!--second featurette-->
+        <hr class="featurette-divider">
+        <div class="row featurette">
+            <div class="col-md-7 order-md-2">
+                <h2>Profit</h2>
+                <p class="lead">Profit is the amount of money you earned after you subtract the amount of money you spent on buying inventory and operating your business. For example, if the cost of lemonade ingredients is $1 and you sell each lemonade for $4, then you make a profit of $3.</p>
+            </div>
+            <div class="col-md-5 order-md-1">
+                <h2>space for img</h2>
+            </div>
+        </div>
+        <!--third featurette-->
+        <hr class="featurette-divider">
+        <div class="row featurette">
+            <div class="col-md-7">
+                <h2>Inventory</h2>
+                <p class="lead">Inventory is a complete list of the items you have available to make lemonades. For example, you need lemons, sugar, water, ice, and other fruits to make your lemonades. When you are running out of any one of these items, you must purchase more to add to your inventory so you can make more lemonades.</p>
+            </div>
+            <div class="col-md-5">
+                <h2>space for img</h2>
+            </div>
+        </div>
+        <!--forth featurette-->
+        <hr class="featurette-divider">
+        <div class="row featurette">
+            <div class="col-md-7 order-md-2">
+                <h2>Transaction</h2>
+                <p class="lead">A transaction is when you buy or sell something. Each time you buy inventory, this will be shown in your transactions page. Your daily sales will be shown in your sales transactions page.</p>
+            </div>
+            <div class="col-md-5 order-md-1">
+                <h2>space for img</h2>
+            </div>
+        </div>
+        <!--fifth featurette-->
+        <hr class="featurette-divider">
+        <div class="row featurette">
+            <div class="col-md-7">
+                <h2>Popularity</h2>
+                <p class="lead">The more popular your lemonade stand is, the more your customers will be willing to pay to try your lemonade. Higher prices means more profit, and more profit means more money!</p>
+            </div>
+            <div class="col-md-5">
+                <h2>space for img</h2>
+            </div>
+        </div>
+        <!--sixth featurette-->
+        <hr class="featurette-divider">
+        <div class="row featurette">
+            <div class="col-md-7 order-md-2">
+                <h2>Addons</h2>
+                <p class="lead">In this game, purchasing addons will increase the popularity of your lemonade stand. For example, if you purchase a radio, more customers will enjoy visiting your lemonade stand and will be more likely to purchase lemonades.</p>
+            </div>
+            <div class="col-md-5 order-md-1">
+                <h2>space for img</h2>
+            </div>
+        </div>
+    </div>
+
+
+    <!--LEARN ABOUT STOCK-->
+    <div class="container stockContainer mt-4">
+        <h3>Learn About Stock!</h3>
+        <br>
+        <div th:if='${dbUser.getTakenStockQuiz() == false}'>
+            <a href="/learning/stock/quiz">Take the Quiz!</a>
+        </div>
+        <div th:if='${dbUser.getTakenStockQuiz() == true}'>
+            <h6>Stock Quiz Has Already Been Taken</h6>
+        </div>
+
+        <!--START OF FEATURETTES-->
+        <hr class="featurette-divider">
+        <div class="row featurette">
+            <div class="col-md-7">
+                <h2>Invest</h2>
+                <p class="lead">To invest is to put money, time or effort into something to make a profit or gain an advantage. You can invest time and money into your lemonade business and invest money into stocks that may increase in value over time.</p>
+            </div>
+            <div class="col-md-5">
+                <h2>space for img</h2>
+            </div>
+        </div>
+        <!--second featurette-->
+        <hr class="featurette-divider">
+        <div class="row featurette">
+            <div class="col-md-7 order-md-2">
+                <h2>Stock</h2>
+                <p class="lead">A stock is a type of investment that represents an ownership piece or share of a company. Investors buy stocks that they think will go up in value over time and increase their profits. However, some companies lose value or go out of business and investors may lose part or all of their investment. This is why it is important to buy stock in different companies instead of focusing on just one.</p>
+            </div>
+            <div class="col-md-5 order-md-1">
+                <h2>space for img</h2>
+            </div>
+        </div>
+        <!--third featurette-->
+        <hr class="featurette-divider">
+        <div class="row featurette">
+            <div class="col-md-7">
+                <h2>Market Price</h2>
+                <p class="lead">A stock’s market price is the price that it sells for at a given point in time. The market price increases and decreases throughout the trading day as investors buy and sell stocks. The market prices rises if more people want to buy it and will fall as people begin to sell more of the stock.</p>
+            </div>
+            <div class="col-md-5">
+                <h2>space for img</h2>
+            </div>
+        </div>
+        <!--forth featurette-->
+        <hr class="featurette-divider">
+        <div class="row featurette">
+            <div class="col-md-7 order-md-2">
+                <h2>Profiting From Your Stocks</h2>
+                <p class="lead">In this game, you can profit from buying shares and selling them when their current market price is higher than when you bought them. This is what it means to "buy low and sell high"</p>
+            </div>
+            <div class="col-md-5 order-md-1">
+                <h2>space for img</h2>
+            </div>
+        </div>
+        <!--fifth featurette-->
+        <hr class="featurette-divider">
+        <div class="row featurette">
+            <div class="col-md-7">
+                <h2>Total Return</h2>
+                <p class="lead">The total return is a measure of an investments overall performance and growth over time. So if you buy shares and their value increases since you bought them, the difference will be your total return.</p>
+            </div>
+            <div class="col-md-5">
+                <h2>space for img</h2>
+            </div>
+        </div>
+        <!--sixth featurette-->
+        <hr class="featurette-divider">
+        <div class="row featurette">
+            <div class="col-md-7 order-md-2">
+                <h2>Investment Portfolio</h2>
+                <p class="lead">An investment portfolio is a grouping of financial assets. In this case, your portfolio includes your stocks and your business profits.</p>
+            </div>
+            <div class="col-md-5 order-md-1">
+                <h2>space for img</h2>
+            </div>
+        </div>
+        <!--seventh featurette-->
+<!--        <hr class="featurette-divider">-->
+<!--        <div class="row featurette">-->
+<!--            <div class="col-md-7">-->
+<!--                <h2>The Stock Market</h2>-->
+<!--                <p class="lead">The Stock Market is a market where people can buy stocks.</p>-->
+<!--            </div>-->
+<!--            <div class="col-md-5">-->
+<!--                <h2>space for img</h2>-->
+<!--            </div>-->
+<!--        </div>-->
     </div>
 
 <th:block th:include="partials/fragments :: footer"/>

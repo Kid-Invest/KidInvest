@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="partials/fragments.html :: head(title = 'Stock Page')">
+<!--    <style>-->
+<!--        .popover-title {-->
+<!--            color: blue;-->
+<!--            font-size: 15px;-->
+<!--        }-->
+<!--    </style>-->
 </head>
 <body>
 <th:block th:include="partials/fragments.html :: nav">
@@ -27,7 +33,7 @@
                 <h1 class="ml-3 mr-2 mb-0" th:text="${currentStock.name}">Sample Company</h1>
             </div>
             <div class="col d-inline-flex align-items-end">
-                <h1 class="ml-1 mb-0" th:text="${'(' + currentStock.ticker + ')'}">SCC</h1>
+                <h1 class="ml-1 mb-0" th:text="${'(' + currentStock.ticker + ')'}" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="A ticker is an abbreviation used to uniquely identify stocks.">SCC</h1>
                 <span th:switch="${currentStock.id}">
                     <span th:case="'1'"><i class="fas fa-3x pl-3 fa-fish yellow align-middle"></i></span>
                     <span th:case="'2'"><i class="fas fa-3x pl-3 pb-2 fa-book violet"></i></span>
@@ -59,10 +65,10 @@
     </div>
     <div class="row mx-3 d-flex justify-content-around stock-stats">
         <div class="col p-0 mx-3 my-3 d-flex align-content-center flex-column text-center">
-            <h2 class="m-0">OPEN</h2>
-            <h4 class="pb-3" th:text="${currentStock.getOpenPrice()}">$30.00</h4>
+            <h2 class="m-0" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="The open price is the price of the stock when the Stock Market opened that morning.">OPEN</h2>
+            <h4 class="pb-3" th:text="${#numbers.formatDecimal(currentStock.getOpenPrice(), 0, 'DEFAULT', 2, 'DEFAULT')}">$30.00</h4>
 
-            <h2 class="m-0">MARKET PRICE</h2>
+            <h2 class="m-0" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="The market price is the price that a stock sells for at a given point in time. This value increases and decreases throughout the day.">MARKET PRICE</h2>
             <h4 th:text="${currentStock.getMarketPrice()}">$30.00</h4>
         </div>
         <div class="col p-0 mx-3 my-3 d-flex align-content-center flex-column text-center">
@@ -71,10 +77,10 @@
 
             <!--                <h2 class="m-0">52-WEEK HIGH</h2>-->
             <!--                <h4 class="pb-3" th:text="${currentStock.getYearHighPrice()}">$30.00</h4>-->
-            <h2 class="m-0">LOW</h2>
+            <h2 class="m-0" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="The low price is the lowest value a stock has reached that day. This value may decrease if the stock continues to drop.">LOW</h2>
             <h4 class="pb-3" th:text="${currentStock.getLowPrice()}">$30.00</h4>
 
-            <h2 class="m-0">HIGH</h2>
+            <h2 class="m-0" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="The high price is the highest value a stock has reached that day. This value may increase if the stock continues to rise.">HIGH</h2>
             <h4 th:text="${currentStock.getHighPrice()}">$30.00</h4>
         </div>
         <div class="col py-3 mx-3 d-flex align-items-center justify-content-around flex-column text-center">
@@ -146,7 +152,7 @@
                 <th class="border-0 px-0">
                 </th>
                 <th class="border-0 px-0">
-                    <p class="mb-0">TODAY</p>
+                    <p class="mb-0" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="This column represents the percentage a stock value has increased or decreased throughout the day. Decreases in value are noted as negative numbers.">TODAY</p>
                 </th>
                 <th class="border-0 px-0">
                     <p class="mb-0">MARKET PRICE</p>
@@ -161,9 +167,9 @@
                     <td class="align-middle border-0 px-0 text-right">
                         <span th:style="${stock.getChange()} > 0 ? 'color: #0D8D00' : 'color: #FF3E02'">
                             <th:block
-                                    th:if="${stock.getChange()} > 0"><i class="fas fa-chevron-up fa-sm"></i></th:block>
+                                    th:if="${stock.getChange()} > 0"><i class="fas fa-chevron-up fa-sm" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="This indicates the stock value is currently increasing."></i></th:block>
                             <th:block
-                                    th:unless="${stock.getChange()} > 0"><i class="fas fa-chevron-down fa-sm"></i></th:block>
+                                    th:unless="${stock.getChange()} > 0"><i class="fas fa-chevron-down fa-sm" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="This indicates the stock value is currently decreasing."></i></th:block>
                         </span>
                     </td>
                     <td class="align-middle border-0 px-0">
