@@ -21,6 +21,7 @@
             let chairsEl = $('#addon_8');
             let bigTableEl = $('#addon_9');
             let fountainEl = $('#addon_10');
+            let spriteIdEl = $('#spriteId');
 
 
             // console.log(bigTreeEl[0]);
@@ -38,7 +39,9 @@
 
 
             gameScene.init = function init() {
+                // current popularity rating
                 this.popBonus = parseFloat(popBonusEl[0].value);
+                // current addons, will show undefined if not purchased
                 this.bigTree = bigTreeEl[0];
                 this.radio = radioEl[0];
                 this.trashCan = trashcanEl[0];
@@ -49,8 +52,7 @@
                 this.chairs = chairsEl[0];
                 this.bigTable = bigTableEl[0];
                 this.fountain = fountainEl[0];
-
-
+                // initial starting coordinates, speeds, flags, and counters
                 this.kidX = 200;
                 this.kidY = 155;
                 this.frontStandY = 200;
@@ -66,16 +68,17 @@
                 this.buyerSpeed = 1.5;
                 this.generatedBuyer = false;
                 this.game.globals = new Map();
+                this.spriteId = $(spriteIdEl).val();
 
-                console.log(lemonsEl[0].value);
-                console.log(sugarsEl[0].value);
-                console.log(iceEl[0].value);
-                console.log(sweetenerEl[0].value);
-                console.log(honeyEl[0].value);
-                console.log(strawberryEl[0].value);
-                console.log(peachEl[0].value);
-                console.log(blueberryEl[0].value);
-                console.log(raspberryEl[0].value);
+                // console.log(lemonsEl[0].value);
+                // console.log(sugarsEl[0].value);
+                // console.log(iceEl[0].value);
+                // console.log(sweetenerEl[0].value);
+                // console.log(honeyEl[0].value);
+                // console.log(strawberryEl[0].value);
+                // console.log(peachEl[0].value);
+                // console.log(blueberryEl[0].value);
+                // console.log(raspberryEl[0].value);
                 this.inventory = [
                     // 0
                     {
@@ -291,14 +294,14 @@
                 // Background
                 this.load.image('background', '/assets/background-blank.png');
                 // Kids
-                this.load.image('kid1', '/assets/kids/kid-f-1.png');
-                this.load.image('kid2', '/assets/kids/kid-f-2.png');
-                this.load.image('kid3', '/assets/kids/kid-f-3.png');
-                this.load.image('kid4', '/assets/kids/kid-f-4.png');
-                this.load.image('kid5', '/assets/kids/kid-m-1.png');
-                this.load.image('kid6', '/assets/kids/kid-m-2.png');
-                this.load.image('kid7', '/assets/kids/kid-m-3.png');
-                this.load.image('kid8', '/assets/kids/kid-m-4.png');
+                this.load.image('kid1', '/assets/kids/kid-m-1.png');
+                this.load.image('kid2', '/assets/kids/kid-m-2.png');
+                this.load.image('kid3', '/assets/kids/kid-m-3.png');
+                this.load.image('kid4', '/assets/kids/kid-m-4.png');
+                this.load.image('kid5', '/assets/kids/kid-f-1.png');
+                this.load.image('kid6', '/assets/kids/kid-f-2.png');
+                this.load.image('kid7', '/assets/kids/kid-f-3.png');
+                this.load.image('kid8', '/assets/kids/kid-f-4.png');
                 // Female Buyers
                 this.load.spritesheet('buyer1', '/assets/buyers/buyer-f-1.png', {frameWidth: 32, frameHeight: 32});
                 this.load.spritesheet('buyer2', '/assets/buyers/buyer-f-2.png', {frameWidth: 32, frameHeight: 32});
@@ -349,8 +352,6 @@
                 this.load.image('radio', '/assets/addons/radio.png');
                 this.load.image('sign', '/assets/addons/sign.png');
                 this.load.image('trashcan', '/assets/addons/trashcan.png');
-
-
                 // Load audio
                 this.load.audio('backgroundAudio', '/assets/audio/background-song-v2.mp3');
                 this.load.audio('moneyAudio', '/assets/audio/money-sound-v2.mp3');
@@ -395,20 +396,7 @@
                     this.add.sprite(154, 185, 'trashcan');
                 }
 
-                // this.add.sprite(187,70, 'bigtree');
-                // this.add.sprite(105, 135, 'bigtable');
-                // this.add.sprite(105, 230, 'chairs');
-                // this.add.sprite(315, 335, 'fountain');
-                // this.add.sprite(230, 125, 'fridge');
-                // this.add.sprite(20, 115, 'lights');
-                // this.add.sprite(300, 115, 'lights');
-                // this.add.sprite(170, 180, 'plant');
-                // this.add.sprite(245, 180, 'plant');
-                // this.add.sprite(255, 125, 'radio');
-                // this.add.sprite(270, 280, 'sign');
-                // this.add.sprite(190, 135, 'trashcan');
-                // this.add.sprite(154, 185, 'trashcan');
-
+                // set initial flags for all buyer sprites
                 for (let i = 0; i < this.people.length; i++) {
                     let buyer = this.people[i];
                     this.game.globals.set(buyer.key, this.add.sprite(30 * (i + 1), 30 * (i + 1), buyer.key));
@@ -463,7 +451,7 @@
                 }
 
                 // add the sprite for the seller
-                this.add.sprite(this.kidX, this.kidY, 'kid1');
+                this.add.sprite(this.kidX, this.kidY, 'kid' + this.spriteId);
                 // add text box for counting earnings
                 this.earningsText = this.add.text(0, 0, 'Total Earnings($): 0', {
                     fontFamily: 'Courier',

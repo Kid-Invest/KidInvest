@@ -8,6 +8,8 @@
 <th:block th:each="addon : ${addonList}">
     <input type="text" th:value="${addon.getName()}" th:id="${'addon_' + addon.getId()}" hidden>
 </th:block>
+<label for="spriteId">Current sprite ID:</label>
+<input type="number" th:value="${spriteId}" id="spriteId" readonly>
 <label for="popBonus">Current popularity bonus:</label>
 <input type="number" th:value="${popBonus}" id="popBonus" readonly>
 <form th:action="@{/business/open-stand}" th:method="POST">

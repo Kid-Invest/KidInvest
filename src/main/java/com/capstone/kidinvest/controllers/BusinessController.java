@@ -181,6 +181,7 @@ public class BusinessController {
         for (Addon addon : businessAddonsList) {
             popularityBonus += addon.getPopularityBonus();
         }
+        view.addAttribute("spriteId", dbUser.getCharacterId());
         view.addAttribute("popBonus", popularityBonus);
         view.addAttribute("addonList", businessAddonsList);
         view.addAttribute("inventoryList", inventoryList);
