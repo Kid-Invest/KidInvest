@@ -33,6 +33,21 @@
                        placeholder="Confirm password">
             </label>
             <br>
+            <label th:for="characterId">Choose your character sprite:
+                <input type="number" th:field="*{characterId}" id="char-id" hidden>
+            </label>
+            <div>
+                <img src="assets/kids/kid-m-1.png" alt="photo of light-skin girl with brown hair" class="active-img char-sprite">
+                <img src="assets/kids/kid-m-2.png" alt="photo of light-skin girl with blonde hair" class="char-sprite">
+                <img src="assets/kids/kid-m-3.png" alt="photo of tan-skin girl with dark hair" class="char-sprite">
+                <img src="assets/kids/kid-m-4.png" alt="photo of dark-skin girl with dark hair" class="char-sprite">
+                <br>
+                <img src="assets/kids/kid-f-1.png" alt="photo of light-skin girl with brown hair" class="char-sprite">
+                <img src="assets/kids/kid-f-2.png" alt="photo of light-skin girl with blonde hair" class="char-sprite">
+                <img src="assets/kids/kid-f-3.png" alt="photo of tan-skin girl with dark hair" class="char-sprite">
+                <img src="assets/kids/kid-f-4.png" alt="photo of dark-skin girl with dark hair" class="char-sprite">
+            </div>
+            <br>
             <button type="submit" class="register-btn mt-1">Register</button>
         </div>
     </form>
@@ -45,5 +60,6 @@
 
 <footer th:replace="partials/fragments.html :: footer"></footer>
 <th:block th:include="partials/fragments.html :: scripts"/>
+<script type="text/javascript" th:src="@{/js/register.js}"></script>
 </body>
 </html>

@@ -171,11 +171,19 @@ public class BusinessController {
     }
 
     @GetMapping("/business/open-stand")
-    public String viewOpenStorePage(Model view, @RequestParam(value = "missingIngredient", defaultValue = "null") String missingIngredient) {
+    public String viewOpenStorePage(Model view) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User dbUser = userDao.findUserById(user.getId());
+        Business userBusiness = businessDao.findBusinessById(dbUser.getId());
         List<Inventory> inventoryList = inventoryDao.findInventoryByBusinessId(user.getId());
-
-        view.addAttribute("missingIngredient", missingIngredient);
+        List<Addon> businessAddonsList = addonDao.findAddonsByBusinessId(userBusiness.getId());
+        int popularityBonus = 0;
+        for (Addon addon : businessAddonsList) {
+            popularityBonus += addon.getPopularityBonus();
+        }
+        view.addAttribute("spriteId", dbUser.getCharacterId());
+        view.addAttribute("popBonus", popularityBonus);
+        view.addAttribute("addonList", businessAddonsList);
         view.addAttribute("inventoryList", inventoryList);
         return "business/open-stand";
     }
