@@ -1,24 +1,24 @@
 {
 
     let stockQuestions = [{
-        question: "1. question?",
-        choices: ["right", "wrong", "wrong", "wrong"],
+        question: "1. What is a stock or share?",
+        choices: [" a. A type of investment that represents a piece of a company", " b. The amount of money you have", " c. Total ownership in a company", " d. A list of all the items you have available"],
         correctAnswer: 0
     }, {
-        question: "2. question?",
-        choices: ["right", "wrong", "wrong", "wrong"],
-        correctAnswer: 0
+        question: "2.When you purchase a stock for $10 and sell it a few weeks later for $20 you are doing which of the following?",
+        choices: [" a. buying low and selling high", " b. buying high and selling low", " c. making a profit", " d. both a and c"],
+        correctAnswer: 3
     }, {
-        question: "3. question?",
-        choices: ["wrong", "wrong", "right", "wrong"],
+        question: "3. What type of stocks should you sell?",
+        choices: [" a. None of them", " b. Stock with high profits", " c. Stock that may lose value in the future", " d. Stock that may increase in value in the future"],
         correctAnswer: 2
     }, {
-        question: "4. question?",
-        choices: ["wrong", "right", "wrong", "wrong"],
+        question: "4. People who buy stocks are guaranteed to profit on the money they have invested.",
+        choices: [" a. True", " b. False"],
         correctAnswer: 1
     }, {
-        question: "5. question 5?",
-        choices: ["wrong", "right", "wrong", "wrong"],
+        question: "5. A stock's market price",
+        choices: [" a. Rises when people begin to sell more of the stock", " b. Increases and decreases throughout the trading day", " c. Stays the same over time", " d. Is the cost of a stock when you bought it"],
         correctAnswer: 1
     }];
 
@@ -28,13 +28,8 @@
     let correctAnswers = 0;
     let quizOver = false;
     let resultsSent = false;
-    // let quizTaken = false;
 
     $(document).ready(function () {
-        // let quizTaken = $('#quiz_boolean').val();
-        // console.log(typeof quizTaken);
-        // console.log(typeof !quizTaken);
-
 
             // Display the first question
             displayCurrentQuestion();

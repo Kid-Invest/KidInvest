@@ -28,13 +28,8 @@
     let correctAnswers = 0;
     let quizOver = false;
     let resultsSent = false;
-    // let quizTaken = false;
 
     $(document).ready(function () {
-        // let quizTaken = $('#quiz_boolean').val();
-        // console.log(typeof quizTaken);
-        // console.log(typeof !quizTaken);
-
 
         // Display the first question
         displayCurrentQuestion();
