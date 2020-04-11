@@ -278,6 +278,11 @@ input:-webkit-autofill:active {
     color: var(--primary-gold-color);
     font-weight: 600;
 }
+.active-img {
+    border: var(--primary-gold-color) 1px solid;
+    border-radius: 10px;
+}
+
 input[type=text].email,
 input[type=text].username,
 input[type=password].password,

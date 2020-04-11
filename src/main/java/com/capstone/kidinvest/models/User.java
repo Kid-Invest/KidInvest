@@ -22,6 +22,9 @@ public class User {
 
     private double balance;
 
+    @Column(name = "character_id")
+    private int characterId;
+
     @Column(name = "viewed_portfolio")
     private boolean viewedPortfolio;
 
@@ -56,12 +59,13 @@ public class User {
     ;
 
     //constructor
-    public User(long id, String username, String password, String email, Double balance, boolean viewedPortfolio, boolean viewedTransactions, boolean viewedStocks, boolean viewedStand, boolean viewedStore, boolean takenStockQuiz, boolean takenBusinessQuiz) {
+    public User(long id, String username, String password, String email, Double balance, int characterId, boolean viewedPortfolio, boolean viewedTransactions, boolean viewedStocks, boolean viewedStand, boolean viewedStore, boolean takenStockQuiz, boolean takenBusinessQuiz) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.email = email;
         this.balance = balance;
+        this.characterId = characterId;
         this.viewedPortfolio = viewedPortfolio;
         this.viewedStocks = viewedStocks;
         this.viewedTransactions = viewedTransactions;
@@ -77,6 +81,7 @@ public class User {
         this.password = copy.password;
         this.email = copy.email;
         this.balance = copy.balance;
+        this.characterId = copy.characterId;
         this.viewedPortfolio = copy.viewedPortfolio;
         this.viewedStocks = copy.viewedStocks;
         this.viewedTransactions = copy.viewedTransactions;
@@ -217,5 +222,13 @@ public class User {
 
     public boolean isTakenBusinessQuiz() {
         return takenBusinessQuiz;
+    }
+
+    public int getCharacterId() {
+        return characterId;
+    }
+
+    public void setCharacterId(int characterId) {
+        this.characterId = characterId;
     }
 }
