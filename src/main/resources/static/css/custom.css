@@ -333,9 +333,10 @@ input[type=password].password{
 
 /*ABOUT US*/
 .card {
-    background-color: #B6B4B4;
-    background-image: linear-gradient(#B6B4B4 0%, #f1f2f6 80%);
+    background-color: #1B272A;
+    background-image: linear-gradient(#1B272A 0%, #DAD9DB 95%);
     border: none;
+    min-width: 198px;
     max-width: 18rem;
     overflow: hidden;
 }
@@ -344,16 +345,16 @@ input[type=password].password{
     max-width: 290px;
 }
 .socials-container {
-    background-color: #fff;
+    background-color: #2C3639;
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
-    border: 1px #fff solid;
+    /*border: 1px var(--dark-cyan) solid;*/
 }
 .fa-linkedin, .fa-phone-square-alt {
-    color: #0075B0;
+    color: #fff;
 }
 .fa-github-square, .fa-envelope-square {
-    color: #7DBBE6;
+    color: #fff;
 }
 .socials-container > a:hover {
     text-decoration: none;
@@ -361,8 +362,8 @@ input[type=password].password{
     transform: scale(1.2);
 }
 .socials-container a>img {
-    max-width: 28px;
-    height: auto;
+    max-height: 38px;
+    width: auto;
 }
 
 
