@@ -19,7 +19,7 @@
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <h5 class="mb-0">PORTFOLIO VALUE: $<span th:text="${#numbers.formatDecimal(portfolioValue + user.getBalance(), 0, 'DEFAULT', 2, 'DEFAULT')}">50</span></h5>
+                    <h5 class="mb-0" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="Your portfolio value is calculated by adding your account balance and your stock valuation. This represents all your assets.">PORTFOLIO VALUE: $<span th:text="${#numbers.formatDecimal(portfolioValue + user.getBalance(), 0, 'DEFAULT', 2, 'DEFAULT')}">50</span></h5>
                 </div>
             </div>
         </div>
@@ -28,13 +28,13 @@
             <div class="row mx-3 profile-stocks d-flex flex-row justify-content-between">
                 <div class="col p-0 mx-3 my-3 d-flex align-items-center text-center">
                     <div class="p-0 mx-3 my-0 d-flex flex-column justify-content-center align-items-center">
-                        <h3 class="px-2">STOCK VALUATION: $<span
+                        <h3 class="px-2" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="This value represents the possible profits from all of your shares.">STOCK VALUATION: $<span
                                 th:text="${#numbers.formatDecimal(portfolioValue, 0, 'DEFAULT', 2, 'DEFAULT')}">20</span></h3>
                     </div>
                 </div>
                 <div class="col p-0 mx-3 my-3 d-flex align-items-center text-center">
                     <div class="p-0 mx-3 my-0 d-flex flex-column justify-content-center align-items-center">
-                        <h3>ACCOUNT BALANCE: $<span
+                        <h3 data-toggle="popover" data-placement="top" data-trigger="hover" data-content="Your account balance is the amount of money you have after adding all your earnings and subtracting all your purchases.">ACCOUNT BALANCE: $<span
                                 th:text="${#numbers.formatDecimal(user.getBalance(), 0, 'DEFAULT', 2, 'DEFAULT')}">35</span></h3>
                     </div>
                 </div>
@@ -65,10 +65,10 @@
                         <th class="border-0 px-0">
                         </th>
                         <th class="border-0 px-0">
-                            <p class="mb-0">TODAY</p>
+                            <p class="mb-0" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="This column represents the percentage a stock value has increased or decreased throughout the day. Decreases in value are noted as negative numbers.">TODAY</p>
                         </th>
                         <th class="border-0 px-0">
-                            <p class="mb-0">MY SHARES</p>
+                            <p class="mb-0" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="Your number of shares tells you how many stocks you bought from a particular company.">MY SHARES</p>
                         </th>
                     </tr>
                 </thead>
@@ -81,8 +81,8 @@
                                     Company</td>
                                 <td class="align-middle border-0 px-0 text-right">
                                     <span th:style="${userStock.getStock().getChange()} > 0 ? 'color: #0D8D00' : 'color: #FF3E02'">
-                                        <th:block th:if="${userStock.getStock().getChange()} > 0"><i class="fas fa-chevron-up fa-sm"></i></th:block>
-                                        <th:block th:unless="${userStock.getStock().getChange()} > 0"><i class="fas fa-chevron-down fa-sm"></i></th:block>
+                                        <th:block th:if="${userStock.getStock().getChange()} > 0"><i class="fas fa-chevron-up fa-sm" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="This indicates the stock value is currently increasing."></i></th:block>
+                                        <th:block th:unless="${userStock.getStock().getChange()} > 0"><i class="fas fa-chevron-down fa-sm" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="This indicates the stock value is currently decreasing."></i></th:block>
                                     </span>
                                 </td>
                                 <td class="border-0 px-0"><span
