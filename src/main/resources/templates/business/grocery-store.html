@@ -32,9 +32,11 @@
                 <td th:text="${ingredient.getName()}"></td>
                 <td th:text="${ingredient.getCost()}" th:id="${(ingredient.getId() - 1) + '_cost'}"></td>
                 <td>
-                    <button type="button" class="subtract-btn">-</button>
+                    <button type="button" class="subtract10-btn">-10</button>
+                    <button type="button" class="subtract-btn">-1</button>
                     <input type="number" th:value="0" th:name="${'ingredient_id' + ingredient.getId()}" th:id="${ingredient.getId() - 1}" readonly>
-                    <button type="button" class="add-btn">+</button>
+                    <button type="button" class="add-btn">+1</button>
+                    <button type="button" class="add10-btn">+10</button>
                 </td>
                 <td th:text="0.00" th:id="${(ingredient.getId() - 1) + '_total'}"></td>
             </tr>
