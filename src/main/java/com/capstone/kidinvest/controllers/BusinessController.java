@@ -180,8 +180,6 @@ public class BusinessController {
         int popularityBonus = 0;
         for (Addon addon : businessAddonsList) {
             popularityBonus += addon.getPopularityBonus();
-            System.out.println(popularityBonus);
-            System.out.println(addon.getName());
         }
         view.addAttribute("popBonus", popularityBonus);
         view.addAttribute("addonList", businessAddonsList);

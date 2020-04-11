@@ -11,13 +11,46 @@
             let raspberryEl = $('#raspberry');
             let earningsEl = $('#earnings');
             let popBonusEl = $('#popBonus');
+            let bigTreeEl = $('#addon_1');
+            let radioEl = $('#addon_2');
+            let signEl = $('#addon_3');
+            let trashcanEl = $('#addon_4');
+            let plantsEl = $('#addon_5');
+            let lightsEl = $('#addon_6');
+            let fridgeEl = $('#addon_7');
+            let chairsEl = $('#addon_8');
+            let bigTableEl = $('#addon_9');
+            let fountainEl = $('#addon_10');
 
-        console.log(popBonusEl[0].value);
 
-        let gameScene = new Phaser.Scene('Game');
+            // console.log(bigTreeEl[0]);
+            // console.log(radioEl[0]);
+            // console.log(trashcanEl[0]);
+            // console.log(signEl[0]);
+            // console.log(plantsEl[0]);
+            // console.log(lightsEl[0]);
+            // console.log(fridgeEl[0]);
+            // console.log(chairsEl[0]);
+            // console.log(bigTableEl[0]);
+            // console.log(fountainEl[0]);
+
+            let gameScene = new Phaser.Scene('Game');
 
 
             gameScene.init = function init() {
+                this.popBonus = parseFloat(popBonusEl[0].value);
+                this.bigTree = bigTreeEl[0];
+                this.radio = radioEl[0];
+                this.trashCan = trashcanEl[0];
+                this.sign = signEl[0];
+                this.plants = plantsEl[0];
+                this.lights = lightsEl[0];
+                this.fridge = fridgeEl[0];
+                this.chairs = chairsEl[0];
+                this.bigTable = bigTableEl[0];
+                this.fountain = fountainEl[0];
+
+
                 this.kidX = 200;
                 this.kidY = 155;
                 this.frontStandY = 200;
@@ -57,7 +90,6 @@
                         key: 'ice', // 2
                         amount: iceEl[0].value
                     },
-
                     {
                         key: 'sweetener', // 3
                         amount: sweetenerEl[0].value
@@ -326,7 +358,57 @@
             };
 
             gameScene.create = function create() {
-                this.add.sprite(0, 0, 'background').setOrigin(0, 0);
+                // Set background
+                this.add.sprite(0, 0, 'background').setOrigin(0,0);
+                // Set addons
+                if (this.bigTree !== undefined) {
+                    this.add.sprite(187,70, 'bigtree');
+                }
+                if (this.bigTable !== undefined) {
+                    this.add.sprite(105, 135, 'bigtable');
+                }
+                if (this.chairs !== undefined) {
+                    this.add.sprite(105, 230, 'chairs');
+                }
+                if (this.fountain !== undefined) {
+                    this.add.sprite(315, 335, 'fountain');
+                }
+                if (this.fridge !== undefined) {
+                    this.add.sprite(230, 125, 'fridge');
+                }
+                if (this.lights !== undefined) {
+                    this.add.sprite(20, 115, 'lights');
+                    this.add.sprite(300, 115, 'lights');
+                }
+                if (this.plants !== undefined) {
+                    this.add.sprite(170, 180, 'plant');
+                    this.add.sprite(245, 180, 'plant');
+                }
+                if (this.radio !== undefined) {
+                    this.add.sprite(255, 125, 'radio');
+                }
+                if (this.sign !== undefined) {
+                    this.add.sprite(270, 280, 'sign');
+                }
+                if (this.trashCan !== undefined) {
+                    this.add.sprite(190, 135, 'trashcan');
+                    this.add.sprite(154, 185, 'trashcan');
+                }
+
+                // this.add.sprite(187,70, 'bigtree');
+                // this.add.sprite(105, 135, 'bigtable');
+                // this.add.sprite(105, 230, 'chairs');
+                // this.add.sprite(315, 335, 'fountain');
+                // this.add.sprite(230, 125, 'fridge');
+                // this.add.sprite(20, 115, 'lights');
+                // this.add.sprite(300, 115, 'lights');
+                // this.add.sprite(170, 180, 'plant');
+                // this.add.sprite(245, 180, 'plant');
+                // this.add.sprite(255, 125, 'radio');
+                // this.add.sprite(270, 280, 'sign');
+                // this.add.sprite(190, 135, 'trashcan');
+                // this.add.sprite(154, 185, 'trashcan');
+
                 for (let i = 0; i < this.people.length; i++) {
                     let buyer = this.people[i];
                     this.game.globals.set(buyer.key, this.add.sprite(30 * (i + 1), 30 * (i + 1), buyer.key));
@@ -480,7 +562,8 @@
 
                 if (buyer.walkedUp && buyer.boughtLemonade && !buyer.walkedLeft && this.counter === 1) {
                     this.makeLemonade(this.buyerChoice);
-                    this.totalEarnings += this.increaseEarnings(this.lemonades[this.buyerChoiceId].price);
+                    this.totalEarnings = this.increaseEarnings(this.lemonades[this.buyerChoiceId].price);
+                    console.log(this.totalEarnings);
                 }
                 // buyer.boughtLemonade = true at this point
 
@@ -600,34 +683,33 @@
             };
 
             gameScene.increaseEarnings = function (earnings) {
-                this.earningsText.setText('Total Earnings($): ' + (this.totalEarnings + earnings));
-                earningsEl[0].value = parseFloat(earningsEl[0].value) + earnings;
+                let bonus = (this.popBonus + 100) / 100;
+                let newTotal = parseFloat(this.totalEarnings) + (earnings * bonus);
+                this.earningsText.setText('Total Earnings($): ' + newTotal.toFixed(2));
+                earningsEl[0].value =  parseFloat(newTotal).toFixed(2);
                 this.moneyAudio.play();
                 this.counter++;
-                return earnings;
+                return newTotal;
             };
 
             gameScene.doThinking = function () {
                 let id = Math.floor(Math.random() * 7);
                 this.buyerChoice = this.lemonades[id].key;
                 this.buyerChoiceId = id;
-                console.log(this.buyerChoice.key + " id: " + id);
             };
 
             gameScene.canPurchase = function (lemonade) {
                 switch (lemonade) {
                     case 'lemon':
                         return !((this.inventory[0].amount < 2) || (this.inventory[1].amount < 2) || (this.inventory[2].amount < 2));
-
                     case 'strawberry':
-                        return !((this.inventory[0].amount < 1) || (this.inventory[1].amount < 2) || (this.inventory[2].amount < 2) || (this.inventory[5] < 3));
+                        return !((this.inventory[0].amount < 1) || (this.inventory[1].amount < 2) || (this.inventory[2].amount < 2) || (this.inventory[5].amount < 3));
                     case 'blueberry':
-                        return !((this.inventory[0].amount < 1) || (this.inventory[4].amount < 1) || (this.inventory[2].amount < 2) || (this.inventory[3].amount < 1) || (this.inventory[7] < 8));
-
+                        return !((this.inventory[0].amount < 1) || (this.inventory[4].amount < 1) || (this.inventory[2].amount < 2) || (this.inventory[3].amount < 1) || (this.inventory[7].amount < 8));
                     case 'peach':
-                        return !((this.inventory[0].amount < 1) || (this.inventory[4].amount < 2) || (this.inventory[2].amount < 2) || (this.inventory[6] < 1));
+                        return !((this.inventory[0].amount < 1) || (this.inventory[4].amount < 2) || (this.inventory[2].amount < 2) || (this.inventory[6].amount < 1));
                     case 'raspberry':
-                        return !((this.inventory[0].amount < 1) || (this.inventory[1].amount < 1) || (this.inventory[2].amount < 2) || (this.inventory[3].amount < 1) || (this.inventory[8] < 8));
+                        return !((this.inventory[0].amount < 1) || (this.inventory[1].amount < 1) || (this.inventory[2].amount < 2) || (this.inventory[3].amount < 1) || (this.inventory[8].amount < 8));
                     default:
                         console.log("defaulting");
                         return true;
@@ -635,6 +717,16 @@
             }
 
             gameScene.makeLemonade = function (lemonade) {
+                // console.log(lemonade);
+                // console.log(this.inventory[0].amount);
+                // console.log(this.inventory[1].amount);
+                // console.log(this.inventory[2].amount);
+                // console.log(this.inventory[3].amount);
+                // console.log(this.inventory[4].amount);
+                // console.log(this.inventory[5].amount);
+                // console.log(this.inventory[6].amount);
+                // console.log(this.inventory[7].amount);
+                // console.log(this.inventory[8].amount);
                 // you have enough ingredients so reduce the inventory and make the sale!
                 if (lemonade === 'lemon') {
                     this.inventory[0].amount -= 2;
