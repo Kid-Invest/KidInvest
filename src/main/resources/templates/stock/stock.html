@@ -58,7 +58,7 @@
     </div>
     <div class="row mx-3 d-flex justify-content-around stock-stats">
         <div class="col p-0 mx-3 my-3 d-flex align-content-center flex-column text-center">
-            <h2 class="m-0">OPEN</h2>
+            <h2 class="m-0" title="Open Price" data-toggle="popover" data-trigger="hover" data-content="The open price is the price of the stock when the Stock Market opened that morning.">OPEN</h2>
             <h4 class="pb-3" th:text="${#numbers.formatDecimal(currentStock.getOpenPrice(), 0, 'DEFAULT', 2, 'DEFAULT')}">$30.00</h4>
 
             <h2 class="m-0">MARKET PRICE</h2>
