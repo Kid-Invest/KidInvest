@@ -1,25 +1,25 @@
 {
 
     let businessQuestions = [{
-        question: "1. question?",
-        choices: ["right", "wrong", "wrong", "wrong"],
+        question: "1. A transaction is",
+        choices: [" a. When you buy something", " b.  A list of the items you have available to sell", " c. When you sell something", " d. Both a and c"],
+        correctAnswer: 3
+    }, {
+        question: "2. You can make a profit by doing which of the following?",
+        choices: [" a. Selling your lemonades for more than the cost of ingredients", " b. Buying low and selling high", " c. Increasing your business popularity and lemonade prices", " d. All of the above"],
+        correctAnswer: 3
+    }, {
+        question: "3. Inventory is a complete list of the items you have available to make and sell a product.",
+        choices: [" a. True", " b. False"],
         correctAnswer: 0
     }, {
-        question: "2. question?",
-        choices: ["right", "wrong", "wrong", "wrong"],
+        question: "4. What is your account balance?",
+        choices: [" a. The amount of money you have after subtracting all your business and stock earnings and adding all your purchases", " b. The amount of money you have after adding all your business and stock earnings and subtracting all your purchases", " c. A complete list of the items you have available to make lemonades", " d. A grouping of your stock and business profits"],
+        correctAnswer: 1
+    }, {
+        question: "5. Purchasing addons will do which of the following",
+        choices: [" a. Increase your popularity", " b. Increase your account balance", " c. Decrease your popularity", " d. Increase your stock investments"],
         correctAnswer: 0
-    }, {
-        question: "3. question?",
-        choices: ["wrong", "wrong", "right", "wrong"],
-        correctAnswer: 2
-    }, {
-        question: "4. question?",
-        choices: ["wrong", "right", "wrong", "wrong"],
-        correctAnswer: 1
-    }, {
-        question: "5. question 5?",
-        choices: ["wrong", "right", "wrong", "wrong"],
-        correctAnswer: 1
     }];
 
     //defaults and buckets
