@@ -8,10 +8,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
@@ -51,16 +48,24 @@ public class UserController {
     }
 
     @GetMapping("/register")
-    public String viewRegistrationPage(Model view) {
+    public String viewRegistrationPage(Model view, @RequestParam(value = "error", defaultValue = "null") String error) {
+        if (!error.equals("null")) {
+            view.addAttribute("error", error);
+        }
         view.addAttribute("user", new User());
         return "user/register";
     }
 
     @PostMapping("/register")
-    public String doRegistration(@ModelAttribute User user) {
-        // Create user based on informaiton provided
-        System.out.println("SELECTED ID: " + user.getCharacterId());
+    public String doRegistration(@ModelAttribute User user, @RequestParam String confirm) {
 
+        if (!confirm.equals(user.getPassword())) {
+            return "redirect:/register?error=passwordmismatch";
+        } else if (userDao.findByUsername(user.getUsername()) != null) {
+            return "redirect:/register?error=userexists";
+        }
+
+        // Create user based on informaiton provided
         String hash = passwordEncoder.encode(user.getPassword());
         user.setBalance(10000.00);
         user.setPassword(hash);
@@ -68,9 +73,8 @@ public class UserController {
         user.setTakenStockQuiz(false);
         user.setViewedPortfolio(false);
         user.setViewedStocks(false);
-        user.setViewedTransactions(false);
         user.setViewedStand(false);
-        user.setViewedStore(false);
+        user.setViewedBusiness(false);
         userDao.save(user);
         // Create the business based off the username provided
         Business newBusiness = new Business(String.format("%s's Lemonade Stand", user.getUsername()), 0, user);

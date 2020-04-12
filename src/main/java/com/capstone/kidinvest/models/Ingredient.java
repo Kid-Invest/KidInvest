@@ -66,4 +66,28 @@ public class Ingredient {
     public void setIngredient(List<LemonadeIngredient> lemonadeIngredients) {
         this.lemonadeIngredients = lemonadeIngredients;
     }
+
+    public List<LemonadeIngredient> getLemonadeIngredients() {
+        return lemonadeIngredients;
+    }
+
+    public void setLemonadeIngredients(List<LemonadeIngredient> lemonadeIngredients) {
+        this.lemonadeIngredients = lemonadeIngredients;
+    }
+
+    public List<BusinessTransactions> getBusinessTransactions() {
+        return businessTransactions;
+    }
+
+    public void setBusinessTransactions(List<BusinessTransactions> businessTransactions) {
+        this.businessTransactions = businessTransactions;
+    }
+
+    public List<Inventory> getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(List<Inventory> inventory) {
+        this.inventory = inventory;
+    }
 }
