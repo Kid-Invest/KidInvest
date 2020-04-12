@@ -407,6 +407,9 @@ li > a.business-link:hover {
 .violet {
    color: var(--dark-magenta);
 }
+.purple {
+    color: #8342b8;
+}
 .orange1 {
     color: #FF4803;
 }
@@ -415,6 +418,9 @@ li > a.business-link:hover {
 }
 .red1{
     color: #9C0002;
+}
+.red2 {
+    color: #9c3741;
 }
 .blue1 {
     color: var(--cadet-blue);
@@ -428,14 +434,29 @@ li > a.business-link:hover {
 .green {
     color: var(--green);
 }
+.green2 {
+    color: #6b9548;
+}
+.green2 {
+    color: #6b9548;
+}
+.green3 {
+    color: #165614;
+}
 .grey {
     color: #AFB6B5;
+}
+.grey2 {
+    color: #666669;
 }
 .brown {
     color: #A6773A;
 }
 .brown2 {
     color: #68382B;
+}
+.brown3 {
+    color: #b7654c;
 }
 
 
@@ -444,4 +465,17 @@ li > a.business-link:hover {
 
 .hideBtn {
     display: none;
+}
+
+
+/*LEARNING PAGE*/
+.stock-margin {
+    margin-top: 100px;
+}
+.quiz-btn {
+    padding: 5px;
+    background-color: var(--primary-gold-color);
+    border: 1px var(--primary-gold-color) solid;
+    border-radius: 10px;
+    color: var(--dark-cyan);
 }
