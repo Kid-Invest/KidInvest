@@ -372,7 +372,6 @@ ul > li {
     background-color: #64A6AD;
     border: 1px #64A6AD solid;
     border-radius: 10px;
-   /*min-width: 20rem;*/
 }
 li .row > a.business-link {
     font-size: 2vh;
