@@ -205,7 +205,7 @@ tr.owned-stock-stats {
 #subtract-btn, #add-btn {
     border: 2px var(--primary-gold-color) solid;
     border-radius: 10px;
-    padding: 2px;
+    padding: 4px;
     background-color: var(--primary-gold-color);
 }
 input[type=number] {
@@ -394,7 +394,7 @@ li > a.business-link:hover {
 
 
 /*ADDONS PAGE*/
-td>.purchase-btn {
+td>.purchase-btn, .buy-ingredients {
     background-color: var(--primary-gold-color);
     border: 3px var(--primary-gold-color) solid;
     border-radius: 50px;
@@ -402,7 +402,7 @@ td>.purchase-btn {
     color: var(--dark-cyan);
     padding: 2px 20px;
 }
-td>.purchase-btn:hover {
+td>.purchase-btn:hover, .buy-ingredients:hover {
     color: #fff;
     text-decoration: none;
     transition: color .2s ease-in;
@@ -421,6 +421,40 @@ td>.purchase-btn:hover {
     border: 3px var(--dark-orange) solid;
     color: #fff;
 }
+
+
+/*GROCERY STORE PAGE*/
+.add10-btn, .subtract10-btn, .add-btn, .subtract-btn {
+    background-color: var(--primary-gold-color);
+    border: 2px var(--primary-gold-color) solid;
+    border-radius: 10px;
+    color: var(--dark-cyan);
+}
+.add-btn, .subtract-btn {
+    padding: 4px 8px;
+}
+.add10-btn, .subtract10-btn {
+    padding: 4px;
+}
+input[type="text"].grocery-input, input[type="number"].grocery-input {
+    background-color: transparent;
+    border-width: 0 0 2px;
+    border-color: #fff;
+    color: #fff;
+    outline: 0;
+}
+.add10-btn:hover, .subtract10-btn:hover,
+.add-btn:hover, .subtract-btn:hover {
+    color: #fff;
+    transition: color .2s ease-in;
+}
+.add10-btn:focus, .subtract10-btn:focus,
+.add-btn:focus, .subtract-btn:focus, .buy-ingredients:focus {
+    outline: 0;
+}
+
+
+
 
 /*FA ICON COLOR*/
 .yellow {

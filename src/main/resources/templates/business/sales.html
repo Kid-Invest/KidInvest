@@ -5,33 +5,33 @@
 <body>
 <div th:include="partials/fragments :: nav"></div>
 
-<div class="container-fluid">
-    <div>
-        <h1>BUSINESS SALES</h1>
-        <h3>RECENT HISTORY</h3>
-    </div>
-    <br>
-    <br>
-    <table>
-        <thead>
-        <tr>
-            <th>
-                <h4>DATE OF SALES</h4>
-            </th>
-            <th>
-                <h4>DAILY PROFIT</h4>
-            </th>
-        </tr>
-        </thead>
-        <tbody>
-        <div th:each="sale : ${sales}">
-            <tr>
-                <td th:text="${sale.saleDate}"></td>
-                <td th:text="${sale.profit}"></td>
+<div class="container mt-5 page-content">
+    <h1 class="mb-0 text-center">RECENT BUSINESS SALES</h1>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr class="text-center ">
+                <th class="border-0 px-0">
+                    <p class="mb-0">DATE OF SALES</p>
+                </th>
+                <th class="border-0 px-0">
+                    <p class="mb-0">TOTAL DAILY PROFIT</p>
+                </th>
             </tr>
-        </div>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            <th:block th:each="sale : ${sales}">
+                <tr class="text-center">
+                    <td class="align-middle border-0 px-0 text-capitalize"
+                        th:text="${sale.saleDate.toLocalDate()}"></td>
+                    <td class="align-middle border-0 px-0">$<span
+                            th:text="${#numbers.formatDecimal(sale.profit, 0, 'DEFAULT', 2, 'DEFAULT')}"></span>
+                    </td>
+                </tr>
+            </th:block>
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <th:block th:include="partials/fragments :: footer"/>
