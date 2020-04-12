@@ -318,7 +318,6 @@ input[type=password].password{
     border-radius: 50px;
     text-decoration: none;
     color: var(--dark-cyan);
-    /*padding: 2px 20px;*/
     height: 50px;
     width: 210px;
 }
@@ -326,7 +325,6 @@ input[type=password].password{
     background-color: var(--dark-cyan);
     border: 1px var(--dark-cyan) solid;
     border-radius: 10px;
-    /*max-width: 1078px;*/
 }
 .stat-title {
     font-size: 20px;
@@ -353,7 +351,6 @@ input[type=password].password{
     background-color: #2C3639;
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
-    /*border: 1px var(--dark-cyan) solid;*/
 }
 .fa-linkedin, .fa-phone-square-alt {
     color: #fff;
@@ -369,6 +366,31 @@ input[type=password].password{
 .socials-container a>img {
     max-height: 38px;
     width: auto;
+}
+
+
+/*BUSINESS PAGE*/
+ul > li {
+    list-style: none;
+}
+.business-link-group {
+    background-color: #64A6AD;
+    border: 1px #64A6AD solid;
+    border-radius: 10px;
+}
+li .row > a.business-link {
+    font-size: 2vh;
+    color: #fff;
+}
+li > a.business-link:hover {
+    color: var(--primary-gold-color);
+    text-decoration: none;
+}
+.fa-receipt {
+    color: #fff;
+}
+.fa-comments-dollar {
+   color: #0075B0;
 }
 
 
