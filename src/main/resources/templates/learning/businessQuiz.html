@@ -15,12 +15,25 @@
                     <ul class="choiceList text-left"></ul>
                     <div class="quizMessage answer-warn mb-4 text-center"></div>
                     <div class="result mb-3 text-center"></div>
+
+                        <div th:if='${dbUser.getTakenBusinessQuiz() == false}' class="text-right m-3">
+                            <div class="earnings mb-3 text-center"></div>
+                        </div>
+                        <div th:if='${dbUser.getTakenBusinessQuiz() == true}' class="text-right m-3">
+                            <div class="earnings mb-3 text-center hidden"></div>
+                        </div>
+
                     <div class="resultAll"></div>
                     <div class="nextButton text-center">Next Question</div>
                     <br>
                     <div id="formSubmit">
-                        <button type="submit" id="viewResultsBtn">Send Earnings to Balance</button>
-                        <input th:name="quiz_result" id="quiz_result" th:value="0" hidden>
+                        <div th:if='${dbUser.getTakenBusinessQuiz() == false}' class="text-right m-3">
+                            <button type="submit" id="viewResultsBtn">Send Earnings to Balance</button>
+                        </div>
+                        <div th:if='${dbUser.getTakenBusinessQuiz() == true}' class="text-right m-3">
+                            <button type="submit" class="viewResultsBtn">Return to Learning Page</button>
+                        </div>
+                        <input th:name="quiz_result" class="quiz_result" th:value="0" hidden>
                     </div>
                 </div>
             </form>

@@ -74,7 +74,7 @@
                     }
                     else {
                         // Quiz is now over
-                        $(document).find(".nextButton").html("Display Results Before Sending Earnings to Balance");
+                        $(document).find(".nextButton").html("Display Results");
 
                         $(document).find(".quizContainer > .question").hide();
                         $(document).find(".quizContainer > .choiceList").hide();
@@ -91,7 +91,7 @@
                     $(document).find("#formSubmit").show();
 
                     //onclick, results are sent to balance
-                    $('#viewResultsBtn').on("click", function(){
+                    $('.viewResultsBtn').on("click", function(){
                         $('#quiz_result').val(correctAnswers * 500);
                         resultsSent = true;
                         quizOver = true;
@@ -123,14 +123,17 @@
     }
 
     function displayScore() {
-        $(document).find(".quizContainer > .result").html("You scored: " + correctAnswers + " out of " + businessQuestions.length +
-            "<br> You have earned: $" + (correctAnswers * 500) + "!");
+        $(document).find(".quizContainer > .result").html("You scored: " + correctAnswers + " out of " + businessQuestions.length);
         $(document).find(".quizContainer > .result").show();
-        $(document).find("h1").text("Quiz Complete!");
+
+        $(document).find(".quizContainer > .earnings").html("You have earned: $" + (correctAnswers * 500) + "!");
+        $(document).find(".quizContainer > .earnings").show();
+        $(document).find("h1").text("Business Quiz Complete!");
     }
 
     function hideScore() {
         $(document).find(".result").hide();
+        $(document).find(".earnings").hide();
     }
 
     function displayResults() {
