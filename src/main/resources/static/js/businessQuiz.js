@@ -17,7 +17,7 @@
         choices: [" a. The amount of money you have after subtracting all your business and stock earnings and adding all your purchases", " b. The amount of money you have after adding all your business and stock earnings and subtracting all your purchases", " c. A complete list of the items you have available to make lemonades", " d. A grouping of your stock and business profits"],
         correctAnswer: 1
     }, {
-        question: "5. Purchasing addons will do which of the following",
+        question: "5. Purchasing addons will do which of the following?",
         choices: [" a. Increase your popularity", " b. Increase your account balance", " c. Decrease your popularity", " d. Increase your stock investments"],
         correctAnswer: 0
     }];

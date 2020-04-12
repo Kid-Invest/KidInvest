@@ -89,7 +89,7 @@
             <a href="/learning/business/quiz" class="quiz-btn">Take the Business Quiz!</a>
         </div>
         <div th:if='${dbUser.getTakenBusinessQuiz() == true}' class="text-right m-3">
-            <p>Business Quiz Has Already Been Taken</p>
+            <a href="/learning/business/quiz" class="quiz-btn">Retake the Business Quiz</a>
         </div>
     </div>
 
@@ -175,7 +175,7 @@
             <a href="/learning/stock/quiz" class="quiz-btn">Take the Stock Quiz!</a>
         </div>
         <div th:if='${dbUser.getTakenStockQuiz() == true}' class="text-right m-3">
-            <p>Stock Quiz Has Already Been Taken</p>
+            <a href="/learning/stock/quiz" class="quiz-btn">Retake the Stock Quiz</a>
         </div>
         <div class="text-center m-3">
             <a href="#top" class="quiz-btn">Back to top</a>

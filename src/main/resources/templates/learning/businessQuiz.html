@@ -5,17 +5,16 @@
 <body>
 <div th:include="partials/fragments :: nav"></div>
 
-<div class="page-content">
-    <div class="quiz-body">
-        <div class="quizDiv">
+    <div class="page-content d-flex justify-content-center align-items-center">
+        <div class="quiz-body">
             <form th:action="@{/learning/business/quiz}" th:method="POST">
                 <div class="quizContainer container">
                     <h1 class="mb-4 quiz-title text-center">Business Quiz</h1>
 
-                    <div class="question text-center"></div>
+                    <div class="question text-center mb-3"></div>
                     <ul class="choiceList text-left"></ul>
                     <div class="quizMessage answer-warn mb-4 text-center"></div>
-                    <div class="result"></div>
+                    <div class="result mb-3 text-center"></div>
                     <div class="resultAll"></div>
                     <div class="nextButton text-center">Next Question</div>
                     <br>
@@ -27,7 +26,6 @@
             </form>
         </div>
     </div>
-</div>
 
 
 
