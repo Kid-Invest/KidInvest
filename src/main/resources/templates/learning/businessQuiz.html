@@ -7,17 +7,17 @@
 
 <div class="page-content">
     <div class="quiz-body">
-        <div class="quizDiv container text-center">
+        <div class="quizDiv">
             <form th:action="@{/learning/business/quiz}" th:method="POST">
                 <div class="quizContainer container">
-                    <h1 class="mb-4 quiz-title">Stock Quiz</h1>
+                    <h1 class="mb-4 quiz-title text-center">Business Quiz</h1>
 
-                    <div class="question"></div>
-                    <ul class="choiceList"></ul>
-                    <div class="quizMessage answer-warn mb-4"></div>
+                    <div class="question text-center"></div>
+                    <ul class="choiceList text-left"></ul>
+                    <div class="quizMessage answer-warn mb-4 text-center"></div>
                     <div class="result"></div>
                     <div class="resultAll"></div>
-                    <div class="nextButton">Next Question</div>
+                    <div class="nextButton text-center">Next Question</div>
                     <br>
                     <div id="formSubmit">
                         <button type="submit" id="viewResultsBtn">Send Earnings to Balance</button>
