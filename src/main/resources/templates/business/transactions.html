@@ -5,49 +5,43 @@
 <body>
 <div th:include="partials/fragments :: nav"></div>
 
-<div class="container">
-    <div class="pt-3">
-        <h1 class="mb-0">BUSINESS TRANSACTIONS</h1>
-        <h3>RECENT HISTORY</h3>
-    </div>
-    <br>
-    <br>
-</div>
-
-<div class="container">
+<div class="container mt-5 page-content">
+    <h1 class="mb-0 text-center">RECENT BUSINESS TRANSACTIONS</h1>
     <div class="table-responsive">
         <table class="table">
             <thead>
-                <tr class="text-center">
-                    <th class="border-0">
-                        <p class="mb-0">INGREDIENT NAME</p>
-                    </th>
-                    <th class="border-0">
-                        <p class="mb-0">DATE</p>
-                    </th>
-                    <th class="border-0">
-                        <p class="mb-0">PURCHASE COUNT</p>
-                    </th>
-                    <th class="border-0">
-                        <p class="mb-0">TOTAL COST</p>
-                    </th>
-                </tr>
+            <tr class="text-center ">
+                <th class="border-0 px-0">
+                    <p class="mb-0">NAME</p>
+                </th>
+                <th class="border-0 px-0">
+                    <p class="mb-0">DATE</p>
+                </th>
+                <th class="border-0 px-0">
+                    <p class="mb-0">PURCHASE COUNT</p>
+                </th>
+                <th class="border-0 px-0">
+                    <p class="mb-0">COST</p>
+                </th>
+            </tr>
             </thead>
             <tbody>
-                <th:block th:each="businessTransaction : ${businessTransactions}">
-                    <tr class="text-center">
-                        <td class="align-middle border-0" th:text="${businessTransaction.getIngredient().getName()}"></td>
-                        <td class="align-middle border-0" th:text="${businessTransaction.getTime()}"></td>
-                        <td class="align-middle border-0" th:text="${businessTransaction.getPurchaseCount()}"></td>
-                        <td class="align-middle border-0"
-                                th:text="${businessTransaction.getPurchaseCount() * businessTransaction.getIngredient().getCost()}"></td>
-                    </tr>
-                </th:block>
+            <th:block th:each="businessTransaction : ${businessTransactions}">
+                <tr class="text-center">
+                    <td class="align-middle border-0 px-0 text-capitalize"
+                        th:text="${businessTransaction.getIngredient().getName()}"></td>
+                    <td class="align-middle border-0 px-0"
+                        th:text="${businessTransaction.getTime().toLocaleString()}"></td>
+                    <td class="align-middle border-0 px-0" th:text="${businessTransaction.getPurchaseCount()}"></td>
+                    <td class="align-middle border-0 px-0">$<span
+                            th:text="${#numbers.formatDecimal(businessTransaction.getPurchaseCount() * businessTransaction.getIngredient().getCost(), 0, 'DEFAULT', 2, 'DEFAULT')}"></span>
+                    </td>
+                </tr>
+            </th:block>
             </tbody>
         </table>
     </div>
 </div>
-
 <th:block th:include="partials/fragments :: footer"/>
 <th:block th:include="partials/fragments :: scripts"/>
 </body>
