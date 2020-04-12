@@ -5,10 +5,10 @@
 <body>
 <th:block th:include="partials/fragments.html :: nav">
 </th:block>
-<div class="page-content my-5">
+<div class="page-content mb-5">
 
-    <div class="container">
-        <h1 class="mb-0 text-center">Welcome to the Store!</h1>
+    <div class="container mt-5">
+        <h1 class="mb-0 text-center text-uppercase">Welcome to the Store!</h1>
 
         <div class="table-responsive">
             <table class="table">
@@ -21,7 +21,7 @@
                         <p class="mb-0">POPULARITY BONUS</p>
                     </th>
                     <th class="border-0 px-0">
-                        <p class="mb-0">PRICE PER ADDON</p>
+                        <p class="mb-0">ADDON PRICE</p>
                     </th>
                 </tr>
                 </thead>
@@ -30,24 +30,31 @@
                     <form th:action="@{/business/addon}" th:method="POST">
                         <tr class="text-center">
                             <th:block th:if="${businessAddons.contains(addon)}">
-                                <td class="align-middle border-0 px-0"><p class="mb-0" th:text="${addon.name}"></p>
+                                <td class="align-middle border-0 px-0">
+                                    <p class="mb-0" th:text="${addon.name}"></p>
                                 </td>
-                                <td class="align-middle border-0 px-0"><p class="mb-0"
-                                                                          th:text="${addon.popularityBonus}"></p>
+                                <td class="align-middle border-0 px-0">
+                                    <p class="mb-0" th:text="${addon.popularityBonus}"></p>
                                 </td>
-                                <td class="align-middle border-0 px-0"><p class="mb-0" th:text="${addon.price}"></p>
+                                <td class="align-middle border-0 px-0">
+                                    <p class="mb-0" th:text="${addon.price}"></p>
                                 </td>
                                 <td class="align-middle border-0 px-0">Already Purchased</td>
                             </th:block>
                             <th:block th:if="${!businessAddons.contains(addon)}">
-                                <td class="align-middle border-0 px-0"><p class="mb-0" th:text="${addon.name}"></p>
+                                <td class="align-middle border-0 px-0">
+                                    <p class="mb-0" th:text="${addon.name}"></p>
                                 </td>
-                                <td class="align-middle border-0 px-0"><p class="mb-0"
-                                                                          th:text="${addon.popularityBonus}"></p>
+                                <td class="align-middle border-0 px-0">
+                                    <p class="mb-0" th:text="${addon.popularityBonus}"></p>
                                 </td>
-                                <td class="align-middle border-0 px-0"><p class="mb-0" th:text="${addon.price}"></p>
+                                <td class="align-middle border-0 px-0">
+                                    <p class="mb-0">$<span
+                                            th:text="${#numbers.formatDecimal(addon.price, 0, 'DEFAULT', 0, 'DEFAULT')}"></span></p>
                                 </td>
-                                <input type="text" th:name="id" th:value="${addon.getId()}" hidden>
+                                <input type="text" th:name="id"
+                                       th:value="${addon.getId()}"
+                                       hidden>
                                 <td class="align-middle border-0 text-center px-0">
                                     <button type="submit" class="purchase-btn">Purchase</button>
                                 </td>
@@ -60,7 +67,7 @@
         </div>
 
 
-        <div class="">
+        <div class="exit-link text-right mt-2">
             <a href="/business">EXIT STORE</a>
         </div>
     </div>

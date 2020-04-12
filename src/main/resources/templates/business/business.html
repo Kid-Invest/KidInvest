@@ -66,7 +66,7 @@
                         <tbody>
                         <th:block th:each="inventory : ${inventoryList}">
                             <tr class="text-center table-stocks">
-                                <td class="align-middle border-0 px-0"
+                                <td class="align-middle border-0 px-0 text-capitalize"
                                     th:text="${inventory.getIngredient().getName()}"></td>
                                 <td class="align-middle border-0 px-0" th:text="${inventory.getTotal()}"></td>
                             </tr>

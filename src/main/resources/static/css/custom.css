@@ -407,7 +407,20 @@ td>.purchase-btn:hover {
     text-decoration: none;
     transition: color .2s ease-in;
 }
-
+.exit-link > a {
+    background-color: var(--dark-cyan);
+    border: 3px var(--dark-cyan) solid;
+    border-radius: 50px;
+    text-decoration: none;
+    color: var(--dark-orange);
+    padding: 5px 20px;
+}
+.exit-link > a:hover {
+    transition: color .2s ease-in;
+    background-color: var(--dark-orange);
+    border: 3px var(--dark-orange) solid;
+    color: #fff;
+}
 
 /*FA ICON COLOR*/
 .yellow {
