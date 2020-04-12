@@ -126,7 +126,7 @@
         $(document).find(".quizContainer > .result").html("You scored: " + correctAnswers + " out of " + businessQuestions.length);
         $(document).find(".quizContainer > .result").show();
 
-        $(document).find(".earnings").html("You have earned: $" + (correctAnswers * 500) + "!");
+        $(document).find(".earnings").html("You earned: $" + (correctAnswers * 500) + "!");
         $(document).find(".earnings").show();
         $(document).find("h1").text("Business Quiz Complete!");
     }
@@ -144,7 +144,7 @@
             let choice;
 
             if(resultArray[i].userAnswer == resultArray[i].correctAnswer){
-                $('<div>' + resultArray[i].question + '</div>').appendTo(resultAll);
+                $('<hr><div class="quiz-question">' + resultArray[i].question + '</div>').appendTo(resultAll);
                 for (let j = 0; j < numChoices; j++) {
                     choice = businessQuestions[i].choices[j];
                     if(resultArray[i].correctAnswer == j){
@@ -154,7 +154,7 @@
                     }
                 }
             } else {
-                $('<div>' + resultArray[i].question + '</div>').appendTo(resultAll);
+                $('<hr><div class="quiz-question">' + resultArray[i].question + '</div>').appendTo(resultAll);
                 for (let j = 0; j < numChoices; j++) {
                     choice = businessQuestions[i].choices[j];
                     if(resultArray[i].correctAnswer == j){

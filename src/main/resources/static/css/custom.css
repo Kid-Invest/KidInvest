@@ -556,7 +556,7 @@ input[type="text"].grocery-input, input[type="number"].grocery-input {
     color: var(--dark-orange);
 }
 .quiz-body {
-    max-width: 400px;
+    max-width: 500px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -567,6 +567,12 @@ input[type="text"].grocery-input, input[type="number"].grocery-input {
     border: 3px var(--dark-cyan) solid;
     border-radius: 10px;
     background-color: var(--dark-cyan);
+}
+.quiz-form {
+    max-height: 80vh;
+    overflow: scroll;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 .quiz-title {
     font-weight: 600;
@@ -599,9 +605,7 @@ input[type="text"].grocery-input, input[type="number"].grocery-input {
     color: white;
     text-decoration: none;
 }
-/*.resultAll {*/
-/*    overflow: scroll;*/
-/*}*/
-.overflow {
-    overflow: scroll;
+.quiz-question {
+    margin-top: 30px;
+    margin-bottom: 10px;
 }
