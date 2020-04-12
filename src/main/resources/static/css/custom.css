@@ -508,7 +508,7 @@ td>.purchase-btn:hover {
     color: white;
     text-decoration: none;
 }
-.quiz-title {
+.learning-title {
     font-weight: 600;
     color: var(--dark-cyan);
     font-size: 10vh;
@@ -516,3 +516,40 @@ td>.purchase-btn:hover {
 .highlight{
     color: var(--dark-cyan)
 }
+
+/*QUIZ PAGE*/
+.answer-warn {
+    color: var(--dark-orange);
+}
+.quiz-body {
+    max-width: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 90vh;
+    margin: 0;
+    padding: 2rem;
+    border: 3px var(--dark-cyan) solid;
+    border-radius: 10px;
+    background-color: var(--dark-cyan);
+}
+.quiz-title {
+    font-weight: 600;
+    color: var(--primary-gold-color);
+}
+/*.register-body, .login-body {*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    justify-content: center;*/
+/*    min-height: 90vh;*/
+/*    margin: 0;*/
+/*}*/
+/*.register-body .container, .login-body .container {*/
+/*    padding: 2rem;*/
+/*    border: 3px var(--dark-cyan) solid;*/
+/*    border-radius: 10px;*/
+/*    background-color: var(--dark-cyan);*/
+/*}*/
+/*.login-body .container, .register-body .container {*/
+/*    max-width: 400px;*/
+/*}*/
