@@ -197,8 +197,7 @@
                         <span class="align-middle daily-percentage"
                               th:text="${stock.getChange() + '%'}"></span>
                         </td>
-                        <td class="align-middle border-0 px-0"
-                            th:text="${#numbers.formatDecimal(stock.getMarketPrice(), 0, 'DEFAULT', 2, 'DEFAULT')}">$32
+                        <td class="align-middle border-0 px-0">$<span th:text="${#numbers.formatDecimal(stock.getMarketPrice(), 0, 'DEFAULT', 2, 'DEFAULT')}"></span>
                         </td>
                         <td class="align-middle border-0 text-center px-0"><a
                                 th:href="@{|/stocks?ticker=${stock.getTicker()}|}"
