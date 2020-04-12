@@ -163,7 +163,6 @@ tbody.dropdown-row tr:nth-child(4n), tbody.dropdown-row tr:nth-child(4n-1){
 tbody.dropdown-row tr:nth-child(4n-2), tbody.dropdown-row tr:nth-child(4n-3){
     background-color: #64A6AD;
 }
-
 tr.owned-stock-stats {
     display: none;
     width: 100%;
@@ -391,6 +390,22 @@ li > a.business-link:hover {
 }
 .fa-comments-dollar {
    color: #0075B0;
+}
+
+
+/*ADDONS PAGE*/
+td>.purchase-btn {
+    background-color: var(--primary-gold-color);
+    border: 3px var(--primary-gold-color) solid;
+    border-radius: 50px;
+    text-decoration: none;
+    color: var(--dark-cyan);
+    padding: 2px 20px;
+}
+td>.purchase-btn:hover {
+    color: #fff;
+    text-decoration: none;
+    transition: color .2s ease-in;
 }
 
 
