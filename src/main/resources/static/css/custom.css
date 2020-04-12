@@ -516,3 +516,6 @@ td>.purchase-btn:hover {
     color: var(--dark-cyan);
     font-size: 10vh;
 }
+.highlight{
+    color: var(--dark-cyan)
+}
