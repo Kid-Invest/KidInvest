@@ -40,7 +40,8 @@ public class BusinessController {
     @GetMapping("/business")
     public String viewBusinessPage(Model view) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        List<Inventory> inventoryList = inventoryDao.findInventoryByBusinessId(user.getId());
+        Business userBusiness = businessDao.findBusinessById(user.getId());
+        List<Inventory> inventoryList = inventoryDao.findInventoryByBusinessId(userBusiness.getId());
         view.addAttribute("inventoryList", inventoryList);
         return "business/business";
     }
@@ -58,7 +59,6 @@ public class BusinessController {
 
     @PostMapping("/business/addon")
     public String doAddonPurchase(@RequestParam long id) {
-
         // Subtract from user's balance
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User dbUser = userDao.findUserById(user.getId());
@@ -87,8 +87,12 @@ public class BusinessController {
 
     @GetMapping("/business/grocery-store")
     public String viewGroceryStorePage(Model view) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Business userBusiness = businessDao.findBusinessById(user.getId());
+        List<Inventory> inventoryList = inventoryDao.findInventoryByBusinessId(userBusiness.getId());
         List<Ingredient> ingredientList = ingredientDao.findAll();
         view.addAttribute("ingredients", ingredientList);
+        view.addAttribute("inventoryList", inventoryList);
         return "business/grocery-store";
     }
 
@@ -230,12 +234,12 @@ public class BusinessController {
         dbUser.setBalance(dbUser.getBalance() + Double.parseDouble(earnings));
         userDao.save(dbUser);
 
-            // Insert a new sale into sales table
-            if (dailySales != null) {
-                saleDao.updateSale(dailySales.getProfit() + Double.parseDouble(earnings), date, userBusiness);
-            } else {
-                saleDao.insertSale(Double.parseDouble(earnings), date, userBusiness);
-            }
+        // Insert a new sale into sales table
+        if (dailySales != null) {
+            saleDao.updateSale(dailySales.getProfit() + Double.parseDouble(earnings), date, userBusiness);
+        } else {
+            saleDao.insertSale(Double.parseDouble(earnings), date, userBusiness);
+        }
 
         // Get list of ingredients and loop through and
 //        List<LemonadeIngredient> lemonadeIngredientList = lemonadeIngredientDao.findLemonadeIngredientByLemonadeId(selectedLemonade.getId());
