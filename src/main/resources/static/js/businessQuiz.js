@@ -126,8 +126,8 @@
         $(document).find(".quizContainer > .result").html("You scored: " + correctAnswers + " out of " + businessQuestions.length);
         $(document).find(".quizContainer > .result").show();
 
-        $(document).find(".quizContainer > .earnings").html("You have earned: $" + (correctAnswers * 500) + "!");
-        $(document).find(".quizContainer > .earnings").show();
+        $(document).find(".earnings").html("You have earned: $" + (correctAnswers * 500) + "!");
+        $(document).find(".earnings").show();
         $(document).find("h1").text("Business Quiz Complete!");
     }
 
