@@ -43,6 +43,13 @@ public class UserController {
         return "login";
     }
 
+    @GetMapping("/logout")
+    public String viewLogoutPage() {
+        SecurityContextHolder.clearContext();
+//        SecurityContextHolder.getContext().setAuthentication(null);
+        return "redirect:/login";
+    }
+
     @GetMapping("/register")
     public String viewRegistrationPage(Model view) {
         view.addAttribute("user", new User());
