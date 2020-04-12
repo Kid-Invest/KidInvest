@@ -56,8 +56,6 @@ public class User {
     public User() {
     }
 
-    ;
-
     //constructor
     public User(long id, String username, String password, String email, Double balance, int characterId, boolean viewedPortfolio, boolean viewedTransactions, boolean viewedStocks, boolean viewedStand, boolean viewedStore, boolean takenStockQuiz, boolean takenBusinessQuiz) {
         this.id = id;
@@ -132,45 +130,7 @@ public class User {
         this.balance = balance;
     }
 
-    public boolean getViewedPages() {
-        return viewedPortfolio;
-    }
 
-    public void setViewedPages(boolean viewedPortFolio) {
-        this.viewedPortfolio = viewedPortFolio;
-    }
-
-    public boolean isViewedStocks() {
-        return viewedStocks;
-    }
-
-    public void setViewedStocks(boolean viewedStocks) {
-        this.viewedStocks = viewedStocks;
-    }
-
-    public boolean isViewedTransactions() {
-        return viewedTransactions;
-    }
-
-    public void setViewedTransactions(boolean viewedTransactions) {
-        this.viewedTransactions = viewedTransactions;
-    }
-
-    public boolean isViewedStand() {
-        return viewedStand;
-    }
-
-    public void setViewedStand(boolean viewedStand) {
-        this.viewedStand = viewedStand;
-    }
-
-    public boolean isViewedStore() {
-        return viewedStore;
-    }
-
-    public void setViewedStore(boolean viewedStore) {
-        this.viewedStore = viewedStore;
-    }
 
     public boolean getTakenStockQuiz() {
         return takenStockQuiz;
@@ -192,13 +152,6 @@ public class User {
         this.balance = balance;
     }
 
-    public boolean isViewedPortfolio() {
-        return viewedPortfolio;
-    }
-
-    public void setViewedPortfolio(boolean viewedPortfolio) {
-        this.viewedPortfolio = viewedPortfolio;
-    }
 
     public List<StockTransaction> getTransactionList() {
         return transactionList;
@@ -230,5 +183,45 @@ public class User {
 
     public void setCharacterId(int characterId) {
         this.characterId = characterId;
+    }
+
+    public boolean isViewedPortfolio() {
+        return viewedPortfolio;
+    }
+
+    public void setViewedPortfolio(boolean viewedPortfolio) {
+        this.viewedPortfolio = viewedPortfolio;
+    }
+
+    public boolean isViewedStocks() {
+        return this.viewedStocks;
+    }
+
+    public void setViewedStocks(boolean viewedStocks) {
+        this.viewedStocks = viewedStocks;
+    }
+
+    public boolean isViewedTransactions() {
+        return viewedTransactions;
+    }
+
+    public void setViewedTransactions(boolean viewedTransactions) {
+        this.viewedTransactions = viewedTransactions;
+    }
+
+    public boolean isViewedStand() {
+        return viewedStand;
+    }
+
+    public void setViewedStand(boolean viewedStand) {
+        this.viewedStand = viewedStand;
+    }
+
+    public boolean isViewedStore() {
+        return viewedStore;
+    }
+
+    public void setViewedStore(boolean viewedStore) {
+        this.viewedStore = viewedStore;
     }
 }

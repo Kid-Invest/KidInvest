@@ -69,9 +69,16 @@ public class StockController {
         } else {
             currentStock = stockDao.findStockByTicker(ticker);
         }
-
         currentUserStock = userStockDao.findUserStockByStockIdAndUserId(currentStock.getId(), dbUser.getId());
-        System.out.println(currentStock);
+
+        // check if first time viewer on stock page, if first time, then display the tutorial and flag that he is not a first time viewer.
+        if (!dbUser.isViewedStocks()) {
+            view.addAttribute("firstTime", true);
+            dbUser.setViewedStocks(true);
+            userDao.save(dbUser);
+        }
+
+
         view.addAttribute("currentUserStock", currentUserStock);
         view.addAttribute("user", dbUser);
         view.addAttribute("currentStock", currentStock);

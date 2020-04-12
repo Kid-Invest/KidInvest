@@ -22,7 +22,12 @@
 <!--NAVBAR START-->
 <th:block th:fragment="nav">
     <nav class="navbar navbar-expand-xl">
-        <a class="navbar-brand" href="/">Kid Invest</a>
+        <th:block sec:authorize="!isAuthenticated()">
+            <a class="navbar-brand" href="/">Kid Invest</a>
+        </th:block>
+        <th:block sec:authorize="isAuthenticated()">
+            <a class="navbar-brand" href="/profile">Kid Invest</a>
+        </th:block>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="custom-toggler navbar-toggler-icon"><i class="fas fa-bars"></i></span>
