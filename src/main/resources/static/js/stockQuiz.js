@@ -118,7 +118,7 @@
 
         for (let i = 0; i < numChoices; i++) {
             choice = stockQuestions[currentQuestion].choices[i];
-            $('<li><input type="radio" value="' + i + '" name="dynradio" />' + choice + '</li>').appendTo(choiceList);
+            $('<li><input type="radio" value="' + i + '" name="dynradio" /><label class="radio-label">' + choice + '</label></li>').appendTo(choiceList);
         }
     }
 
@@ -126,7 +126,7 @@
         $(document).find(".quizContainer > .result").html("You scored: " + correctAnswers + " out of " + stockQuestions.length);
         $(document).find(".quizContainer > .result").show();
 
-        $(document).find(".earnings").html("You have earned: $" + (correctAnswers * 500) + "!");
+        $(document).find(".earnings").html("You earned: $" + (correctAnswers * 500) + "!");
         $(document).find(".earnings").show();
         $(document).find("h1").text("Stock Quiz Complete!");
     }
@@ -144,25 +144,25 @@
             let choice;
 
             if(resultArray[i].userAnswer == resultArray[i].correctAnswer){
-                $('<div>' + resultArray[i].question + '</div>').appendTo(resultAll);
+                $('<hr><div class="quiz-question">' + resultArray[i].question + '</div>').appendTo(resultAll);
                 for (let j = 0; j < numChoices; j++) {
                     choice = stockQuestions[i].choices[j];
                     if(resultArray[i].correctAnswer == j){
-                        $('<li style="background-color: lightgreen; color: green">' + choice + '</li>').appendTo(resultAll);
+                        $('<li class="correct listItem">' + choice + '</li>').appendTo(resultAll);
                     } else {
-                        $('<li>' + choice + '</li>').appendTo(resultAll);
+                        $('<li class="listItem">' + choice + '</li>').appendTo(resultAll);
                     }
                 }
             } else {
-                $('<div>' + resultArray[i].question + '</div>').appendTo(resultAll);
+                $('<hr><div class="quiz-question">' + resultArray[i].question + '</div>').appendTo(resultAll);
                 for (let j = 0; j < numChoices; j++) {
                     choice = stockQuestions[i].choices[j];
                     if(resultArray[i].correctAnswer == j){
-                        $('<li style="background-color: lightgreen; color: darkgreen">' + choice + '</li>').appendTo(resultAll);
+                        $('<li class="correct listItem">' + choice + '</li>').appendTo(resultAll);
                     } else if(resultArray[i].userAnswer == j){
-                        $('<li style="background-color: palevioletred; color: darkred">' + choice + '</li>').appendTo(resultAll);
+                        $('<li class="wrong listItem">' + choice + '</li>').appendTo(resultAll);
                     } else {
-                        $('<li>' + choice + '</li>').appendTo(resultAll);
+                        $('<li class="listItem">' + choice + '</li>').appendTo(resultAll);
                     }
                 }
             }

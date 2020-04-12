@@ -7,7 +7,7 @@
 
     <div class="page-content d-flex justify-content-center align-items-center">
         <div class="quiz-body">
-            <form th:action="@{/learning/stock/quiz}" th:method="POST">
+            <form th:action="@{/learning/stock/quiz}" th:method="POST" class="quiz-form">
                 <div class="quizContainer container">
                     <h1 class="mb-4 quiz-title text-center">Stock Quiz</h1>
 
@@ -16,7 +16,7 @@
                     <div class="quizMessage answer-warn mb-4 text-center"></div>
                     <div class="result mb-3 text-center"></div>
 
-                    <div th:if='${dbUser.getTakenStockQuiz() == false}' class="text-right m-3">
+                    <div th:if='${dbUser.getTakenStockQuiz() == false}' class="text-right m-3 hidden">
                         <div class="earnings mb-3 text-center"></div>
                     </div>
 

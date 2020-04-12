@@ -631,7 +631,6 @@ input[type="text"].grocery-input, input[type="number"].grocery-input {
 input[type=radio] {
     float: left;
 }
-
 .radio-label {
     margin-left: 25px;
     display: block;
