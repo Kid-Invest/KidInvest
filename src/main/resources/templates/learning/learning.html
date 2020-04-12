@@ -12,7 +12,7 @@
 
     <!--BUSINESS START-->
     <div class="container businessContainer mt-4" id="#top">
-        <h1 class="text-center quiz-title" id="business">Learn about business!</h1>
+        <h1 class="text-center learning-title" id="business">Learn about business!</h1>
         <div class="text-center">
             <a href="#stock" class="quiz-btn">learn about stock</a>
         </div>
@@ -89,7 +89,7 @@
             <a href="/learning/business/quiz" class="quiz-btn">Take the Business Quiz!</a>
         </div>
         <div th:if='${dbUser.getTakenBusinessQuiz() == true}' class="text-right m-3">
-            <p>Business Quiz Has Already Been Taken</p>
+            <a href="/learning/business/quiz" class="quiz-btn">Retake the Business Quiz</a>
         </div>
     </div>
 
@@ -97,7 +97,7 @@
 
     <!--LEARN ABOUT STOCK-->
     <div class="container stockContainer stock-margin" id="stock">
-        <h1 class="text-center quiz-title">Learn About Stock!</h1>
+        <h1 class="text-center learning-title">Learn About Stock!</h1>
         <div class="text-center">
             <a href="#business" class="quiz-btn">learn about business</a>
         </div>
@@ -175,7 +175,7 @@
             <a href="/learning/stock/quiz" class="quiz-btn">Take the Stock Quiz!</a>
         </div>
         <div th:if='${dbUser.getTakenStockQuiz() == true}' class="text-right m-3">
-            <p>Stock Quiz Has Already Been Taken</p>
+            <a href="/learning/stock/quiz" class="quiz-btn">Retake the Stock Quiz</a>
         </div>
         <div class="text-center m-3">
             <a href="#top" class="quiz-btn">Back to top</a>

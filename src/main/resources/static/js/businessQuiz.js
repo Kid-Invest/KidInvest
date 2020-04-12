@@ -17,7 +17,7 @@
         choices: [" a. The amount of money you have after subtracting all your business and stock earnings and adding all your purchases", " b. The amount of money you have after adding all your business and stock earnings and subtracting all your purchases", " c. A complete list of the items you have available to make lemonades", " d. A grouping of your stock and business profits"],
         correctAnswer: 1
     }, {
-        question: "5. Purchasing addons will do which of the following",
+        question: "5. Purchasing addons will do which of the following?",
         choices: [" a. Increase your popularity", " b. Increase your account balance", " c. Decrease your popularity", " d. Increase your stock investments"],
         correctAnswer: 0
     }];
@@ -74,7 +74,7 @@
                     }
                     else {
                         // Quiz is now over
-                        $(document).find(".nextButton").html("Display Results Before Sending Earnings to Balance");
+                        $(document).find(".nextButton").html("Display Results");
 
                         $(document).find(".quizContainer > .question").hide();
                         $(document).find(".quizContainer > .choiceList").hide();
@@ -91,7 +91,7 @@
                     $(document).find("#formSubmit").show();
 
                     //onclick, results are sent to balance
-                    $('#viewResultsBtn').on("click", function(){
+                    $('.viewResultsBtn').on("click", function(){
                         $('#quiz_result').val(correctAnswers * 500);
                         resultsSent = true;
                         quizOver = true;
@@ -118,19 +118,22 @@
 
         for (let i = 0; i < numChoices; i++) {
             choice = businessQuestions[currentQuestion].choices[i];
-            $('<li><input type="radio" value="' + i + '" name="dynradio" />' + choice + '</li>').appendTo(choiceList);
+            $('<li><input type="radio" value="' + i + '" name="dynradio" /><label class="radio-label">' + choice + '</label></li>').appendTo(choiceList);
         }
     }
 
     function displayScore() {
-        $(document).find(".quizContainer > .result").html("You scored: " + correctAnswers + " out of " + businessQuestions.length +
-            "<br> You have earned: $" + (correctAnswers * 500) + "!");
+        $(document).find(".quizContainer > .result").html("You scored: " + correctAnswers + " out of " + businessQuestions.length);
         $(document).find(".quizContainer > .result").show();
-        $(document).find("h1").text("Quiz Complete!");
+
+        $(document).find(".earnings").html("You earned: $" + (correctAnswers * 500) + "!");
+        $(document).find(".earnings").show();
+        $(document).find("h1").text("Business Quiz Complete!");
     }
 
     function hideScore() {
         $(document).find(".result").hide();
+        $(document).find(".earnings").hide();
     }
 
     function displayResults() {
@@ -141,25 +144,25 @@
             let choice;
 
             if(resultArray[i].userAnswer == resultArray[i].correctAnswer){
-                $('<div>' + resultArray[i].question + '</div>').appendTo(resultAll);
+                $('<hr><div class="quiz-question">' + resultArray[i].question + '</div>').appendTo(resultAll);
                 for (let j = 0; j < numChoices; j++) {
                     choice = businessQuestions[i].choices[j];
                     if(resultArray[i].correctAnswer == j){
-                        $('<li style="background-color: lightgreen; color: green">' + choice + '</li>').appendTo(resultAll);
+                        $('<li class="correct listItem">' + choice + '</li>').appendTo(resultAll);
                     } else {
-                        $('<li>' + choice + '</li>').appendTo(resultAll);
+                        $('<li class="listItem">' + choice + '</li>').appendTo(resultAll);
                     }
                 }
             } else {
-                $('<div>' + resultArray[i].question + '</div>').appendTo(resultAll);
+                $('<hr><div class="quiz-question">' + resultArray[i].question + '</div>').appendTo(resultAll);
                 for (let j = 0; j < numChoices; j++) {
                     choice = businessQuestions[i].choices[j];
                     if(resultArray[i].correctAnswer == j){
-                        $('<li style="background-color: lightgreen; color: darkgreen">' + choice + '</li>').appendTo(resultAll);
+                        $('<li class="correct listItem">' + choice + '</li>').appendTo(resultAll);
                     } else if(resultArray[i].userAnswer == j){
-                        $('<li style="background-color: palevioletred; color: darkred">' + choice + '</li>').appendTo(resultAll);
+                        $('<li class="wrong listItem">' + choice + '</li>').appendTo(resultAll);
                     } else {
-                        $('<li>' + choice + '</li>').appendTo(resultAll);
+                        $('<li class="listItem">' + choice + '</li>').appendTo(resultAll);
                     }
                 }
             }

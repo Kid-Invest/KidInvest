@@ -31,76 +31,76 @@
 
     $(document).ready(function () {
 
-            // Display the first question
-            displayCurrentQuestion();
-            $(this).find(".quizMessage").hide();
-            $(document).find("#formSubmit").hide();
+        // Display the first question
+        displayCurrentQuestion();
+        $(this).find(".quizMessage").hide();
+        $(document).find("#formSubmit").hide();
 
-            // On clicking next, display the next question
-            $(this).find(".nextButton").on("click", function () {
-                if (!quizOver) {
+        // On clicking next, display the next question
+        $(this).find(".nextButton").on("click", function () {
+            if (!quizOver) {
 
-                    //stores user answer
-                    value = $("input[type='radio']:checked").val();
+                //stores user answer
+                value = $("input[type='radio']:checked").val();
 
-                    if (value == undefined) {
-                        //prompts user for an answer if they haven't selected an answer
-                        $(document).find(".quizMessage").text("Please select an answer");
-                        $(document).find(".quizMessage").show();
-                    } else {
-                        // hides message if they have now answered
-                        $(document).find(".quizMessage").hide();
+                if (value == undefined) {
+                    //prompts user for an answer if they haven't selected an answer
+                    $(document).find(".quizMessage").text("Please select an answer");
+                    $(document).find(".quizMessage").show();
+                } else {
+                    // hides message if they have now answered
+                    $(document).find(".quizMessage").hide();
 
-                        if (value == stockQuestions[currentQuestion].correctAnswer) {
-                            correctAnswers++;
-                        }
+                    if (value == stockQuestions[currentQuestion].correctAnswer) {
+                        correctAnswers++;
+                    }
 
-                        //holds user answer and can be compared correct/incorrect later
-                        let resultObject = {
-                            question: stockQuestions[currentQuestion].question,
-                            choices: stockQuestions[currentQuestion].choices,
-                            correctAnswer: stockQuestions[currentQuestion].correctAnswer,
-                            userAnswer: value
-                        };
-                        resultArray.push(resultObject);
+                    //holds user answer and can be compared correct/incorrect later
+                    let resultObject = {
+                        question: stockQuestions[currentQuestion].question,
+                        choices: stockQuestions[currentQuestion].choices,
+                        correctAnswer: stockQuestions[currentQuestion].correctAnswer,
+                        userAnswer: value
+                    };
+                    resultArray.push(resultObject);
 
-                        currentQuestion++; // moves to next question
-                        if (currentQuestion < (stockQuestions.length - 1)) {
-                            displayCurrentQuestion();
-                        } else if(currentQuestion === (stockQuestions.length - 1)){
-                            //last question button display changes to "submit"
-                            displayCurrentQuestion();
-                            $(document).find(".nextButton").text("Submit");
-                        }
-                        else {
-                            // Quiz is now over
-                            $(document).find(".nextButton").html("Display Results Before Sending Earnings to Balance");
+                    currentQuestion++; // moves to next question
+                    if (currentQuestion < (stockQuestions.length - 1)) {
+                        displayCurrentQuestion();
+                    } else if(currentQuestion === (stockQuestions.length - 1)){
+                        //last question button display changes to "submit"
+                        displayCurrentQuestion();
+                        $(document).find(".nextButton").text("Submit");
+                    }
+                    else {
+                        // Quiz is now over
+                        $(document).find(".nextButton").html("Display Results");
 
-                            $(document).find(".quizContainer > .question").hide();
-                            $(document).find(".quizContainer > .choiceList").hide();
-                            displayScore();
-                            quizOver = true;
-                        }
+                        $(document).find(".quizContainer > .question").hide();
+                        $(document).find(".quizContainer > .choiceList").hide();
+                        displayScore();
+                        quizOver = true;
                     }
                 }
-                else { // quizOver = true;
-                    displayResults();
-                    // quiz is over Need to lock out of quiz and only show results
-                    $(document).find(".nextButton").hide();
-                    if(!resultsSent){
-                        $(document).find("#formSubmit").show();
+            }
+            else { // quizOver = true;
+                displayResults();
+                // quiz is over Need to lock out of quiz and only show results
+                $(document).find(".nextButton").hide();
+                if(!resultsSent){
+                    $(document).find("#formSubmit").show();
 
-                        //onclick, results are sent to balance
-                        $('#viewResultsBtn').on("click", function(){
-                            $('#quiz_result').val(correctAnswers * 500);
-                            resultsSent = true;
-                            quizOver = true;
-                        });
-                    } else {
-                        $(document).find("#formSubmit").hide();
-                    }
+                    //onclick, results are sent to balance
+                    $('.viewResultsBtn').on("click", function(){
+                        $('#quiz_result').val(correctAnswers * 500);
+                        resultsSent = true;
+                        quizOver = true;
+                    });
+                } else {
+                    $(document).find("#formSubmit").hide();
                 }
-            });
+            }
+        });
     });
 
     // This displays the current question AND the choices
@@ -118,19 +118,22 @@
 
         for (let i = 0; i < numChoices; i++) {
             choice = stockQuestions[currentQuestion].choices[i];
-            $('<li><input type="radio" value="' + i + '" name="dynradio" />' + choice + '</li>').appendTo(choiceList);
+            $('<li><input type="radio" value="' + i + '" name="dynradio" /><label class="radio-label">' + choice + '</label></li>').appendTo(choiceList);
         }
     }
 
     function displayScore() {
-        $(document).find(".quizContainer > .result").html("You scored: " + correctAnswers + " out of " + stockQuestions.length +
-                                                          "<br> You have earned: $" + (correctAnswers * 500) + "!");
+        $(document).find(".quizContainer > .result").html("You scored: " + correctAnswers + " out of " + stockQuestions.length);
         $(document).find(".quizContainer > .result").show();
-        $(document).find("h1").text("Quiz Complete!");
+
+        $(document).find(".earnings").html("You earned: $" + (correctAnswers * 500) + "!");
+        $(document).find(".earnings").show();
+        $(document).find("h1").text("Stock Quiz Complete!");
     }
 
     function hideScore() {
         $(document).find(".result").hide();
+        $(document).find(".earnings").hide();
     }
 
     function displayResults() {
@@ -141,25 +144,25 @@
             let choice;
 
             if(resultArray[i].userAnswer == resultArray[i].correctAnswer){
-                $('<div>' + resultArray[i].question + '</div>').appendTo(resultAll);
+                $('<hr><div class="quiz-question">' + resultArray[i].question + '</div>').appendTo(resultAll);
                 for (let j = 0; j < numChoices; j++) {
                     choice = stockQuestions[i].choices[j];
                     if(resultArray[i].correctAnswer == j){
-                        $('<li style="background-color: lightgreen; color: green">' + choice + '</li>').appendTo(resultAll);
+                        $('<li class="correct listItem">' + choice + '</li>').appendTo(resultAll);
                     } else {
-                        $('<li>' + choice + '</li>').appendTo(resultAll);
+                        $('<li class="listItem">' + choice + '</li>').appendTo(resultAll);
                     }
                 }
             } else {
-                $('<div>' + resultArray[i].question + '</div>').appendTo(resultAll);
+                $('<hr><div class="quiz-question">' + resultArray[i].question + '</div>').appendTo(resultAll);
                 for (let j = 0; j < numChoices; j++) {
                     choice = stockQuestions[i].choices[j];
                     if(resultArray[i].correctAnswer == j){
-                        $('<li style="background-color: lightgreen; color: darkgreen">' + choice + '</li>').appendTo(resultAll);
+                        $('<li class="correct listItem">' + choice + '</li>').appendTo(resultAll);
                     } else if(resultArray[i].userAnswer == j){
-                        $('<li style="background-color: palevioletred; color: darkred">' + choice + '</li>').appendTo(resultAll);
+                        $('<li class="wrong listItem">' + choice + '</li>').appendTo(resultAll);
                     } else {
-                        $('<li>' + choice + '</li>').appendTo(resultAll);
+                        $('<li class="listItem">' + choice + '</li>').appendTo(resultAll);
                     }
                 }
             }
