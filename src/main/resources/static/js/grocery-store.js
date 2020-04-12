@@ -27,7 +27,7 @@
                 let ingredientEl = $(`#${i}`);
                 let totalCostEl = $(`#${i}_total`);
                 let ingredientCost = $(`#${i}_cost`).html();
-                if (parseInt(ingredientEl.val()) > 10) {
+                if (parseInt(ingredientEl.val()) >= 10) {
                     newCount = parseInt(ingredientEl.val()) - 10;
                     $(ingredientEl).val(newCount);
                     totalCostEl.html(

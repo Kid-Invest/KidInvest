@@ -53,7 +53,7 @@
                 <th:block th:each="transaction : ${stockTransactions}">
                     <tr class="text-center">
                         <td class="align-middle border-0" th:text="${transaction.getStock().getName()}">Sample Company</td>
-                        <td class="align-middle border-0" th:text="${transaction.getTime()}">10/10/10 00:00:00</td>
+                        <td class="align-middle border-0" th:text="${transaction.getTime().toLocaleString()}">10/10/10 00:00:00</td>
                         <td class="align-middle border-0" th:text="${transaction.getSharesBoughtSold()}">4</td>
                         <td class="align-middle border-0" th:text="${transaction.getPrice()}">$25.00</td>
                         <td class="align-middle border-0"
