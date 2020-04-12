@@ -435,6 +435,9 @@ td>.purchase-btn:hover {
 .violet {
    color: var(--dark-magenta);
 }
+.purple {
+    color: #8342b8;
+}
 .orange1 {
     color: #FF4803;
 }
@@ -443,6 +446,9 @@ td>.purchase-btn:hover {
 }
 .red1{
     color: #9C0002;
+}
+.red2 {
+    color: #9c3741;
 }
 .blue1 {
     color: var(--cadet-blue);
@@ -456,8 +462,20 @@ td>.purchase-btn:hover {
 .green {
     color: var(--green);
 }
+.green2 {
+    color: #6b9548;
+}
+.green2 {
+    color: #6b9548;
+}
+.green3 {
+    color: #165614;
+}
 .grey {
     color: #AFB6B5;
+}
+.grey2 {
+    color: #666669;
 }
 .brown {
     color: #A6773A;
@@ -465,10 +483,39 @@ td>.purchase-btn:hover {
 .brown2 {
     color: #68382B;
 }
+.brown3 {
+    color: #b7654c;
+}
+
 
 
 
 
 .hideBtn {
     display: none;
+}
+
+
+/*LEARNING PAGE*/
+.stock-margin {
+    margin-top: 100px;
+}
+.quiz-btn {
+    padding: 5px 20px;
+    background-color: var(--primary-gold-color);
+    border: 1px var(--primary-gold-color) solid;
+    border-radius: 50px;
+    color: var(--dark-cyan);
+}
+.quiz-btn:hover {
+    color: white;
+    text-decoration: none;
+}
+.quiz-title {
+    font-weight: 600;
+    color: var(--dark-cyan);
+    font-size: 10vh;
+}
+.highlight{
+    color: var(--dark-cyan)
 }
