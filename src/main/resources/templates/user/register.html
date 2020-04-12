@@ -16,21 +16,23 @@
     <h1 class="text-center mb-4 sign-up">SIGN-UP</h1>
     <form th:action="@{/register}" th:method="POST" th:object="${user}">
         <div class="d-flex flex-column justify-content-center align-items-center">
-           <label th:for="email">
-               <input type="text" class="email" th:field="*{email}" placeholder="Email">
+            <span th:if="${error != null && error.equalsIgnoreCase('passwordmismatch')}" style="color: red">Passwords must match!</span>
+            <span th:if="${error != null && error.equalsIgnoreCase('userexists')}" style="color: red">Username already exists!</span>
+            <label th:for="email">
+               <input type="text" class="email" th:field="*{email}" placeholder="Email" required>
             </label>
             <br>
             <label th:for="username">
-                <input type="text" class="username" th:field="*{username}" placeholder="Username">
+                <input type="text" class="username" th:field="*{username}" placeholder="Username" required>
             </label>
             <br>
             <label th:for="password">
-                <input type="password" class="password" th:field="*{password}" placeholder="Password">
+                <input type="password" class="password" th:field="*{password}" placeholder="Password" required>
             </label>
             <br>
             <label th:for="confirm">
                 <input type="password" class="password" th:id="confirm" th:name="confirm"
-                       placeholder="Confirm password">
+                       placeholder="Confirm password" required>
             </label>
             <br>
             <label th:for="characterId">Choose your character
