@@ -12,8 +12,10 @@
         const stockActionEl = $("#stockAction");
         const modalBuySellBtn = $("#modal-buy-sell-btn");
         const ownShares = $("#ownShares");
-
         let newCount = 0;
+
+        $('#stock-tut-modal').modal('show')
+        console.log("here");
 
         subtractBtnEl.addEventListener("click", function (){
             console.log(subtractBtnEl);
