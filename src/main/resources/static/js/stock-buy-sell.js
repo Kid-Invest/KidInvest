@@ -15,7 +15,6 @@
         let newCount = 0;
 
         $('#stock-tut-modal').modal('show')
-        console.log("here");
 
         subtractBtnEl.addEventListener("click", function (){
             console.log(subtractBtnEl);

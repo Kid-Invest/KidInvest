@@ -40,8 +40,17 @@ public class BusinessController {
     @GetMapping("/business")
     public String viewBusinessPage(Model view) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User dbUser = userDao.findUserById(user.getId());
         Business userBusiness = businessDao.findBusinessById(user.getId());
         List<Inventory> inventoryList = inventoryDao.findInventoryByBusinessId(userBusiness.getId());
+
+        // check if first time viewer on stock page, if first time, then display the tutorial and flag that he is not a first time viewer.
+        if (!dbUser.isViewedBusiness()) {
+            view.addAttribute("firstTime", true);
+            dbUser.setViewedBusiness(true);
+            userDao.save(dbUser);
+        }
+
         view.addAttribute("inventoryList", inventoryList);
         return "business/business";
     }

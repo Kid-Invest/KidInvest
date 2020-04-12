@@ -2,27 +2,27 @@ USE kid_invest_db;
 
 # USERS SEEDER
 insert into `kid_invest_db`.`users` (`id`, `username`, `password`, `email`, `balance`, `viewed_portfolio`,
-                                     `viewed_stand`, `viewed_stocks`, `viewed_store`, `viewed_transactions`, `completed_stock_quiz`, `completed_business_quiz`, `character_id`)
-values (1, 'dhurry0', 'JkH7rSdicfB', 'dhalvorsen0@discuz.net', 18638.23, true, true, true, true, true, true, true, 1);
+                                     `viewed_stand`, `viewed_stocks`, `viewed_business`, `completed_stock_quiz`, `completed_business_quiz`, `character_id`)
+values (1, 'Georgie', 'JkH7rSdicfB', 'georgie@discuz.net', 8638.23, true, true, true, true, true, true, 1);
 insert into `kid_invest_db`.`users` (`id`, `username`, `password`, `email`, `balance`, `viewed_portfolio`,
-                                     `viewed_stand`, `viewed_stocks`, `viewed_store`, `viewed_transactions`, `completed_stock_quiz`, `completed_business_quiz`, `character_id`)
-values (2, 'kmarran1', '2gcW9jG4U2TY', 'dbagge1@delicious.com', 10559.32, false, false, false, false, false, true, true, 1);
+                                     `viewed_stand`, `viewed_stocks`, `viewed_business`, `completed_stock_quiz`, `completed_business_quiz`, `character_id`)
+values (2, 'Jared', '2gcW9jG4U2TY', 'jared@delicious.com', 10559.32, false, false, false, false, true, true, 1);
 insert into `kid_invest_db`.`users` (`id`, `username`, `password`, `email`, `balance`, `viewed_portfolio`,
-                                     `viewed_stand`, `viewed_stocks`, `viewed_store`, `viewed_transactions`, `completed_stock_quiz`, `completed_business_quiz`, `character_id`)
-values (3, 'rottee2', 'oxKJf96', 'agresser2@paypal.com', 19292.8, false, false, false, false, false, false, true, 1);
+                                     `viewed_stand`, `viewed_stocks`, `viewed_business`, `completed_stock_quiz`, `completed_business_quiz`, `character_id`)
+values (3, 'Tati', 'oxKJf96', 'tati@paypal.com', 19292.8, false, false, false, false, false, true, 1);
 insert into `kid_invest_db`.`users` (`id`, `username`, `password`, `email`, `balance`, `viewed_portfolio`,
-                                     `viewed_stand`, `viewed_stocks`, `viewed_store`, `viewed_transactions`, `completed_stock_quiz`, `completed_business_quiz`, `character_id`)
-values (4, 'hstark3', 'wGvHrA9oJfH', 'ksheppard3@eventbrite.com', 12349.08, false, false, false, false, false, false, false, 1);
+                                     `viewed_stand`, `viewed_stocks`, `viewed_business`, `completed_stock_quiz`, `completed_business_quiz`, `character_id`)
+values (4, 'Brody', 'wGvHrA9oJfH', 'brody@eventbrite.com', 5349.08, false, false, false, false, false, false, 1);
 
 # BUSINESSES SEEDER
 INSERT INTO `kid_invest_db`.`business` (`id`, `name`, `popularity`, `user_id`)
-VALUES (1, 'dhurry''s stand', 25, 1);
+VALUES (1, 'Georgie''s stand', 25, 1);
 INSERT INTO `kid_invest_db`.`business` (`id`, `name`, `popularity`, `user_id`)
-VALUES (2, 'kmarran''s stand', 55, 2);
+VALUES (2, 'Jared''s stand', 55, 2);
 INSERT INTO `kid_invest_db`.`business` (`id`, `name`, `popularity`, `user_id`)
-VALUES (3, 'rottee''s stand', 10, 3);
+VALUES (3, 'Tati''s stand', 10, 3);
 INSERT INTO `kid_invest_db`.`business` (`id`, `name`, `popularity`, `user_id`)
-VALUES (4, 'hstark''s stand', 0, 4);
+VALUES (4, 'Brody''s stand', 0, 4);
 
 # ADD-ONS SEEDER
 INSERT INTO `kid_invest_db`.`addons` (`id`, `name`, `popularity_bonus`, `price`)
@@ -57,23 +57,6 @@ INSERT INTO `kid_invest_db`.`business_has_addons` (`business_id`, `addon_id`)
 VALUES (3, 4);
 
 # # STOCK SEEDER
-# insert into `kid_invest_db`.`stocks` (`id`, `name`, `market_price`, `open_price`, `low_price`, `high_price`, `time`) values (1, ''PNM Resources, Inc. (Holding Co.)'', 83.03, 82.03, 79.03, 92.03, ''2020-03-27 00:00:00'');
-# insert into `kid_invest_db`.`stocks` (`id`, `name`, `market_price`, `open_price`, `low_price`, `high_price`, `time`) values (2, ''The Community Financial Corporation'', 41.47, 40.47, 37.47, 50.47, ''2020-03-27 00:00:00'');
-# insert into `kid_invest_db`.`stocks` (`id`, `name`, `market_price`, `open_price`, `low_price`, `high_price`, `time`) values (3, ''Rocket Fuel Inc.'', 53.71, 52.71, 49.71, 62.71, ''2020-03-27 00:00:00'');
-# insert into `kid_invest_db`.`stocks` (`id`, `name`, `market_price`, `open_price`, `low_price`, `high_price`, `time`) values (4, ''Gener8 Maritime, Inc.'', 47.63, 46.63, 43.63, 56.63, ''2020-03-27 00:00:00'');
-# insert into `kid_invest_db`.`stocks` (`id`, `name`, `market_price`, `open_price`, `low_price`, `high_price`, `time`) values (5, ''West Pharmaceutical Services, Inc.'', 18.18, 17.18, 14.18, 27.18, ''2020-03-27 00:00:00'');
-# insert into `kid_invest_db`.`stocks` (`id`, `name`, `market_price`, `open_price`, `low_price`, `high_price`, `time`) values (6, ''Monolithic Power Systems, Inc.'', 81.09, 80.09, 77.09, 90.09, ''2020-03-27 00:00:00'');
-# insert into `kid_invest_db`.`stocks` (`id`, `name`, `market_price`, `open_price`, `low_price`, `high_price`, `time`) values (7, ''Sibanye Gold Limited'', 43.96, 42.96, 39.96, 52.96, ''2020-03-27 00:00:00'');
-# insert into `kid_invest_db`.`stocks` (`id`, `name`, `market_price`, `open_price`, `low_price`, `high_price`, `time`) values (8, ''Silvercrest Asset Management Group Inc.'', 67.83, 66.83, 63.83, 76.83, ''2020-03-27 00:00:00'');
-# insert into `kid_invest_db`.`stocks` (`id`, `name`, `market_price`, `open_price`, `low_price`, `high_price`, `time`) values (9, ''Cresud S.A.C.I.F. y A.'', 97.87, 96.87, 93.87, 106.87, ''2020-03-27 00:00:00'');
-# insert into `kid_invest_db`.`stocks` (`id`, `name`, `market_price`, `open_price`, `low_price`, `high_price`, `time`) values (10, ''OFG Bancorp'', 18.09, 17.09, 14.09, 27.09, ''2020-03-27 00:00:00'');
-# insert into `kid_invest_db`.`stocks` (`id`, `name`, `market_price`, `open_price`, `low_price`, `high_price`, `time`) values (11, ''Bankwell Financial Group, Inc.'', 37.44, 36.44, 33.44, 46.44, ''2020-03-27 00:00:00'');
-# insert into `kid_invest_db`.`stocks` (`id`, `name`, `market_price`, `open_price`, `low_price`, `high_price`, `time`) values (12, ''Nuveen Georgia Quality Municipal Income Fund '', 44.62, 43.62, 40.62, 53.62, ''2020-03-27 00:00:00'');
-# insert into `kid_invest_db`.`stocks` (`id`, `name`, `market_price`, `open_price`, `low_price`, `high_price`, `time`) values (13, ''Lantronix, Inc.'', 39.66, 38.66, 35.66, 48.66, ''2020-03-27 00:00:00'');
-# insert into `kid_invest_db`.`stocks` (`id`, `name`, `market_price`, `open_price`, `low_price`, `high_price`, `time`) values (14, ''Waste Management, Inc.'', 82.65, 81.65, 78.65, 91.65, ''2020-03-27 00:00:00'');
-# insert into `kid_invest_db`.`stocks` (`id`, `name`, `market_price`, `open_price`, `low_price`, `high_price`, `time`) values (15, ''Dynex Capital, Inc.'', 44.69, 43.69, 40.69, 53.69, ''2020-03-27 00:00:00'');
-
-# PRACTICE STOCK
 insert into `kid_invest_db`.`stocks` (`id`, `name`, `ticker`, `market_price`, `open_price`, `low_price`, `high_price`, `year_low_price`, `year_high_price`, `percentage_change`, `time`) values (1, 'Frank''s Fresh Foods', 'FFS', 0, 0, 0, 0, 0, 0, 0, '2020-03-27 00:00:00');
 insert into `kid_invest_db`.`stocks` (`id`, `name`, `ticker`, `market_price`, `open_price`, `low_price`, `high_price`, `year_low_price`, `year_high_price`, `percentage_change`, `time`) values (2, 'Dayna''s Daily Bookstore', 'DDS', 0, 0, 0, 0, 0, 0, 0, '2020-03-27 00:00:00');
 insert into `kid_invest_db`.`stocks` (`id`, `name`, `ticker`, `market_price`, `open_price`, `low_price`, `high_price`, `year_low_price`, `year_high_price`, `percentage_change`, `time`) values (3, 'Computers R'' Us', 'CRU', 0, 0, 0, 0, 0, 0, 0, '2020-03-27 00:00:00');
