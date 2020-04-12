@@ -71,7 +71,6 @@ public class BusinessController {
             if (addon.getId() == id) {
                 alreadyPurchased = true;
             }
-            System.out.println("User already purchased: " + addon.getName());
         }
 
         // If it's not already purchased, then add to the table and deduct from the user's balance
