@@ -82,7 +82,7 @@ public class BusinessController {
                 userDao.save(dbUser);
             }
         }
-        return "redirect:/business";
+        return "redirect:/business/addon";
     }
 
     @GetMapping("/business/grocery-store")
@@ -205,7 +205,9 @@ public class BusinessController {
         updatedInventoryList.add(Integer.parseInt(ingredient_id9));
         List<Inventory> userInventoryList = inventoryDao.findInventoryByBusinessId(userBusiness.getId());
         Date date = new Date(new java.util.Date().getTime());
+        System.out.println(earnings);
         Sale dailySales = saleDao.findSaleBySaleDate(date);
+        System.out.println(dailySales);
 
         // set the user's inventory to the new values from the game
         for (int i = 0; i < updatedInventoryList.size(); i++) {
