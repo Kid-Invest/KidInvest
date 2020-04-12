@@ -599,3 +599,9 @@ input[type="text"].grocery-input, input[type="number"].grocery-input {
     color: white;
     text-decoration: none;
 }
+/*.resultAll {*/
+/*    overflow: scroll;*/
+/*}*/
+.overflow {
+    overflow: scroll;
+}
