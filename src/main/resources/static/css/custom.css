@@ -609,3 +609,33 @@ input[type="text"].grocery-input, input[type="number"].grocery-input {
     margin-top: 30px;
     margin-bottom: 10px;
 }
+.viewResultsBtn {
+    border: 2px var(--primary-gold-color) solid;
+    border-radius: 10px;
+    padding: 4px;
+    background-color: var(--primary-gold-color);
+    color: var(--dark-cyan)
+}
+.viewResultsBtn:hover {
+    color: white;
+    text-decoration: none;
+}
+.correct {
+    background-color: lightgreen;
+    color: green
+}
+.wrong {
+    background-color: palevioletred;
+    color: darkred
+}
+input[type=radio] {
+    float: left;
+}
+
+.radio-label {
+    margin-left: 25px;
+    display: block;
+}
+.listItem{
+    list-style-type: none;
+}

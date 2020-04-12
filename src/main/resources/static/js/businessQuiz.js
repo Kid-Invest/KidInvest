@@ -118,7 +118,7 @@
 
         for (let i = 0; i < numChoices; i++) {
             choice = businessQuestions[currentQuestion].choices[i];
-            $('<li><input type="radio" value="' + i + '" name="dynradio" />' + choice + '</li>').appendTo(choiceList);
+            $('<li><input type="radio" value="' + i + '" name="dynradio" /><label class="radio-label">' + choice + '</label></li>').appendTo(choiceList);
         }
     }
 
@@ -148,9 +148,9 @@
                 for (let j = 0; j < numChoices; j++) {
                     choice = businessQuestions[i].choices[j];
                     if(resultArray[i].correctAnswer == j){
-                        $('<li style="background-color: lightgreen; color: green">' + choice + '</li>').appendTo(resultAll);
+                        $('<li class="correct listItem">' + choice + '</li>').appendTo(resultAll);
                     } else {
-                        $('<li>' + choice + '</li>').appendTo(resultAll);
+                        $('<li class="listItem">' + choice + '</li>').appendTo(resultAll);
                     }
                 }
             } else {
@@ -158,11 +158,11 @@
                 for (let j = 0; j < numChoices; j++) {
                     choice = businessQuestions[i].choices[j];
                     if(resultArray[i].correctAnswer == j){
-                        $('<li style="background-color: lightgreen; color: darkgreen">' + choice + '</li>').appendTo(resultAll);
+                        $('<li class="correct listItem">' + choice + '</li>').appendTo(resultAll);
                     } else if(resultArray[i].userAnswer == j){
-                        $('<li style="background-color: palevioletred; color: darkred">' + choice + '</li>').appendTo(resultAll);
+                        $('<li class="wrong listItem">' + choice + '</li>').appendTo(resultAll);
                     } else {
-                        $('<li>' + choice + '</li>').appendTo(resultAll);
+                        $('<li class="listItem">' + choice + '</li>').appendTo(resultAll);
                     }
                 }
             }
