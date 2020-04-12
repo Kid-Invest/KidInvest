@@ -33,37 +33,6 @@
         </table>
     </div>
 </div>
-
-
-<div class="container-fluid">
-    <div>
-        <h1>BUSINESS SALES</h1>
-        <h3>RECENT HISTORY</h3>
-    </div>
-    <br>
-    <br>
-    <table>
-        <thead>
-        <tr>
-            <th>
-                <h4></h4>
-            </th>
-            <th>
-                <h4></h4>
-            </th>
-        </tr>
-        </thead>
-        <tbody>
-        <div th:each="sale : ${sales}">
-            <tr>
-                <td th:text="${sale.saleDate}"></td>
-                <td th:text="${sale.profit}"></td>
-            </tr>
-        </div>
-        </tbody>
-    </table>
-</div>
-
 <th:block th:include="partials/fragments :: footer"/>
 <th:block th:include="partials/fragments :: scripts"/>
 </body>
