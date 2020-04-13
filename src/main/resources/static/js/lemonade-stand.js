@@ -488,8 +488,8 @@
                 this.moneyAudio = this.sound.add('moneyAudio');
                 this.sadAudio = this.sound.add('sadAudio');
                 this.backgroundAudio.volume = 0;
-                this.moneyAudio.volume = 0;
-                this.sadAudio.volume = 0;
+                this.moneyAudio.volume = .2;
+                this.sadAudio.volume = .2;
                 this.backgroundAudio.loop = true;
                 this.backgroundAudioPlaying = false;
             };
