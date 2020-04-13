@@ -43,7 +43,7 @@
                     <td class="align-middle border-0 px-0 text-capitalize"
                         th:text="${transaction.getStock().getName()}"></td>
                     <td class="align-middle border-0 px-0"
-                        th:text="${transaction.getTime().toLocaleString()}"></td>
+                        th:text="${transaction.getTime().toLocalDateTime()}"></td>
                     <td class="align-middle border-0 px-0">
                         <span th:if="${transaction.getSharesBoughtSold() > 0}"
                               style="color: green">+</span>
