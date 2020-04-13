@@ -65,7 +65,7 @@
                 this.counter = 0;
                 this.buyerChoice = null;
                 this.buyerChoiceId = null;
-                this.buyerSpeed = 1.5;
+                this.buyerSpeed = 3;
                 this.generatedBuyer = false;
                 this.game.globals = new Map();
                 this.spriteId = $(spriteIdEl).val();
@@ -453,12 +453,20 @@
                 // add the sprite for the seller
                 this.add.sprite(this.kidX, this.kidY, 'kid' + this.spriteId);
                 // add text box for counting earnings
-                this.earningsText = this.add.text(0, 0, 'Total Earnings($): 0', {
+                this.earningsText = this.add.text(250, 0, 'Total Earnings:$0', {
                     fontFamily: 'Courier',
-                    fontSize: 28,
+                    fontSize: 22,
                     color: 'rgba(38, 76, 81, 1)',
                     backgroundColor: 'rgba(255, 178, 2, .7)'
                 });
+                // add popularity bonus text box
+                this.popularityText = this.add.text(250, 24, 'Popularity Rating:+' + this.popBonus + '%', {
+                    fontFamily: 'Courier',
+                    fontSize: 22,
+                    color: 'rgba(38, 76, 81, 1)',
+                    backgroundColor: 'rgba(255, 178, 2, .7)'
+                });
+
                 // add buyer and seller emotions
                 this.buyerEmotion = this.add.sprite(this.buyerEmotionX, this.buyerEmotionY, 'deciding');
                 this.sellerEmotion = this.add.sprite(this.sellerEmotionX, this.sellerEmotionY, 'money');
@@ -619,7 +627,7 @@
                     this.buyerEmotion.setTexture('deciding');
                     this.buyerEmotion.alpha = 1;
 
-                    this.time.delayedCall(3000, function () {
+                    this.time.delayedCall(1500, function () {
                         buyer.doneDeciding = true;
                     }, [], this);
                     // console.log("deciding");
@@ -657,7 +665,7 @@
                         }, gameScene);
 
                         // if 10 seconds pass and user did not click the money button, then seller leaves angry
-                        this.time.delayedCall(6000, function () {
+                        this.time.delayedCall(3500, function () {
                             if (!buyer.boughtLemonade) {
                                 console.log("im angry");
                                 this.sellerEmotion.setTexture('drop');
@@ -673,7 +681,7 @@
             gameScene.increaseEarnings = function (earnings) {
                 let bonus = (this.popBonus + 100) / 100;
                 let newTotal = parseFloat(this.totalEarnings) + (earnings * bonus);
-                this.earningsText.setText('Total Earnings($): ' + newTotal.toFixed(2));
+                this.earningsText.setText('Total Earnings:$' + newTotal.toFixed(2));
                 earningsEl[0].value =  parseFloat(newTotal).toFixed(2);
                 this.moneyAudio.play();
                 this.counter++;

@@ -6,67 +6,50 @@
 <div th:include="partials/fragments :: nav"></div>
 
 <div class="page-content">
-
-
-    <div class="pt-4">
-
+    <div class="py-4 d-flex flex-column justify-content-center">
         <h1 class="mb-0 text-center stand-header">LEMONADE STAND</h1>
         <div class="d-flex flex-column justify-content-center align-items-center" id="lemonade-game"></div>
+        <form th:action="@{/business/open-stand}" th:method="POST">
+            <th:block th:each="addon : ${addonList}">
+                <input type="text" th:value="${addon.getName()}" th:id="${'addon_' + addon.getId()}" hidden>
+            </th:block>
+            <!--            <label for="spriteId">Current sprite ID:</label>-->
+            <input type="number" th:value="${spriteId}" id="spriteId" readonly hidden>
 
 
-        <div>
-            <div class="container">
-                <form th:action="@{/business/open-stand}" th:method="POST">
 
-                    <th:block th:each="addon : ${addonList}">
-                        <input type="text" th:value="${addon.getName()}" th:id="${'addon_' + addon.getId()}" hidden>
-                    </th:block>
-                    <!--            <label for="spriteId">Current sprite ID:</label>-->
-                    <input type="number" th:value="${spriteId}" id="spriteId" readonly hidden>
-
-                    <div class="">
-                        <h3 class="text-center pt-4">Lemonade Inventory</h3>
-                        <div class="row">
-                            <div class="col-4">
-                                <th:block th:each="inventoryItem : ${inventoryList}">
-                                    <div class="d-flex justify-content-start align-items-center">
-                                        <input type="number" width="" th:value="${inventoryItem.getTotal()}"
-                                               th:name="${'ingredient_id' + inventoryItem.getIngredient().getId()}"
-                                               th:id="${inventoryItem.getIngredient().getName()}" readonly>
-                                        <label class="ml-2 text-capitalize lemonade-ingredients"
-                                               th:for="${inventoryItem.getIngredient().getName()}"
-                                               th:text="${inventoryItem.getIngredient().getName()}">
-                                        </label>
-                                    </div>
-                                </th:block>
-                            </div>
-                            <div class="col-8 d-flex justify-content-start">
-
-                            </div>
+            <div class="container mt-4" id="game-details-container">
+                <div class="container text-center my-3">
+                    <button class="close-shop" type="submit">CLOSE SHOP</button>
+                </div>
+                <h3 class="text-center mt-4">Lemonade Inventory</h3>
+                    <div class="d-flex justify-content-center mb-4">
+                        <div>
+                            <th:block th:each="inventoryItem : ${inventoryList}">
+                                <div class="text-left">
+                                    <input class="text-center" type="number" width=""
+                                           th:value="${inventoryItem.getTotal()}"
+                                           th:name="${'ingredient_id' + inventoryItem.getIngredient().getId()}"
+                                           th:id="${inventoryItem.getIngredient().getName()}" readonly>
+                                    <label class="text-capitalize text-left lemonade-ingredients"
+                                           th:for="${inventoryItem.getIngredient().getName()}"
+                                           th:text="${inventoryItem.getIngredient().getName()}">
+                                    </label>
+                                </div>
+                            </th:block>
                         </div>
-                    </div>
-
-                    <div class=>
-                        <label for="popBonus">Popularity Bonus:</label>
-                        <input type="number" th:value="${popBonus}" id="popBonus" readonly>
-                    </div>
-
-                    <!--                <form th:action="@{/business/open-stand}" th:method="POST">-->
-                    <div class="text-right">
-                        <label for="earnings">Total Earnings</label>
-                        <input type="number" value="0" th:name="earnings" id="earnings" readonly>
-                        <br>
-                        <div class="exit-link">
-                            <button type="submit">CLOSE SHOP</button>
+                        <div class="d-flex justify-content-start">
+                            <img src="/img/lemonades/amount.png" class="img-fluid lemonade-amounts"
+                                 alt="total amount of ingredients per lemonade">
                         </div>
-                    </div>
-
-
-                </form>
+                </div>
             </div>
-        </div>
-    </div>
 
+                <input type="number" th:value="${popBonus}" id="popBonus" readonly hidden>
+                <input type="number" value="0" th:name="earnings" id="earnings" readonly hidden>
+
+        </form>
+    </div>
 </div>
 <div th:include="partials/fragments :: footer"></div>
 <div th:include="partials/fragments :: scripts"></div>
