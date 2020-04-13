@@ -4,13 +4,84 @@
 </head>
 <body>
 <div th:include="partials/fragments :: nav"></div>
-<div class="page-content index-bg d-flex flex-column align-items-center">
-            <div class="container pt-2 pb-3 main-content d-flex flex-column align-items-center">
-                <h1 class="mb-0 mc-heading">Welcome to <br><span class="homepage-logo">Kid Invest</span></h1>
-                <h3 class="mc-slogan text-center">Nothing sour here, just money!</h3>
-                <a href="/register" class="mt-4"><button class="buy-stock-btn">Start Investing</button></a>
-            </div>
+<div class="page-content index-bg d-flex flex-column align-items-center" id="top">
+    <div class="container pt-2 pb-3 main-content d-flex flex-column align-items-center">
+        <h1 class="mb-0 mc-heading">Welcome to <br><span class="homepage-logo">Kid Invest</span></h1>
+        <h3 class="mc-slogan text-center">Nothing sour here, just money!</h3>
+        <a href="/register" class="my-4">
+            <button class="buy-stock-btn">Start Investing</button>
+        </a>
+        <a href="#description"><i class="fas fa-chevron-circle-down fa-2x yellow
+                                     animated infinite bounce delay-2s mt-3"></i></a>
+    </div>
 </div>
+<div class="page-content pt-2" id="description">
+    <div class="container mw-50">
+        <h1 class="mt-2">A little bit about Kid Invest</h1>
+        <p>Kid Invest is a learning platform targeted towards 7+ years old youth. This investing and business
+            simulator will teach kids to learn, play, and practice investing at an early age. Kids will gain
+            financial literacy to become a successful money-maker. The lemonade stand will operate like a regular
+            company where users will need to purchase supplies, expand the store, and sell to customers. With
+            earnings, kids will invest in kid-friendly companies created using real-time stock market data
+            where the businesses simulate actual stock fluctuations.</p>
+    </div>
+
+    <div class="card-group">
+        <div class="card desc-card text-center m-3 p-0">
+            <div class="card-body">
+                <h3 class="card-title text-uppercase">Sell lemonades and grow your business</h3>
+            </div>
+            <img src="img/screenshots/game.png" class="card-img-top" alt="lemonade stand game">
+        </div>
+        <div class="card desc-card text-center m-3 p-0">
+            <div class="card-body">
+                <h3 class="card-title text-uppercase">View your current inventory</h3>
+            </div>
+            <img src="img/screenshots/game-details.png" class="card-img-top" alt="lemonade stand game">
+        </div>
+    </div>
+
+    <div class="card-group">
+        <div class="card desc-card text-center m-3 p-0">
+            <div class="card-body">
+                <h3 class="card-title text-uppercase">View real-time stocks</h3>
+            </div>
+            <img src="img/screenshots/stock.png" class="card-img-top" alt="view stocks page">
+        </div>
+        <div class="card desc-card text-center m-3 p-0">
+            <div class="card-body">
+                <h3 class="card-title text-uppercase">Purchase and sell stocks</h3>
+            </div>
+            <img src="img/screenshots/stock2.png" class="card-img-top" alt="purchase and sell stocks">
+        </div>
+    </div>
+
+    <div class="card-group">
+        <div class="card desc-card text-center m-3 p-0">
+            <div class="card-body">
+                <h3 class="card-title text-uppercase">Learn all about stocks and the business in our Learning Page
+                    </h3>
+            </div>
+            <img src="img/screenshots/learning.png" class="card-img-top" alt="Stocks and business learning page">
+        </div>
+        <div class="card desc-card text-center m-3 p-0">
+            <div class="card-body">
+                <h3 class="card-title text-uppercase">See where you rank in the leaderboard</h3>
+            </div>
+            <img src="img/screenshots/leaderboard.png" class="card-img-top" alt="purchase and sell stocks">
+        </div>
+    </div>
+
+
+    <div class="text-center my-3">
+        <a href="#top" class="top-btn">
+            <i class="fas fa-chevron-circle-up fa-md"></i>
+            Back to top
+        </a>
+    </div>
+</div>
+
+
 <th:block th:include="partials/fragments :: footer"/>
 <th:block th:include="partials/fragments :: scripts"/>
 </body>
