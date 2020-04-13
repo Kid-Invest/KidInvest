@@ -18,7 +18,7 @@
                         <p class="mb-0">ITEM</p>
                     </th>
                     <th class="border-0 px-0">
-                        <p class="mb-0">POPULARITY BONUS</p>
+                        <p class="mb-0" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="An addon's popularity bonus represents a percentage increase for your lemonade cost.">POPULARITY BONUS</p>
                     </th>
                     <th class="border-0 px-0">
                         <p class="mb-0">ADDON PRICE</p>
@@ -47,7 +47,7 @@
                                     <p class="mb-0" th:text="${addon.name}"></p>
                                 </td>
                                 <td class="align-middle border-0 px-0">
-                                    <p class="mb-0" th:text="${addon.popularityBonus}"></p>
+                                    <p class="mb-0"><span th:text="${addon.popularityBonus}"></span>%</p>
                                 </td>
                                 <td class="align-middle border-0 px-0">
                                     <p class="mb-0">$<span
