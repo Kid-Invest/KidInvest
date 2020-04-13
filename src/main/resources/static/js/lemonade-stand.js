@@ -63,6 +63,7 @@
                 this.buyerEmotionX = 220;
                 this.buyerEmotionY = 165;
                 this.counter = 0;
+                this.audioCounter = 0;
                 this.buyerChoice = null;
                 this.buyerChoiceId = null;
                 this.buyerSpeed = 3;
@@ -294,14 +295,14 @@
                 // Background
                 this.load.image('background', '/assets/background-blank.png');
                 // Kids
-                this.load.image('kid1', '/assets/kids/kid-m-1.png');
-                this.load.image('kid2', '/assets/kids/kid-m-2.png');
-                this.load.image('kid3', '/assets/kids/kid-m-3.png');
-                this.load.image('kid4', '/assets/kids/kid-m-4.png');
-                this.load.image('kid5', '/assets/kids/kid-f-1.png');
-                this.load.image('kid6', '/assets/kids/kid-f-2.png');
-                this.load.image('kid7', '/assets/kids/kid-f-3.png');
-                this.load.image('kid8', '/assets/kids/kid-f-4.png');
+                this.load.image('kid1', '/assets/kids/kid-1.png');
+                this.load.image('kid2', '/assets/kids/kid-2.png');
+                this.load.image('kid3', '/assets/kids/kid-3.png');
+                this.load.image('kid4', '/assets/kids/kid-4.png');
+                this.load.image('kid5', '/assets/kids/kid-5.png');
+                this.load.image('kid6', '/assets/kids/kid-6.png');
+                this.load.image('kid7', '/assets/kids/kid-7.png');
+                this.load.image('kid8', '/assets/kids/kid-8.png');
                 // Female Buyers
                 this.load.spritesheet('buyer1', '/assets/buyers/buyer-f-1.png', {frameWidth: 32, frameHeight: 32});
                 this.load.spritesheet('buyer2', '/assets/buyers/buyer-f-2.png', {frameWidth: 32, frameHeight: 32});
@@ -356,6 +357,9 @@
                 this.load.audio('backgroundAudio', '/assets/audio/background-song-v2.mp3');
                 this.load.audio('moneyAudio', '/assets/audio/money-sound-v2.mp3');
                 this.load.audio('sadAudio', '/assets/audio/sad-sound-v2.mp3');
+                // Load audio sprite
+                this.load.image('sound', '/assets/audio/volume-up-solid.png');
+                this.load.image('noSound', '/assets/audio/volume-mute-solid.png');
             };
 
             gameScene.create = function create() {
@@ -487,19 +491,37 @@
                 this.backgroundAudio = this.sound.add('backgroundAudio');
                 this.moneyAudio = this.sound.add('moneyAudio');
                 this.sadAudio = this.sound.add('sadAudio');
-                this.backgroundAudio.volume = 0;
-                this.moneyAudio.volume = .2;
+                this.backgroundAudio.volume = .4;
+                this.moneyAudio.volume = .4;
                 this.sadAudio.volume = .2;
                 this.backgroundAudio.loop = true;
-                this.backgroundAudioPlaying = false;
+                this.backgroundAudioPlaying = true;
+                this.backgroundAudio.play();
+                // add audio icon
+                this.audioIcon = this.add.sprite(560, 445, 'sound');
+                this.audioIcon.setInteractive();
             };
 
 
             gameScene.update = function update() {
-                if (!this.backgroundAudioPlaying) {
-                    this.backgroundAudio.play();
-                    this.backgroundAudioPlaying = true;
-                }
+                this.audioIcon.on('pointerdown', function (pointer) {
+                    if (!this.backgroundAudioPlaying && this.audioCounter === 0) {
+                        this.audioIcon.setTexture('sound');
+                        this.backgroundAudioPlaying = true;
+                        this.backgroundAudio.volume = .4;
+                        this.moneyAudio.volume = .4;
+                        this.sadAudio.volume = .2;
+                        this.audioCounter++;
+                    } else if (this.backgroundAudioPlaying && this.audioCounter === 0){
+                        this.audioIcon.setTexture('noSound');
+                        this.backgroundAudioPlaying = false;
+                        this.backgroundAudio.volume = 0;
+                        this.moneyAudio.volume = 0;
+                        this.sadAudio.volume = 0;
+                        this.audioCounter++;
+                    }
+                }, this);
+
 
                 // console.log(this.game.globals.get(key));
                 if (!this.generatedBuyer) {
@@ -509,6 +531,7 @@
                 if (this.generatedBuyer) {
                     this.walkPath(this.game.globals.get(this.key));
                 }
+                this.audioCounter = 0;
             }
 
 
