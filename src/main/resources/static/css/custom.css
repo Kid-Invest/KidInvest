@@ -407,6 +407,9 @@ td>.purchase-btn:hover, .buy-ingredients:hover {
     text-decoration: none;
     transition: color .2s ease-in;
 }
+td>.purchase-btn:focus {
+    outline: 0;
+}
 .exit-link > a, .close-shop {
     background-color: var(--dark-cyan);
     border: 3px var(--dark-cyan) solid;
