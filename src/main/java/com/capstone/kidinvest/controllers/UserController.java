@@ -63,6 +63,8 @@ public class UserController {
             return "redirect:/register?error=passwordmismatch";
         } else if (userDao.findByUsername(user.getUsername()) != null) {
             return "redirect:/register?error=userexists";
+        } else if (userDao.findByEmail(user.getEmail()) != null) {
+            return "redirect:/register?error=emailexists";
         }
 
         // Create user based on informaiton provided

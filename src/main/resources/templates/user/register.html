@@ -18,6 +18,8 @@
         <div class="d-flex flex-column justify-content-center align-items-center">
             <span th:if="${error != null && error.equalsIgnoreCase('passwordmismatch')}" style="color: red">Passwords must match!</span>
             <span th:if="${error != null && error.equalsIgnoreCase('userexists')}" style="color: red">Username already exists!</span>
+            <span th:if="${error != null && error.equalsIgnoreCase('emailexists')}" style="color: red">Email already exists!</span>
+
             <label th:for="email">
                <input type="text" class="email" th:field="*{email}" placeholder="Email" required>
             </label>
