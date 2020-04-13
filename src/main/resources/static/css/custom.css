@@ -17,6 +17,9 @@
 * {
     box-sizing: border-box;
 }
+html {
+    scroll-behavior: smooth;
+}
 html,
 body {
     background-color: var(--cadet-blue);
@@ -105,6 +108,31 @@ td>a:focus, .modal-buy-btn:focus, .register-btn:focus, .logout-btn:focus,
 .homepage-logo {
     color: var(--primary-gold-color);
     font-weight: 800;
+}
+.top-btn {
+    background-color: var(--primary-gold-color);
+    border: 3px var(--primary-gold-color) solid;
+    border-radius: 50px;
+    text-decoration: none;
+    color: var(--dark-cyan);
+    padding: 5px 20px;
+}
+.top-btn:hover {
+    transition: color .2s ease-in;
+    color: #fff;
+}
+.top-btn:focus {
+    outline: 0;
+}
+#description p {
+    font-size: 1.5em;
+}
+#description h1 {
+    font-size: 3em;
+}
+.desc-card {
+    background-color: #1B272A;
+    border: none;
 }
 
 
@@ -313,7 +341,8 @@ input[type=password].password{
     border: 2px var(--primary-gold-color) solid;
     border-radius: 50px;
 }
-.register-btn:hover, .login-btn:hover, .portfolio-lb-stock-links > a:hover {
+.register-btn:hover, .login-btn:hover,
+.portfolio-lb-stock-links > a:hover {
     color: #fff;
     transition: color .2s ease-in;
 }
@@ -343,7 +372,7 @@ input[type=password].password{
 
 
 /*ABOUT US*/
-.card {
+.card-about-us {
     background-color: #1B272A;
     background-image: linear-gradient(#1B272A 0%, #DAD9DB 95%);
     border: none;
