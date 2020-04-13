@@ -9,7 +9,6 @@
 
 
     <div class="pt-4">
-
         <h1 class="mb-0 text-center stand-header">LEMONADE STAND</h1>
         <div class="d-flex flex-column justify-content-center align-items-center" id="lemonade-game"></div>
 
@@ -24,27 +23,32 @@
                     <!--            <label for="spriteId">Current sprite ID:</label>-->
                     <input type="number" th:value="${spriteId}" id="spriteId" readonly hidden>
 
-                    <div class="">
+                    <div class="container">
                         <h3 class="text-center pt-4">Lemonade Inventory</h3>
-                        <div class="row">
-                            <div class="col-4">
+
+                            <div class="d-flex flex-wrap">
                                 <th:block th:each="inventoryItem : ${inventoryList}">
-                                    <div class="d-flex justify-content-start align-items-center">
+                                    <div class="text-center">
                                         <input type="number" width="" th:value="${inventoryItem.getTotal()}"
                                                th:name="${'ingredient_id' + inventoryItem.getIngredient().getId()}"
                                                th:id="${inventoryItem.getIngredient().getName()}" readonly>
-                                        <label class="ml-2 text-capitalize lemonade-ingredients"
+                                        <br>
+                                        <label class="text-capitalize text-center lemonade-ingredients"
                                                th:for="${inventoryItem.getIngredient().getName()}"
                                                th:text="${inventoryItem.getIngredient().getName()}">
                                         </label>
                                     </div>
                                 </th:block>
                             </div>
-                            <div class="col-8 d-flex justify-content-start">
 
-                            </div>
+
+                                <div class="d-flex justify-content-start">
+                                    <img src="/img/lemonades/amount.png" class="img-fluid lemonade-amounts"
+                                         alt="total amount of ingredients per lemonade">
+                                </div>
+
                         </div>
-                    </div>
+
 
                     <div class=>
                         <label for="popBonus">Popularity Bonus:</label>

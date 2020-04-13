@@ -466,6 +466,9 @@ input[type="text"].grocery-input, input[type="number"].grocery-input {
 #lemonade-game > canvas {
     max-width: 90%;
 }
+.lemonade-amounts {
+    max-height: 288px;
+}
 
 
 
