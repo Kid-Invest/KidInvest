@@ -112,8 +112,10 @@ public class UserController {
             userDao.save(dbUser);
         }
 
+        int characterId = dbUser.getCharacterId();
 
 
+        view.addAttribute("characterId", characterId);
         view.addAttribute("portfolioValue", portfolioValue);
         view.addAttribute("userStocks", userStockList);
         view.addAttribute("user", dbUser);

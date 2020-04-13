@@ -7,15 +7,14 @@
 </th:block>
 
 <div class="page-content">
-
     <div class="px-3 pt-3 pb-4">
-        <div class="row">
-            <div class="col-lg-2 px-0 ml-3 mr-3 balance-container">
+        <div class="row ">
+            <div class="col-lg-2 px-0 ml-3 mr-3 balance-container d-flex justify-content-center">
                 <h1 class="mb-0 text-center" th:text="${user.getUsername()}">Charlie23</h1>
+                <img style="min-width: 48px" th:src="@{|assets/kids/kid-${characterId}.png|}" alt="user's sprite image">
             </div>
         </div>
     </div>
-
         <div class="container">
             <div class="row">
                 <div class="col">
@@ -23,7 +22,6 @@
                 </div>
             </div>
         </div>
-
     <div class="container p-0">
             <div class="row mx-3 profile-stocks d-flex flex-row justify-content-between">
                 <div class="col p-0 mx-3 my-3 d-flex align-items-center text-center">
@@ -116,24 +114,6 @@
                                             <p class="mb-0">$<span th:text="${#numbers.formatDecimal(userStock.getStock().getMarketPrice() - userStock.getAvg_purchase_price(), 0, 'DEFAULT', 2, 'DEFAULT')}"></span></p>
                                         </div>
                                     </div>
-<!--                                    <ul style="display: none">-->
-
-<!--                                        <div class="d-inline-flex justify-content-center">-->
-<!--                                            <ul class="profile-stock-stats">-->
-<!--                                                <li>Open: $<span th:text="${userStock.getStock().getOpenPrice()}">40</span></li>-->
-<!--                                                <li>High: $<span th:text="${userStock.getStock().getHighPrice()}">34</span></li>-->
-<!--                                                <li>Low: $<span th:text="${userStock.getStock().getLowPrice()}">50</span></li>-->
-<!--                                            </ul>-->
-<!--                                            <ul class="profile-stock-stats">-->
-<!--                                                <li>Your Avg. Purchase Price:-->
-<!--                                                    $<span>Need to UPDATE</span></li>-->
-<!--                                                <li>Current Market Price: $<span-->
-<!--                                                        th:text="${userStock.getStock().getMarketPrice()}">50</span></li>-->
-<!--                                                <li>Total Return Per Sale: $<span>Need to fix</span></li>-->
-<!--                                            </ul>-->
-<!--                                        </div>-->
-
-<!--                                    </ul>-->
                                 </td>
                             </tr>
                         </th:block>
