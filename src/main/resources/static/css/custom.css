@@ -475,14 +475,15 @@ input[type="text"].grocery-input, input[type="number"].grocery-input {
 .stand-header {
     font-weight: 600;
 }
-#lemonade-game > canvas {
-    max-width: 90%;
-}
-#game-details-container {
+#game-container {
     background-color: var(--dark-cyan);
     border: 1px var(--dark-cyan) solid;
-    border-radius: 10px;
-    max-width: 600px;
+}
+#lemonade-game > canvas {
+    width: 100%;
+}
+#game-details-container {
+    max-width: 650px;
     box-sizing: border-box;
 }
 .lemonade-amounts {
