@@ -7,7 +7,7 @@
 
 <div class="container page-content my-5">
     <h1 class="mb-0 text-center">LEADERBOARD</h1>
-    <h3 class="mb-0 text-center" th:text="${'Your Portfolio Value: $' + sortedMap.get(dbUser.getUsername())}"></h3>
+    <h3 class="mb-0 text-center">Your Portfolio Value: $<span th:text="${#numbers.formatDecimal(sortedMap.get(dbUser.getUsername()), 0, 'DEFAULT', 2, 'DEFAULT')}"></span></h3>
     <div class="table-responsive">
         <table class="table">
             <thead>
@@ -29,12 +29,12 @@
                     <tr class="text-center table-stocks" th:case="${true}" style="background-color: darkseagreen">
                         <td class="align-middle border-0 px-0" th:text="${iStat.count}"></td>
                         <td class="align-middle border-0 px-0 text-capitalize" th:text="${entry.key}"></td>
-                        <td class="align-middle border-0 px-0" th:text="${'$' + entry.value}"></td>
+                        <td class="align-middle border-0 px-0">$<span th:text="${#numbers.formatDecimal(entry.value, 0, 'DEFAULT', 2, 'DEFAULT')}"></span></td>
                     </tr>
                     <tr class="text-center table-stocks" th:case="*">
                         <td class="align-middle border-0 px-0" th:text="${iStat.count}"></td>
                         <td class="align-middle border-0 px-0 text-capitalize" th:text="${entry.key}"></td>
-                        <td class="align-middle border-0 px-0" th:text="${'$' + entry.value}"></td>
+                        <td class="align-middle border-0 px-0">$<span th:text="${#numbers.formatDecimal(entry.value, 0, 'DEFAULT', 2, 'DEFAULT')}"></span></td>
                     </tr>
                 </div>
             </div>
