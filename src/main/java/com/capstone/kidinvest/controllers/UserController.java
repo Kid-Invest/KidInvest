@@ -106,11 +106,11 @@ public class UserController {
             portfolioValue += (userStock.getStock().getMarketPrice() * userStock.getShares());
         }
         // check if first time viewer on stock page, if first time, then display the tutorial and flag that he is not a first time viewer.
-//        if (!dbUser.isViewedStocks()) {
-//            view.addAttribute("firstTime", true);
-//            dbUser.setViewedStocks(true);
-//            userDao.save(dbUser);
-//        }
+        if (!dbUser.isViewedPortfolio()) {
+            view.addAttribute("firstTime", true);
+            dbUser.setViewedPortfolio(true);
+            userDao.save(dbUser);
+        }
 
 
 
