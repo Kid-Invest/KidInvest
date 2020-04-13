@@ -218,9 +218,10 @@ public class BusinessController {
         updatedInventoryList.add(Integer.parseInt(ingredient_id9));
         List<Inventory> userInventoryList = inventoryDao.findInventoryByBusinessId(userBusiness.getId());
         Date date = new Date(new java.util.Date().getTime());
+        System.out.println("DATE HERE: " + date);
         System.out.println(earnings);
         Sale dailySales = saleDao.findSaleBySaleDate(date);
-        System.out.println(dailySales);
+        System.out.println("SALES HERE: " + dailySales);
 
         // set the user's inventory to the new values from the game
         for (int i = 0; i < updatedInventoryList.size(); i++) {
@@ -243,6 +244,7 @@ public class BusinessController {
         dbUser.setBalance(dbUser.getBalance() + Double.parseDouble(earnings));
         userDao.save(dbUser);
 
+        System.out.println(dailySales);
         // Insert a new sale into sales table
         if (dailySales != null) {
             saleDao.updateSale(dailySales.getProfit() + Double.parseDouble(earnings), date, userBusiness);
