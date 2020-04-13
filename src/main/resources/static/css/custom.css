@@ -407,7 +407,7 @@ td>.purchase-btn:hover, .buy-ingredients:hover {
     text-decoration: none;
     transition: color .2s ease-in;
 }
-.exit-link > a {
+.exit-link > a, .close-shop {
     background-color: var(--dark-cyan);
     border: 3px var(--dark-cyan) solid;
     border-radius: 50px;
@@ -415,7 +415,7 @@ td>.purchase-btn:hover, .buy-ingredients:hover {
     color: var(--dark-orange);
     padding: 5px 20px;
 }
-.exit-link > a:hover {
+.exit-link > a:hover, .close-shop:hover {
     transition: color .2s ease-in;
     background-color: var(--dark-orange);
     border: 3px var(--dark-orange) solid;
@@ -467,14 +467,29 @@ input[type="text"].grocery-input, input[type="number"].grocery-input {
     max-width: 90%;
 }
 #game-details-container {
-    max-height: 288px;
+    background-color: var(--dark-cyan);
+    border: 1px var(--dark-cyan) solid;
+    border-radius: 10px;
+    max-width: 600px;
     box-sizing: border-box;
 }
-
 .lemonade-amounts {
     max-width: 210px;
 }
-
+.close-shop {
+    background-color: var(--dark-cyan);
+    border: 2px var(--dark-orange) solid;
+    border-radius: 50px;
+    text-decoration: none;
+    color: var(--dark-orange);
+    padding: 5px 20px;
+}
+.close-shop:hover {
+    transition: color .2s ease-in;
+    background-color: var(--dark-orange);
+    border: 2px var(--dark-orange) solid;
+    color: #fff;
+}
 
 
 
@@ -550,6 +565,7 @@ input[type="text"].grocery-input, input[type="number"].grocery-input {
 }
 
 
+
 /*LEARNING PAGE*/
 .stock-margin {
     margin-top: 100px;
@@ -583,7 +599,6 @@ input[type="text"].grocery-input, input[type="number"].grocery-input {
     display: flex;
     align-items: center;
     justify-content: center;
-    /*min-height: 60vh;*/
     max-height: 80vh;
     margin: 0;
     padding: 2rem;
@@ -601,22 +616,6 @@ input[type="text"].grocery-input, input[type="number"].grocery-input {
     font-weight: 600;
     color: var(--primary-gold-color);
 }
-/*.register-body, .login-body {*/
-/*    display: flex;*/
-/*    align-items: center;*/
-/*    justify-content: center;*/
-/*    min-height: 90vh;*/
-/*    margin: 0;*/
-/*}*/
-/*.register-body .container, .login-body .container {*/
-/*    padding: 2rem;*/
-/*    border: 3px var(--dark-cyan) solid;*/
-/*    border-radius: 10px;*/
-/*    background-color: var(--dark-cyan);*/
-/*}*/
-/*.login-body .container, .register-body .container {*/
-/*    max-width: 400px;*/
-/*}*/
 .nextButton {
     padding: 5px 20px;
     background-color: var(--primary-gold-color);
