@@ -30,10 +30,10 @@
                     <p class="mb-0">DATE</p>
                 </th>
                 <th class="border-0 px-0">
-                    <p class="mb-0">STOCKS BOUGHT/SOLD</p>
+                    <p class="mb-0" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="A positive value in this column represents how many stocks you bought. A negative value represents how many stocks you sold.">STOCKS BOUGHT/SOLD</p>
                 </th>
                 <th class="border-0 px-0">
-                    <p class="mb-0">SPENT/EARNED</p>
+                    <p class="mb-0" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="A positive value in this column represents how much money you earned when you sold stocks. A negative value represents how much money you spent on buying stocks.">SPENT/EARNED</p>
                 </th>
             </tr>
             </thead>
@@ -46,17 +46,17 @@
                         th:text="${transaction.getTime().toLocalDateTime()}"></td>
                     <td class="align-middle border-0 px-0">
                         <span th:if="${transaction.getSharesBoughtSold() > 0}"
-                              style="color: green" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="This is the number of stocks you bought.">+</span>
+                              style="color: green">+</span>
                         <span th:if="${transaction.getSharesBoughtSold() < 0}"
-                              style="color: red" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="This is the number of stocks you sold">-</span>
+                              style="color: red">-</span>
 
                         <span th:text="${T(java.lang.Math).abs(transaction.getSharesBoughtSold())}"></span>
                     </td>
                     <td class="align-middle border-0 px-0">
                         <span th:if="${transaction.getSharesBoughtSold() < 0}"
-                              style="color: green" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="This is how much money you made from selling the stocks.">+</span>
+                              style="color: green">+</span>
                         <span th:if="${transaction.getSharesBoughtSold() > 0}"
-                              style="color: red" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="This is how much you spent when you bought the stocks.">-</span>
+                              style="color: red">-</span>
                         $<span
                             th:text="${#numbers.formatDecimal(T(java.lang.Math).abs(transaction.getSharesBoughtSold()) * transaction.getPrice(), 0, 'DEFAULT', 2, 'DEFAULT')}"></span>
                     </td>

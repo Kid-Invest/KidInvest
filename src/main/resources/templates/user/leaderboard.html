@@ -6,7 +6,7 @@
 <div th:include="partials/fragments :: nav"></div>
 
 <div class="container page-content my-5">
-    <h1 class="mb-0 text-center">LEADERBOARD</h1>
+    <h1 class="mb-0 text-center puffy-title">LEADERBOARD</h1>
     <h3 class="mb-0 text-center">Your Portfolio Value: $<span th:text="${#numbers.formatDecimal(sortedMap.get(dbUser.getUsername()), 0, 'DEFAULT', 2, 'DEFAULT')}"></span></h3>
     <div class="table-responsive">
         <table class="table">

@@ -597,7 +597,7 @@ input[type="text"].grocery-input, input[type="number"].grocery-input {
     color: white;
     text-decoration: none;
 }
-.learning-title {
+.puffy-title {
     font-weight: 600;
     color: var(--dark-cyan);
     font-size: 10vh;
