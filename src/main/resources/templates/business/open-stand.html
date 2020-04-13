@@ -26,123 +26,24 @@
 
                     <div class="">
                         <h3 class="text-center pt-4">Lemonade Inventory</h3>
-                        <th:block th:each="inventoryItem : ${inventoryList}">
-                            <div class="row">
-                                <div class="col-6">
-                                    <div class="d-flex justify-content-end align-items-center">
-                                        <label class="mr-2 text-capitalize lemonade-ingredients"
-                                               th:for="${inventoryItem.getIngredient().getName()}"
-                                               th:text="${inventoryItem.getIngredient().getName()}">
-                                        </label>
+                        <div class="row">
+                            <div class="col-4">
+                                <th:block th:each="inventoryItem : ${inventoryList}">
+                                    <div class="d-flex justify-content-start align-items-center">
                                         <input type="number" width="" th:value="${inventoryItem.getTotal()}"
                                                th:name="${'ingredient_id' + inventoryItem.getIngredient().getId()}"
                                                th:id="${inventoryItem.getIngredient().getName()}" readonly>
+                                        <label class="ml-2 text-capitalize lemonade-ingredients"
+                                               th:for="${inventoryItem.getIngredient().getName()}"
+                                               th:text="${inventoryItem.getIngredient().getName()}">
+                                        </label>
                                     </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="table-responsive">
-                                        <table class="table">
-                                            <thead>
-                                            <tr class="text-center text-uppercase">
-                                                <th class="border-0 px-0">
-                                                    <p class="mb-0">INGREDIENT</p>
-                                                </th>
-                                                <th class="border-0 px-0">
-                                                    <p class="mb-0">Lemonade</p>
-                                                </th>
-                                                <th class="border-0 px-0">
-                                                    <p class="mb-0">Strawberry Lemonade</p>
-                                                </th>
-                                                <th class="border-0 px-0">
-                                                    <p class="mb-0">Peach Lemonade</p>
-                                                </th>
-                                                <th class="border-0 px-0">
-                                                    <p class="mb-0">Blueberry Lemonade</p>
-                                                </th>
-                                                <th class="border-0 px-0">
-                                                    <p class="mb-0">Raspberry Lemonade</p>
-                                                </th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr class="text-center table-stocks">
-                                                    <th scope="row">Lemons</th>
-                                                    <td class="align-middle border-0 px-0">2</td>
-                                                    <td class="align-middle border-0 px-0">1</td>
-                                                    <td class="align-middle border-0 px-0">1</td>
-                                                    <td class="align-middle border-0 px-0">1</td>
-                                                    <td class="align-middle border-0 px-0">1</td>
-                                                </tr>
-                                                <tr class="text-center table-stocks">
-                                                    <th scope="row">Ice</th>
-                                                    <td class="align-middle border-0 px-0">2</td>
-                                                    <td class="align-middle border-0 px-0">2</td>
-                                                    <td class="align-middle border-0 px-0">2</td>
-                                                    <td class="align-middle border-0 px-0">2</td>
-                                                    <td class="align-middle border-0 px-0">2</td>
-                                                </tr>
-                                                <tr class="text-center table-stocks">
-                                                    <th scope="row">Sugar</th>
-                                                    <td class="align-middle border-0 px-0">2</td>
-                                                    <td class="align-middle border-0 px-0">2</td>
-                                                    <td class="align-middle border-0 px-0">0</td>
-                                                    <td class="align-middle border-0 px-0">0</td>
-                                                    <td class="align-middle border-0 px-0">1</td>
-                                                </tr>
-                                                <tr class="text-center table-stocks">
-                                                    <th scope="row">Honey</th>
-                                                    <td class="align-middle border-0 px-0">0</td>
-                                                    <td class="align-middle border-0 px-0">0</td>
-                                                    <td class="align-middle border-0 px-0">2</td>
-                                                    <td class="align-middle border-0 px-0">1</td>
-                                                    <td class="align-middle border-0 px-0">0</td>
-                                                </tr>
-                                                <tr class="text-center table-stocks">
-                                                    <th scope="row">Sweetner</th>
-                                                    <td class="align-middle border-0 px-0">0</td>
-                                                    <td class="align-middle border-0 px-0">0</td>
-                                                    <td class="align-middle border-0 px-0">0</td>
-                                                    <td class="align-middle border-0 px-0">1</td>
-                                                    <td class="align-middle border-0 px-0">1</td>
-                                                </tr>
-                                                <tr class="text-center table-stocks">
-                                                    <th scope="row">Strawberries</th>
-                                                    <td class="align-middle border-0 px-0">0</td>
-                                                    <td class="align-middle border-0 px-0">3</td>
-                                                    <td class="align-middle border-0 px-0">0</td>
-                                                    <td class="align-middle border-0 px-0">0</td>
-                                                    <td class="align-middle border-0 px-0">0</td>
-                                                </tr>
-                                                <tr class="text-center table-stocks">
-                                                    <th scope="row">Peaches</th>
-                                                    <td class="align-middle border-0 px-0">0</td>
-                                                    <td class="align-middle border-0 px-0">0</td>
-                                                    <td class="align-middle border-0 px-0">1</td>
-                                                    <td class="align-middle border-0 px-0">0</td>
-                                                    <td class="align-middle border-0 px-0">0</td>
-                                                </tr>
-                                                <tr class="text-center table-stocks">
-                                                    <th scope="row">Blueberries</th>
-                                                    <td class="align-middle border-0 px-0">0</td>
-                                                    <td class="align-middle border-0 px-0">0</td>
-                                                    <td class="align-middle border-0 px-0">0</td>
-                                                    <td class="align-middle border-0 px-0">8</td>
-                                                    <td class="align-middle border-0 px-0">0</td>
-                                                </tr>
-                                                <tr class="text-center table-stocks">
-                                                    <th scope="row">Raspberries</th>
-                                                    <td class="align-middle border-0 px-0">0</td>
-                                                    <td class="align-middle border-0 px-0">0</td>
-                                                    <td class="align-middle border-0 px-0">0</td>
-                                                    <td class="align-middle border-0 px-0">0</td>
-                                                    <td class="align-middle border-0 px-0">8</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                </div>
+                                </th:block>
                             </div>
+                            <div class="col-8 d-flex justify-content-start">
 
-                        </th:block>
+                            </div>
+                        </div>
                     </div>
 
                     <div class=>
