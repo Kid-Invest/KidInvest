@@ -5,7 +5,7 @@
         choices: [" a. A type of investment that represents a piece of a company", " b. The amount of money you have", " c. Total ownership in a company", " d. A list of all the items you have available"],
         correctAnswer: 0
     }, {
-        question: "2.When you purchase a stock for $10 and sell it a few weeks later for $20 you are doing which of the following?",
+        question: "2. When you purchase a stock for $10 and sell it a few weeks later for $20 you are doing which of the following?",
         choices: [" a. buying low and selling high", " b. buying high and selling low", " c. making a profit", " d. both a and c"],
         correctAnswer: 3
     }, {

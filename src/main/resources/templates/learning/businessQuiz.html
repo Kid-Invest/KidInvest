@@ -10,7 +10,15 @@
             <form th:action="@{/learning/business/quiz}" th:method="POST" class="quiz-form">
                 <div class="quizContainer container">
                     <h1 class="mb-4 quiz-title text-center">Business Quiz</h1>
-
+                    <div id="formSubmit">
+                        <div th:if='${dbUser.getTakenBusinessQuiz() == false}' class="text-center m-3">
+                            <button type="submit" class="viewResultsBtn">Send Earnings to Balance</button>
+                        </div>
+                        <div th:if='${dbUser.getTakenBusinessQuiz() == true}' class="text-center m-3">
+                            <button type="submit" class="viewResultsBtn">Return to Learning Page</button>
+                        </div>
+                        <input th:name="quiz_result" id="quiz_result" th:value="0" hidden>
+                    </div>
                     <div class="question text-center mb-3"></div>
                     <ul class="choiceList text-left"></ul>
                     <div class="quizMessage answer-warn mb-4 text-center"></div>
@@ -23,15 +31,7 @@
                     <div class="resultAll"></div>
                     <div class="nextButton text-center">Next Question</div>
                     <br>
-                    <div id="formSubmit">
-                        <div th:if='${dbUser.getTakenBusinessQuiz() == false}' class="text-right m-3">
-                            <button type="submit" class="viewResultsBtn">Send Earnings to Balance</button>
-                        </div>
-                        <div th:if='${dbUser.getTakenBusinessQuiz() == true}' class="text-right m-3">
-                            <button type="submit" class="viewResultsBtn">Return to Learning Page</button>
-                        </div>
-                        <input th:name="quiz_result" id="quiz_result" th:value="0" hidden>
-                    </div>
+
                 </div>
             </form>
         </div>

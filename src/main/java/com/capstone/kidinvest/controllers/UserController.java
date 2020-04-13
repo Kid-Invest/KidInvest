@@ -67,7 +67,7 @@ public class UserController {
 
         // Create user based on informaiton provided
         String hash = passwordEncoder.encode(user.getPassword());
-        user.setBalance(10000.00);
+        user.setBalance(5000.00);
         user.setPassword(hash);
         user.setTakenBusinessQuiz(false);
         user.setTakenStockQuiz(false);
@@ -131,8 +131,8 @@ public class UserController {
             List<UserStock> userStockList = userStockDao.findUserStockByUserId(i);
             double stockValuation = 0;
             for (UserStock userStock : userStockList) {
-                System.out.println(userStock.getUser().getUsername());
-                System.out.println(userStock.getStock().getTicker());
+//                System.out.println(userStock.getUser().getUsername());
+//                System.out.println(userStock.getStock().getTicker());
                 stockValuation += (userStock.getStock().getMarketPrice() * userStock.getShares());
             }
             //add balance
