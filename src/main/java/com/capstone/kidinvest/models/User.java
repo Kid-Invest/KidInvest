@@ -31,14 +31,11 @@ public class User {
     @Column(name = "viewed_stocks")
     private boolean viewedStocks;
 
-    @Column(name = "viewed_transactions")
-    private boolean viewedTransactions;
-
     @Column(name = "viewed_stand")
     private boolean viewedStand;
 
-    @Column(name = "viewed_store")
-    private boolean viewedStore;
+    @Column(name = "viewed_business")
+    private boolean viewedBusiness;
 
     @Column(name = "completed_stock_quiz")
     private boolean takenStockQuiz;
@@ -57,7 +54,7 @@ public class User {
     }
 
     //constructor
-    public User(long id, String username, String password, String email, Double balance, int characterId, boolean viewedPortfolio, boolean viewedTransactions, boolean viewedStocks, boolean viewedStand, boolean viewedStore, boolean takenStockQuiz, boolean takenBusinessQuiz) {
+    public User(long id, String username, String password, String email, Double balance, int characterId, boolean viewedPortfolio, boolean viewedStocks, boolean viewedStand, boolean viewedBusiness, boolean takenStockQuiz, boolean takenBusinessQuiz) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -66,9 +63,8 @@ public class User {
         this.characterId = characterId;
         this.viewedPortfolio = viewedPortfolio;
         this.viewedStocks = viewedStocks;
-        this.viewedTransactions = viewedTransactions;
         this.viewedStand = viewedStand;
-        this.viewedStore = viewedStore;
+        this.viewedBusiness = viewedBusiness;
         this.takenStockQuiz = takenStockQuiz;
         this.takenBusinessQuiz = takenBusinessQuiz;
     }
@@ -82,9 +78,8 @@ public class User {
         this.characterId = copy.characterId;
         this.viewedPortfolio = copy.viewedPortfolio;
         this.viewedStocks = copy.viewedStocks;
-        this.viewedTransactions = copy.viewedTransactions;
         this.viewedStand = copy.viewedStand;
-        this.viewedStore = copy.viewedStore;
+        this.viewedBusiness = copy.viewedBusiness;
         this.takenStockQuiz = copy.takenStockQuiz;
         this.takenBusinessQuiz = copy.takenBusinessQuiz;
     }
@@ -130,8 +125,6 @@ public class User {
         this.balance = balance;
     }
 
-
-
     public boolean getTakenStockQuiz() {
         return takenStockQuiz;
     }
@@ -151,7 +144,6 @@ public class User {
     public void setBalance(double balance) {
         this.balance = balance;
     }
-
 
     public List<StockTransaction> getTransactionList() {
         return transactionList;
@@ -201,14 +193,6 @@ public class User {
         this.viewedStocks = viewedStocks;
     }
 
-    public boolean isViewedTransactions() {
-        return viewedTransactions;
-    }
-
-    public void setViewedTransactions(boolean viewedTransactions) {
-        this.viewedTransactions = viewedTransactions;
-    }
-
     public boolean isViewedStand() {
         return viewedStand;
     }
@@ -217,11 +201,11 @@ public class User {
         this.viewedStand = viewedStand;
     }
 
-    public boolean isViewedStore() {
-        return viewedStore;
+    public boolean isViewedBusiness() {
+        return viewedBusiness;
     }
 
-    public void setViewedStore(boolean viewedStore) {
-        this.viewedStore = viewedStore;
+    public void setViewedBusiness(boolean viewedBusiness) {
+        this.viewedBusiness = viewedBusiness;
     }
 }

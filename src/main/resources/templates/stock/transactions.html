@@ -15,56 +15,56 @@
     <title th:text="${title}"></title>
 </head>
 <body>
-<th:block th:include="partials/fragments.html :: nav">
-</th:block>
+<th:block th:include="partials/fragments.html :: nav"></th:block>
 
-<div class="container">
-    <div class="pt-3">
-        <h1 class="mb-0">STOCK TRANSACTIONS</h1>
-        <h3>RECENT HISTORY</h3>
-    </div>
-    <br>
-    <br>
-</div>
-
-<div class="container">
+<div class="container mt-5 page-content">
+    <h1 class="mb-0 text-center">RECENT STOCK TRANSACTIONS</h1>
     <div class="table-responsive">
         <table class="table">
             <thead>
-                <tr class="text-center">
-                    <th class="border-0">
-                        <p class="mb-0">NAME</p>
-                    </th>
-                    <th class="border-0">
-                        <p class="mb-0">DATE</p>
-                    </th>
-                    <th class="border-0">
-                        <p class="mb-0">SHARES BOUGHT/SOLD</p>
-                    </th>
-                    <th class="border-0">
-                        <p class="mb-0">PRICE</p>
-                    </th>
-                    <th class="border-0">
-                        <p class="mb-0">GAIN/LOSS</p>
-                    </th>
-                </tr>
+            <tr class="text-center ">
+                <th class="border-0 px-0">
+                    <p class="mb-0">NAME</p>
+                </th>
+                <th class="border-0 px-0">
+                    <p class="mb-0">DATE</p>
+                </th>
+                <th class="border-0 px-0">
+                    <p class="mb-0">STOCKS BOUGHT/SOLD</p>
+                </th>
+                <th class="border-0 px-0">
+                    <p class="mb-0">SPENT/EARNED</p>
+                </th>
+            </tr>
             </thead>
             <tbody>
-                <th:block th:each="transaction : ${stockTransactions}">
-                    <tr class="text-center">
-                        <td class="align-middle border-0" th:text="${transaction.getStock().getName()}">Sample Company</td>
-                        <td class="align-middle border-0" th:text="${transaction.getTime().toLocaleString()}">10/10/10 00:00:00</td>
-                        <td class="align-middle border-0" th:text="${transaction.getSharesBoughtSold()}">4</td>
-                        <td class="align-middle border-0" th:text="${transaction.getPrice()}">$25.00</td>
-                        <td class="align-middle border-0"
-                            th:text="${-(transaction.getSharesBoughtSold() * transaction.getPrice())}">$100</td>
-                    </tr>
-                </th:block>
+            <th:block th:each="transaction : ${stockTransactions}">
+                <tr class="text-center">
+                    <td class="align-middle border-0 px-0 text-capitalize"
+                        th:text="${transaction.getStock().getName()}"></td>
+                    <td class="align-middle border-0 px-0"
+                        th:text="${transaction.getTime().toLocaleString()}"></td>
+                    <td class="align-middle border-0 px-0">
+                        <span th:if="${transaction.getSharesBoughtSold() > 0}"
+                              style="color: green">+</span>
+                        <span th:if="${transaction.getSharesBoughtSold() < 0}"
+                              style="color: red">-</span>
+
+                        <span th:text="${T(java.lang.Math).abs(transaction.getSharesBoughtSold())}"></span>
+                    </td>
+                    <td class="align-middle border-0 px-0">
+                        <span th:if="${transaction.getSharesBoughtSold() < 0}"
+                              style="color: green">+</span>
+                        <span th:if="${transaction.getSharesBoughtSold() > 0}"
+                              style="color: red">-</span>
+                        $<span
+                            th:text="${#numbers.formatDecimal(T(java.lang.Math).abs(transaction.getSharesBoughtSold()) * transaction.getPrice(), 0, 'DEFAULT', 2, 'DEFAULT')}"></span>
+                    </td>
+                </tr>
             </tbody>
         </table>
     </div>
 </div>
-
 
 <footer th:replace="partials/fragments.html :: footer">
 </footer>
