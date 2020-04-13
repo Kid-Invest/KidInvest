@@ -490,6 +490,9 @@ input[type="text"].grocery-input, input[type="number"].grocery-input {
     border: 2px var(--dark-orange) solid;
     color: #fff;
 }
+.close-shop:focus {
+    outline: 0;
+}
 
 
 
