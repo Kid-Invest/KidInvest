@@ -4,22 +4,12 @@
 </head>
 <body>
 <div th:include="partials/fragments :: nav"></div>
-<div class="page-content">
-
-        <div class="container ">
-            <div class="main-content my-4 d-flex flex-column justify-content-center align-items-center">
+<div class="page-content index-bg d-flex flex-column align-items-center">
+            <div class="container pt-2 pb-3 main-content d-flex flex-column align-items-center">
                 <h1 class="mb-0 mc-heading">Welcome to <br><span class="homepage-logo">Kid Invest</span></h1>
                 <h3 class="mc-slogan text-center">Nothing sour here, just money!</h3>
-                <a href="/register" class="mt-5"><button class="buy-stock-btn">Start Investing</button></a>
+                <a href="/register" class="mt-4"><button class="buy-stock-btn">Start Investing</button></a>
             </div>
-        </div>
-
-        <div class="container">
-            <div>
-
-            </div>
-        </div>
-
 </div>
 <th:block th:include="partials/fragments :: footer"/>
 <th:block th:include="partials/fragments :: scripts"/>

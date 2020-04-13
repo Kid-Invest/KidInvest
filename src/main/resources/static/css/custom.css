@@ -82,9 +82,18 @@ td>a:focus, .modal-buy-btn:focus, .register-btn:focus, .logout-btn:focus,
 
 
 /*HOME PAGE*/
+.index-bg {
+    background-image: url("/img/bg-lemons.png");
+    height: 110%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 .main-content {
-    min-height: 90vh;
-    margin: 0;
+    background-color: rgba(38, 76, 81, 0.8);
+    border-radius: 10px;
+    margin-top: 20vh;
+    max-width: 641px;
 }
 .main-content>h1 {
     text-align: center;
