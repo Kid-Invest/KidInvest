@@ -28,11 +28,11 @@ VALUES (4, 'Brody''s stand', 0, 4);
 INSERT INTO `kid_invest_db`.`addons` (`id`, `name`, `popularity_bonus`, `price`)
 VALUES (1, 'Big Tree', 40, 4500.00);
 INSERT INTO `kid_invest_db`.`addons` (`id`, `name`, `popularity_bonus`, `price`)
-VALUES (2, 'Radio', 10, 150.00);
+VALUES (2, 'Radio', 10, 400.00);
 INSERT INTO `kid_invest_db`.`addons` (`id`, `name`, `popularity_bonus`, `price`)
-VALUES (3, 'Sign', 20, 300.00);
+VALUES (3, 'Sign', 20, 900.00);
 INSERT INTO `kid_invest_db`.`addons` (`id`, `name`, `popularity_bonus`, `price`)
-VALUES (4, 'Trash Cans', 10, 150.00);
+VALUES (4, 'Trash Cans', 10, 450.00);
 INSERT INTO `kid_invest_db`.`addons` (`id`, `name`, `popularity_bonus`, `price`)
 VALUES (5, 'Plants', 20, 300.00);
 INSERT INTO `kid_invest_db`.`addons` (`id`, `name`, `popularity_bonus`, `price`)
@@ -40,11 +40,11 @@ VALUES (6, 'Lights', 30, 1850.00);
 INSERT INTO `kid_invest_db`.`addons` (`id`, `name`, `popularity_bonus`, `price`)
 VALUES (7, 'Fridge', 30, 2300.00);
 INSERT INTO `kid_invest_db`.`addons` (`id`, `name`, `popularity_bonus`, `price`)
-VALUES (8, 'Chairs', 20, 1500.00);
+VALUES (8, 'Chairs', 20, 1100.00);
 INSERT INTO `kid_invest_db`.`addons` (`id`, `name`, `popularity_bonus`, `price`)
 VALUES (9, 'Big Table', 20, 1000.00);
 INSERT INTO `kid_invest_db`.`addons` (`id`, `name`, `popularity_bonus`, `price`)
-VALUES (10, 'Fountain', 50, 7000.00);
+VALUES (10, 'Fountain', 60, 10000.00);
 
 # BUSINESS HAS ADDONS SEEDER
 INSERT INTO `kid_invest_db`.`business_has_addons` (`business_id`, `addon_id`)

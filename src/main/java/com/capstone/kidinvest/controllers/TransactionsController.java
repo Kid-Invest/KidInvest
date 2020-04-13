@@ -58,10 +58,10 @@ public class TransactionsController {
         List<Sale> salesList = saleDao.findSaleByBusinessId(user.getId());
         //List<Sale> businessSalesList = businessDao.findbusinessSalesbyBusinessId(id);
 
-        for(Sale sale : salesList){
-            System.out.println(sale.getProfit());
-            System.out.println(sale.getSaleDate());
-        };
+//        for(Sale sale : salesList){
+//            System.out.println(sale.getProfit());
+//            System.out.println(sale.getSaleDate());
+//        };
 
         view.addAttribute("sales", salesList);
         //view.addAttribute("businessSales", businessSalesList);

@@ -228,16 +228,16 @@ public class BusinessController {
             inventoryDao.save(userInventoryList.get(i));
         }
 
-        System.out.println("LEMONS: " + ingredient_id1);
-        System.out.println("ICE: " + ingredient_id2);
-        System.out.println("SUGAR: " + ingredient_id3);
-        System.out.println("HONEY: " + ingredient_id4);
-        System.out.println("SWEETENER: " + ingredient_id5);
-        System.out.println("STRAWBERRY: " + ingredient_id6);
-        System.out.println("PEACH: " + ingredient_id7);
-        System.out.println("BLUEBERRY: " + ingredient_id8);
-        System.out.println("RASPBERRY: " + ingredient_id9);
-        System.out.println("TOTAL EARNINGS: " + earnings);
+//        System.out.println("LEMONS: " + ingredient_id1);
+//        System.out.println("ICE: " + ingredient_id2);
+//        System.out.println("SUGAR: " + ingredient_id3);
+//        System.out.println("HONEY: " + ingredient_id4);
+//        System.out.println("SWEETENER: " + ingredient_id5);
+//        System.out.println("STRAWBERRY: " + ingredient_id6);
+//        System.out.println("PEACH: " + ingredient_id7);
+//        System.out.println("BLUEBERRY: " + ingredient_id8);
+//        System.out.println("RASPBERRY: " + ingredient_id9);
+//        System.out.println("TOTAL EARNINGS: " + earnings);
 
         // increase the user's balance based on the earnings
         dbUser.setBalance(dbUser.getBalance() + Double.parseDouble(earnings));
