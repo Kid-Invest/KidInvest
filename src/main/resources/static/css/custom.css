@@ -503,6 +503,9 @@ input[type="text"].grocery-input, input[type="number"].grocery-input {
 .add-btn:focus, .subtract-btn:focus, .buy-ingredients:focus {
     outline: 0;
 }
+.total_purchase_cost {
+    font-size: 1.5rem;
+}
 
 
 /*LEMONADE STAND*/
