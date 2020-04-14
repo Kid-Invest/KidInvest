@@ -220,7 +220,7 @@ public class BusinessController {
         Date date = new Date(new java.util.Date().getTime());
         System.out.println("DATE HERE: " + date);
         System.out.println(earnings);
-        Sale dailySales = saleDao.findSaleBySaleDate(date);
+        Sale dailySales = saleDao.findSaleBySaleDateAndBusinessId(date, userBusiness.getId());
         System.out.println("SALES HERE: " + dailySales);
 
         // set the user's inventory to the new values from the game
@@ -244,7 +244,6 @@ public class BusinessController {
         dbUser.setBalance(dbUser.getBalance() + Double.parseDouble(earnings));
         userDao.save(dbUser);
 
-        System.out.println(dailySales);
         // Insert a new sale into sales table
         if (dailySales != null) {
             saleDao.updateSale(dailySales.getProfit() + Double.parseDouble(earnings), date, userBusiness);

@@ -15,8 +15,8 @@ import java.util.List;
 public interface SaleRepo extends JpaRepository<Sale, Long> {
     List<Sale> findSaleByBusinessId(long businessId);
 
-    @Query(nativeQuery = true, value = "SELECT * FROM sales WHERE sale_date = ?1")
-    Sale findSaleBySaleDate(Date saleDate);
+    @Query(nativeQuery = true, value = "SELECT * FROM sales WHERE sale_date = ?1 && business_id = ?2")
+    Sale findSaleBySaleDateAndBusinessId(Date saleDate, long businessId);
 
     @Transactional
     @Modifying
