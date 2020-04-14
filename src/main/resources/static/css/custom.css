@@ -61,6 +61,10 @@ ul li a.nav-link:hover,
 .navbar-toggler-icon:hover {
     color: var(--primary-gold-color);
 }
+.nav-kid-invest:hover {
+    text-shadow: 1px 0 0 #fff, -1px 0 0 #fff, 0 1px 0 #fff, 0 -1px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
+}
+
 .navbar-toggler:focus,
 .buy-stock-btn:focus, .sell-stock-btn:focus,
 td>a:focus, .modal-buy-btn:focus, .register-btn:focus, .logout-btn:focus,
@@ -105,9 +109,15 @@ td>a:focus, .modal-buy-btn:focus, .register-btn:focus, .logout-btn:focus,
 .main-content>h3 {
     font-size: 3em;
 }
+.main-lemonade-icon {
+    width: 150px;
+    height: 150px;
+}
 .homepage-logo {
     color: var(--primary-gold-color);
     font-weight: 800;
+    text-shadow: 2px 0 0 var(--dark-cyan), -2px 0 0 var(--dark-cyan), 0 2px 0 var(--dark-cyan), 0 -2px 0 var(--dark-cyan), 1px 1px var(--dark-cyan), -1px -1px 0 var(--dark-cyan), 1px -1px 0 var(--dark-cyan), -1px 1px 0 var(--dark-cyan);
+
 }
 .top-btn {
     background-color: var(--primary-gold-color);
@@ -628,8 +638,10 @@ input[type="text"].grocery-input, input[type="number"].grocery-input {
 }
 .puffy-title {
     font-weight: 600;
-    color: var(--dark-cyan);
+    /*color: var(--dark-cyan);*/
+    color: #ffb205;
     font-size: 10vh;
+    text-shadow: 2px 0 0 var(--dark-cyan), -2px 0 0 var(--dark-cyan), 0 2px 0 var(--dark-cyan), 0 -2px 0 var(--dark-cyan), 1px 1px var(--dark-cyan), -1px -1px 0 var(--dark-cyan), 1px -1px 0 var(--dark-cyan), -1px 1px 0 var(--dark-cyan);
 }
 .highlight{
     color: var(--dark-cyan)
