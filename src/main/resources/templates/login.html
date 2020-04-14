@@ -18,11 +18,13 @@
     </div>
     <form th:action="@{/login}" method="post">
         <div class="d-flex flex-column justify-content-center align-items-center">
-            <label for="username"></label>
-            <input id="username" class="username" name="username" type="text" placeholder="Username"/>
+<!--            <label for="username"></label>-->
+            <input th:if="${registeredUsername != null}" th:value="${registeredUsername}" id="username" class="username" name="username" type="text" placeholder="Username"/>
+            <input th:if="${registeredUsername == null}" id="username" class="username" name="username" type="text" placeholder="Username"/>
             <br>
-            <label for="password"></label>
-            <input id="password" class="password" name="password" type="password" placeholder="Password"/>
+<!--            <label for="password"></label>-->
+            <input th:if="${registeredPassword != null}" th:value="${registeredPassword}" id="password" class="password" name="password" type="password" placeholder="Password"/>
+            <input th:if="${registeredPassword == null}" id="password" class="password" name="password" type="password" placeholder="Password"/>
             <br>
             <input type="submit" class="login-btn mt-2" value="Log In"/>
         </div>

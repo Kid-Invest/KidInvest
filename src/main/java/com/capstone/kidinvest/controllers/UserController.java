@@ -57,7 +57,7 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String doRegistration(@ModelAttribute User user, @RequestParam String confirm) {
+    public String doRegistration(@ModelAttribute User user, @RequestParam String confirm, Model view) {
 
         if (!confirm.equals(user.getPassword())) {
             return "redirect:/register?error=passwordmismatch";
@@ -68,6 +68,7 @@ public class UserController {
         }
 
         // Create user based on informaiton provided
+        String unhashed = user.getPassword();
         String hash = passwordEncoder.encode(user.getPassword());
         user.setBalance(5000.00);
         user.setPassword(hash);
@@ -95,7 +96,10 @@ public class UserController {
             newUserStock = new UserStock(user, stock, 0, 0);
             userStockDao.save(newUserStock);
         }
-        return "redirect:/login";
+        view.addAttribute("registeredUsername", user.getUsername());
+        view.addAttribute("registeredPassword", unhashed);
+        return "login";
+//        return "redirect:/login";
     }
 
     @GetMapping("/profile")
