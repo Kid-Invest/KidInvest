@@ -14,7 +14,7 @@
         correctAnswer: 0
     }, {
         question: "4. What is your account balance?",
-        choices: [" a. The amount of money you have after subtracting all your business and stock earnings and adding all your purchases", " b. The amount of money you have after adding all your business and stock earnings and subtracting all your purchases", " c. A complete list of the items you have available to make lemonades", " d. A grouping of your stock and business profits"],
+        choices: [" a. The amount of money you have after subtracting all your business and stock earnings", " b. Your account balance is the amount of money you have after adding all your business and stock earnings", " c. A complete list of the items you have available to make lemonades", " d. A grouping of your stock and business profits"],
         correctAnswer: 1
     }, {
         question: "5. Purchasing addons will do which of the following?",

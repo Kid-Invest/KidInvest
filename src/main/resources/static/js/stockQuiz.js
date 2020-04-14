@@ -9,17 +9,17 @@
         choices: [" a. buying low and selling high", " b. buying high and selling low", " c. making a profit", " d. both a and c"],
         correctAnswer: 3
     }, {
-        question: "3. What type of stocks should you sell?",
-        choices: [" a. None of them", " b. Stock with high profits", " c. Stock that may lose value in the future", " d. Stock that may increase in value in the future"],
+        question: "3. Why it is important to buy stock in different companies instead of focusing on just one?",
+        choices: [" a. Other companies need your investment", " b. You make less money", " c. Some companies lose value or go out of business", " d. You have total ownership in every stock company"],
         correctAnswer: 2
     }, {
         question: "4. People who buy stocks are guaranteed to profit on the money they have invested.",
         choices: [" a. True", " b. False"],
         correctAnswer: 1
     }, {
-        question: "5. A stock's market price",
-        choices: [" a. Rises when people begin to sell more of the stock", " b. Increases and decreases throughout the trading day", " c. Stays the same over time", " d. Is the cost of a stock when you bought it"],
-        correctAnswer: 1
+        question: "5. The market price:",
+        choices: [" a. Rises if more people want to buy a stock and falls when people do not want to buy it", " b. Increases and decreases throughout the trading day", " c. Is a price that a stock sells for at a given point in time", " d. All of the above"],
+        correctAnswer: 3
     }];
 
     //defaults and buckets
