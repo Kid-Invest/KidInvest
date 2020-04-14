@@ -8,7 +8,7 @@
 <div class="page-content mb-5">
 
     <div class="container mt-5">
-        <h1 class="mb-0 text-center text-uppercase">Welcome to the Addons Store!</h1>
+        <h1 class="mb-0 text-center text-uppercase puffy-title">Welcome to the Addons Store</h1>
 
         <div class="table-responsive">
             <table class="table">
@@ -34,13 +34,13 @@
                                     <p class="mb-0" th:text="${addon.name}"></p>
                                 </td>
                                 <td class="align-middle border-0 px-0">
-                                    <p class="mb-0" th:text="${addon.popularityBonus}"></p>
+                                    <p class="mb-0"><span th:text="${addon.popularityBonus}"></span>%</p>
                                 </td>
                                 <td class="align-middle border-0 px-0">
                                     <p class="mb-0">$<span
                                             th:text="${#numbers.formatDecimal(addon.price, 0, 'DEFAULT', 0, 'DEFAULT')}"></span></p>
                                 </td>
-                                <td class="align-middle border-0 px-0">Already Purchased</td>
+                                <td class="align-middle border-0 px-0">Already Purchased!</td>
                             </th:block>
                             <th:block th:if="${!businessAddons.contains(addon)}">
                                 <td class="align-middle border-0 px-0">
