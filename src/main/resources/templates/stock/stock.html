@@ -15,53 +15,55 @@
 <div class="page-content">
 
 
-    <div class="px-3 pt-3 pb-4">
-        <div class="row">
-            <div class="col-lg-2 px-0 ml-3 mr-3 balance-container">
-                <h2 class="mb-0 text-center">BALANCE: $<span
-                        th:text="${#numbers.formatDecimal(user.balance, 0, 'DEFAULT', 2, 'DEFAULT')}"
-                        th:id="user-balance">500</span></h2>
-                <h6 class="text-center">(Buying Power)</h6>
-            </div>
+    <div class="px-3 pt-3 pb-4 text-center">
+        <div class="row text-center">
+            <h1 class="col-12 mb-0 text-center puffy-title">Manage Your Stocks!</h1>
         </div>
+
     </div>
 
 
     <div class="container p-0 mb-3">
-        <h1 class="mb-0 text-center puffy-title">Manage Your Stocks!</h1>
         <!--    <div class="d-flex align-items-center mb-1">-->
-        <div class="row">
-            <div class="col">
-                <h1 class="ml-3 mr-2 mb-0" th:text="${currentStock.name}">Sample Company</h1>
+        <div class="row d-flex align-items-center">
+            <div class="col-8">
+                <h1 class="ml-3 mr-2 mb-0"><span th:text="${currentStock.name + ' (' + currentStock.ticker + ')'}"></span>
+                    <!--                <div class="col d-inline-flex align-items-end">-->
+                    <!--                    <h1 class="ml-1 mb-0" th:text="${'(' + currentStock.ticker + ')'}">SCC</h1>-->
+                    <span th:switch="${currentStock.id}">
+                    <span th:case="'1'"><i class="fas fa-lg pl-3 fa-fish yellow align-middle"></i></span>
+                    <span th:case="'2'"><i class="fas fa-lg pl-3 pb-2 fa-book violet"></i></span>
+                    <span th:case="'3'"><i class="fas fa-lg pl-3 fa-laptop-medical blue2"></i></span>
+                    <span th:case="'4'"><i class="fas fa-lg pl-3 fa-dragon orange2"></i></span>
+                    <span th:case="'5'"><i class="fas fa-lg pl-3 fa-apple-alt red1"></i></span>
+                    <span th:case="'6'"><i class="fas fa-lg pl-3 fa-gamepad grey"></i></span>
+                    <span th:case="'7'"><i class="fas fa-lg pl-3 fa-pepper-hot red1"></i>
+                                        <i class="fas fa-lg fa-utensils"></i></span>
+                    <span th:case="'8'"><i class="fas fa-lg pl-3 fa-prescription red1"></i></span>
+                    <span th:case="'9'"><i class="fas fa-lg pl-3 fa-hat-cowboy brown"></i></span>
+                    <span th:case="'10'"><i class="far fa-lg pl-3 fa-gem"></i></span>
+                    <span th:case="'11'"><i class="fas fa-lg pl-3 fa-gas-pump red1"></i></span>
+                    <span th:case="'12'"><i class="fas fa-lg pl-3 fa-ticket-alt yellow"></i>
+                                         <i class="fas fa-lg fa-football-ball brown2"></i></span>
+                    <span th:case="'13'"><i class="fas fa-lg pl-3 fa-wrench grey"></i>
+                                         <i class="fas fa-lg fa-car blue2"></i></span>
+                    <span th:case="'14'"><i class="fas fa-lg pl-3 fa-circle pink1"></i></span>
+                    <span th:case="'15'"><i class="fas fa-lg pl-3 fa-chess-queen yellow"></i>
+                                         <i class="fas fa-lg fa-mobile-alt pink"></i></span>
+                    <span th:case="'16'"><i class="fas fa-lg pl-3 fa-user-secret" style="color: #000;"></i></span>
+                    <span th:case="'17'"><i class="fas fa-lg pl-3 fa-tshirt pink1"></i></span>
+                    <span th:case="'18'"><i class="fas fa-lg pl-3 fa-piggy-bank pink1"></i></span>
+                    <span th:case="'19'"><i class="fas fa-lg pl-3 fa-prescription-bottle-alt orange1"></i></span>
+                    <span th:case="'20'"><i class="fas fa-lg pl-3 fa-warehouse grey"></i></span>
+                 </span></h1>
+                <!--                </div>-->
             </div>
-            <div class="col d-inline-flex align-items-end">
-                <h1 class="ml-1 mb-0" th:text="${'(' + currentStock.ticker + ')'}">SCC</h1>
-                <span th:switch="${currentStock.id}">
-                    <span th:case="'1'"><i class="fas fa-3x pl-3 fa-fish yellow align-middle"></i></span>
-                    <span th:case="'2'"><i class="fas fa-3x pl-3 pb-2 fa-book violet"></i></span>
-                    <span th:case="'3'"><i class="fas fa-3x pl-3 fa-laptop-medical blue2"></i></span>
-                    <span th:case="'4'"><i class="fas fa-3x pl-3 fa-dragon orange2"></i></span>
-                    <span th:case="'5'"><i class="fas fa-3x pl-3 fa-apple-alt red1"></i></span>
-                    <span th:case="'6'"><i class="fas fa-3x pl-3 fa-gamepad grey"></i></span>
-                    <span th:case="'7'"><i class="fas fa-3x pl-3 fa-pepper-hot red1"></i>
-                                        <i class="fas fa-3x fa-utensils"></i></span>
-                    <span th:case="'8'"><i class="fas fa-3x pl-3 fa-prescription red1"></i></span>
-                    <span th:case="'9'"><i class="fas fa-3x pl-3 fa-hat-cowboy brown"></i></span>
-                    <span th:case="'10'"><i class="far fa-3x pl-3 fa-gem"></i></span>
-                    <span th:case="'11'"><i class="fas fa-3x pl-3 fa-gas-pump red1"></i></span>
-                    <span th:case="'12'"><i class="fas fa-3x pl-3 fa-ticket-alt yellow"></i>
-                                         <i class="fas fa-3x fa-football-ball brown2"></i></span>
-                    <span th:case="'13'"><i class="fas fa-3x pl-3 fa-wrench grey"></i>
-                                         <i class="fas fa-3x fa-car blue2"></i></span>
-                    <span th:case="'14'"><i class="fas fa-3x pl-3 fa-circle pink1"></i></span>
-                    <span th:case="'15'"><i class="fas fa-3x pl-3 fa-chess-queen yellow"></i>
-                                         <i class="fas fa-3x fa-mobile-alt pink"></i></span>
-                    <span th:case="'16'"><i class="fas fa-3x pl-3 fa-user-secret" style="color: #000;"></i></span>
-                    <span th:case="'17'"><i class="fas fa-3x pl-3 fa-tshirt pink1"></i></span>
-                    <span th:case="'18'"><i class="fas fa-3x pl-3 fa-piggy-bank pink1"></i></span>
-                    <span th:case="'19'"><i class="fas fa-3x pl-3 fa-prescription-bottle-alt orange1"></i></span>
-                    <span th:case="'20'"><i class="fas fa-3x pl-3 fa-warehouse grey"></i></span>
-                 </span>
+            <div class="col-4 mb-3">
+                <div class="px-0 ml-3 mr-3 balance-container">
+                    <h2 class="mb-0 text-center" id="user-balance-container">BALANCE: $<span
+                            th:text="${#numbers.formatDecimal(user.balance, 0, 'DEFAULT', 2, 'DEFAULT')}"
+                            th:id="user-balance">500</span></h2>
+                </div>
             </div>
             <!--        </div>-->
         </div>

@@ -9,46 +9,57 @@
 <div class="page-content">
     <div class="px-3 pt-3 pb-4">
         <div class="row ">
-            <div class="col-lg-2 px-0 ml-3 mr-3 balance-container d-flex justify-content-center">
+            <h1 class="col-12 mb-0 text-center puffy-title">Manage Your Stocks!</h1>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-between">
+            <div class="col mb-3 balance-container d-flex justify-content-center">
                 <h1 class="mb-0 text-center" th:text="${user.getUsername()}">Charlie23</h1>
                 <img style="min-width: 48px" th:src="@{|assets/kids/kid-${characterId}.png|}" alt="user's sprite image">
             </div>
+            <div class="col mb-3">
+                <h3 class="text-right">PORTFOLIO VALUE: $<span
+                        th:text="${#numbers.formatDecimal(portfolioValue + user.getBalance(), 0, 'DEFAULT', 2, 'DEFAULT')}"
+                        data-toggle="popover" data-placement="top" data-trigger="hover"
+                        data-content="Your portfolio value is calculated by adding your account balance and your stock valuation. This represents all your assets.">50</span>
+                </h3>
+            </div>
         </div>
     </div>
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <h3 class="mb-0">PORTFOLIO VALUE: $<span th:text="${#numbers.formatDecimal(portfolioValue + user.getBalance(), 0, 'DEFAULT', 2, 'DEFAULT')}" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="Your portfolio value is calculated by adding your account balance and your stock valuation. This represents all your assets.">50</span></h3>
+    <div class="container p-0">
+        <div class="row mx-3 profile-stocks d-flex flex-row justify-content-between">
+            <div class="col p-0 mx-3 my-3 d-flex align-items-center text-center">
+                <div class="p-0 mx-3 my-0 d-flex flex-column justify-content-center align-items-center">
+                    <h3 class="px-2" data-toggle="popover" data-placement="top" data-trigger="hover"
+                        data-content="This value represents the possible profits from all of your shares.">STOCK
+                        VALUATION: $<span
+                                th:text="${#numbers.formatDecimal(portfolioValue, 0, 'DEFAULT', 2, 'DEFAULT')}">20</span>
+                    </h3>
+                </div>
+            </div>
+            <div class="col p-0 mx-3 my-3 d-flex align-items-center text-center">
+                <div class="p-0 mx-3 my-0 d-flex flex-column justify-content-center align-items-center">
+                    <h3 data-toggle="popover" data-placement="top" data-trigger="hover"
+                        data-content="Your account balance is the amount of money you have after adding all your earnings and subtracting all your purchases.">
+                        ACCOUNT BALANCE: $<span
+                            th:text="${#numbers.formatDecimal(user.getBalance(), 0, 'DEFAULT', 2, 'DEFAULT')}">35</span>
+                    </h3>
+                </div>
+            </div>
+            <div class="col d-flex align-items-center justify-content-center">
+                <div class="py-0 mr-0 align-middle d-flex flex-column align-content-center text-center portfolio-lb-stock-links">
+                    <a class="mx-0 mt-2 mb-1 px-3 d-inline-flex align-items-center justify-content-center"
+                       href="/profile/leaderboard">
+                        <i class="fas fa-medal fa-lg"></i>Leaderboard
+                    </a>
+                    <a class="mx-0 mt-2 mb-2 px-0 d-inline-flex align-items-center justify-content-center"
+                       href="/transactions/stock">
+                        <i class="fas fa-exchange-alt fa-lg pr-1"></i>Stock Transactions
+                    </a>
                 </div>
             </div>
         </div>
-    <div class="container p-0">
-            <div class="row mx-3 profile-stocks d-flex flex-row justify-content-between">
-                <div class="col p-0 mx-3 my-3 d-flex align-items-center text-center">
-                    <div class="p-0 mx-3 my-0 d-flex flex-column justify-content-center align-items-center">
-                        <h3 class="px-2" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="This value represents the possible profits from all of your shares.">STOCK VALUATION: $<span
-                                th:text="${#numbers.formatDecimal(portfolioValue, 0, 'DEFAULT', 2, 'DEFAULT')}">20</span></h3>
-                    </div>
-                </div>
-                <div class="col p-0 mx-3 my-3 d-flex align-items-center text-center">
-                    <div class="p-0 mx-3 my-0 d-flex flex-column justify-content-center align-items-center">
-                        <h3 data-toggle="popover" data-placement="top" data-trigger="hover" data-content="Your account balance is the amount of money you have after adding all your earnings and subtracting all your purchases.">ACCOUNT BALANCE: $<span
-                                th:text="${#numbers.formatDecimal(user.getBalance(), 0, 'DEFAULT', 2, 'DEFAULT')}">35</span></h3>
-                    </div>
-                </div>
-                <div class="col d-flex align-items-center justify-content-center">
-                    <div class="py-0 mr-0 align-middle d-flex flex-column align-content-center text-center portfolio-lb-stock-links">
-                        <a class="mx-0 mt-2 mb-1 px-3 d-inline-flex align-items-center justify-content-center"
-                           href="/profile/leaderboard">
-                            <i class="fas fa-medal fa-lg"></i>Leaderboard
-                        </a>
-                        <a class="mx-0 mt-2 mb-2 px-0 d-inline-flex align-items-center justify-content-center"
-                           href="/transactions/stock">
-                            <i class="fas fa-exchange-alt fa-lg pr-1"></i>Stock Transactions
-                        </a>
-                    </div>
-                </div>
-            </div>
     </div>
     <br>
 
@@ -56,68 +67,89 @@
         <div class="table-responsive">
             <table class="table">
                 <thead>
-                    <tr class="text-center">
-                        <th class="border-0 px-0">
-                            <p class="mb-0">MY STOCKS</p>
-                        </th>
-                        <th class="border-0 px-0">
-                        </th>
-                        <th class="border-0 px-0">
-                            <p class="mb-0" data-toggle="popover" data-placement="left" data-trigger="hover" data-content="This column represents the percentage a stock value has increased or decreased throughout the day. Decreases in value are noted as negative numbers.">TODAY</p>
-                        </th>
-                        <th class="border-0 px-0">
-                            <p class="mb-0" data-toggle="popover" data-placement="left" data-trigger="hover" data-content="Your number of shares tells you how many stocks you bought from a particular company.">MY SHARES</p>
-                        </th>
-                    </tr>
+                <tr class="text-center">
+                    <th class="border-0 px-0">
+                        <p class="mb-0">MY STOCKS</p>
+                    </th>
+                    <th class="border-0 px-0">
+                    </th>
+                    <th class="border-0 px-0">
+                        <p class="mb-0" data-toggle="popover" data-placement="left" data-trigger="hover"
+                           data-content="This column represents the percentage a stock value has increased or decreased throughout the day. Decreases in value are noted as negative numbers.">
+                            TODAY</p>
+                    </th>
+                    <th class="border-0 px-0">
+                        <p class="mb-0" data-toggle="popover" data-placement="left" data-trigger="hover"
+                           data-content="Your number of shares tells you how many stocks you bought from a particular company.">
+                            MY SHARES</p>
+                    </th>
+                </tr>
                 </thead>
                 <tbody class="dropdown-row">
-                    <th:block th:each="userStock : ${userStocks}">
-                        <th:block th:if="${userStock.getShares() > 0}">
-                            <tr class="stock-row text-center table-stocks"
-                                th:id="${userStock.getStock().getName()}">
-                                <td class="border-0 px-0" th:text="${userStock.getStock().getName()}">Sample
-                                    Company</td>
-                                <td class="align-middle border-0 px-0 text-right">
+                <th:block th:each="userStock : ${userStocks}">
+                    <th:block th:if="${userStock.getShares() > 0}">
+                        <tr class="stock-row text-center table-stocks"
+                            th:id="${userStock.getStock().getName()}">
+                            <td class="border-0 px-0" th:text="${userStock.getStock().getName()}">Sample
+                                Company
+                            </td>
+                            <td class="align-middle border-0 px-0 text-right">
                                     <span th:style="${userStock.getStock().getChange()} > 0 ? 'color: #0D8D00' : 'color: #FF3E02'">
-                                        <th:block th:if="${userStock.getStock().getChange()} > 0"><i class="fas fa-chevron-up fa-sm" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="This indicates the stock value is currently increasing."></i></th:block>
-                                        <th:block th:unless="${userStock.getStock().getChange()} > 0"><i class="fas fa-chevron-down fa-sm" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="This indicates the stock value is currently decreasing."></i></th:block>
+                                        <th:block th:if="${userStock.getStock().getChange()} > 0"><i
+                                                class="fas fa-chevron-up fa-sm" data-toggle="popover"
+                                                data-placement="top" data-trigger="hover"
+                                                data-content="This indicates the stock value is currently increasing."></i></th:block>
+                                        <th:block th:unless="${userStock.getStock().getChange()} > 0"><i
+                                                class="fas fa-chevron-down fa-sm" data-toggle="popover"
+                                                data-placement="top" data-trigger="hover"
+                                                data-content="This indicates the stock value is currently decreasing."></i></th:block>
                                     </span>
-                                </td>
-                                <td class="border-0 px-0"><span
-                                        th:text="${#numbers.formatDecimal(userStock.getStock().getChange(), 0, 'DEFAULT', 2, 'DEFAULT')}">3.25</span>%</td>
-                                <td class="border-0 px-0" th:text="${userStock.getShares()}">4</td>
-                            </tr>
-                            <tr class="stock-row-stats" style="display: none">
-                                <td colspan="4" class="border-0 px-0">
-                                    <div class="row mx-3 d-flex justify-content-around div-stats">
-                                        <div class="col d-flex align-content-center flex-column text-center px-0">
-                                            <p class="mb-0 stat-title">OPEN</p>
-                                            <p>$<span
-                                                    th:text="${#numbers.formatDecimal(userStock.getStock().getOpenPrice(), 0, 'DEFAULT', 2, 'DEFAULT')}">40</span></p>
+                            </td>
+                            <td class="border-0 px-0"><span
+                                    th:text="${#numbers.formatDecimal(userStock.getStock().getChange(), 0, 'DEFAULT', 2, 'DEFAULT')}">3.25</span>%
+                            </td>
+                            <td class="border-0 px-0" th:text="${userStock.getShares()}">4</td>
+                        </tr>
+                        <tr class="stock-row-stats" style="display: none">
+                            <td colspan="4" class="border-0 px-0">
+                                <div class="row mx-3 d-flex justify-content-around div-stats">
+                                    <div class="col d-flex align-content-center flex-column text-center px-0">
+                                        <p class="mb-0 stat-title">OPEN</p>
+                                        <p>$<span
+                                                th:text="${#numbers.formatDecimal(userStock.getStock().getOpenPrice(), 0, 'DEFAULT', 2, 'DEFAULT')}">40</span>
+                                        </p>
 
-                                            <p class="mb-0 stat-title">HIGH</p>
-                                            <p>$<span
-                                                    th:text="${#numbers.formatDecimal(userStock.getStock().getHighPrice(), 0, 'DEFAULT', 2, 'DEFAULT')}">34</span></p>
+                                        <p class="mb-0 stat-title">HIGH</p>
+                                        <p>$<span
+                                                th:text="${#numbers.formatDecimal(userStock.getStock().getHighPrice(), 0, 'DEFAULT', 2, 'DEFAULT')}">34</span>
+                                        </p>
 
-                                            <p class="mb-0 stat-title">LOW</p>
-                                            <p class="mb-0">$<span
-                                                    th:text="${#numbers.formatDecimal(userStock.getStock().getLowPrice(), 0, 'DEFAULT', 2, 'DEFAULT')}">50</span></p>
-                                        </div>
-                                        <div class="col d-flex align-content-center flex-column text-center px-0">
-                                            <p class="mb-0 stat-title">AVG COST</p>
-                                            <p>$<span th:text="${#numbers.formatDecimal(userStock.getAvg_purchase_price(), 0, 'DEFAULT', 2, 'DEFAULT')}"></span></p>
-
-                                            <p class="mb-0 stat-title">CURR MKT</p>
-                                            <p>$<span th:text="${#numbers.formatDecimal(userStock.getStock().getMarketPrice(), 0, 'DEFAULT', 2, 'DEFAULT')}">50</span></p>
-
-                                            <p class="mb-0 pb-0 stat-title">TOTAL RETURN PER SHARE</p>
-                                            <p class="mb-0">$<span th:text="${#numbers.formatDecimal(userStock.getStock().getMarketPrice() - userStock.getAvg_purchase_price(), 0, 'DEFAULT', 2, 'DEFAULT')}"></span></p>
-                                        </div>
+                                        <p class="mb-0 stat-title">LOW</p>
+                                        <p class="mb-0">$<span
+                                                th:text="${#numbers.formatDecimal(userStock.getStock().getLowPrice(), 0, 'DEFAULT', 2, 'DEFAULT')}">50</span>
+                                        </p>
                                     </div>
-                                </td>
-                            </tr>
-                        </th:block>
+                                    <div class="col d-flex align-content-center flex-column text-center px-0">
+                                        <p class="mb-0 stat-title">AVG COST</p>
+                                        <p>$<span
+                                                th:text="${#numbers.formatDecimal(userStock.getAvg_purchase_price(), 0, 'DEFAULT', 2, 'DEFAULT')}"></span>
+                                        </p>
+
+                                        <p class="mb-0 stat-title">CURR MKT</p>
+                                        <p>$<span
+                                                th:text="${#numbers.formatDecimal(userStock.getStock().getMarketPrice(), 0, 'DEFAULT', 2, 'DEFAULT')}">50</span>
+                                        </p>
+
+                                        <p class="mb-0 pb-0 stat-title">TOTAL RETURN PER SHARE</p>
+                                        <p class="mb-0">$<span
+                                                th:text="${#numbers.formatDecimal(userStock.getStock().getMarketPrice() - userStock.getAvg_purchase_price(), 0, 'DEFAULT', 2, 'DEFAULT')}"></span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
                     </th:block>
+                </th:block>
                 </tbody>
             </table>
         </div>
@@ -187,8 +219,6 @@
             </div>
         </div>
 </th:block>
-
-
 
 
 <footer th:replace="partials/fragments.html :: footer">
